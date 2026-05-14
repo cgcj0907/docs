@@ -1,0 +1,154 @@
+---
+title: "第 4 章 串"
+date: 2026-04-20
+draft: false
+tags: ["UESTC", "数据结构"]
+ShowToc: true
+---
+
+本章重点复习字符串这一特殊的线性表除了掌握串的几种存储结构及其空间利用率差异外，最核心的考点和难点在于**模式匹配算法**，尤其是 KMP 算法中 `next` 与 `nextval` 数组的求解和应用
+
+## 串的存储结构
+
+<AccordionGroup>
+  <Accordion title="顺序存储（定长静态与堆分配动态）">
+    <Tabs>
+      <Tab title="定长顺序存储（静态数组）">
+        ![定长顺序存储](/images/data-structure/fixed-seq-string.svg)
+        - **存储方式**：用连续存储单元（数组）依次存放字符
+        - **特点**：
+          - 随机访问方便：可 $O(1)$ 取第 $i$ 个字符
+          - 需要预先给出 `MaxSize`，可能出现空间浪费或溢出
+        - **常见实现**：额外记录 `length`（串长），便于快速求长度
+
+      </Tab>
+      <Tab title="堆分配顺序存储（动态数组）">
+        ![堆分配顺序存储](/images/data-structure/heap-seq-string.svg)
+        - **存储方式**：按需动态申请连续空间（如 `malloc/new`），串增长时可扩容
+        - **特点**：
+          - 空间利用率更高，适合长度变化较大场景
+          - 扩容可能带来拷贝开销
+
+      </Tab>
+    </Tabs>
+  </Accordion>
+
+  <Accordion title="链式与块链存储">
+    <Tabs>
+      <Tab title="链式存储（链串）">
+              ```mermaid
+    graph LR
+    head(("head")) --> node1["a | next"]
+    node1 --> node2["b | next"]
+    node2 --> node3["a | next"]
+    node3 --> node4["c | NULL"]
+    ```
+        - **存储方式**：用链表结点存放字符并用指针连接
+        - **特点**：
+          - 插入/删除在局部位置更灵活（不必整体移动）
+          - 存储密度低（指针域开销），随机访问不便（取第 $i$ 个字符需 $O(i)$ 遍历）
+
+      </Tab>
+      <Tab title="块链存储（块链串）">
+              ```mermaid
+    graph LR
+    head(("head")) --> node1["a b a | next"]
+    node1 --> node2["c ∅ ∅ | NULL"]
+    ```
+        - **核心思想**：一个结点存放多个字符（一个“块”），再用指针把块串起来
+        - **特点**：
+          - 相比链串：减少指针数量，提高存储密度
+          - 相比顺序存储：仍保留一定插入/删除灵活性
+        - **结点结构要点**：结点内字符数组大小 $k$（块大小）是性能折中，$k$ 越大越接近顺序存储，$k$ 越小越接近链式存储
+
+      </Tab>
+    </Tabs>
+  </Accordion>
+</AccordionGroup>
+
+## 模式匹配
+
+<AccordionGroup>
+  <Accordion title="朴素匹配（BF / 暴力匹配）">
+    - **思想**：从主串某一位置开始，逐字符与模式串比较；一旦失配，主串起始位置后移一位，模式串从头再比
+    - **时间复杂度**（设主串长度 $n$，模式串长度 $m$）：
+      - **最好情况**：一次就匹配成功，约 $O(m)$
+      - **最坏情况**：大量“前缀相同、末尾失配”，时间复杂度约 $O(nm)$
+    <Info>**价值**：实现简单，是理解 KMP 算法的参照物</Info>
+  </Accordion>
+
+  <Accordion title="KMP 算法核心思想：在“省”什么？">
+    设主串 `S`、模式串 `T`，当比较到 `S[i]` 与 `T[j]` 时失配：
+    - **BF**：主串起始位置后移 1 位，然后把 `T` 从头开始对齐再比（主串下标会回退）
+    - **KMP**：**主串指针 `i` 不回退**，只调整模式串指针 `j`（把 `T` 向右“滑动”到一个必然不会错过答案的位置）
+
+    <Tip>**本质**：KMP 利用 `T` 的“自相似性”（前缀 = 后缀）来复用已经比对过的结果</Tip>
+
+    **前缀、后缀、最长相等真前后缀 (LPS)**：
+    - **前缀**：串的从左开始的若干字符（可取空）
+    - **后缀**：串的从右开始的若干字符（可取空）
+    - **真前缀/真后缀**：不等于串本身的前缀/后缀
+    - **LPS (Longest Proper Prefix which is also Suffix)**：最长相等真前后缀长度例如 `X = "ababab"`，其 LPS 长度为 `4`（"abab"）
+  </Accordion>
+
+  <Accordion title="模式串 next 数组求解与匹配">
+    <Tip>KMP 的关键：失配时**主串指针 $i$ 不回溯**，只让模式串指针 $j$ 依据 $next[j]$ 回退</Tip>
+
+    设主串 `S`，模式串 `P`（以下使用 1 下标）：
+    - $next[j]$ 表示当比较到 $S[i] \neq P[j]$ 时，在不移动 $i$ 的前提下，$j$ 应回退到的模式串位置
+    - **直观含义**：$next[j]$ 给出了 $P[1..j-1]$ 的“最长可复用前缀长度 + 1”的回退位置，本质就是把模式串尽可能向右滑动
+
+    <CodeGroup>
+    ```c next 求解
+    // 1 下标写法：P[1..m]，next[1..m]
+    void get_next(PString P, int next[]) {
+        int i = 1, j = 0;
+        next[1] = 0;
+        while (i < m) {
+            if (j == 0 || P[i] == P[j]) {
+                ++i; ++j;
+                next[i] = j;
+            } else {
+                j = next[j]; // 尝试更短的可复用前缀
+            }
+        }
+    }
+    ```
+
+    ```c 利用 next 匹配
+    // 1 下标写法：S[1..n], P[1..m]
+    int Index_KMP(SString S, PString P, int pos) {
+        int i = pos, j = 1;
+        while (i <= n && j <= m) {
+            if (j == 0 || S[i] == P[j]) {
+                ++i; ++j;
+            } else {
+                j = next[j];
+            }
+        }
+        if (j > m) return i - m;  // 匹配成功，返回起始位置
+        return 0;                 // 匹配失败
+    }
+    ```
+    </CodeGroup>
+
+    **实例：模式串 "abaabcac" 的 next 数组**（$m = 8$）
+
+    | j | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+    |---|---:|---:|---:|---:|---:|---:|---:|---:|
+    | **P[j]** | a | b | a | a | b | c | a | c |
+    | **next[j]** | 0 | 1 | 1 | 2 | 2 | 3 | 1 | 2 |
+  </Accordion>
+
+  <Accordion title="nextval 优化与时间复杂度">
+    **nextval（进一步减少“必然再次失配”的比较）**：
+    - **现象**：若 $T[j] == T[next[j]]$，则把 $j$ 跳到 $next[j]$ 后，下一次比较依然会拿同样字符去比，容易产生无效比较
+    - **优化思想**：若按 $next[j]$ 回退后仍会拿“相同字符”去比较，则可继续回退以跳过这类必然失败的比较
+    - **复习建议**：先把 $next$ 与 KMP 主流程写熟，再在题目强调“减少比较次数/优化”时引入 $nextval$
+
+    **时间复杂度：为什么是 $O(n+m)$？**
+    - 构造 `next/nextval`：$O(m)$
+    - 匹配过程：$O(n)$
+    <Info>**直观原因**：匹配过程中，主串指针 $i$ 单调递增不回退，总共最多走 $n$ 次</Info>
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,201 @@
+---
+title: "第 3 章 运算方法和运算部件"
+date: 2026-03-30
+draft: false         
+tags: ["UESTC", "计算机组成原理"]
+ShowToc: true            
+---
+
+这一章整理定点数的加减乘除、标志位判断、Booth 乘法推导，以及浮点数舍入规则，适合按“加减法 -> 乘法 -> 除法 -> 浮点舍入”的顺序回顾
+
+## C 语言中涉及的运算
+
+<Accordion title="运算类型速记">
+  1. 按位运算：或运算（`|`）、与运算（`&`）、取反运算（`~`）、异或运算（`^`）
+  2. 逻辑运算：或运算（`||`）、与运算（`&&`）、非运算（`!`）
+  3. 移位运算
+    - 逻辑移位
+    - 算术移位：右移高位补符号
+  4. 位扩展和位截断运算
+    - 0 扩展
+    - 符号扩展
+</Accordion>
+
+## 定点数运算
+
+<AccordionGroup>
+  <Accordion title="带标志加法器">
+    - 溢出标志 OF(Overflow Flag)：$OF = C_n \oplus C_{n-1}$
+    - 符号标志 SF(Sign Flag)：$SF = F_{n-1}$
+    - 零号标志 ZF(Zero Flag)：$ZF = 1$，当且仅当 $F = 0$
+    - 进位/借位标志 CF(Carry Flag)：$CF = C_{out} \oplus C_{in}$
+  </Accordion>
+
+  <Accordion title="无符号数和补码加减法">
+    ![Compound addition](/images/computer-architecture/Chapter3_Compound_1.webp)
+
+    <Info>
+      - $\overline{Y}$ 即 $Y$ 各位取反
+      - $CF = C_{in} \oplus C_{out}$，CF 对于补码加减法运算无实际意义
+    </Info>
+
+    - 无符号数（$X$ 和 $Y$ 就是 $x$ 和 $y$ 的二进制表示）
+      - 加法：$X + Y,\ C_{in} = 0$
+      - 减法：$X + \overline{Y} + 1,\ C_{in} = 1$
+    - 补码（$X$ 和 $Y$ 就是 $x$ 和 $y$ 的补码表示）
+      - 加法：$X + Y,\ C_{in} = 0$
+      - 减法：$X + \overline{Y} + 1,\ C_{in} = 1$
+  </Accordion>
+
+  <Accordion title="原码乘法运算">
+    #### 原码一位乘法
+
+    ![Unsigned multiplication](/images/computer-architecture/Chapter3_Usigned_1.webp)
+    ![Unsigned multiplication](/images/computer-architecture/Chapter3_Usigned_2.webp)
+  </Accordion>
+
+  <Accordion title="补码乘法运算与 Booth 乘法">
+    ![Two's complement multiplication](/images/computer-architecture/Chapter3_TwoC_1.webp)
+    ![Two's complement multiplication](/images/computer-architecture/Chapter3_TwoC_2.webp)
+
+    <Tip>
+      记忆重点：Booth 乘法不是逐位“看到 1 就加”，而是把连续的 1 串压缩成边界上的“加一次 / 减一次”
+    </Tip>
+
+    #### Booth 乘法推导
+
+    A. D. Booth 提出了一种**补码相乘算法**：符号位与数值位合在一起参与运算，正数与负数同等对待，直接得到补码形式的乘积下面以 $n$ 位补码定点整数说明其推导思路
+
+    - 设两个 $n$ 位补码定点整数
+
+      $$
+      [x]_{\text{补}} = X_{n-1} X_{n-2} \cdots X_1 X_0
+      $$
+
+      $$
+      [y]_{\text{补}} = Y_{n-1} Y_{n-2} \cdots Y_1 Y_0
+      $$
+
+      根据补码定义，乘数 $y$ 的真值可写成
+
+      $$
+      y = -Y_{n-1} \cdot 2^{n-1} + \sum_{i=0}^{n-2} Y_i \cdot 2^i
+      $$
+
+    - 将 $y$ 改写为“相邻两位之差”的形式
+
+      利用 $Y_i \cdot 2^i = Y_i \cdot 2^{i+1} - Y_i \cdot 2^i$，并令 $Y_{-1} = 0$（在最低位右侧附加一位 0），可推得
+
+      $$
+      y = \sum_{i=0}^{n-1} (Y_{i-1} - Y_i) \cdot 2^i
+      $$
+
+      直观含义：当 $Y_i$ 与 $Y_{i-1}$ 相同（00 或 11）时，该位对系数为 0；当出现跳变时，系数为 +1（01 跳变）或 -1（10 跳变）
+
+    - 因而乘积可写成
+
+      $$
+      x \times y = \sum_{i=0}^{n-1} (Y_{i-1} - Y_i) \cdot x \cdot 2^i
+      $$
+
+      这说明：只要判断乘数中每一位 $Y_i$ 与其低一位 $Y_{i-1}$ 的关系，就能决定在第 $i$ 步对部分积是“加 $x$”、“减 $x$”还是“加 0”，再配合移位完成累加
+
+    - 递推规则与 Booth 判别式
+
+      | $(Y_i, Y_{i-1})$ | $Y_{i-1} - Y_i$ | 操作 | 含义 |
+      | :---: | :---: | :---: | :--- |
+      | 01 | +1 | $+[x]_{\text{补}}$ | 遇到 $0 \to 1$ 跳变（连续 1 串开始） |
+      | 10 | -1 | $+[-x]_{\text{补}}$ | 遇到 $1 \to 0$ 跳变（连续 1 串结束） |
+      | 00 | 0 | $+0$ | 仍在 0 区间 |
+      | 11 | 0 | $+0$ | 仍在连续 1 串内部 |
+
+    - 实现层面的操作步骤
+      1. 设初始部分积 $[P_0]_{\text{补}} = 0$，附加位 $Y_{-1} = 0$
+      2. 循环 $n$ 次（$i = 0, 1, \cdots, n-1$）
+      3. 根据 $(Y_i, Y_{i-1})$ 的状态，部分积加上 $[x]_{\text{补}}$、加上 $[-x]_{\text{补}}$ 或加 0
+      4. 将（部分积、乘数 $y$、附加位 $Y_{-1}$）作为一个整体，进行**算术右移 1 位**
+
+    以上推导展示了 Booth 乘法“把连续的 1 串压缩为两次边界操作（加 $x$ 与减 $x$）”的本质，不仅减少了实际的加法次数，且天然适配补码的符号扩展与算术移位运算
+  </Accordion>
+
+  <Accordion title="原码除法运算">
+    <Warning>
+      - 符号位单独运算
+      - 定点整数：被除数扩展高位添加 0；定点小数：被除数扩展低位添加 0
+      - $Q_n = 1$ 时，定点整数除法和定点小数除法均溢出，浮点数除外（可右规）
+    </Warning>
+
+    ![Division](/images/computer-architecture/Chapter3_Div.webp)
+
+    #### 恢复余数除法
+
+    ![Division](/images/computer-architecture/Chapter3_Div_Reset_1.webp)
+    ![Division](/images/computer-architecture/Chapter3_Div_Reset_2.webp)
+
+    #### 不恢复余数除法
+
+    ![Division NoReset](/images/computer-architecture/Chapter3_Div_Noreset_1.webp)
+    ![Division NoReset](/images/computer-architecture/Chapter3_Div_Noreset_2.webp)
+  </Accordion>
+
+  <Accordion title="补码除法运算">
+    <Warning>
+      补码除法的溢出可从“商是否超出补码表示范围”来判断，常见情况有：
+
+      - 定点小数除法中，若 $|x| > |y|$，则商的绝对值大于 1，可能溢出
+      - 特殊边界值：$x = -2^{n-1}$ 且 $y = -1$ 时，商应为 $2^{n-1}$，超出 $n$ 位补码可表示的最大正数范围
+      - 等价地说，只要最终商不能落在当前补码字长的表示区间内，就属于除法溢出
+    </Warning>
+
+    <Info>
+      被除数需要进行符号扩展
+    </Info>
+
+    ![Division Two's complement rules](/images/computer-architecture/Chapter3_TwoC_Div_Rules.webp)
+
+    #### 恢复余数除法
+
+    <Waring>
+      若被除数与除数同号，则 Q 中是真正的商；否则，将 Q 中的数值求补后作为真正的商
+    </Waring>
+
+    ![Division Two's complement division with reset](/images/computer-architecture/Chapter3_TwoC_Div_Reset.webp)
+
+    #### 不恢复余数除法
+
+    <Warning>
+      - 商的修正：最后一次 Q 寄存器左移一位，将最高位 $Q_n$ 移出，并在最低位置上商 $Q_0$
+      - 余数的修正：若余数符号同被除数符号，则不需修正，余数在 R 中；否则，按下列规定进行修正：当被除数和除数符号相同时，最后余数加除数；否则，最后余数减除数
+    </Warning>
+
+    ![Division Two's complement division with  no reset](/images/computer-architecture/Chapter3_TwoC_Div_Noreset.webp)
+  </Accordion>
+</AccordionGroup>
+
+## 浮点数运算的精度和舍入
+
+<AccordionGroup>
+  <Accordion title="G / R / S 三个附加位">
+    <Info>
+      - 保护位 G（警戒位）：紧跟在有效位后面的第 1 位
+      - 舍入位 R：紧跟在有效位后面的第 2 位
+      - 粘位 S：后面所有位的“或”结果，即舍入位右边只要有 1，粘位则置为 1
+    </Info>
+  </Accordion>
+
+  <Accordion title="舍入方式">
+    1. 就近舍入到偶数
+
+    ```text title="就近舍入规则"
+    G=0 -> 不进位
+    G=1 且（R=1 或 S=1）-> 进位
+    G=1 且 R=0 且 S=0 -> 向偶数舍入
+    ```
+
+    2. 朝 $+\infty$ 方向舍入
+    3. 朝 $-\infty$ 方向舍入
+    4. 朝 0 方向舍入
+
+    ![Result rounding](/images/computer-architecture/Chapter3_Result_Rounding.webp)
+  </Accordion>
+</AccordionGroup>

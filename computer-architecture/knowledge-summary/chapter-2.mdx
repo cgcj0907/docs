@@ -1,0 +1,85 @@
+---
+title: "第 2 章 数据的机器级表示"
+date: 2026-03-30
+draft: false         
+tags: ["UESTC", "计算机组成原理"]
+ShowToc: true            
+---
+这一章整理数据在计算机中的表示方法，包括浮点数、字符编码、常见容量单位，以及多字节数据在内存中的排列顺序
+
+<AccordionGroup>
+  <Accordion title="IEEE754">
+    IEEE 754 用于描述浮点数在机器中的表示方式，复习时重点关注符号位、阶码和尾数的含义
+
+    ![IEEE 754 浮点数表示示意图 1](/images/computer-architecture/Chapter2_IEEE754_1.webp)
+    ![IEEE 754 浮点数表示示意图 2](/images/computer-architecture/Chapter2_IEEE754_2.webp)
+  </Accordion>
+
+  <Accordion title="ASCII">
+    <Info>
+      ASCII = American Standard Code for Information Interchange
+    </Info>
+
+    ASCII 是字符在计算机中的基础编码方式，复习时可结合下图记忆字符与编码值的对应关系
+
+    ![ASCII 编码表图示 1](/images/computer-architecture/Chapter2_ASCII_1.webp)
+    ![ASCII 编码表图示 2](/images/computer-architecture/Chapter2_ASCII_2.webp)
+  </Accordion>
+
+  <Accordion title="数据的宽度和存储">
+    不同场景下，容量单位和传输单位的进制约定不同，需要区分记忆
+
+    <Tip>
+      主存容量通常按 $2$ 的幂记忆，带宽和传输速率通常按 $10$ 的幂记忆
+    </Tip>
+
+    <Tabs>
+      <Tab title="主存容量">
+        <table>
+          <tbody>
+            <tr><td>1 KB (kilobyte)</td><td>=</td><td>$2^{10}$ 字节</td></tr>
+            <tr><td>1 MB (megabyte)</td><td>=</td><td>$2^{20}$ 字节</td></tr>
+            <tr><td>1 GB (gigabyte)</td><td>=</td><td>$2^{30}$ 字节</td></tr>
+            <tr><td>1 TB (terabyte)</td><td>=</td><td>$2^{40}$ 字节</td></tr>
+            <tr><td>1 PB (petabyte)</td><td>=</td><td>$2^{50}$ 字节</td></tr>
+            <tr><td>1 EB (exabyte)</td><td>=</td><td>$2^{60}$ 字节</td></tr>
+            <tr><td>1 ZB (zettabyte)</td><td>=</td><td>$2^{70}$ 字节</td></tr>
+            <tr><td>1 YB (yottabyte)</td><td>=</td><td>$2^{80}$ 字节</td></tr>
+          </tbody>
+        </table>
+      </Tab>
+
+      <Tab title="主频和带宽">
+        <table>
+          <tbody>
+            <tr><td>比特/秒</td><td>:</td><td>b/s 或 bps</td></tr>
+            <tr><td>1 kb/s</td><td>=</td><td>$10^{3}$ b/s = 1000 bps</td></tr>
+            <tr><td>1 Mb/s</td><td>=</td><td>$10^{6}$ b/s = 1000 kb/s</td></tr>
+            <tr><td>1 Gb/s</td><td>=</td><td>$10^{9}$ b/s = 1000 Mb/s</td></tr>
+            <tr><td>1 Tb/s</td><td>=</td><td>$10^{12}$ b/s = 1000 Gb/s</td></tr>
+          </tbody>
+        </table>
+      </Tab>
+
+      <Tab title="硬盘和文件">
+        ![硬盘和文件容量单位图示 1](/images/computer-architecture/Chapter2_Unit_1.webp)
+        ![硬盘和文件容量单位图示 2](/images/computer-architecture/Chapter2_Unit_2.webp)
+      </Tab>
+    </Tabs>
+  </Accordion>
+
+  <Accordion title="数据的存储和排列顺序">
+    - 大端方式：将数据的最高有效字节 `MSB` 存放在低地址单位中
+    - 小端方式：将数据的最低有效字节 `LSB` 存放在低地址单位中
+
+    <Tip>
+      判断口诀：低地址放高字节是大端，低地址放低字节是小端
+    </Tip>
+
+    <Info>
+      示例：机器数 `01234567 H`
+    </Info>
+
+    ![大端与小端存储示意图](/images/computer-architecture/Chapter2_Storage.webp)
+  </Accordion>
+</AccordionGroup>

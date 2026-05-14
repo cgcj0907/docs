@@ -46,6 +46,33 @@
         ]
       },
       {
+        "tab": "计算机组成原理",
+        "groups": [
+          {
+            "group": "知识总结",
+            "pages": [
+              "computer-architecture/knowledge-summary/chapter-1",
+              "computer-architecture/knowledge-summary/chapter-2",
+              "computer-architecture/knowledge-summary/chapter-3"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "数据结构",
+        "groups": [
+          {
+            "group": "知识总结",
+            "pages": [
+              "data-structure/knowledge-summary/chapter-1",
+              "data-structure/knowledge-summary/chapter-2",
+              "data-structure/knowledge-summary/chapter-3",
+              "data-structure/knowledge-summary/chapter-4"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "HR & People",
         "groups": [
           {
