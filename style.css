@@ -17,30 +17,7 @@ toc-item[data-active-deepest] > a::before {
   pointer-events: none;
 }
 
-/* topbar logo: render smaller than its natural width */
-#navbar a[href="/"] img,
-#navbar a[href="/"] svg,
-#sidebar a[href="/"] img,
-#sidebar a[href="/"] svg {
-  max-width: 14rem;
-  height: auto;
-}
-
 a[nav-tabs-item] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.kb-feature-card {
-  background-color: rgb(var(--foreground-light, 17 24 39));
-}
-
-.kb-feature-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url('/images/texture.png');
-  background-position: center;
-  background-size: cover;
-  opacity: 0.875;
 }

@@ -1,15 +1,16 @@
 ---
 title: "第 2 章 数据的机器级表示"
-date: 2026-03-30
-draft: false         
-tags: ["UESTC", "计算机组成原理"]
-ShowToc: true            
+sidebarTitle: "数据的机器级表示"
+description: "整理 IEEE 754、ASCII、容量单位，以及大端和小端存储顺序。"
+tags: ["考研408", "计算机组成原理"]
 ---
-这一章整理数据在计算机中的表示方法，包括浮点数、字符编码、常见容量单位，以及多字节数据在内存中的排列顺序
+本章整理数据在计算机中的表示方法，包括 IEEE 754、ASCII、容量单位，以及多字节数据的存储顺序。
+
+## 浮点数与字符编码
 
 <AccordionGroup>
   <Accordion title="IEEE754">
-    IEEE 754 用于描述浮点数在机器中的表示方式，复习时重点关注符号位、阶码和尾数的含义
+    IEEE 754 用于描述浮点数在机器中的表示方式，复习时重点关注符号位、阶码和尾数的含义。
 
     ![IEEE 754 浮点数表示示意图 1](/images/computer-architecture/Chapter2_IEEE754_1.webp)
     ![IEEE 754 浮点数表示示意图 2](/images/computer-architecture/Chapter2_IEEE754_2.webp)
@@ -20,14 +21,18 @@ ShowToc: true
       ASCII = American Standard Code for Information Interchange
     </Info>
 
-    ASCII 是字符在计算机中的基础编码方式，复习时可结合下图记忆字符与编码值的对应关系
+    ASCII 是字符在计算机中的基础编码方式，复习时可结合下图记忆字符与编码值的对应关系。
 
     ![ASCII 编码表图示 1](/images/computer-architecture/Chapter2_ASCII_1.webp)
     ![ASCII 编码表图示 2](/images/computer-architecture/Chapter2_ASCII_2.webp)
   </Accordion>
+</AccordionGroup>
 
+## 容量单位与存储顺序
+
+<AccordionGroup>
   <Accordion title="数据的宽度和存储">
-    不同场景下，容量单位和传输单位的进制约定不同，需要区分记忆
+    不同场景下，容量单位和传输单位的进制约定不同，需要区分记忆。
 
     <Tip>
       主存容量通常按 $2$ 的幂记忆，带宽和传输速率通常按 $10$ 的幂记忆

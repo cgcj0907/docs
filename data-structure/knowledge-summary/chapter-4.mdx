@@ -1,12 +1,11 @@
 ---
 title: "第 4 章 串"
-date: 2026-04-20
-draft: false
-tags: ["UESTC", "数据结构"]
-ShowToc: true
+sidebarTitle: "串"
+description: "整理串的顺序与链式存储、朴素模式匹配和 KMP 算法。"
+tags: ["考研408", "数据结构"]
 ---
 
-本章重点复习字符串这一特殊的线性表除了掌握串的几种存储结构及其空间利用率差异外，最核心的考点和难点在于**模式匹配算法**，尤其是 KMP 算法中 `next` 与 `nextval` 数组的求解和应用
+本章整理串这一特殊线性表。复习时除掌握顺序、链式和块链存储的空间利用率差异外，还应重点掌握模式匹配，尤其是 KMP 中 `next` 与 `nextval` 数组的求解和应用。
 
 ## 串的存储结构
 
@@ -88,7 +87,7 @@ ShowToc: true
     - **前缀**：串的从左开始的若干字符（可取空）
     - **后缀**：串的从右开始的若干字符（可取空）
     - **真前缀/真后缀**：不等于串本身的前缀/后缀
-    - **LPS (Longest Proper Prefix which is also Suffix)**：最长相等真前后缀长度例如 `X = "ababab"`，其 LPS 长度为 `4`（"abab"）
+    - **LPS (Longest Proper Prefix which is also Suffix)**：最长相等真前后缀长度。例如 `X = "ababab"`，其 LPS 长度为 `4`（"abab"）
   </Accordion>
 
   <Accordion title="模式串 next 数组求解与匹配">
