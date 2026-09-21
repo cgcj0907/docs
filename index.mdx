@@ -6,104 +6,148 @@ mode: custom
 
 <div className="kb-home">
   <section className="kb-hero">
-    <div className="kb-hero__orb kb-hero__orb--one" aria-hidden="true"></div>
-    <div className="kb-hero__orb kb-hero__orb--two" aria-hidden="true"></div>
-
-    <div className="kb-hero__content">
+    <div className="kb-hero__copy">
       <div className="kb-eyebrow">
-        <span className="kb-eyebrow__dot" aria-hidden="true"></span>
-        考研 408 · 复习笔记
+        <span className="kb-eyebrow__mark" aria-hidden="true"></span>
+        408 · 考研笔记
       </div>
 
       <h1>
-        把 408 知识整理成
-        <span className="kb-hero__accent">可复习、可检索</span>
-        的笔记
+        把 408 知识，
+        <span>整理成一套可复习的知识库</span>
       </h1>
 
       <p className="kb-hero__lead">
-        当前梳理数据结构与计算机组成原理的现有章节，按知识模块组织，方便快速定位、回顾和查漏补缺。
+        当前覆盖数据结构与计算机组成原理。按章节整理知识，通过目录和搜索快速回顾。
       </p>
 
       <div className="kb-hero__actions">
         <a className="kb-button kb-button--primary" href="/data-structure/knowledge-summary/chapter-1">
-          从绪论开始
+          开始复习
           <span aria-hidden="true">→</span>
         </a>
-        <a className="kb-button kb-button--ghost" href="/computer-architecture/knowledge-summary/chapter-1">
-          浏览计算机组成原理
+        <a className="kb-button kb-button--secondary" href="#subjects">
+          查看全部科目
         </a>
       </div>
     </div>
 
-    <div className="kb-summary" aria-label="笔记概览">
-      <div className="kb-summary__top">
-        <span>408 NOTE INDEX</span>
-        <span className="kb-summary__status">
-          <i aria-hidden="true"></i>
-          整理中
+    <aside className="kb-coverage" aria-label="笔记整理进度">
+      <div className="kb-coverage__header">
+        <div>
+          <span className="kb-coverage__kicker">MY NOTE INDEX</span>
+          <h2>我的笔记进度</h2>
+        </div>
+        <strong>7 章</strong>
+      </div>
+
+      <div className="kb-coverage__list">
+        <a className="kb-progress" href="/data-structure/knowledge-summary/chapter-1">
+          <div className="kb-progress__top">
+            <div>
+              <span className="kb-progress__name">数据结构</span>
+              <span className="kb-progress__meta">4 / 4 章已整理</span>
+            </div>
+            <strong>100%</strong>
+          </div>
+          <div className="kb-progress__bar" aria-hidden="true">
+            <span style={{ width: "100%" }}></span>
+          </div>
+        </a>
+
+        <a className="kb-progress" href="/computer-architecture/knowledge-summary/chapter-1">
+          <div className="kb-progress__top">
+            <div>
+              <span className="kb-progress__name">计算机组成原理</span>
+              <span className="kb-progress__meta">3 / 3 章已整理</span>
+            </div>
+            <strong>100%</strong>
+          </div>
+          <div className="kb-progress__bar" aria-hidden="true">
+            <span style={{ width: "100%" }}></span>
+          </div>
+        </a>
+      </div>
+
+      <div className="kb-coverage__footer">
+        <Icon icon="circle-check" size={16} />
+        现有章节已全部纳入知识库
+      </div>
+    </aside>
+  </section>
+
+  <section className="kb-workspace">
+    <div className="kb-section-heading">
+      <div>
+        <span className="kb-section-kicker">WORKSPACE</span>
+        <h2>我的复习空间</h2>
+      </div>
+      <p>从常用入口开始，快速回到你需要的内容。</p>
+    </div>
+
+    <div className="kb-tool-grid">
+      <a className="kb-tool" href="/data-structure/knowledge-summary/chapter-1">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="book-open" size={20} />
+        </span>
+        <span className="kb-tool__content">
+          <strong>数据结构笔记</strong>
+          <small>从绪论开始按章复习</small>
+        </span>
+        <span className="kb-tool__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a className="kb-tool" href="/computer-architecture/knowledge-summary/chapter-1">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="cpu" size={20} />
+        </span>
+        <span className="kb-tool__content">
+          <strong>组成原理笔记</strong>
+          <small>从系统概述开始学习</small>
+        </span>
+        <span className="kb-tool__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a className="kb-tool" href="#subjects">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="layers-3" size={20} />
+        </span>
+        <span className="kb-tool__content">
+          <strong>目录速览</strong>
+          <small>查看两门科目的全部章节</small>
+        </span>
+        <span className="kb-tool__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <div className="kb-tool kb-tool--static">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="search" size={20} />
+        </span>
+        <span className="kb-tool__content">
+          <strong>全局搜索</strong>
+          <small>按 <kbd>⌘ K</kbd> 搜索概念和公式</small>
         </span>
       </div>
-
-      <div className="kb-summary__number">408</div>
-      <p className="kb-summary__caption">现有笔记章节</p>
-
-      <div className="kb-summary__metrics">
-        <div className="kb-summary__metric">
-          <span>数据结构</span>
-          <strong>04</strong>
-          <small>章</small>
-        </div>
-        <div className="kb-summary__metric">
-          <span>计算机组成原理</span>
-          <strong>03</strong>
-          <small>章</small>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section className="kb-stats" aria-label="内容统计">
-    <div className="kb-stat">
-      <strong>2</strong>
-      <span>门现有科目</span>
-    </div>
-    <div className="kb-stat">
-      <strong>7</strong>
-      <span>章复习笔记</span>
-    </div>
-    <div className="kb-stat">
-      <strong>408</strong>
-      <span>复习主题</span>
-    </div>
-    <div className="kb-stat">
-      <strong>⌘ K</strong>
-      <span>全局搜索</span>
-    </div>
-  </section>
-
-  <section className="kb-subjects">
+  <section className="kb-subjects" id="subjects">
     <div className="kb-section-heading">
       <div>
         <span className="kb-section-kicker">SUBJECTS</span>
-        <h2>选择科目</h2>
+        <h2>现有科目</h2>
       </div>
-      <p>从章节目录进入对应笔记。</p>
+      <p>进入科目后使用 Mintlify 的章节导航和页内目录阅读。</p>
     </div>
 
     <div className="kb-subject-grid">
       <article className="kb-subject kb-subject--data">
         <div className="kb-subject__header">
-          <div className="kb-subject__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="5" r="2.5"></circle>
-              <circle cx="6" cy="19" r="2.5"></circle>
-              <circle cx="18" cy="19" r="2.5"></circle>
-              <path d="M12 7.5V12M6 16.5V14C6 12.9 6.9 12 8 12H16C17.1 12 18 12.9 18 14V16.5"></path>
-            </svg>
-          </div>
+          <span className="kb-subject__icon" aria-hidden="true">
+            <Icon icon="binary-tree" size={22} />
+          </span>
           <div>
-            <span className="kb-subject__index">01 / DATA STRUCTURE</span>
+            <span className="kb-subject__label">DATA STRUCTURE</span>
             <h3>数据结构</h3>
           </div>
           <span className="kb-subject__count">4 章</span>
@@ -113,46 +157,37 @@ mode: custom
           从基本概念到线性表、栈与队列、串，建立结构、操作与复杂度之间的联系。
         </p>
 
-        <div className="kb-chapters">
+        <div className="kb-chapter-list">
           <a className="kb-chapter" href="/data-structure/knowledge-summary/chapter-1">
-            <span className="kb-chapter__index">01</span>
-            <span className="kb-chapter__name">绪论</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>01</span>
+            绪论
+            <i aria-hidden="true">→</i>
           </a>
           <a className="kb-chapter" href="/data-structure/knowledge-summary/chapter-2">
-            <span className="kb-chapter__index">02</span>
-            <span className="kb-chapter__name">线性表</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>02</span>
+            线性表
+            <i aria-hidden="true">→</i>
           </a>
           <a className="kb-chapter" href="/data-structure/knowledge-summary/chapter-3">
-            <span className="kb-chapter__index">03</span>
-            <span className="kb-chapter__name">栈和队列</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>03</span>
+            栈和队列
+            <i aria-hidden="true">→</i>
           </a>
           <a className="kb-chapter" href="/data-structure/knowledge-summary/chapter-4">
-            <span className="kb-chapter__index">04</span>
-            <span className="kb-chapter__name">串</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>04</span>
+            串
+            <i aria-hidden="true">→</i>
           </a>
         </div>
-
-        <a className="kb-subject__link" href="/data-structure/knowledge-summary/chapter-1">
-          进入数据结构
-          <span aria-hidden="true">→</span>
-        </a>
       </article>
 
       <article className="kb-subject kb-subject--architecture">
         <div className="kb-subject__header">
-          <div className="kb-subject__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <rect x="7" y="7" width="10" height="10" rx="2"></rect>
-              <path d="M9 1.8V7M15 1.8V7M9 17V22.2M15 17V22.2M1.8 9H7M1.8 15H7M17 9H22.2M17 15H22.2"></path>
-              <path d="M10.5 10.5H13.5V13.5H10.5Z"></path>
-            </svg>
-          </div>
+          <span className="kb-subject__icon" aria-hidden="true">
+            <Icon icon="cpu" size={22} />
+          </span>
           <div>
-            <span className="kb-subject__index">02 / COMPUTER ORGANIZATION</span>
+            <span className="kb-subject__label">COMPUTER ORGANIZATION</span>
             <h3>计算机组成原理</h3>
           </div>
           <span className="kb-subject__count">3 章</span>
@@ -162,53 +197,24 @@ mode: custom
           梳理计算机系统、机器级数据表示，以及定点数和浮点数的运算方法。
         </p>
 
-        <div className="kb-chapters">
+        <div className="kb-chapter-list">
           <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-1">
-            <span className="kb-chapter__index">01</span>
-            <span className="kb-chapter__name">计算机系统概述</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>01</span>
+            计算机系统概述
+            <i aria-hidden="true">→</i>
           </a>
           <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-2">
-            <span className="kb-chapter__index">02</span>
-            <span className="kb-chapter__name">数据的机器级表示</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>02</span>
+            数据的机器级表示
+            <i aria-hidden="true">→</i>
           </a>
           <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-3">
-            <span className="kb-chapter__index">03</span>
-            <span className="kb-chapter__name">运算方法和运算部件</span>
-            <span className="kb-chapter__arrow" aria-hidden="true">→</span>
+            <span>03</span>
+            运算方法和运算部件
+            <i aria-hidden="true">→</i>
           </a>
         </div>
-
-        <a className="kb-subject__link" href="/computer-architecture/knowledge-summary/chapter-1">
-          进入计算机组成原理
-          <span aria-hidden="true">→</span>
-        </a>
       </article>
-    </div>
-  </section>
-
-  <section className="kb-guide">
-    <div className="kb-guide__item">
-      <span>01</span>
-      <div>
-        <h3>快速搜索</h3>
-        <p>按 <kbd>⌘ K</kbd> 直接搜索概念、公式或章节。</p>
-      </div>
-    </div>
-    <div className="kb-guide__item">
-      <span>02</span>
-      <div>
-        <h3>按章复习</h3>
-        <p>通过左侧目录切换科目与章节。</p>
-      </div>
-    </div>
-    <div className="kb-guide__item">
-      <span>03</span>
-      <div>
-        <h3>页内定位</h3>
-        <p>使用右侧目录快速跳转到具体知识模块。</p>
-      </div>
     </div>
   </section>
 </div>
