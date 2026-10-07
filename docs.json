@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "sequoia",
-  "name": "考研 408 笔记",
-  "description": "数据结构与计算机组成原理复习笔记。",
+  "name": "考研笔记",
+  "description": "数据结构、计算机组成原理与线性代数复习笔记。",
   "colors": {
     "primary": "#166E3F",
     "light": "#26BD6C",
@@ -60,6 +60,18 @@
               "computer-architecture/knowledge-summary/chapter-2",
               "computer-architecture/knowledge-summary/chapter-3",
               "computer-architecture/knowledge-summary/chapter-4"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "线性代数",
+        "groups": [
+          {
+            "group": "知识总结",
+            "pages": [
+              "linear-algebra/knowledge-summary/chapter-1",
+              "linear-algebra/knowledge-summary/chapter-2"
             ]
           }
         ]

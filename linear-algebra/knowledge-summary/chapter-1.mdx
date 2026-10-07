@@ -1,0 +1,269 @@
+---
+title: "第 1 章 行列式"
+sidebarTitle: "行列式"
+description: "整理范德蒙德行列式、克拉默法则及其证明。"
+tags: ["考研", "线性代数"]
+---
+
+本章整理行列式中的两个高频考点：范德蒙德行列式与克拉默法则。复习时先掌握公式结构，再顺着归纳和逆矩阵两条证明主线理解结论。
+
+<Info>
+范德蒙德行列式的核心是“第一行全为 1，后面每一行都是上一行的对应次幂”；克拉默法则的核心是“先判断系数行列式是否非零，再用替换列后的行列式求每个未知数”。
+</Info>
+
+## 范德蒙德行列式
+
+<AccordionGroup>
+  <Accordion title="形式与结论">
+    标准形式为：
+
+    $$
+    V_n=
+    \begin{vmatrix}
+    1 & 1 & \cdots & 1\\
+    x_1 & x_2 & \cdots & x_n\\
+    x_1^2 & x_2^2 & \cdots & x_n^2\\
+    \vdots & \vdots & & \vdots\\
+    x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}
+    \end{vmatrix}
+    $$
+
+    结论为：
+
+    $$
+    V_n=\prod_{1\le i<j\le n}(x_j-x_i)
+    $$
+
+    即所有“下标大的减下标小的”的乘积。
+
+    <Tip>
+    有时范德蒙德行列式会以转置形式出现，但结论不变。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="证明（数学归纳法）">
+    **基础情形：$n=2$**
+
+    $$
+    V_2=
+    \begin{vmatrix}
+    1 & 1\\
+    x_1 & x_2
+    \end{vmatrix}
+    =x_2-x_1
+    $$
+
+    结论成立。
+
+    **归纳步：假设 $n-1$ 阶范德蒙德行列式成立，证明 $n$ 阶也成立。**
+
+    对 $V_n$ 从最后一行开始，依次用上一行的 $x_1$ 倍去减下一行：
+
+    1. 第 $n$ 行减去第 $n-1$ 行的 $x_1$ 倍；
+    2. 第 $n-1$ 行减去第 $n-2$ 行的 $x_1$ 倍；
+    3. 依次进行，直到第 $2$ 行减去第 $1$ 行的 $x_1$ 倍。
+
+    得到：
+
+    $$
+    V_n=
+    \begin{vmatrix}
+    1 & 1 & \cdots & 1\\
+    0 & x_2-x_1 & \cdots & x_n-x_1\\
+    0 & x_2(x_2-x_1) & \cdots & x_n(x_n-x_1)\\
+    \vdots & \vdots & & \vdots\\
+    0 & x_2^{n-2}(x_2-x_1) & \cdots & x_n^{n-2}(x_n-x_1)
+    \end{vmatrix}
+    $$
+
+    按第一列展开：
+
+    $$
+    V_n=
+    \begin{vmatrix}
+    x_2-x_1 & x_3-x_1 & \cdots & x_n-x_1\\
+    x_2(x_2-x_1) & x_3(x_3-x_1) & \cdots & x_n(x_n-x_1)\\
+    \vdots & \vdots & & \vdots\\
+    x_2^{n-2}(x_2-x_1) & x_3^{n-2}(x_3-x_1) & \cdots & x_n^{n-2}(x_n-x_1)
+    \end{vmatrix}
+    $$
+
+    从第 $j$ 列提取公因子 $(x_{j+1}-x_1)$，得到：
+
+    $$
+    V_n=(x_2-x_1)(x_3-x_1)\cdots(x_n-x_1)
+    \begin{vmatrix}
+    1 & 1 & \cdots & 1\\
+    x_2 & x_3 & \cdots & x_n\\
+    \vdots & \vdots & & \vdots\\
+    x_2^{n-2} & x_3^{n-2} & \cdots & x_n^{n-2}
+    \end{vmatrix}
+    $$
+
+    右边行列式正好是 $n-1$ 阶范德蒙德行列式：
+
+    $$
+    V_{n-1}=\prod_{2\le i<j\le n}(x_j-x_i)
+    $$
+
+    因此：
+
+    $$
+    V_n=(x_2-x_1)(x_3-x_1)\cdots(x_n-x_1)\prod_{2\le i<j\le n}(x_j-x_i)
+    $$
+
+    即：
+
+    $$
+    V_n=\prod_{1\le i<j\le n}(x_j-x_i)
+    $$
+
+    证明完成。
+
+    <Check>
+    归纳法的关键是利用相邻两行作差，先制造第一列中的零，再按第一列展开并提取各列公因子。
+    </Check>
+  </Accordion>
+
+  <Accordion title="考研注意">
+    - 范德蒙德行列式的关键是**第一行全是 1，后面每行是前面一行的对应次幂**。
+    - 有时会以转置形式出现，结论不变。
+    - 如果每列有公因子，可以先提取公因子，再化成标准范德蒙德形式。
+    - 常见变形：
+
+    $$
+    \begin{vmatrix}
+    1 & 1 & 1\\
+    a & b & c\\
+    a^2 & b^2 & c^2
+    \end{vmatrix}
+    =(b-a)(c-a)(c-b)
+    $$
+
+    <Warning>
+    使用结论前要先确认元素排列顺序。若行列式的行、列顺序与标准形式不同，应通过转置或换列化成标准形式，再确定每个因子的正负号。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 克拉默法则
+
+<AccordionGroup>
+  <Accordion title="内容">
+    设 $n$ 元线性方程组：
+
+    $$
+    \begin{cases}
+    a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+    a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2\\
+    \cdots\\
+    a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=b_n
+    \end{cases}
+    $$
+
+    写成矩阵形式：
+
+    $$
+    Ax=b
+    $$
+
+    其中：
+
+    $$
+    A=(a_{ij})_{n\times n},\quad
+    x=(x_1,\cdots,x_n)^T,\quad
+    b=(b_1,\cdots,b_n)^T
+    $$
+
+    若系数行列式 $|A|\ne 0$，则方程组有唯一解：
+
+    $$
+    x_j=\frac{|A_j|}{|A|},\quad j=1,2,\cdots,n
+    $$
+
+    其中，$A_j$ 是把 $A$ 的第 $j$ 列换成常数列 $b$ 后得到的矩阵。
+
+    <Tip>
+    记忆方式：求第 $j$ 个未知数时，就用常数列替换系数矩阵的第 $j$ 列，再除以原系数行列式。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="证明">
+    因为 $|A|\ne 0$，所以 $A$ 可逆。
+
+    方程组 $Ax=b$ 两边左乘 $A^{-1}$：
+
+    $$
+    x=A^{-1}b
+    $$
+
+    又因为：
+
+    $$
+    A^{-1}=\frac{1}{|A|}A^*
+    $$
+
+    所以：
+
+    $$
+    x=\frac{1}{|A|}A^*b
+    $$
+
+    其中 $A^*$ 是伴随矩阵。
+
+    写成分量形式：
+
+    $$
+    x_j=\frac{1}{|A|}\sum_{k=1}^n A_{kj}b_k
+    $$
+
+    其中 $A_{kj}$ 是元素 $a_{kj}$ 的代数余子式。
+
+    而
+
+    $$
+    \sum_{k=1}^n b_k A_{kj}
+    $$
+
+    正好等于把 $A$ 的第 $j$ 列换成 $b$ 后所得矩阵 $A_j$ 按第 $j$ 列展开的行列式：
+
+    $$
+    |A_j|=\sum_{k=1}^n b_k A_{kj}
+    $$
+
+    因此：
+
+    $$
+    x_j=\frac{|A_j|}{|A|}
+    $$
+
+    证明完成。
+
+    <Check>
+    证明主线：$|A|\ne 0\Rightarrow A$ 可逆 $\Rightarrow x=A^{-1}b$ $\Rightarrow$ 用伴随矩阵展开成分量形式 $\Rightarrow$ 对应替换列后的行列式。
+    </Check>
+  </Accordion>
+
+  <Accordion title="考研注意">
+    克拉默法则要求：
+
+    1. 方程个数等于未知数个数；
+    2. 系数行列式 $|A|\ne 0$。
+
+    它主要用于：
+
+    - 判断唯一解；
+    - 理论证明；
+    - 低阶方程组求解析解。
+
+    当 $|A|=0$ 时，克拉默法则失效，需要用秩判断解的情况。
+
+    <Warning>
+    不要把 $|A|=0$ 直接等同于“无解”。此时方程组可能无解，也可能有无穷多解。
+    </Warning>
+
+    <Check>
+    若 $|A|\ne 0$，则方程组有唯一解；若 $|A|=0$，则克拉默法则不能使用，应改用秩判断。
+    </Check>
+  </Accordion>
+</AccordionGroup>

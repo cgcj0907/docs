@@ -1,6 +1,6 @@
 ---
 title: "首页"
-description: "数据结构与计算机组成原理复习笔记。"
+description: "数据结构、计算机组成原理与线性代数复习笔记。"
 mode: custom
 ---
 
@@ -9,16 +9,16 @@ mode: custom
     <div className="kb-hero__copy">
       <div className="kb-eyebrow">
         <span className="kb-eyebrow__mark" aria-hidden="true"></span>
-        408 · 考研笔记
+        考研 · 复习笔记
       </div>
 
       <h1>
-        把 408 知识，
+        把考研知识，
         <span>整理成一套可复习的知识库</span>
       </h1>
 
       <p className="kb-hero__lead">
-        当前覆盖数据结构与计算机组成原理。按章节整理知识，通过目录和搜索快速回顾。
+        当前覆盖数据结构、计算机组成原理与线性代数。按章节整理知识，通过目录和搜索快速回顾。
       </p>
 
       <div className="kb-hero__actions">
@@ -38,7 +38,7 @@ mode: custom
           <span className="kb-coverage__kicker">MY NOTE INDEX</span>
           <h2>我的笔记进度</h2>
         </div>
-        <strong>7 章</strong>
+        <strong>9 章</strong>
       </div>
 
       <div className="kb-coverage__list">
@@ -67,11 +67,24 @@ mode: custom
             <span style={{ width: "100%" }}></span>
           </div>
         </a>
+        <a className="kb-progress" href="/linear-algebra/knowledge-summary/chapter-1">
+          <div className="kb-progress__top">
+            <div>
+              <span className="kb-progress__name">线性代数</span>
+              <span className="kb-progress__meta">2 / 2 章已整理</span>
+            </div>
+            <strong>100%</strong>
+          </div>
+          <div className="kb-progress__bar" aria-hidden="true">
+            <span style={{ width: "100%" }}></span>
+          </div>
+        </a>
+
       </div>
 
       <div className="kb-coverage__footer">
         <Icon icon="circle-check" size={16} />
-        现有章节已全部纳入知识库
+        现有科目已全部纳入知识库
       </div>
     </div>
   </section>
@@ -191,6 +204,53 @@ mode: custom
           <span aria-hidden="true">→</span>
         </a>
       </div>
+      <div className="kb-subject kb-subject--linear-algebra">
+        <div className="kb-subject__top">
+          <span className="kb-subject__icon" aria-hidden="true">
+            <Icon icon="sigma" size={22} />
+          </span>
+          <span className="kb-subject__ordinal">03</span>
+        </div>
+
+        <div className="kb-subject__title-row">
+          <div>
+            <span className="kb-subject__label">LINEAR ALGEBRA</span>
+            <h3>线性代数</h3>
+          </div>
+          <span className="kb-subject__count">2 章</span>
+        </div>
+
+        <p className="kb-subject__description">
+          从行列式到矩阵，串联范德蒙德行列式、克拉默法则、矩阵关系与核心考点。
+        </p>
+
+        <div className="kb-subject__progress">
+          <div className="kb-subject__progress-label">
+            <span>章节整理</span>
+            <strong>2 / 2</strong>
+          </div>
+          <div className="kb-subject__progress-track" aria-hidden="true">
+            <span></span>
+          </div>
+        </div>
+
+        <div className="kb-chapter-grid">
+          <a className="kb-chapter" href="/linear-algebra/knowledge-summary/chapter-1">
+            <span className="kb-chapter__index">01</span>
+            <span className="kb-chapter__name">行列式</span>
+          </a>
+          <a className="kb-chapter" href="/linear-algebra/knowledge-summary/chapter-2">
+            <span className="kb-chapter__index">02</span>
+            <span className="kb-chapter__name">矩阵</span>
+          </a>
+        </div>
+
+        <a className="kb-subject__cta" href="/linear-algebra/knowledge-summary/chapter-1">
+          进入线性代数
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -226,13 +286,13 @@ mode: custom
         <span className="kb-tool__arrow" aria-hidden="true">→</span>
       </a>
 
-      <a className="kb-tool" href="#subjects">
+      <a className="kb-tool" href="/linear-algebra/knowledge-summary/chapter-1">
         <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="layout-grid" size={20} />
+          <Icon icon="sigma" size={20} />
         </span>
         <div className="kb-tool__content">
-          <div className="kb-tool__title">目录速览</div>
-          <div className="kb-tool__description">查看两门科目的全部章节</div>
+          <div className="kb-tool__title">线性代数笔记</div>
+          <div className="kb-tool__description">从行列式开始按章复习</div>
         </div>
         <span className="kb-tool__arrow" aria-hidden="true">→</span>
       </a>

@@ -424,7 +424,7 @@ html.dark .kb-tool:hover {
 
 .kb-subject-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 0.9rem;
 }
 
@@ -464,12 +464,21 @@ html.dark .kb-tool:hover {
   --kb-subject-soft: #eff9f5;
 }
 
+.kb-subject--linear-algebra {
+  --kb-subject-color: #2878b5;
+  --kb-subject-soft: #eef6fc;
+}
+
 html.dark .kb-subject--data {
   --kb-subject-soft: rgba(8, 127, 91, 0.16);
 }
 
 html.dark .kb-subject--architecture {
   --kb-subject-soft: rgba(47, 174, 122, 0.16);
+}
+
+html.dark .kb-subject--linear-algebra {
+  --kb-subject-soft: rgba(40, 120, 181, 0.18);
 }
 
 .kb-subject__top {
