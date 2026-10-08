@@ -1,0 +1,226 @@
+---
+title: "第 4 章 线性方程组"
+sidebarTitle: "线性方程组"
+description: "整理齐次、非齐次线性方程组、公共解与同解方程组。"
+tags: ["考研", "线性代数"]
+---
+
+本章保持精简，只整理四类问题：齐次线性方程组、非齐次线性方程组、两个方程组的公共解，以及两个方程组同解的判定。
+
+<Info>
+复习主线：先看系数矩阵与增广矩阵的秩，再判断解的存在性和解的个数，最后理解解空间的结构以及两个方程组之间的关系。
+</Info>
+
+## 齐次线性方程组
+
+<AccordionGroup>
+  <Accordion title="解的存在性与个数">
+    对齐次线性方程组
+
+    $$
+    Ax=0
+    $$
+
+    - 它总有零解。
+    - 若 $r(A)=n$，则只有零解。
+    - 若 $r(A)<n$，则有非零解。
+
+    其中 $n$ 是未知数的个数。
+
+    <Warning>
+    判断齐次方程组是否有非零解时，比较的是系数矩阵的秩 $r(A)$ 与未知数个数 $n$，不是方程个数。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="基础解系与通解">
+    若 $r(A)<n$，则基础解系含有
+
+    $$
+    n-r(A)
+    $$
+
+    个向量。
+
+    设基础解系为
+
+    $$
+    \xi_1,\xi_2,\dots,\xi_{n-r(A)}
+    $$
+
+    则齐次方程组的通解为：
+
+    $$
+    x=k_1\xi_1+k_2\xi_2+\cdots+k_{n-r(A)}\xi_{n-r(A)}
+    $$
+
+    其中 $k_1,k_2,\dots,k_{n-r(A)}$ 为任意常数。
+
+    <Check>
+    齐次方程组的通解一定是由基础解系线性组合得到，且不包含非零常数项。
+    </Check>
+  </Accordion>
+</AccordionGroup>
+
+## 非齐次线性方程组
+
+<AccordionGroup>
+  <Accordion title="有解与解的个数">
+    对非齐次线性方程组
+
+    $$
+    Ax=b
+    $$
+
+    有解当且仅当：
+
+    $$
+    r(A)=r(A|b)
+    $$
+
+    在此基础上：
+
+    - 若 $r(A)=r(A|b)=n$，则方程组有唯一解；
+    - 若 $r(A)=r(A|b)=r<n$，则方程组有无穷多解。
+
+    <Warning>
+    若 $r(A)\ne r(A|b)$，则方程组无解。非齐次方程组必须先判断增广矩阵的秩，不能只比较系数矩阵的秩。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="通解结构">
+    若非齐次方程组有解，设 $\eta$ 是它的一个特解，则通解为：
+
+    $$
+    x=\eta+\text{齐次通解}
+    $$
+
+    也就是说：
+
+    $$
+    x=\eta+k_1\xi_1+k_2\xi_2+\cdots+k_{n-r}\xi_{n-r}
+    $$
+
+    其中 $\xi_1,\dots,\xi_{n-r}$ 是对应齐次方程组 $Ax=0$ 的基础解系。
+
+    <Tip>
+    非齐次方程组的通解可以理解为“一个特解加齐次方程组的全部解”。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 两个方程组的公共解
+
+<AccordionGroup>
+  <Accordion title="联立方程求公共解">
+    若要求方程组 $Ax=b$ 与 $Cx=d$ 的公共解，可以把两组方程联立：
+
+    $$
+    \begin{cases}
+    Ax=b\\
+    Cx=d
+    \end{cases}
+    \iff
+    \begin{pmatrix}
+    A\\
+    C
+    \end{pmatrix}x=
+    \begin{pmatrix}
+    b\\
+    d
+    \end{pmatrix}
+    $$
+
+    解这个联立方程组，得到的解就是原方程组的公共解。
+
+    若其中一个为齐次方程组，则对应的右端项写为 $0$。
+
+    <Info>
+    公共解同时满足两个方程组，因此联立求解后还要检查所得解是否确实属于两个方程组的解集。
+    </Info>
+  </Accordion>
+
+  <Accordion title="已知通解时求公共解">
+    若两个方程组的通解都已经求出，也可以分别写出它们的通解，再令两个通解相等：
+
+    $$
+    x_1=x_2
+    $$
+
+    通过比较分量关系求出参数之间的关系，最后代回任一通解即可得到公共解。
+
+    <Tip>
+    常见做法有两种：
+    - 直接联立方程求解；
+    - 分别写出通解后令通解相等，求参数关系。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 同解方程组
+
+<AccordionGroup>
+  <Accordion title="齐次方程组同解">
+    对于两个齐次线性方程组
+
+    $$
+    Ax=0
+    \quad\text{与}\quad
+    Bx=0
+    $$
+
+    它们同解的充要条件是：
+
+    $$
+    \text{行向量组等价}
+    $$
+
+    等价地：
+
+    $$
+    r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}
+    $$
+
+    <Check>
+    判断齐次方程组是否同解，可以比较 $A$、$B$ 以及上下拼接矩阵的秩是否相等。
+    </Check>
+  </Accordion>
+
+  <Accordion title="非齐次方程组同解">
+    对于两个非齐次线性方程组
+
+    $$
+    Ax=b
+    \quad\text{与}\quad
+    Cx=d
+    $$
+
+    它们同解的充要条件是：
+
+    $$
+    \text{增广矩阵的行向量组等价}
+    $$
+
+    等价地：
+
+    $$
+    r(A|b)=r(C|d)=r\begin{pmatrix}A|b\\C|d\end{pmatrix}
+    $$
+
+    <Warning>
+    非齐次方程组同解时，必须把右端常数项一起纳入增广矩阵比较，不能只比较系数矩阵 $A$ 和 $C$。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="直观理解">
+    两个方程组同解，意味着一个方程组的每个方程都可以由另一个方程组的方程线性表示，并且反过来也成立。
+
+    因此：
+
+    - 齐次情形比较行向量组；
+    - 非齐次情形比较增广矩阵的行向量组。
+
+    <Check>
+    同解的本质是两组方程约束的是同一个解集。
+    </Check>
+  </Accordion>
+</AccordionGroup>

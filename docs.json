@@ -71,7 +71,9 @@
             "group": "知识总结",
             "pages": [
               "linear-algebra/knowledge-summary/chapter-1",
-              "linear-algebra/knowledge-summary/chapter-2"
+              "linear-algebra/knowledge-summary/chapter-2",
+              "linear-algebra/knowledge-summary/chapter-3",
+              "linear-algebra/knowledge-summary/chapter-4"
             ]
           }
         ]

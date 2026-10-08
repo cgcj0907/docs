@@ -1,0 +1,322 @@
+---
+title: "第 3 章 向量组与基变换"
+sidebarTitle: "向量组与基变换"
+description: "整理向量组的线性相关性、基变换、坐标变换、过渡矩阵与施密特正交化。"
+tags: ["考研", "线性代数"]
+---
+
+本章先简要回顾向量组的线性相关性和极大无关组，再重点展开基变换、坐标变换与过渡矩阵，最后整理施密特正交化的步骤和性质。
+
+<Info>
+本章有两条主线：
+- **基与坐标的关系**：新基由旧基线性表示，过渡矩阵记录新基在旧基下的坐标。
+- **标准正交基**：先用施密特正交化得到两两正交的向量组，再单位化得到标准正交基。
+</Info>
+
+## 向量组（简要）
+
+<AccordionGroup>
+  <Accordion title="线性相关与线性无关">
+    对向量组 $\alpha_1,\alpha_2,\dots,\alpha_s$：
+
+    - **线性相关**：存在不全为零的数 $k_1,k_2,\dots,k_s$，使得
+
+    $$
+    \sum_{i=1}^s k_i\alpha_i=0
+    $$
+
+    等价于
+
+    $$
+    r(\alpha_1,\alpha_2,\dots,\alpha_s)<s
+    $$
+
+    - **线性无关**：只有当 $k_1=k_2=\cdots=k_s=0$ 时，才有
+
+    $$
+    \sum_{i=1}^s k_i\alpha_i=0
+    $$
+
+    等价于
+
+    $$
+    r(\alpha_1,\alpha_2,\dots,\alpha_s)=s
+    $$
+
+    <Tip>
+    判断相关或无关时，可以把向量按列排成矩阵，再通过秩来判断。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="极大无关组">
+    若向量组中的一个部分组满足：
+
+    1. 该部分组线性无关；
+    2. 向量组中其余向量都可由该部分组线性表示；
+
+    则称该部分组为原向量组的一个**极大线性无关组**。
+
+    极大无关组所含向量的个数等于向量组的秩。
+
+    <Info>
+    极大无关组通常不唯一，但同一个向量组的所有极大无关组所含向量个数都相同。
+    </Info>
+  </Accordion>
+
+  <Accordion title="秩与极大无关组的求法">
+    将向量组中的向量按列排成矩阵，对其进行初等行变换，化为行最简形。
+
+    此时：
+
+    - 非零行的行数等于向量组的秩；
+    - 主元所在的列对应的原向量组向量构成一个极大无关组。
+
+    <Warning>
+    初等行变换过程中列向量会发生变化，因此要找“原向量组”的极大无关组时，应根据行最简形中的主元列回到原矩阵选取，不能直接取变换后矩阵的列向量。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 基变换
+
+<AccordionGroup>
+  <Accordion title="旧基、新基与过渡矩阵">
+    设旧基为
+
+    $$
+    \alpha_1,\alpha_2,\dots,\alpha_n
+    $$
+
+    新基为
+
+    $$
+    \beta_1,\beta_2,\dots,\beta_n
+    $$
+
+    每个新基向量都可由旧基线性表示：
+
+    $$
+    \begin{cases}
+    \beta_1=p_{11}\alpha_1+p_{21}\alpha_2+\cdots+p_{n1}\alpha_n\\
+    \beta_2=p_{12}\alpha_1+p_{22}\alpha_2+\cdots+p_{n2}\alpha_n\\
+    \cdots\\
+    \beta_n=p_{1n}\alpha_1+p_{2n}\alpha_2+\cdots+p_{nn}\alpha_n
+    \end{cases}
+    $$
+
+    写成矩阵形式：
+
+    $$
+    (\beta_1,\beta_2,\dots,\beta_n)
+    =
+    (\alpha_1,\alpha_2,\dots,\alpha_n)P
+    $$
+
+    其中：
+
+    $$
+    P=
+    \begin{pmatrix}
+    p_{11}&p_{12}&\cdots&p_{1n}\\
+    p_{21}&p_{22}&\cdots&p_{2n}\\
+    \vdots&\vdots&&\vdots\\
+    p_{n1}&p_{n2}&\cdots&p_{nn}
+    \end{pmatrix}
+    $$
+
+    称 $P$ 为**从旧基到新基的过渡矩阵**。
+
+    <Check>
+    $P$ 的第 $j$ 列，就是新基向量 $\beta_j$ 在旧基 $(\alpha_1,\dots,\alpha_n)$ 下的坐标。因为两组基都线性无关，所以过渡矩阵 $P$ 一定可逆。
+    </Check>
+  </Accordion>
+
+  <Accordion title="坐标变换">
+    设向量 $\xi$ 在旧基下的坐标为 $X$，在新基下的坐标为 $Y$，即：
+
+    $$
+    \xi=(\alpha)X=(\beta)Y
+    $$
+
+    又因为：
+
+    $$
+    (\beta)=(\alpha)P
+    $$
+
+    所以：
+
+    $$
+    (\alpha)X=(\alpha)PY
+    $$
+
+    由于 $(\alpha)$ 是基向量组，可以比较坐标，得到：
+
+    $$
+    X=PY
+    $$
+
+    或等价地：
+
+    $$
+    Y=P^{-1}X
+    $$
+
+    <Tip>
+    记忆口诀：
+    - 基变换：新基 $=$ 旧基 $\times P$；
+    - 坐标变换：旧坐标 $=P\times$ 新坐标；
+    - 也就是说，**基和坐标的变换方向相反**。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="过渡矩阵的求法">
+    若旧基在标准基下的矩阵为
+
+    $$
+    A=(\alpha_1,\alpha_2,\dots,\alpha_n)
+    $$
+
+    新基在标准基下的矩阵为
+
+    $$
+    B=(\beta_1,\beta_2,\dots,\beta_n)
+    $$
+
+    由
+
+    $$
+    (\beta)=(\alpha)P
+    $$
+
+    可得：
+
+    $$
+    B=AP
+    $$
+
+    因此：
+
+    $$
+    \boxed{P=A^{-1}B}
+    $$
+
+    可用初等行变换求：
+
+    $$
+    (A\mid B)\longrightarrow (E\mid P)
+    $$
+
+    即增广矩阵右半部分就是过渡矩阵 $P$。
+
+    <Warning>
+    在上面的定义下，过渡矩阵应写成 $P=A^{-1}B$。不要把 $A$ 和 $B$ 的顺序写反。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="连续过渡">
+    若从基 $A$ 到基 $B$ 的过渡矩阵为 $P$，从基 $B$ 到基 $C$ 的过渡矩阵为 $Q$，则从基 $A$ 到基 $C$ 的过渡矩阵为：
+
+    $$
+    PQ
+    $$
+
+    <Check>
+    连续过渡按照“先经过的矩阵写在左边”的顺序相乘，即 $A\to B\to C$ 对应矩阵乘积 $PQ$。
+    </Check>
+  </Accordion>
+</AccordionGroup>
+
+## 施密特正交化
+
+<AccordionGroup>
+  <Accordion title="正交化步骤">
+    从一组线性无关的向量
+
+    $$
+    \alpha_1,\alpha_2,\dots,\alpha_n
+    $$
+
+    出发，构造正交向量组 $\beta_1,\beta_2,\dots,\beta_n$。
+
+    先取：
+
+    $$
+    \beta_1=\alpha_1
+    $$
+
+    再构造：
+
+    $$
+    \beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1
+    $$
+
+    $$
+    \beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1
+    -\frac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}\beta_2
+    $$
+
+    一般地：
+
+    $$
+    \beta_k=\alpha_k-\sum_{i=1}^{k-1}
+    \frac{(\alpha_k,\beta_i)}{(\beta_i,\beta_i)}\beta_i
+    $$
+
+    这样得到的 $\beta_1,\beta_2,\dots,\beta_n$ 两两正交。
+
+    <Warning>
+    施密特正交化要求原向量组线性无关。若出现某个 $\beta_i=0$，说明分母 $(\beta_i,\beta_i)$ 不能用于继续计算，原向量组也不满足正交化前提。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="单位化与标准正交基">
+    对每个正交向量进行单位化：
+
+    $$
+    e_i=\frac{\beta_i}{\lVert\beta_i\rVert},
+    \qquad
+    \lVert\beta_i\rVert=\sqrt{(\beta_i,\beta_i)}
+    $$
+
+    则
+
+    $$
+    e_1,e_2,\dots,e_n
+    $$
+
+    就是标准正交基。
+
+    <Check>
+    正交化得到的是两两正交的向量组；再单位化后，才得到标准正交基。
+    </Check>
+  </Accordion>
+
+  <Accordion title="性质">
+    - 若 $Q=(e_1,e_2,\dots,e_n)$ 的列向量构成标准正交基，则：
+
+    $$
+    Q^TQ=E
+    $$
+
+    即 $Q$ 是正交矩阵。
+
+    - 在标准正交基下，向量 $\xi$ 的坐标为：
+
+    $$
+    \xi=\sum_{i=1}^n(\xi,e_i)e_i
+    $$
+
+    也就是说，第 $i$ 个坐标就是 $(\xi,e_i)$。
+
+    - 若新基是标准正交基，则从旧基到新基的过渡矩阵是正交矩阵，满足：
+
+    $$
+    P^{-1}=P^T
+    $$
+
+    <Tip>
+    标准正交基的优势是坐标可以直接用内积计算，不需要求解线性方程组。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
