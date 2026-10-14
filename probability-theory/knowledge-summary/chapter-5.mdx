@@ -1,0 +1,255 @@
+---
+title: "第 5 章 大数定律与中心极限定理"
+sidebarTitle: "大数定律与中心极限定理"
+description: "整理切比雪夫不等式、依概率收敛、三类大数定律，以及独立同分布中心和棣莫弗—拉普拉斯中心极限定理。"
+tags: ["考研", "考研数学一", "概率论"]
+---
+
+本章解决大量独立随机变量平均值的稳定性与和的近似分布。大数定律说明“平均接近期望”，中心极限定理说明“标准化和接近正态分布”。
+
+<Info>
+主复习路线：**切比雪夫不等式 → 依概率收敛 → 大数定律 → 中心极限定理 → 正态近似计算**。
+</Info>
+
+## 切比雪夫不等式
+
+设随机变量 $X$ 满足 $E(X)=\mu$，$D(X)=\sigma^2$。对任意 $\varepsilon>0$：
+
+$$
+P(|X-\mu|\ge\varepsilon)\le\frac{\sigma^2}{\varepsilon^2}
+$$
+
+等价地：
+
+$$
+P(|X-\mu|<\varepsilon)\ge1-\frac{\sigma^2}{\varepsilon^2}
+$$
+
+也可以写成：
+
+$$
+P(|X-\mu|\ge k\sigma)\le\frac1{k^2},\qquad k>0
+$$
+
+<Warning>
+切比雪夫不等式只要求均值和方差存在，不对分布类型作要求。它给出的是上界，通常不是精确概率。若 $\sigma^2/\varepsilon^2>1$，右侧上界没有信息量。
+</Warning>
+
+## 依概率收敛
+
+若对任意 $\varepsilon>0$，都有：
+
+$$
+\lim_{n\to\infty}P(|X_n-X|\ge\varepsilon)=0
+$$
+
+则称随机变量序列 $\{X_n\}$ 依概率收敛于 $X$，记作：
+
+$$
+X_n\xrightarrow{P}X
+$$
+
+若 $X$ 为常数 $a$，也记作 $X_n\xrightarrow{P}a$。
+
+依概率收敛的常用性质：
+
+$$
+X_n\xrightarrow{P}a,\quad Y_n\xrightarrow{P}b
+\quad\Longrightarrow\quad
+X_n\pm Y_n\xrightarrow{P}a\pm b
+$$
+
+$$
+X_nY_n\xrightarrow{P}ab
+$$
+
+若 $b\ne0$，则：
+
+$$
+\frac{X_n}{Y_n}\xrightarrow{P}\frac ab
+$$
+
+连续映射定理：若 $g$ 在 $a$ 处连续且 $X_n\xrightarrow{P}a$，则：
+
+$$
+g(X_n)\xrightarrow{P}g(a)
+$$
+
+## 大数定律
+
+大数定律研究样本平均值是否依概率稳定于某个常数。
+
+### 切比雪夫大数定律
+
+设 $X_1,X_2,\ldots$ 两两不相关，且各 $D(X_i)$ 存在。若：
+
+$$
+\frac1{n^2}\sum_{i=1}^{n}D(X_i)\to0
+$$
+
+则：
+
+$$
+\frac1n\sum_{i=1}^{n}X_i-
+\frac1n\sum_{i=1}^{n}E(X_i)
+\xrightarrow{P}0
+$$
+
+特别地，若存在常数 $C$，使 $D(X_i)\le C$，则：
+
+$$
+\frac1n\sum_{i=1}^{n}X_i-
+\frac1n\sum_{i=1}^{n}E(X_i)
+\xrightarrow{P}0
+$$
+
+若还具有相同的期望 $E(X_i)=\mu$，则：
+
+$$
+\bar X_n=\frac1n\sum_{i=1}^{n}X_i\xrightarrow{P}\mu
+$$
+
+### 伯努利大数定律
+
+设 $n_A$ 为 $n$ 重伯努利试验中事件 $A$ 发生的次数，每次发生的概率为 $p$。则：
+
+$$
+\frac{n_A}{n}\xrightarrow{P}p
+$$
+
+即频率依概率收敛于概率。
+
+### 辛钦大数定律
+
+设 $X_1,X_2,\ldots$ 独立同分布，且 $E(X_i)=\mu$ 存在，则：
+
+$$
+\frac1n\sum_{i=1}^{n}X_i\xrightarrow{P}\mu
+$$
+
+<Warning>
+大数定律只说明平均值依概率接近期望，不表示样本值会接近期望，也不等价于分布收敛。辛钦大数定律只要求一阶矩存在，不要求方差存在。
+</Warning>
+
+## 中心极限定理
+
+中心极限定理研究大量独立随机变量和的标准化极限分布。
+
+### 独立同分布中心极限定理
+
+设 $X_1,X_2,\ldots$ 独立同分布，且：
+
+$$
+E(X_i)=\mu,\qquad D(X_i)=\sigma^2,\qquad 0<\sigma^2<+\infty
+$$
+
+则：
+
+$$
+\frac{\sum_{i=1}^{n}X_i-n\mu}{\sigma\sqrt n}
+\xrightarrow{d}N(0,1)
+$$
+
+样本均值形式为：
+
+$$
+\frac{\bar X_n-\mu}{\sigma/\sqrt n}
+\xrightarrow{d}N(0,1)
+$$
+
+当 $n$ 较大时：
+
+$$
+\sum_{i=1}^{n}X_i\ \text{近似服从}\ N(n\mu,n\sigma^2)
+$$
+
+$$
+\bar X_n\ \text{近似服从}\ N\left(\mu,\frac{\sigma^2}{n}\right)
+$$
+
+概率近似公式：
+
+$$
+P(a<S_n\le b)
+\approx
+\Phi\left(\frac{b-n\mu}{\sigma\sqrt n}\right)
+-\Phi\left(\frac{a-n\mu}{\sigma\sqrt n}\right)
+$$
+
+其中 $S_n=\sum_{i=1}^{n}X_i$。
+
+### 棣莫弗—拉普拉斯中心极限定理
+
+设 $X\sim B(n,p)$，$q=1-p$。当 $n$ 较大时：
+
+$$
+\frac{X-np}{\sqrt{npq}}
+\xrightarrow{d}N(0,1)
+$$
+
+即：
+
+$$
+X\ \text{近似服从}\ N(np,npq)
+$$
+
+### 二项分布的正态近似与连续性修正
+
+当 $X\sim B(n,p)$，且 $a,b$ 为整数时：
+
+$$
+P(a\le X\le b)
+\approx
+\Phi\left(\frac{b+0.5-np}{\sqrt{npq}}\right)
+-\Phi\left(\frac{a-0.5-np}{\sqrt{npq}}\right)
+$$
+
+常见的修正规则：
+
+| 原概率 | 正态近似端点 |
+| --- | --- |
+| $P(X\le k)$ | $\Phi\left(\dfrac{k+0.5-np}{\sqrt{npq}}\right)$ |
+| $P(X<k)$ | $\Phi\left(\dfrac{k-0.5-np}{\sqrt{npq}}\right)$ |
+| $P(X\ge k)$ | $1-\Phi\left(\dfrac{k-0.5-np}{\sqrt{npq}}\right)$ |
+| $P(X>k)$ | $1-\Phi\left(\dfrac{k+0.5-np}{\sqrt{npq}}\right)$ |
+
+<Tip>
+二项分布用正态近似时，每个整数点看作宽度为 1 的区间。等号方向决定加减 $0.5$，画数轴可以快速判断。
+</Tip>
+
+## 两类定理的区别
+
+| 定理 | 关注对象 | 典型结论 |
+| --- | --- | --- |
+| 大数定律 | 样本平均值的稳定性 | $\bar X_n\xrightarrow{P}\mu$ |
+| 中心极限定理 | 标准化和的极限分布 | $\dfrac{S_n-n\mu}{\sigma\sqrt n}\xrightarrow{d}N(0,1)$ |
+
+<Warning>
+大数定律不要求分布近似正态；中心极限定理不只说明平均值接近期望，而是说明标准化误差的分布趋近标准正态。二者解决的问题不同。
+</Warning>
+
+## 高频题型与易错点
+
+<AccordionGroup>
+  <Accordion title="切比雪夫不等式中的标准差">
+    公式分母是 $\varepsilon^2$，不是 $\varepsilon$。若题目给出标准差 $\sigma$，先平方得到方差。
+  </Accordion>
+
+  <Accordion title="中心极限定理先标准化">
+    先写：
+
+    $$
+    \frac{S_n-E(S_n)}{\sqrt{D(S_n)}}
+    $$
+
+    再代入标准正态分布。若 $X_i$ 独立但不同分布，需要检查题目是否给出可用中心极限定理的条件。
+  </Accordion>
+
+  <Accordion title="二项分布近似的连续性修正">
+    题目把离散的 $B(n,p)$ 用正态分布近似时，含端点通常要加减 $0.5$。只有粗略近似时才忽略。
+  </Accordion>
+
+  <Accordion title="不要混淆收敛类型">
+    大数定律对应依概率收敛，中心极限定理对应依分布收敛。前者给数值稳定性，后者给分布形状。
+  </Accordion>
+</AccordionGroup>

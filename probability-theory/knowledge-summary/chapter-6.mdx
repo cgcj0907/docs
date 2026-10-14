@@ -1,0 +1,344 @@
+---
+title: "第 6 章 数理统计的基本概念"
+sidebarTitle: "数理统计基本概念"
+description: "整理总体与样本、样本均值和样本方差、三大抽样分布，以及正态总体下的抽样分布定理。"
+tags: ["考研", "考研数学一", "概率论"]
+---
+
+本章是参数估计和假设检验的分布基础。重点不是公式数量，而是识别统计量、判断分布类型，并检查正态总体与方差是否已知等前提条件。
+
+<Info>
+主复习路线：**总体与样本 → 统计量 → 样本均值和样本方差 → 三大抽样分布 → 正态总体抽样定理**。
+</Info>
+
+## 总体与样本
+
+- **总体**：研究对象某个数量指标 $X$ 的取值全体，也可理解为 $X$ 的分布。
+- **个体**：总体中的一个研究对象。
+- **样本**：从总体中抽取的若干个体所组成的一组数据 $X_1,\ldots,X_n$。
+- **样本容量**：样本中个体的个数 $n$。
+- **简单随机样本**：$X_1,\ldots,X_n$ 相互独立，且与总体 $X$ 同分布。
+
+若总体 $X$ 的分布函数为 $F(x)$，则简单随机样本的联合分布函数为：
+
+$$
+F_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
+=\prod_{i=1}^{n}F(x_i)
+$$
+
+连续型总体若密度为 $f(x)$，则样本联合密度为：
+
+$$
+f_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
+=\prod_{i=1}^{n}f(x_i)
+$$
+
+## 统计量
+
+统计量是样本的函数：
+
+$$
+T=T(X_1,X_2,\ldots,X_n)
+$$
+
+并且不含任何未知参数。
+
+例如，若总体分布含未知参数 $\theta$，则 $X_1+\theta$ 不是统计量，而 $X_1+X_2$ 是统计量。
+
+### 常用样本矩
+
+样本均值：
+
+$$
+\bar X=\frac1n\sum_{i=1}^{n}X_i
+$$
+
+样本方差：
+
+$$
+S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
+$$
+
+样本标准差：
+
+$$
+S=\sqrt{S^2}
+$$
+
+样本 $k$ 阶原点矩：
+
+$$
+A_k=\frac1n\sum_{i=1}^{n}X_i^k
+$$
+
+样本 $k$ 阶中心矩：
+
+$$
+B_k=\frac1n\sum_{i=1}^{n}(X_i-\bar X)^k
+$$
+
+<Warning>
+考研题的样本方差通常使用无偏方差的定义：
+
+$$
+S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
+$$
+
+看到分母是 $n-1$ 时不要误写成 $n$。若记 $S_n^2=\frac1n\sum(X_i-\bar X)^2$，则 $E(S_n^2)=\frac{n-1}{n}\sigma^2$。
+</Warning>
+
+### 样本均值和样本方差的期望
+
+设总体 $X$ 有：
+
+$$
+E(X)=\mu,\qquad D(X)=\sigma^2
+$$
+
+则：
+
+$$
+E(\bar X)=\mu,\qquad D(\bar X)=\frac{\sigma^2}{n}
+$$
+
+$$
+E(S^2)=\sigma^2
+$$
+
+常用平方和恒等式：
+
+$$
+\sum_{i=1}^{n}(X_i-\bar X)^2
+=\sum_{i=1}^{n}X_i^2-n\bar X^2
+$$
+
+## 三大抽样分布
+
+### 卡方分布
+
+若 $Z_1,\ldots,Z_n$ 相互独立且都服从 $N(0,1)$，则：
+
+$$
+\chi^2=Z_1^2+Z_2^2+\cdots+Z_n^2\sim\chi^2(n)
+$$
+
+若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 独立，则：
+
+$$
+U+V\sim\chi^2(n_1+n_2)
+$$
+
+卡方分布的数字特征：
+
+$$
+E(\chi^2(n))=n,\qquad D(\chi^2(n))=2n
+$$
+
+### t 分布
+
+若 $Z\sim N(0,1)$，$Y\sim\chi^2(n)$，且 $Z,Y$ 相互独立，则：
+
+$$
+T=\frac{Z}{\sqrt{Y/n}}\sim t(n)
+$$
+
+t 分布关于原点对称，当 $n\to\infty$ 时近似于 $N(0,1)$。
+
+### F 分布
+
+若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 相互独立，则：
+
+$$
+F=\frac{U/n_1}{V/n_2}\sim F(n_1,n_2)
+$$
+
+F 分布的重要倒数关系为：
+
+$$
+F\sim F(n_1,n_2)\quad\Longrightarrow\quad\frac1F\sim F(n_2,n_1)
+$$
+
+因此上侧分位数满足：
+
+$$
+F_{1-\alpha}(n_1,n_2)=\frac1{F_{\alpha}(n_2,n_1)}
+$$
+
+## 正态总体下的抽样分布
+
+设：
+
+$$
+X_1,\ldots,X_n\ \text{独立同分布于}\ N(\mu,\sigma^2)
+$$
+
+### 样本均值的分布
+
+$$
+\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)
+$$
+
+标准化得到：
+
+$$
+\frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)
+$$
+
+### 样本方差的分布
+
+$$
+\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
+$$
+
+并且 $\bar X$ 与 $S^2$ 相互独立。
+
+### t 统计量
+
+当 $\sigma$ 未知时，用 $S$ 替代 $\sigma$，得到：
+
+$$
+T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)
+$$
+
+### 正态总体平方和
+
+若 $\mu$ 已知，则：
+
+$$
+\sum_{i=1}^{n}\left(\frac{X_i-\mu}{\sigma}\right)^2\sim\chi^2(n)
+$$
+
+若 $\mu$ 未知并把 $\mu$ 替换为 $\bar X$，则损失一个自由度：
+
+$$
+\sum_{i=1}^{n}\left(\frac{X_i-\bar X}{\sigma}\right)^2
+=\frac{(n-1)S^2}{\sigma^2}
+\sim\chi^2(n-1)
+$$
+
+## 两个正态总体的抽样分布
+
+设：
+
+$$
+X_1,\ldots,X_{n_1}\ \text{独立同分布于}\ N(\mu_1,\sigma_1^2)
+$$
+
+$$
+Y_1,\ldots,Y_{n_2}\ \text{独立同分布于}\ N(\mu_2,\sigma_2^2)
+$$
+
+两个样本相互独立。记样本均值和样本方差分别为 $\bar X,\bar Y,S_1^2,S_2^2$。
+
+### 均值差的分布
+
+$$
+\bar X-\bar Y\sim N\left(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\right)
+$$
+
+当 $\sigma_1^2,\sigma_2^2$ 已知时：
+
+$$
+\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
+{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}
+\sim N(0,1)
+$$
+
+当 $\sigma_1^2=\sigma_2^2=\sigma^2$ 未知时，使用合并方差：
+
+$$
+S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}
+$$
+
+则：
+
+$$
+\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
+{S_w\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}
+\sim t(n_1+n_2-2)
+$$
+
+### 方差比的分布
+
+$$
+\frac{S_1^2/S_2^2}{\sigma_1^2/\sigma_2^2}
+=\frac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}
+\sim F(n_1-1,n_2-1)
+$$
+
+若 $\sigma_1^2=\sigma_2^2$，则：
+
+$$
+\frac{S_1^2}{S_2^2}\sim F(n_1-1,n_2-1)
+$$
+
+## 顺序统计量与经验分布函数
+
+将样本按从小到大排列：
+
+$$
+X_{(1)}\le X_{(2)}\le\cdots\le X_{(n)}
+$$
+
+称为顺序统计量。最小值和最大值分别为：
+
+$$
+X_{(1)}=\min(X_1,\ldots,X_n),\qquad X_{(n)}=\max(X_1,\ldots,X_n)
+$$
+
+若总体分布函数为 $F(x)$，则：
+
+$$
+F_{X_{(1)}}(x)=1-[1-F(x)]^n
+$$
+
+$$
+F_{X_{(n)}}(x)=[F(x)]^n
+$$
+
+第 $k$ 个顺序统计量的分布函数为：
+
+$$
+F_{X_{(k)}}(x)
+=\sum_{j=k}^{n}\binom{n}{j}[F(x)]^j[1-F(x)]^{n-j}
+$$
+
+经验分布函数为：
+
+$$
+F_n(x)=\frac1n\sum_{i=1}^{n}\mathbf 1_{\{X_i\le x\}}
+$$
+
+由大数定律，对固定 $x$：
+
+$$
+F_n(x)\xrightarrow{P}F(x)
+$$
+
+## 高频题型与易错点
+
+<AccordionGroup>
+  <Accordion title="先确认是否正态总体">
+    $t$ 统计量和卡方统计量的标准结论通常建立在总体服从正态分布的基础上。仅由大样本近似时，要明确使用中心极限定理。
+  </Accordion>
+
+  <Accordion title="卡方自由度如何丢失">
+    $\mu$ 已知时，$\sum (X_i-\mu)^2/\sigma^2$ 的自由度为 $n$；把 $\mu$ 替换为 $\bar X$ 后，样本满足一个约束 $\sum(X_i-\bar X)=0$，自由度减少为 $n-1$。
+  </Accordion>
+
+  <Accordion title="t 统计量的分母是 S 不是 σ">
+    $$
+    \frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)
+    $$
+
+    当 $\sigma$ 未知并用 $S$ 替代后：
+
+    $$
+    \frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)
+    $$
+  </Accordion>
+
+  <Accordion title="两个方差的 F 统计量方向">
+    使用 $F$ 分布时先写清楚分子、分母及自由度。临界值不能随意交换分子和分母，必要时要使用分位数倒数关系。
+  </Accordion>
+</AccordionGroup>

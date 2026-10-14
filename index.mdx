@@ -1,6 +1,6 @@
 ---
 title: "首页"
-description: "数据结构、计算机组成原理与线性代数复习笔记。"
+description: "数据结构、计算机组成原理、高等数学、线性代数与概率论复习笔记。"
 mode: custom
 ---
 
@@ -18,7 +18,7 @@ mode: custom
       </h1>
 
       <p className="kb-hero__lead">
-        当前覆盖数据结构、计算机组成原理与线性代数。按章节整理知识，通过目录和搜索快速回顾。
+        当前覆盖数据结构、计算机组成原理、高等数学、线性代数与概率论。按章节整理知识，通过目录和搜索快速回顾。
       </p>
 
       <div className="kb-hero__actions">
@@ -38,7 +38,7 @@ mode: custom
           <span className="kb-coverage__kicker">MY NOTE INDEX</span>
           <h2>我的笔记进度</h2>
         </div>
-        <strong>11 章</strong>
+        <strong>23 章</strong>
       </div>
 
       <div className="kb-coverage__list">
@@ -59,7 +59,7 @@ mode: custom
           <div className="kb-progress__top">
             <div>
               <span className="kb-progress__name">计算机组成原理</span>
-              <span className="kb-progress__meta">3 / 3 章已整理</span>
+              <span className="kb-progress__meta">6 / 6 章已整理</span>
             </div>
             <strong>100%</strong>
           </div>
@@ -72,6 +72,32 @@ mode: custom
             <div>
               <span className="kb-progress__name">线性代数</span>
               <span className="kb-progress__meta">4 / 4 章已整理</span>
+            </div>
+            <strong>100%</strong>
+          </div>
+          <div className="kb-progress__bar" aria-hidden="true">
+            <span style={{ width: "100%" }}></span>
+          </div>
+        </a>
+
+        <a className="kb-progress" href="/higher-mathematics/knowledge-summary/chapter-1">
+          <div className="kb-progress__top">
+            <div>
+              <span className="kb-progress__name">高等数学</span>
+              <span className="kb-progress__meta">2 / 2 章已整理</span>
+            </div>
+            <strong>100%</strong>
+          </div>
+          <div className="kb-progress__bar" aria-hidden="true">
+            <span style={{ width: "100%" }}></span>
+          </div>
+        </a>
+
+        <a className="kb-progress" href="/probability-theory/knowledge-summary/chapter-1">
+          <div className="kb-progress__top">
+            <div>
+              <span className="kb-progress__name">概率论与数理统计</span>
+              <span className="kb-progress__meta">7 / 7 章已整理</span>
             </div>
             <strong>100%</strong>
           </div>
@@ -167,17 +193,17 @@ mode: custom
             <span className="kb-subject__label">COMPUTER ORGANIZATION</span>
             <h3>计算机组成原理</h3>
           </div>
-          <span className="kb-subject__count">3 章</span>
+          <span className="kb-subject__count">6 章</span>
         </div>
 
         <p className="kb-subject__description">
-          梳理计算机系统、机器级数据表示，以及定点数和浮点数的运算方法。
+          从计算机系统概述、机器级数据表示和运算方法，延伸到存储系统、指令系统与中央处理器。
         </p>
 
         <div className="kb-subject__progress">
           <div className="kb-subject__progress-label">
             <span>章节整理</span>
-            <strong>3 / 3</strong>
+            <strong>6 / 6</strong>
           </div>
           <div className="kb-subject__progress-track" aria-hidden="true">
             <span></span>
@@ -196,6 +222,18 @@ mode: custom
           <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-3">
             <span className="kb-chapter__index">03</span>
             <span className="kb-chapter__name">运算方法和运算部件</span>
+          </a>
+          <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-4">
+            <span className="kb-chapter__index">04</span>
+            <span className="kb-chapter__name">存储系统</span>
+          </a>
+          <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-5">
+            <span className="kb-chapter__index">05</span>
+            <span className="kb-chapter__name">指令系统</span>
+          </a>
+          <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-6">
+            <span className="kb-chapter__index">06</span>
+            <span className="kb-chapter__name">中央处理器</span>
           </a>
         </div>
 
@@ -259,6 +297,120 @@ mode: custom
         </a>
       </div>
 
+      <div className="kb-subject kb-subject--higher-mathematics">
+        <div className="kb-subject__top">
+          <span className="kb-subject__icon" aria-hidden="true">
+            <Icon icon="variable" size={22} />
+          </span>
+          <span className="kb-subject__ordinal">04</span>
+        </div>
+
+        <div className="kb-subject__title-row">
+          <div>
+            <span className="kb-subject__label">HIGHER MATHEMATICS</span>
+            <h3>高等数学</h3>
+          </div>
+          <span className="kb-subject__count">2 章</span>
+        </div>
+
+        <p className="kb-subject__description">
+          从微分方程到无穷级数，串联常系数方程、判别法与幂级数展开。
+        </p>
+
+        <div className="kb-subject__progress">
+          <div className="kb-subject__progress-label">
+            <span>章节整理</span>
+            <strong>2 / 2</strong>
+          </div>
+          <div className="kb-subject__progress-track" aria-hidden="true">
+            <span></span>
+          </div>
+        </div>
+
+        <div className="kb-chapter-grid">
+          <a className="kb-chapter" href="/higher-mathematics/knowledge-summary/chapter-1">
+            <span className="kb-chapter__index">01</span>
+            <span className="kb-chapter__name">微分方程</span>
+          </a>
+          <a className="kb-chapter" href="/higher-mathematics/knowledge-summary/chapter-2">
+            <span className="kb-chapter__index">02</span>
+            <span className="kb-chapter__name">无穷级数</span>
+          </a>
+        </div>
+
+        <a className="kb-subject__cta" href="/higher-mathematics/knowledge-summary/chapter-1">
+          进入高等数学
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div className="kb-subject kb-subject--probability">
+        <div className="kb-subject__top">
+          <span className="kb-subject__icon" aria-hidden="true">
+            <Icon icon="percent" size={22} />
+          </span>
+          <span className="kb-subject__ordinal">05</span>
+        </div>
+
+        <div className="kb-subject__title-row">
+          <div>
+            <span className="kb-subject__label">PROBABILITY &amp; STATISTICS</span>
+            <h3>概率论与数理统计</h3>
+          </div>
+          <span className="kb-subject__count">7 章</span>
+        </div>
+
+        <p className="kb-subject__description">
+          从随机事件、常见分布到抽样分布，串联区间估计与假设检验的核心公式。
+        </p>
+
+        <div className="kb-subject__progress">
+          <div className="kb-subject__progress-label">
+            <span>章节整理</span>
+            <strong>7 / 7</strong>
+          </div>
+          <div className="kb-subject__progress-track" aria-hidden="true">
+            <span></span>
+          </div>
+        </div>
+
+        <div className="kb-chapter-grid">
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-1">
+            <span className="kb-chapter__index">01</span>
+            <span className="kb-chapter__name">随机事件与概率</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-2">
+            <span className="kb-chapter__index">02</span>
+            <span className="kb-chapter__name">随机变量及其分布</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-3">
+            <span className="kb-chapter__index">03</span>
+            <span className="kb-chapter__name">多维随机变量</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-4">
+            <span className="kb-chapter__index">04</span>
+            <span className="kb-chapter__name">数字特征</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-5">
+            <span className="kb-chapter__index">05</span>
+            <span className="kb-chapter__name">大数定律与中心极限定理</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-6">
+            <span className="kb-chapter__index">06</span>
+            <span className="kb-chapter__name">数理统计基本概念</span>
+          </a>
+          <a className="kb-chapter" href="/probability-theory/knowledge-summary/chapter-7">
+            <span className="kb-chapter__index">07</span>
+            <span className="kb-chapter__name">参数估计与假设检验</span>
+          </a>
+        </div>
+
+        <a className="kb-subject__cta" href="/probability-theory/knowledge-summary/chapter-1">
+          进入概率论与数理统计
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -301,6 +453,28 @@ mode: custom
         <div className="kb-tool__content">
           <div className="kb-tool__title">线性代数笔记</div>
           <div className="kb-tool__description">从行列式开始按章复习</div>
+        </div>
+        <span className="kb-tool__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a className="kb-tool" href="/higher-mathematics/knowledge-summary/chapter-1">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="variable" size={20} />
+        </span>
+        <div className="kb-tool__content">
+          <div className="kb-tool__title">高等数学笔记</div>
+          <div className="kb-tool__description">按章复习微分方程与无穷级数</div>
+        </div>
+        <span className="kb-tool__arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a className="kb-tool" href="/probability-theory/knowledge-summary/chapter-1">
+        <span className="kb-tool__icon" aria-hidden="true">
+          <Icon icon="percent" size={20} />
+        </span>
+        <div className="kb-tool__content">
+          <div className="kb-tool__title">概率论与数理统计笔记</div>
+          <div className="kb-tool__description">按章掌握概率模型与统计推断</div>
         </div>
         <span className="kb-tool__arrow" aria-hidden="true">→</span>
       </a>

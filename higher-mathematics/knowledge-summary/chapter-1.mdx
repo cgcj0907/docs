@@ -1,0 +1,533 @@
+---
+title: "第 1 章 微分方程"
+sidebarTitle: "微分方程"
+description: "整理微分方程的术语、一阶与高阶方程、常系数线性方程，以及欧拉、伯努利和全微分方程。"
+tags: ["考研", "高等数学"]
+---
+
+本章整理微分方程的基本术语和常见方程类型。复习时先根据方程结构识别题型，再选择合适的求解方法。重点掌握一阶线性方程、二阶可降阶方程、常系数线性方程和全微分方程。
+
+<Info>
+主复习路线：**识别阶数与线性性 → 判定齐次或非齐次 → 选择公式法、降阶法或待定系数法 → 根据初始条件确定特解**。
+</Info>
+
+## 术语解释
+
+<AccordionGroup>
+  <Accordion title="阶、齐次与线性">
+    - **阶**：微分方程中未知函数 $y$ 的最高阶导数的阶数称为方程的阶。若方程中最高出现 $y^{(n)}$，则为 $n$ 阶微分方程。
+
+    - **齐次**：对于线性微分方程，若非齐次项恒为零，即
+
+      $$
+      a_n(x)y^{(n)}+\cdots+a_1(x)y'+a_0(x)y=0
+      $$
+
+      则称为齐次线性微分方程。
+
+      对一阶方程
+
+      $$
+      \frac{dy}{dx}=f(x,y)
+      $$
+
+      若 $f(x,y)$ 可写成 $\varphi\left(\frac{y}{x}\right)$ 的形式，则称为齐次型方程。它与“齐次线性方程”不是同一个概念。
+
+    - **线性**：未知函数 $y$ 及其各阶导数都以一次幂出现，且不存在 $y\cdot y'$、$\sin y$ 等非线性项。一般形式为
+
+      $$
+      a_n(x)y^{(n)}+a_{n-1}(x)y^{(n-1)}+\cdots+a_1(x)y'+a_0(x)y=f(x)
+      $$
+
+    <Warning>
+    “齐次”在不同语境中含义不同：线性方程中的齐次指非齐次项为零；一阶齐次型方程则指右端可写成 $y/x$ 的函数。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="常系数、通解与特解">
+    - **常系数**：线性微分方程中未知函数及其导数的系数均为常数，即与自变量 $x$ 无关。例如
+
+      $$
+      ay''+by'+cy=f(x)
+      $$
+
+    - **特解**：满足微分方程的一个具体解，通常含确定的常数，不含任意常数。在初值问题中，通过初始条件确定通解中的常数，即可得到特解。
+
+    - **通解**：含有与方程阶数相同个数的独立任意常数的解。对于线性方程，通解结构为齐次通解加上一个非齐次特解。
+  </Accordion>
+</AccordionGroup>
+
+## 一阶微分方程
+
+### 一阶线性微分方程
+
+标准形式为：
+
+$$
+\frac{dy}{dx}+P(x)y=Q(x)
+$$
+
+使用常数变易法或公式法求解，通解公式为：
+
+$$
+y=e^{-\int P(x)\,dx}
+\left(
+\int Q(x)e^{\int P(x)\,dx}\,dx+C
+\right)
+$$
+
+给定初始条件 $y(x_0)=y_0$ 时，把它代入通解确定 $C$，即可得到特解。
+
+### 二阶可降阶微分方程
+
+<AccordionGroup>
+  <Accordion title="类型一：$y''=f(x,y')$，不显含 $y$">
+    令
+
+    $$
+    p=y'
+    $$
+
+    则 $y''=p'$，原方程化为：
+
+    $$
+    p'=f(x,p)
+    $$
+
+    这是一个关于 $p$ 和 $x$ 的一阶方程。求出
+
+    $$
+    p=\varphi(x,C_1)
+    $$
+
+    后再积分：
+
+    $$
+    y=\int \varphi(x,C_1)\,dx+C_2
+    $$
+  </Accordion>
+
+  <Accordion title="类型二：$y''=f(y,y')$，不显含 $x$">
+    令
+
+    $$
+    p=y'
+    $$
+
+    则
+
+    $$
+    y''=p\frac{dp}{dy}
+    $$
+
+    原方程化为：
+
+    $$
+    p\frac{dp}{dy}=f(y,p)
+    $$
+
+    这是一个关于 $p$ 和 $y$ 的一阶方程。求出
+
+    $$
+    p=\varphi(y,C_1)
+    $$
+
+    后分离变量：
+
+    $$
+    \frac{dy}{\varphi(y,C_1)}=dx
+    $$
+
+    两边积分即可得到通解。
+  </Accordion>
+
+  <Accordion title="类型三：$y''=f(y')$，不显含 $x,y$">
+    令
+
+    $$
+    p=y'
+    $$
+
+    则 $y''=p'$，方程化为：
+
+    $$
+    p'=f(p)
+    $$
+
+    可分离变量求出 $p$ 与 $x$ 的关系，再由 $p=y'$ 积分，得到 $y$。
+  </Accordion>
+</AccordionGroup>
+
+## 高阶微分方程
+
+### 线性方程的通解结构
+
+对于 $n$ 阶非齐次线性微分方程：
+
+$$
+a_n(x)y^{(n)}+a_{n-1}(x)y^{(n-1)}+\cdots+a_1(x)y'+a_0(x)y=f(x)
+$$
+
+其通解结构为：
+
+$$
+y=y_h(x)+y_p(x)
+$$
+
+其中，$y_h(x)$ 是对应齐次方程的通解，含有 $n$ 个任意常数；$y_p(x)$ 是原非齐次方程的一个特解。
+
+### 二阶常系数齐次线性微分方程
+
+标准形式为：
+
+$$
+ay''+by'+cy=0\qquad(a,b,c\text{ 为常数},\ a\ne 0)
+$$
+
+特征方程为：
+
+$$
+ar^2+br+c=0
+$$
+
+根据特征根的情况，通解形式如下。其中 $C_1,C_2$ 取特定值后，即可得到特解。
+
+| 特征根情况 | 通解形式 |
+| --- | --- |
+| 两个不等实根 $r_1\ne r_2$ | $y=C_1e^{r_1x}+C_2e^{r_2x}$ |
+| 二重实根 $r_1=r_2=r$ | $y=(C_1+C_2x)e^{rx}$ |
+| 共轭复根 $r_{1,2}=\alpha\pm i\beta$ | $y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
+
+### 二阶常系数非齐次线性微分方程
+
+标准形式为：
+
+$$
+ay''+by'+cy=f(x)
+$$
+
+通解为对应齐次方程的通解 $y_h$ 加上一个非齐次特解 $y^*$：
+
+$$
+y=y_h+y^*
+$$
+
+<AccordionGroup>
+  <Accordion title="情形一：$f(x)=P_m(x)e^{\lambda x}$">
+    设 $P_m(x)$ 为 $m$ 次多项式，则令特解形式为：
+
+    $$
+    y^*=x^kQ_m(x)e^{\lambda x}
+    $$
+
+    其中，$Q_m(x)$ 为 $m$ 次待定多项式，$k$ 的取法为：
+
+    - 若 $\lambda$ 不是特征根，则 $k=0$；
+    - 若 $\lambda$ 是单特征根，则 $k=1$；
+    - 若 $\lambda$ 是重特征根，则 $k=2$。对二阶方程，重根即二重根。
+  </Accordion>
+
+  <Accordion title="情形二：含三角函数与指数函数">
+    若
+
+    $$
+    f(x)=e^{\alpha x}\left[P_l(x)\cos\beta x+P_n(x)\sin\beta x\right]
+    $$
+
+    则令特解形式为：
+
+    $$
+    y^*=x^k e^{\alpha x}
+    \left[R_m(x)\cos\beta x+S_m(x)\sin\beta x\right]
+    $$
+
+    其中
+
+    $$
+    m=\max\{l,n\}
+    $$
+
+    $R_m(x),S_m(x)$ 均为 $m$ 次待定多项式，$k$ 的取法为：
+
+    - 若 $\alpha+i\beta$ 不是特征根，则 $k=0$；
+    - 若 $\alpha+i\beta$ 是特征根，则 $k=1$。此时在二阶方程中必为共轭复根。
+  </Accordion>
+
+  <Accordion title="重要结论：两个非齐次特解之差">
+    设非齐次方程为：
+
+    $$
+    y''+a(x)y'+b(x)y=f(x)
+    $$
+
+    若 $y_1$ 和 $y_2$ 都是该非齐次方程的特解，则 $y_1-y_2$ 是对应齐次方程
+
+    $$
+    y''+a(x)y'+b(x)y=0
+    $$
+
+    的一个解。
+
+    **证明**
+
+    由于 $y_1,y_2$ 都是非齐次方程的特解，所以
+
+    $$
+    y_1''+a(x)y_1'+b(x)y_1=f(x)
+    $$
+
+    $$
+    y_2''+a(x)y_2'+b(x)y_2=f(x)
+    $$
+
+    两式相减：
+
+    $$
+    (y_1''-y_2'')+a(x)(y_1'-y_2')+b(x)(y_1-y_2)=0
+    $$
+
+    令
+
+    $$
+    z=y_1-y_2
+    $$
+
+    则
+
+    $$
+    z''+a(x)z'+b(x)z=0
+    $$
+
+    因此，$y_1-y_2$ 满足对应的齐次方程。
+  </Accordion>
+</AccordionGroup>
+
+### $n$ 阶常系数齐次线性微分方程
+
+标准形式为：
+
+$$
+a_ny^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_1y'+a_0y=0
+$$
+
+其中 $a_i$ 为常数。特征方程为：
+
+$$
+a_nr^n+a_{n-1}r^{n-1}+\cdots+a_1r+a_0=0
+$$
+
+根据特征根的情况，每个根对应线性无关的解，并按下表写出对应项。
+
+| 特征根类型 | 对应通解中的项 |
+| --- | --- |
+| 单实根 $r$ | $Ce^{rx}$ |
+| $k$ 重实根 $r$ | $(C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}$ |
+| 一对单共轭复根 $\alpha\pm i\beta$ | $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
+| 一对 $k$ 重复根 $\alpha\pm i\beta$ | $e^{\alpha x}\left[(A_1+A_2x+\cdots+A_kx^{k-1})\cos\beta x+(B_1+B_2x+\cdots+B_kx^{k-1})\sin\beta x\right]$ |
+
+将所有项线性叠加，即得到通解。
+
+## 其他常见可解类型
+
+<AccordionGroup>
+  <Accordion title="可分离变量型">
+    形式为：
+
+    $$
+    \frac{dy}{dx}=g(x)h(y)
+    $$
+
+    或
+
+    $$
+    M(x)N(y)\,dx+P(x)Q(y)\,dy=0
+    $$
+
+    分离变量后，两边积分：
+
+    $$
+    \int \frac{dy}{h(y)}=\int g(x)\,dx+C
+    $$
+
+    <Warning>
+    分离变量时，如果除以了含 $y$ 的因式，需要单独考虑 $h(y)=0$ 是否会产生被遗漏的解。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="齐次型（一阶齐次微分方程）">
+    形式为：
+
+    $$
+    \frac{dy}{dx}=\varphi\left(\frac{y}{x}\right)
+    $$
+
+    或
+
+    $$
+    M(x,y)\,dx+N(x,y)\,dy=0
+    $$
+
+    其中 $M,N$ 为 $x,y$ 的同次齐次函数。令
+
+    $$
+    u=\frac{y}{x}
+    $$
+
+    则
+
+    $$
+    y=ux
+    $$
+
+    $$
+    \frac{dy}{dx}=u+x\frac{du}{dx}
+    $$
+
+    代入原方程后，可化为可分离变量型。
+  </Accordion>
+
+  <Accordion title="欧拉方程">
+    形式为：
+
+    $$
+    x^ny^{(n)}+p_1x^{n-1}y^{(n-1)}+\cdots+p_{n-1}xy'+p_ny=f(x)
+    $$
+
+    其中 $p_i$ 为常数。
+
+    **当 $x>0$ 时**
+
+    令
+
+    $$
+    x=e^t
+    $$
+
+    则
+
+    $$
+    t=\ln x,\qquad \frac{dt}{dx}=\frac{1}{x}
+    $$
+
+    于是
+
+    $$
+    \frac{dy}{dx}=\frac{dy}{dt}\cdot\frac{dt}{dx}
+    =\frac{1}{x}\frac{dy}{dt}
+    $$
+
+    $$
+    \frac{d^2y}{dx^2}
+    =\frac{d}{dx}\left(\frac{1}{x}\frac{dy}{dt}\right)
+    =-\frac{1}{x^2}\frac{dy}{dt}
+    +\frac{1}{x}\frac{d}{dx}\left(\frac{dy}{dt}\right)
+    =-\frac{1}{x^2}\frac{dy}{dt}
+    +\frac{1}{x^2}\frac{d^2y}{dt^2}
+    $$
+
+    代入二阶欧拉方程
+
+    $$
+    x^2y''+pxy'+qy=f(x)
+    $$
+
+    得常系数线性微分方程：
+
+    $$
+    \frac{d^2y}{dt^2}+(p-1)\frac{dy}{dt}+qy=f(e^t)
+    $$
+
+    求解后，用 $t=\ln x$ 回代。
+
+    **当 $x<0$ 时**
+
+    令
+
+    $$
+    x=-e^t
+    $$
+
+    同理可得相同的常系数方程，最后用 $t=\ln(-x)$ 回代。
+  </Accordion>
+
+  <Accordion title="伯努利方程">
+    形式为：
+
+    $$
+    \frac{dy}{dx}+P(x)y=Q(x)y^n\qquad(n\ne 0,1)
+    $$
+
+    两边除以 $y^n$，令
+
+    $$
+    z=y^{1-n}
+    $$
+
+    则
+
+    $$
+    \frac{dz}{dx}=(1-n)y^{-n}\frac{dy}{dx}
+    $$
+
+    代入后得到一阶线性方程：
+
+    $$
+    \frac{dz}{dx}+(1-n)P(x)z=(1-n)Q(x)
+    $$
+
+    求出 $z$ 后，再由
+
+    $$
+    y=z^{1/(1-n)}
+    $$
+
+    得到原方程的解。
+  </Accordion>
+
+  <Accordion title="全微分方程">
+    形式为：
+
+    $$
+    M(x,y)\,dx+N(x,y)\,dy=0
+    $$
+
+    若满足
+
+    $$
+    \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}
+    $$
+
+    则存在原函数 $u(x,y)$，使得
+
+    $$
+    du=M\,dx+N\,dy
+    $$
+
+    由二阶混合偏导与求导次序无关，有：
+
+    $$
+    \frac{\partial M}{\partial y}
+    =\frac{\partial^2u}{\partial y\partial x}
+    =\frac{\partial^2u}{\partial x\partial y}
+    =\frac{\partial N}{\partial x}
+    $$
+
+    因此，
+
+    $$
+    \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}
+    $$
+
+    是方程成为全微分方程的必要条件；在单连通区域上也是充分条件。这一等式称为**恰当条件**。
+
+    全微分方程把问题化为求势函数 $u(x,y)$，其通解为：
+
+    $$
+    u(x,y)=C
+    $$
+  </Accordion>
+</AccordionGroup>
+
+<Check>
+解题时先观察方程能否降阶、分离变量或化为线性方程；对常系数线性方程，再用特征方程处理齐次部分，用待定系数法求非齐次特解。
+</Check>

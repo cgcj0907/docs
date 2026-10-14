@@ -1,0 +1,290 @@
+---
+title: "第 1 章 随机事件与概率"
+sidebarTitle: "随机事件与概率"
+description: "整理事件运算、概率基本公式、条件概率、全概率与贝叶斯公式，以及事件独立性。"
+tags: ["考研", "考研数学一", "概率论"]
+---
+
+本章是概率论的语言和运算基础。复习时先判断事件关系，再选择直接计算、条件概率、全概率或贝叶斯公式。所有条件概率公式都要检查分母是否大于零。
+
+<Info>
+主复习路线：**样本空间 → 事件关系与运算 → 概率基本性质 → 条件概率 → 全概率与贝叶斯 → 独立性**。
+</Info>
+
+## 样本空间与随机事件
+
+### 基本概念
+
+- **样本空间** $\Omega$：随机试验所有可能结果组成的集合。
+- **样本点** $\omega$：样本空间中的一个可能结果。
+- **随机事件** $A$：样本空间的子集，即某些样本点组成的集合。
+- **必然事件**：$\Omega$。
+- **不可能事件**：$\varnothing$。
+
+### 事件运算
+
+| 运算 | 含义 |
+| --- | --- |
+| $A\subset B$ | $A$ 发生必导致 $B$ 发生 |
+| $A=B$ | $A\subset B$ 且 $B\subset A$ |
+| $A\cup B$ | $A,B$ 至少有一个发生 |
+| $A\cap B$ 或 $AB$ | $A,B$ 同时发生 |
+| $A-B$ 或 $A\overline B$ | $A$ 发生而 $B$ 不发生 |
+| $\overline A$ | $A$ 不发生 |
+| $A\Delta B$ | $A,B$ 恰有一个发生 |
+
+常用恒等式：
+
+$$
+A-B=A\overline B=A-AB,\qquad A\Delta B=A\overline B\cup\overline A B
+$$
+
+德摩根律：
+
+$$
+\overline{A\cup B}=\overline A\,\overline B,\qquad
+\overline{AB}=\overline A\cup\overline B
+$$
+
+推广形式：
+
+$$
+\overline{\bigcup_{i=1}^{n}A_i}=\bigcap_{i=1}^{n}\overline A_i,\qquad
+\overline{\bigcap_{i=1}^{n}A_i}=\bigcup_{i=1}^{n}\overline A_i
+$$
+
+<Tip>
+遇到“至少有一个发生”时，优先考虑对立事件：$P(\bigcup_i A_i)=1-P(\bigcap_i\overline A_i)$。
+</Tip>
+
+### 互不相容与完备事件组
+
+若
+
+$$
+A_iA_j=\varnothing\qquad(i\ne j)
+$$
+
+则称 $A_1,A_2,\ldots$ 两两互不相容。
+
+若事件组 $\{B_i\}$ 满足：
+
+$$
+B_iB_j=\varnothing\quad(i\ne j),\qquad \bigcup_i B_i=\Omega
+$$
+
+则称 $\{B_i\}$ 为完备事件组，也称为样本空间的一个划分。全概率公式和贝叶斯公式都要求样本空间被划分为若干个互不相容的事件。
+
+## 概率的基本性质与计算公式
+
+概率函数 $P(\cdot)$ 满足：
+
+$$
+P(\Omega)=1,\qquad P(\varnothing)=0,\qquad 0\le P(A)\le1
+$$
+
+若 $A_1,A_2,\ldots,A_n$ 两两互不相容，则：
+
+$$
+P\left(\bigcup_{i=1}^{n}A_i\right)=\sum_{i=1}^{n}P(A_i)
+$$
+
+常用性质：
+
+$$
+P(\overline A)=1-P(A)
+$$
+
+$$
+A\subset B\quad\Rightarrow\quad P(B-A)=P(B)-P(A),\qquad P(A)\le P(B)
+$$
+
+$$
+P(A-B)=P(A)-P(AB)
+$$
+
+### 加法公式
+
+两个事件：
+
+$$
+P(A\cup B)=P(A)+P(B)-P(AB)
+$$
+
+三个事件：
+
+$$
+\begin{aligned}
+P(A\cup B\cup C)
+={}&P(A)+P(B)+P(C)\\
+&-P(AB)-P(AC)-P(BC)+P(ABC)
+\end{aligned}
+$$
+
+<Warning>
+只有 $A,B$ 互不相容时，$P(A\cup B)=P(A)+P(B)$。一般情形必须减去交事件概率。
+</Warning>
+
+### 古典概型与几何概型
+
+古典概型中，若样本点等可能且总数为 $n$，事件 $A$ 包含 $m$ 个样本点，则：
+
+$$
+P(A)=\frac{m}{n}
+$$
+
+几何概型中，若试验结果落在区域 $\Omega$ 内且等可能，则：
+
+$$
+P(A)=\frac{\text{区域 }A\text{ 的度量}}{\text{区域 }\Omega\text{ 的度量}}
+$$
+
+其中度量可以是长度、面积或体积。
+
+## 条件概率与乘法公式
+
+当 $P(B)>0$ 时，在事件 $B$ 发生的条件下，事件 $A$ 发生的条件概率为：
+
+$$
+P(A\mid B)=\frac{P(AB)}{P(B)}
+$$
+
+由定义立即得到乘法公式：
+
+$$
+P(AB)=P(B)P(A\mid B)=P(A)P(B\mid A)
+$$
+
+多个事件的乘法公式：
+
+$$
+P(A_1A_2\cdots A_n)
+=P(A_1)P(A_2\mid A_1)P(A_3\mid A_1A_2)\cdots P(A_n\mid A_1\cdots A_{n-1})
+$$
+
+<Warning>
+- 条件概率的分母必须为正。
+- $P(A\mid B)$ 与 $P(B\mid A)$ 通常不相等。
+- 条件概率仍满足概率的基本性质，例如 $P(\overline A\mid B)=1-P(A\mid B)$。
+</Warning>
+
+## 全概率公式与贝叶斯公式
+
+设 $B_1,B_2,\ldots,B_n$ 是完备事件组，且 $P(B_i)>0$。对任意事件 $A$：
+
+### 全概率公式
+
+$$
+P(A)=\sum_{i=1}^{n}P(B_i)P(A\mid B_i)
+$$
+
+全概率公式适合把复杂事件按不同来源或不同情形拆分。
+
+### 贝叶斯公式
+
+当 $P(A)>0$ 时：
+
+$$
+P(B_j\mid A)=
+\frac{P(B_j)P(A\mid B_j)}
+{\sum_{i=1}^{n}P(B_i)P(A\mid B_i)}
+$$
+
+其中：
+
+- $P(B_j)$ 是先验概率；
+- $P(A\mid B_j)$ 是似然；
+- $P(B_j\mid A)$ 是后验概率。
+
+<Tip>
+全概率公式解决“由原因求结果”；贝叶斯公式解决“已知结果反推原因”。贝叶斯分母通常直接代入全概率公式。
+</Tip>
+
+## 事件的独立性
+
+### 两个事件独立
+
+若
+
+$$
+P(AB)=P(A)P(B)
+$$
+
+则称 $A,B$ 相互独立。当相关概率为正时，它等价于：
+
+$$
+P(A\mid B)=P(A),\qquad P(B\mid A)=P(B)
+$$
+
+若 $A,B$ 独立，则下列各对事件也相互独立：
+
+$$
+(A,\overline B),\qquad (\overline A,B),\qquad (\overline A,\overline B)
+$$
+
+### 多个事件相互独立
+
+事件 $A_1,A_2,\ldots,A_n$ 相互独立，当且仅当对任意 $k\ge2$ 和任意 $1\le i_1<\cdots<i_k\le n$，都有：
+
+$$
+P(A_{i_1}A_{i_2}\cdots A_{i_k})
+=P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})
+$$
+
+对于 $n$ 个事件，共有 $2^n-n-1$ 个非平凡乘积条件。
+
+<Warning>
+**互不相容不等于独立**。若 $P(A)>0,P(B)>0$，则 $A,B$ 互不相容时 $P(AB)=0$，不可能等于 $P(A)P(B)$，因此二者不独立。
+
+**两两独立不一定相互独立**。多事件独立性要求所有子集的概率都能分解。
+</Warning>
+
+### 伯努利概型
+
+若每次试验只有成功与失败两种结果，成功概率为 $p$，重复进行 $n$ 次且各次独立，则 $n$ 次中恰好成功 $k$ 次的概率为：
+
+$$
+P_n(k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad k=0,1,\ldots,n
+$$
+
+至少成功一次的概率为：
+
+$$
+1-(1-p)^n
+$$
+
+## 高频题型与易错点
+
+<AccordionGroup>
+  <Accordion title="看到“至少”先取对立事件">
+    对独立重复试验：
+
+    $$
+    P(\text{至少一次成功})=1-P(\text{全部失败})=1-(1-p)^n
+    $$
+  </Accordion>
+
+  <Accordion title="先判断是否有条件">
+    题目出现“已知”“在……条件下”时，通常使用条件概率。先写
+
+    $$
+    P(A\mid B)=\frac{P(AB)}{P(B)}
+    $$
+
+    再根据题目补充计算 $P(AB)$ 或 $P(B)$。
+  </Accordion>
+
+  <Accordion title="划分必须完整且互不相容">
+    使用全概率或贝叶斯公式前，检查 $B_i$ 是否满足：
+
+    $$
+    B_iB_j=\varnothing\quad(i\ne j),\qquad \bigcup_iB_i=\Omega
+    $$
+
+    若划分遗漏情形，结果会偏小。
+  </Accordion>
+
+  <Accordion title="独立性的等价变形">
+    若 $X,Y$ 独立，则任意只与 $X$ 有关的事件与任意只与 $Y$ 有关的事件独立。求“两个条件同时满足”的概率时，可以分别相乘。
+  </Accordion>
+</AccordionGroup>
