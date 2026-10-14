@@ -13,6 +13,7 @@ tags: ["考研", "高等数学"]
 
 ## 术语解释
 
+
 <AccordionGroup>
   <Accordion title="阶、齐次与线性">
     - **阶**：微分方程中未知函数 $y$ 的最高阶导数的阶数称为方程的阶。若方程中最高出现 $y^{(n)}$，则为 $n$ 阶微分方程。
@@ -59,29 +60,33 @@ tags: ["考研", "高等数学"]
 
 ## 一阶微分方程
 
-### 一阶线性微分方程
-
-标准形式为：
-
-$$
-\frac{dy}{dx}+P(x)y=Q(x)
-$$
-
-使用常数变易法或公式法求解，通解公式为：
-
-$$
-y=e^{-\int P(x)\,dx}
-\left(
-\int Q(x)e^{\int P(x)\,dx}\,dx+C
-\right)
-$$
-
-给定初始条件 $y(x_0)=y_0$ 时，把它代入通解确定 $C$，即可得到特解。
-
-### 二阶可降阶微分方程
-
 <AccordionGroup>
-  <Accordion title="类型一：$y''=f(x,y')$，不显含 $y$">
+  <Accordion title="一阶线性微分方程">
+    标准形式为：
+
+    $$
+    \frac{dy}{dx}+P(x)y=Q(x)
+    $$
+
+    使用常数变易法或公式法求解，通解公式为：
+
+    $$
+    y=e^{-\int P(x)\,dx}
+    \left(
+    \int Q(x)e^{\int P(x)\,dx}\,dx+C
+    \right)
+    $$
+
+    给定初始条件 $y(x_0)=y_0$ 时，把它代入通解确定 $C$，即可得到特解。
+  </Accordion>
+
+  <Accordion title="类型一：不显含 y">
+    方程形式为：
+
+    $$
+    y''=f(x,y')
+    $$
+
     令
 
     $$
@@ -107,7 +112,13 @@ $$
     $$
   </Accordion>
 
-  <Accordion title="类型二：$y''=f(y,y')$，不显含 $x$">
+  <Accordion title="类型二：不显含 x">
+    方程形式为：
+
+    $$
+    y''=f(y,y')
+    $$
+
     令
 
     $$
@@ -141,7 +152,13 @@ $$
     两边积分即可得到通解。
   </Accordion>
 
-  <Accordion title="类型三：$y''=f(y')$，不显含 $x,y$">
+  <Accordion title="类型三：不显含 x、y">
+    方程形式为：
+
+    $$
+    y''=f(y')
+    $$
+
     令
 
     $$
@@ -160,60 +177,66 @@ $$
 
 ## 高阶微分方程
 
-### 线性方程的通解结构
-
-对于 $n$ 阶非齐次线性微分方程：
-
-$$
-a_n(x)y^{(n)}+a_{n-1}(x)y^{(n-1)}+\cdots+a_1(x)y'+a_0(x)y=f(x)
-$$
-
-其通解结构为：
-
-$$
-y=y_h(x)+y_p(x)
-$$
-
-其中，$y_h(x)$ 是对应齐次方程的通解，含有 $n$ 个任意常数；$y_p(x)$ 是原非齐次方程的一个特解。
-
-### 二阶常系数齐次线性微分方程
-
-标准形式为：
-
-$$
-ay''+by'+cy=0\qquad(a,b,c\text{ 为常数},\ a\ne 0)
-$$
-
-特征方程为：
-
-$$
-ar^2+br+c=0
-$$
-
-根据特征根的情况，通解形式如下。其中 $C_1,C_2$ 取特定值后，即可得到特解。
-
-| 特征根情况 | 通解形式 |
-| --- | --- |
-| 两个不等实根 $r_1\ne r_2$ | $y=C_1e^{r_1x}+C_2e^{r_2x}$ |
-| 二重实根 $r_1=r_2=r$ | $y=(C_1+C_2x)e^{rx}$ |
-| 共轭复根 $r_{1,2}=\alpha\pm i\beta$ | $y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
-
-### 二阶常系数非齐次线性微分方程
-
-标准形式为：
-
-$$
-ay''+by'+cy=f(x)
-$$
-
-通解为对应齐次方程的通解 $y_h$ 加上一个非齐次特解 $y^*$：
-
-$$
-y=y_h+y^*
-$$
-
 <AccordionGroup>
-  <Accordion title="情形一：$f(x)=P_m(x)e^{\lambda x}$">
+  <Accordion title="线性方程的通解结构">
+    对于 $n$ 阶非齐次线性微分方程：
+
+    $$
+    a_n(x)y^{(n)}+a_{n-1}(x)y^{(n-1)}+\cdots+a_1(x)y'+a_0(x)y=f(x)
+    $$
+
+    其通解结构为：
+
+    $$
+    y=y_h(x)+y_p(x)
+    $$
+
+    其中，$y_h(x)$ 是对应齐次方程的通解，含有 $n$ 个任意常数；$y_p(x)$ 是原非齐次方程的一个特解。
+  </Accordion>
+
+  <Accordion title="二阶常系数齐次线性微分方程">
+    标准形式为：
+
+    $$
+    ay''+by'+cy=0\qquad(a,b,c\text{ 为常数},\ a\ne 0)
+    $$
+
+    特征方程为：
+
+    $$
+    ar^2+br+c=0
+    $$
+
+    根据特征根的情况，通解形式如下。其中 $C_1,C_2$ 取特定值后，即可得到特解。
+
+    | 特征根情况 | 通解形式 |
+    | --- | --- |
+    | 两个不等实根 $r_1\ne r_2$ | $y=C_1e^{r_1x}+C_2e^{r_2x}$ |
+    | 二重实根 $r_1=r_2=r$ | $y=(C_1+C_2x)e^{rx}$ |
+    | 共轭复根 $r_{1,2}=\alpha\pm i\beta$ | $y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
+  </Accordion>
+
+  <Accordion title="二阶常系数非齐次线性微分方程">
+    标准形式为：
+
+    $$
+    ay''+by'+cy=f(x)
+    $$
+
+    通解为对应齐次方程的通解 $y_h$ 加上一个非齐次特解 $y^*$：
+
+    $$
+    y=y_h+y^*
+    $$
+  </Accordion>
+
+  <Accordion title="情形一：多项式与指数函数的乘积">
+    对应：
+
+    $$
+    f(x)=P_m(x)e^{\lambda x}
+    $$
+
     设 $P_m(x)$ 为 $m$ 次多项式，则令特解形式为：
 
     $$
@@ -300,32 +323,32 @@ $$
 
     因此，$y_1-y_2$ 满足对应的齐次方程。
   </Accordion>
+
+  <Accordion title="n 阶常系数齐次线性微分方程">
+    标准形式为：
+
+    $$
+    a_ny^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_1y'+a_0y=0
+    $$
+
+    其中 $a_i$ 为常数。特征方程为：
+
+    $$
+    a_nr^n+a_{n-1}r^{n-1}+\cdots+a_1r+a_0=0
+    $$
+
+    根据特征根的情况，每个根对应线性无关的解，并按下表写出对应项。
+
+    | 特征根类型 | 对应通解中的项 |
+    | --- | --- |
+    | 单实根 $r$ | $Ce^{rx}$ |
+    | $k$ 重实根 $r$ | $(C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}$ |
+    | 一对单共轭复根 $\alpha\pm i\beta$ | $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
+    | 一对 $k$ 重复根 $\alpha\pm i\beta$ | $e^{\alpha x}\left[(A_1+A_2x+\cdots+A_kx^{k-1})\cos\beta x+(B_1+B_2x+\cdots+B_kx^{k-1})\sin\beta x\right]$ |
+
+    将所有项线性叠加，即得到通解。
+  </Accordion>
 </AccordionGroup>
-
-### $n$ 阶常系数齐次线性微分方程
-
-标准形式为：
-
-$$
-a_ny^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_1y'+a_0y=0
-$$
-
-其中 $a_i$ 为常数。特征方程为：
-
-$$
-a_nr^n+a_{n-1}r^{n-1}+\cdots+a_1r+a_0=0
-$$
-
-根据特征根的情况，每个根对应线性无关的解，并按下表写出对应项。
-
-| 特征根类型 | 对应通解中的项 |
-| --- | --- |
-| 单实根 $r$ | $Ce^{rx}$ |
-| $k$ 重实根 $r$ | $(C_1+C_2x+\cdots+C_kx^{k-1})e^{rx}$ |
-| 一对单共轭复根 $\alpha\pm i\beta$ | $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$ |
-| 一对 $k$ 重复根 $\alpha\pm i\beta$ | $e^{\alpha x}\left[(A_1+A_2x+\cdots+A_kx^{k-1})\cos\beta x+(B_1+B_2x+\cdots+B_kx^{k-1})\sin\beta x\right]$ |
-
-将所有项线性叠加，即得到通解。
 
 ## 其他常见可解类型
 
@@ -526,8 +549,11 @@ $$
     u(x,y)=C
     $$
   </Accordion>
-</AccordionGroup>
 
-<Check>
-解题时先观察方程能否降阶、分离变量或化为线性方程；对常系数线性方程，再用特征方程处理齐次部分，用待定系数法求非齐次特解。
-</Check>
+  <Accordion title="其他常见可解类型">
+    <Check>
+    解题时先观察方程能否降阶、分离变量或化为线性方程；对常系数线性方程，再用特征方程处理齐次部分，用待定系数法求非齐次特解。
+    </Check>
+  </Accordion>
+
+</AccordionGroup>

@@ -13,313 +13,329 @@ tags: ["考研", "考研数学一", "概率论"]
 
 ## 二维随机变量与联合分布
 
-二维随机变量 $(X,Y)$ 的联合分布函数定义为：
+<AccordionGroup>
+  <Accordion title="二维随机变量与联合分布">
+    二维随机变量 $(X,Y)$ 的联合分布函数定义为：
 
-$$
-F_{XY}(x,y)=P(X\le x,\ Y\le y)
-$$
+    $$
+    F_{XY}(x,y)=P(X\le x,\ Y\le y)
+    $$
 
-联合分布函数的性质：
+    联合分布函数的性质：
 
-1. 对每个变量单调不减；
-2. 对每个变量右连续；
+    1. 对每个变量单调不减；
+    2. 对每个变量右连续；
 
-$$
-F(-\infty,y)=F(x,-\infty)=0,\qquad F(+\infty,+\infty)=1
-$$
+    $$
+    F(-\infty,y)=F(x,-\infty)=0,\qquad F(+\infty,+\infty)=1
+    $$
 
-矩形概率公式：
+    矩形概率公式：
 
-$$
-\begin{aligned}
-&P(a_1<X\le b_1,\ a_2<Y\le b_2)\\
-={}&F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)
-\end{aligned}
-$$
+    $$
+    \begin{aligned}
+    &P(a_1<X\le b_1,\ a_2<Y\le b_2)\\
+    ={}&F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)
+    \end{aligned}
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 联合分布列与联合密度
 
-### 离散型
+<AccordionGroup>
+  <Accordion title="离散型">
+    若 $(X,Y)$ 只取可数个点 $(x_i,y_j)$，则联合概率分布列为：
 
-若 $(X,Y)$ 只取可数个点 $(x_i,y_j)$，则联合概率分布列为：
+    $$
+    p_{ij}=P(X=x_i,\ Y=y_j)
+    $$
 
-$$
-p_{ij}=P(X=x_i,\ Y=y_j)
-$$
+    满足：
 
-满足：
+    $$
+    p_{ij}\ge0,\qquad \sum_i\sum_j p_{ij}=1
+    $$
+  </Accordion>
 
-$$
-p_{ij}\ge0,\qquad \sum_i\sum_j p_{ij}=1
-$$
+  <Accordion title="连续型">
+    若存在非负可积函数 $f_{XY}(x,y)$，使：
 
-### 连续型
+    $$
+    F_{XY}(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f_{XY}(u,v)\,dv\,du
+    $$
 
-若存在非负可积函数 $f_{XY}(x,y)$，使：
+    则称 $(X,Y)$ 为二维连续型随机变量，$f_{XY}$ 为联合密度。联合密度满足：
 
-$$
-F_{XY}(x,y)=\int_{-\infty}^{x}\int_{-\infty}^{y}f_{XY}(u,v)\,dv\,du
-$$
+    $$
+    f_{XY}(x,y)\ge0,\qquad \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dy\,dx=1
+    $$
 
-则称 $(X,Y)$ 为二维连续型随机变量，$f_{XY}$ 为联合密度。联合密度满足：
+    在密度连续的点处：
 
-$$
-f_{XY}(x,y)\ge0,\qquad \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dy\,dx=1
-$$
+    $$
+    f_{XY}(x,y)=\frac{\partial^2F_{XY}(x,y)}{\partial x\partial y}
+    $$
 
-在密度连续的点处：
+    若区域 $D\subset\mathbb R^2$，则：
 
-$$
-f_{XY}(x,y)=\frac{\partial^2F_{XY}(x,y)}{\partial x\partial y}
-$$
-
-若区域 $D\subset\mathbb R^2$，则：
-
-$$
-P((X,Y)\in D)=\iint_D f_{XY}(x,y)\,dx\,dy
-$$
+    $$
+    P((X,Y)\in D)=\iint_D f_{XY}(x,y)\,dx\,dy
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 边缘分布
 
-### 离散型边缘分布
+<AccordionGroup>
+  <Accordion title="离散型边缘分布">
+    $$
+    p_X(x_i)=P(X=x_i)=\sum_j p_{ij}
+    $$
 
-$$
-p_X(x_i)=P(X=x_i)=\sum_j p_{ij}
-$$
+    $$
+    p_Y(y_j)=P(Y=y_j)=\sum_i p_{ij}
+    $$
 
-$$
-p_Y(y_j)=P(Y=y_j)=\sum_i p_{ij}
-$$
+    联合分布列向行或列求和，就得到边缘分布。
+  </Accordion>
 
-联合分布列向行或列求和，就得到边缘分布。
+  <Accordion title="连续型边缘密度">
+    $$
+    f_X(x)=\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dy
+    $$
 
-### 连续型边缘密度
+    $$
+    f_Y(y)=\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dx
+    $$
 
-$$
-f_X(x)=\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dy
-$$
-
-$$
-f_Y(y)=\int_{-\infty}^{+\infty}f_{XY}(x,y)\,dx
-$$
-
-<Warning>
-边缘密度是联合密度在另一变量方向上的积分。必须先根据联合密度的支持集确定积分上下限，不能默认都是 $-\infty$ 到 $+\infty$。
-</Warning>
+    <Warning>
+    边缘密度是联合密度在另一变量方向上的积分。必须先根据联合密度的支持集确定积分上下限，不能默认都是 $-\infty$ 到 $+\infty$。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
 
 ## 条件分布
 
-### 离散型条件分布
+<AccordionGroup>
+  <Accordion title="离散型条件分布">
+    当 $P(Y=y_j)>0$ 时：
 
-当 $P(Y=y_j)>0$ 时：
+    $$
+    P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{p_Y(y_j)}
+    $$
 
-$$
-P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{p_Y(y_j)}
-$$
+    当 $P(X=x_i)>0$ 时：
 
-当 $P(X=x_i)>0$ 时：
+    $$
+    P(Y=y_j\mid X=x_i)=\frac{p_{ij}}{p_X(x_i)}
+    $$
+  </Accordion>
 
-$$
-P(Y=y_j\mid X=x_i)=\frac{p_{ij}}{p_X(x_i)}
-$$
+  <Accordion title="连续型条件密度">
+    当 $f_Y(y)>0$ 时：
 
-### 连续型条件密度
+    $$
+    f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}
+    $$
 
-当 $f_Y(y)>0$ 时：
+    当 $f_X(x)>0$ 时：
 
-$$
-f_{X\mid Y}(x\mid y)=\frac{f_{XY}(x,y)}{f_Y(y)}
-$$
+    $$
+    f_{Y\mid X}(y\mid x)=\frac{f_{XY}(x,y)}{f_X(x)}
+    $$
 
-当 $f_X(x)>0$ 时：
+    条件密度满足：
 
-$$
-f_{Y\mid X}(y\mid x)=\frac{f_{XY}(x,y)}{f_X(x)}
-$$
+    $$
+    f_{X\mid Y}(x\mid y)\ge0,\qquad
+    \int_{-\infty}^{+\infty}f_{X\mid Y}(x\mid y)\,dx=1
+    $$
 
-条件密度满足：
-
-$$
-f_{X\mid Y}(x\mid y)\ge0,\qquad
-\int_{-\infty}^{+\infty}f_{X\mid Y}(x\mid y)\,dx=1
-$$
-
-<Warning>
-连续型随机变量在单点的概率为零，因此不能直接定义 $P(X=x\mid Y=y)$。求条件密度时不用除 $P(Y=y)$，而应使用密度函数 $f_Y(y)$。
-</Warning>
+    <Warning>
+    连续型随机变量在单点的概率为零，因此不能直接定义 $P(X=x\mid Y=y)$。求条件密度时不用除 $P(Y=y)$，而应使用密度函数 $f_Y(y)$。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
 
 ## 随机变量的独立性
 
-### 离散型
+<AccordionGroup>
+  <Accordion title="离散型">
+    若对一切 $i,j$ 都有：
 
-若对一切 $i,j$ 都有：
+    $$
+    P(X=x_i,\ Y=y_j)=P(X=x_i)P(Y=y_j)
+    $$
 
-$$
-P(X=x_i,\ Y=y_j)=P(X=x_i)P(Y=y_j)
-$$
+    则 $X,Y$ 相互独立。
+  </Accordion>
 
-则 $X,Y$ 相互独立。
+  <Accordion title="连续型">
+    若对几乎所有 $x,y$ 都有：
 
-### 连续型
+    $$
+    f_{XY}(x,y)=f_X(x)f_Y(y)
+    $$
 
-若对几乎所有 $x,y$ 都有：
+    则 $X,Y$ 相互独立。
+  </Accordion>
 
-$$
-f_{XY}(x,y)=f_X(x)f_Y(y)
-$$
+  <Accordion title="分布函数判定">
+    $$
+    F_{XY}(x,y)=F_X(x)F_Y(y)\qquad(\forall x,y)
+    $$
 
-则 $X,Y$ 相互独立。
+    是独立性的充要条件。
 
-### 分布函数判定
+    <Tip>
+    判断连续型随机变量是否独立时，同时检查两点：
 
-$$
-F_{XY}(x,y)=F_X(x)F_Y(y)\qquad(\forall x,y)
-$$
+    1. 联合密度能否分解为只含 $x$ 的函数与只含 $y$ 的函数之积；
+    2. 支持集能否写成两个区间（或集合）的笛卡尔积。
 
-是独立性的充要条件。
-
-<Tip>
-判断连续型随机变量是否独立时，同时检查两点：
-
-1. 联合密度能否分解为只含 $x$ 的函数与只含 $y$ 的函数之积；
-2. 支持集能否写成两个区间（或集合）的笛卡尔积。
-
-若支持集不是矩形区域，通常不独立。
-</Tip>
+    若支持集不是矩形区域，通常不独立。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
 
 ## 二维随机变量函数的分布
 
-### 和的分布
+<AccordionGroup>
+  <Accordion title="和的分布">
+    设 $Z=X+Y$。连续型情形的分布函数法为：
 
-设 $Z=X+Y$。连续型情形的分布函数法为：
+    $$
+    F_Z(z)=P(X+Y\le z)=\iint_{x+y\le z}f_{XY}(x,y)\,dx\,dy
+    $$
 
-$$
-F_Z(z)=P(X+Y\le z)=\iint_{x+y\le z}f_{XY}(x,y)\,dx\,dy
-$$
+    若 $X,Y$ 相互独立，则卷积公式为：
 
-若 $X,Y$ 相互独立，则卷积公式为：
+    $$
+    f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,dx
+    $$
 
-$$
-f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,dx
-$$
+    离散型独立情形为：
 
-离散型独立情形为：
+    $$
+    P(Z=z)=\sum_xP(X=x)P(Y=z-x)
+    $$
+  </Accordion>
 
-$$
-P(Z=z)=\sum_xP(X=x)P(Y=z-x)
-$$
+  <Accordion title="最大值与最小值">
+    设 $X,Y$ 相互独立，则：
 
-### 最大值与最小值
+    $$
+    F_{\max(X,Y)}(z)=F_X(z)F_Y(z)
+    $$
 
-设 $X,Y$ 相互独立，则：
+    $$
+    F_{\min(X,Y)}(z)=1-[1-F_X(z)][1-F_Y(z)]
+    $$
 
-$$
-F_{\max(X,Y)}(z)=F_X(z)F_Y(z)
-$$
+    推广到独立随机变量 $X_1,\ldots,X_n$：
 
-$$
-F_{\min(X,Y)}(z)=1-[1-F_X(z)][1-F_Y(z)]
-$$
+    $$
+    F_{\max}(z)=\prod_{i=1}^{n}F_{X_i}(z)
+    $$
 
-推广到独立随机变量 $X_1,\ldots,X_n$：
+    $$
+    F_{\min}(z)=1-\prod_{i=1}^{n}[1-F_{X_i}(z)]
+    $$
+  </Accordion>
 
-$$
-F_{\max}(z)=\prod_{i=1}^{n}F_{X_i}(z)
-$$
+  <Accordion title="一般二维变换">
+    设：
 
-$$
-F_{\min}(z)=1-\prod_{i=1}^{n}[1-F_{X_i}(z)]
-$$
+    $$
+    U=g_1(X,Y),\qquad V=g_2(X,Y)
+    $$
 
-### 一般二维变换
+    若该变换存在唯一反函数：
 
-设：
+    $$
+    x=x(u,v),\qquad y=y(u,v)
+    $$
 
-$$
-U=g_1(X,Y),\qquad V=g_2(X,Y)
-$$
+    则联合密度为：
 
-若该变换存在唯一反函数：
+    $$
+    f_{UV}(u,v)=f_{XY}(x(u,v),y(u,v))
+    \left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+    $$
 
-$$
-x=x(u,v),\qquad y=y(u,v)
-$$
+    其中雅可比行列式为：
 
-则联合密度为：
+    $$
+    \frac{\partial(x,y)}{\partial(u,v)}
+    =
+    \begin{vmatrix}
+    \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm]
+    \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}
+    \end{vmatrix}
+    $$
+  </Accordion>
 
-$$
-f_{UV}(u,v)=f_{XY}(x(u,v),y(u,v))
-\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
-$$
+  <Accordion title="商与积">
+    对独立连续型随机变量：
 
-其中雅可比行列式为：
+    $$
+    f_{X/Y}(z)=\int_{-\infty}^{+\infty}|x|f_X(x)f_Y(zx)\,dx
+    $$
 
-$$
-\frac{\partial(x,y)}{\partial(u,v)}
-=
-\begin{vmatrix}
-\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v}\\[2mm]
-\dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}
-\end{vmatrix}
-$$
+    $$
+    f_{XY}(z)=\int_{-\infty}^{+\infty}\frac{1}{|x|}f_X(x)f_Y\left(\frac{z}{x}\right)\,dx
+    $$
 
-### 商与积
-
-对独立连续型随机变量：
-
-$$
-f_{X/Y}(z)=\int_{-\infty}^{+\infty}|x|f_X(x)f_Y(zx)\,dx
-$$
-
-$$
-f_{XY}(z)=\int_{-\infty}^{+\infty}\frac{1}{|x|}f_X(x)f_Y\left(\frac{z}{x}\right)\,dx
-$$
-
-考试中更适合先确定积分区域，再用分布函数法，不必死记公式。
+    考试中更适合先确定积分区域，再用分布函数法，不必死记公式。
+  </Accordion>
+</AccordionGroup>
 
 ## 二维均匀分布与二维正态分布
 
-### 二维均匀分布
+<AccordionGroup>
+  <Accordion title="二维均匀分布">
+    若 $(X,Y)$ 在面积有限的区域 $D$ 上服从二维均匀分布，则：
 
-若 $(X,Y)$ 在面积有限的区域 $D$ 上服从二维均匀分布，则：
+    $$
+    f_{XY}(x,y)=
+    \begin{cases}
+    \dfrac{1}{S_D}, & (x,y)\in D,\\[2mm]
+    0, & (x,y)\notin D
+    \end{cases}
+    $$
 
-$$
-f_{XY}(x,y)=
-\begin{cases}
-\dfrac{1}{S_D}, & (x,y)\in D,\\[2mm]
-0, & (x,y)\notin D
-\end{cases}
-$$
+    对区域 $A\subset D$：
 
-对区域 $A\subset D$：
+    $$
+    P((X,Y)\in A)=\frac{S_A}{S_D}
+    $$
+  </Accordion>
 
-$$
-P((X,Y)\in A)=\frac{S_A}{S_D}
-$$
+  <Accordion title="二维正态分布">
+    设:
 
-### 二维正态分布
+    $$
+    (X,Y)\sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)
+    $$
 
-设:
+    其边缘分布仍为正态分布：
 
-$$
-(X,Y)\sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)
-$$
+    $$
+    X\sim N(\mu_1,\sigma_1^2),\qquad Y\sim N(\mu_2,\sigma_2^2)
+    $$
 
-其边缘分布仍为正态分布：
+    在二维正态分布中，$X,Y$ 相互独立当且仅当：
 
-$$
-X\sim N(\mu_1,\sigma_1^2),\qquad Y\sim N(\mu_2,\sigma_2^2)
-$$
+    $$
+    \rho=0
+    $$
 
-在二维正态分布中，$X,Y$ 相互独立当且仅当：
-
-$$
-\rho=0
-$$
-
-<Tip>
-一般随机变量“不相关”不一定独立；但若 $(X,Y)$ 服从二维正态分布，“不相关”与“独立”等价。
-</Tip>
+    <Tip>
+    一般随机变量“不相关”不一定独立；但若 $(X,Y)$ 服从二维正态分布，“不相关”与“独立”等价。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
 
 ## 高频题型与易错点
 

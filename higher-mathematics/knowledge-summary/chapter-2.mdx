@@ -19,67 +19,65 @@ tags: ["考研", "高等数学"]
 
 ## 常数项级数
 
-### 基本概念
-
-级数为：
-
-$$
-\sum_{n=1}^{\infty}u_n=u_1+u_2+\cdots+u_n+\cdots
-$$
-
-前 $n$ 项部分和定义为：
-
-$$
-S_n=\sum_{k=1}^{n}u_k
-$$
-
-若
-
-$$
-\lim_{n\to\infty}S_n=S
-$$
-
-存在，则称级数收敛，且和为 $S$；否则称级数发散。
-
-余项为：
-
-$$
-R_n=S-S_n=\sum_{k=n+1}^{\infty}u_k
-$$
-
-收敛级数的余项满足：
-
-$$
-\lim_{n\to\infty}R_n=0
-$$
-
-### 收敛的必要条件
-
-若 $\sum u_n$ 收敛，则
-
-$$
-\lim_{n\to\infty}u_n=0
-$$
-
-其逆否命题为：
-
-$$
-\lim_{n\to\infty}u_n\ne 0\quad\Rightarrow\quad \sum u_n\text{ 发散}
-$$
-
-<Warning>
-$u_n\to0$ 只是级数收敛的必要条件，不是充分条件。例如调和级数
-
-$$
-\sum_{n=1}^{\infty}\frac1n
-$$
-
-虽然 $\frac1n\to0$，但级数发散。
-</Warning>
-
-### 基本性质
-
 <AccordionGroup>
+  <Accordion title="基本概念">
+    级数为：
+
+    $$
+    \sum_{n=1}^{\infty}u_n=u_1+u_2+\cdots+u_n+\cdots
+    $$
+
+    前 $n$ 项部分和定义为：
+
+    $$
+    S_n=\sum_{k=1}^{n}u_k
+    $$
+
+    若
+
+    $$
+    \lim_{n\to\infty}S_n=S
+    $$
+
+    存在，则称级数收敛，且和为 $S$；否则称级数发散。
+
+    余项为：
+
+    $$
+    R_n=S-S_n=\sum_{k=n+1}^{\infty}u_k
+    $$
+
+    收敛级数的余项满足：
+
+    $$
+    \lim_{n\to\infty}R_n=0
+    $$
+  </Accordion>
+
+  <Accordion title="收敛的必要条件">
+    若 $\sum u_n$ 收敛，则
+
+    $$
+    \lim_{n\to\infty}u_n=0
+    $$
+
+    其逆否命题为：
+
+    $$
+    \lim_{n\to\infty}u_n\ne 0\quad\Rightarrow\quad \sum u_n\text{ 发散}
+    $$
+
+    <Warning>
+    $u_n\to0$ 只是级数收敛的必要条件，不是充分条件。例如调和级数
+
+    $$
+    \sum_{n=1}^{\infty}\frac1n
+    $$
+
+    虽然 $\frac1n\to0$，但级数发散。
+    </Warning>
+  </Accordion>
+
   <Accordion title="线性性质">
     若 $\sum u_n$、$\sum v_n$ 均收敛，则对任意常数 $a,b$，级数
 
@@ -107,15 +105,15 @@ $$
 
 ## 正项级数
 
-若 $u_n\ge0$，则称 $\sum u_n$ 为正项级数。
-
-### 收敛的充要条件
-
-正项级数收敛的充要条件是：部分和数列 $\{S_n\}$ 有界。
-
-### 判别法
-
 <AccordionGroup>
+  <Accordion title="核心概念与公式">
+    若 $u_n\ge0$，则称 $\sum u_n$ 为正项级数。
+  </Accordion>
+
+  <Accordion title="收敛的充要条件">
+    正项级数收敛的充要条件是：部分和数列 $\{S_n\}$ 有界。
+  </Accordion>
+
   <Accordion title="比较判别法">
     若
 
@@ -218,31 +216,33 @@ $$
 
 ## 交错级数
 
-交错级数的一般形式为：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    交错级数的一般形式为：
 
-$$
-\sum_{n=1}^{\infty}(-1)^{n-1}u_n,\qquad u_n>0
-$$
+    $$
+    \sum_{n=1}^{\infty}(-1)^{n-1}u_n,\qquad u_n>0
+    $$
+  </Accordion>
 
-### 莱布尼茨判别法
+  <Accordion title="莱布尼茨判别法">
+    若
 
-若
+    $$
+    u_n\downarrow0
+    $$
 
-$$
-u_n\downarrow0
-$$
+    即 $u_n$ 单调减少且趋于 $0$，则交错级数收敛。
+  </Accordion>
 
-即 $u_n$ 单调减少且趋于 $0$，则交错级数收敛。
-
-### 余项估计
-
-$$
-|R_n|\le u_{n+1}
-$$
+  <Accordion title="余项估计">
+    $$
+    |R_n|\le u_{n+1}
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 任意项级数
-
-### 绝对收敛与条件收敛
 
 <AccordionGroup>
   <Accordion title="绝对收敛">
@@ -294,83 +294,83 @@ $$
 
     绝对收敛。
   </Accordion>
+
+  <Accordion title="重要性质">
+    - 绝对收敛级数可以任意交换项的顺序，和不变。
+    - 条件收敛级数不能随意交换项的顺序，否则可能改变和，甚至变成发散级数。
+    - 判断任意项级数的顺序：
+
+      先看通项是否趋于 $0$，再判断绝对值级数是否收敛。
+
+      若绝对值级数不收敛，再利用莱布尼茨判别法等方法判断是否条件收敛。
+  </Accordion>
 </AccordionGroup>
-
-### 重要性质
-
-- 绝对收敛级数可以任意交换项的顺序，和不变。
-- 条件收敛级数不能随意交换项的顺序，否则可能改变和，甚至变成发散级数。
-- 判断任意项级数的顺序：
-
-  先看通项是否趋于 $0$，再判断绝对值级数是否收敛。
-
-  若绝对值级数不收敛，再利用莱布尼茨判别法等方法判断是否条件收敛。
 
 ## 幂级数
 
-### 定义
-
-形如
-
-$$
-\sum_{n=0}^{\infty}a_n(x-x_0)^n
-$$
-
-的函数项级数称为幂级数。
-
-最常见的形式为：
-
-$$
-\sum_{n=0}^{\infty}a_nx^n
-$$
-
-### 阿贝尔定理
-
-若 $\sum a_nx^n$ 在 $x=x_0\ne0$ 处收敛，则当
-
-$$
-|x|<|x_0|
-$$
-
-时，级数绝对收敛。
-
-若 $\sum a_nx^n$ 在 $x=x_0$ 处发散，则当
-
-$$
-|x|>|x_0|
-$$
-
-时，级数发散。
-
-### 收敛半径与收敛域
-
-对于幂级数
-
-$$
-\sum_{n=0}^{\infty}a_n(x-x_0)^n
-$$
-
-若相应极限存在，则收敛半径为：
-
-$$
-R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|
-$$
-
-也可以用根值形式：
-
-$$
-R=\frac1{\limsup_{n\to\infty}\sqrt[n]{|a_n|}}
-$$
-
-收敛区间为：
-
-$$
-(x_0-R,x_0+R)
-$$
-
-端点 $x=x_0\pm R$ 必须单独判断。
-
 <AccordionGroup>
+  <Accordion title="定义">
+    形如
+
+    $$
+    \sum_{n=0}^{\infty}a_n(x-x_0)^n
+    $$
+
+    的函数项级数称为幂级数。
+
+    最常见的形式为：
+
+    $$
+    \sum_{n=0}^{\infty}a_nx^n
+    $$
+  </Accordion>
+
+  <Accordion title="阿贝尔定理">
+    若 $\sum a_nx^n$ 在 $x=x_0\ne0$ 处收敛，则当
+
+    $$
+    |x|<|x_0|
+    $$
+
+    时，级数绝对收敛。
+
+    若 $\sum a_nx^n$ 在 $x=x_0$ 处发散，则当
+
+    $$
+    |x|>|x_0|
+    $$
+
+    时，级数发散。
+  </Accordion>
+
+  <Accordion title="收敛半径与收敛域">
+    对于幂级数
+
+    $$
+    \sum_{n=0}^{\infty}a_n(x-x_0)^n
+    $$
+
+    若相应极限存在，则收敛半径为：
+
+    $$
+    R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|
+    $$
+
+    也可以用根值形式：
+
+    $$
+    R=\frac1{\limsup_{n\to\infty}\sqrt[n]{|a_n|}}
+    $$
+
+    收敛区间为：
+
+    $$
+    (x_0-R,x_0+R)
+    $$
+
+    端点 $x=x_0\pm R$ 必须单独判断。
+  </Accordion>
+
   <Accordion title="收敛半径的三种情况">
     - $R=0$：级数只在 $x=x_0$ 处收敛；
     - $R=+\infty$：级数在整个实轴上收敛；
@@ -380,36 +380,32 @@ $$
   <Accordion title="为什么必须单独判断端点">
     收敛半径只由系数 $a_n$ 决定，信息只覆盖开区间。端点处级数可能绝对收敛、条件收敛，也可能发散，因此必须代回原级数逐一判断。
   </Accordion>
-</AccordionGroup>
 
-### 幂级数的性质
+  <Accordion title="幂级数的性质">
+    在收敛区间内：
 
-在收敛区间内：
+    1. 和函数连续；
+    2. 可以逐项求导；
+    3. 可以逐项积分；
+    4. 逐项求导、逐项积分后收敛半径不变，但端点处的敛散性可能改变。
 
-1. 和函数连续；
-2. 可以逐项求导；
-3. 可以逐项积分；
-4. 逐项求导、逐项积分后收敛半径不变，但端点处的敛散性可能改变。
+    若
 
-若
+    $$
+    S(x)=\sum_{n=0}^{\infty}a_nx^n
+    $$
 
-$$
-S(x)=\sum_{n=0}^{\infty}a_nx^n
-$$
+    则
 
-则
+    $$
+    S'(x)=\sum_{n=1}^{\infty}na_nx^{n-1}
+    $$
 
-$$
-S'(x)=\sum_{n=1}^{\infty}na_nx^{n-1}
-$$
+    $$
+    \int_0^xS(t)\,dt=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}
+    $$
+  </Accordion>
 
-$$
-\int_0^xS(t)\,dt=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}
-$$
-
-### 必背幂级数展开式
-
-<AccordionGroup>
   <Accordion title="几何级数">
     $$
     \frac1{1-x}=\sum_{n=0}^{\infty}x^n,\qquad |x|<1
@@ -473,11 +469,7 @@ $$
     - $|x|<1$ 时一定收敛；
     - 两个端点是否收敛，取决于 $\alpha$ 的具体值。
   </Accordion>
-</AccordionGroup>
 
-### 求和函数常用方法
-
-<AccordionGroup>
   <Accordion title="方法一：先导后积">
     若通项含 $n$，可以先求导消去 $n$。
 
@@ -530,11 +522,7 @@ $$
   <Accordion title="方法四：解微分方程">
     有时逐项求导后可以得到关于 $S(x)$ 的微分方程，先解微分方程，再结合初值确定和函数。
   </Accordion>
-</AccordionGroup>
 
-### 函数展开成幂级数
-
-<AccordionGroup>
   <Accordion title="直接法">
     计算泰勒系数：
 
@@ -560,96 +548,96 @@ $$
 
 ## 傅里叶级数（仅数一）
 
-以下统一使用一般周期，不把周期特殊成 $2\pi$，也不使用复数形式。
-
-### 周期为 $2l$ 的傅里叶级数
-
-设 $f(x)$ 以 $2l$ 为周期，并在 $[-l,l]$ 上分段光滑，则
-
-$$
-f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}
-\left[
-a_n\cos\frac{n\pi x}{l}
-+b_n\sin\frac{n\pi x}{l}
-\right]
-$$
-
-其中
-
-$$
-a_n=\frac1l\int_{-l}^{l}
-f(x)\cos\frac{n\pi x}{l}\,dx,
-\qquad n=0,1,2,\cdots
-$$
-
-$$
-b_n=\frac1l\int_{-l}^{l}
-f(x)\sin\frac{n\pi x}{l}\,dx,
-\qquad n=1,2,\cdots
-$$
-
-积分区间也可以换成任意长度为 $2l$ 的区间，例如 $[0,2l]$。
-
-### 周期为 $T$ 的傅里叶级数
-
-设
-
-$$
-T=2l,\qquad l=\frac T2
-$$
-
-则傅里叶级数为：
-
-$$
-f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}
-\left[
-a_n\cos\frac{2n\pi x}{T}
-+b_n\sin\frac{2n\pi x}{T}
-\right]
-$$
-
-系数为：
-
-$$
-a_n=\frac{2}{T}\int_{-T/2}^{T/2}
-f(x)\cos\frac{2n\pi x}{T}\,dx,
-\qquad n=0,1,2,\cdots
-$$
-
-$$
-b_n=\frac{2}{T}\int_{-T/2}^{T/2}
-f(x)\sin\frac{2n\pi x}{T}\,dx,
-\qquad n=1,2,\cdots
-$$
-
-积分区间也可以换成任意长度为 $T$ 的区间。
-
-### 收敛定理：狄利克雷定理
-
-若 $f(x)$ 以 $2l$ 为周期，并在 $[-l,l]$ 上分段光滑，则其傅里叶级数收敛，并且：
-
-- 在连续点 $x$ 处，收敛到 $f(x)$；
-- 在间断点 $x$ 处，收敛到
-
-  $$
-  \frac{f(x^-)+f(x^+)}2
-  $$
-
-- 在端点 $x=\pm l$ 处，按周期延拓后的左右极限平均值处理。
-
-即：
-
-$$
-\text{傅里叶级数的和}=
-\begin{cases}
-f(x), & x\text{ 为连续点}\\[6pt]
-\dfrac{f(x^-)+f(x^+)}2, & x\text{ 为间断点}
-\end{cases}
-$$
-
-### 奇函数与偶函数的简化
-
 <AccordionGroup>
+  <Accordion title="核心概念与公式">
+    以下统一使用一般周期，不把周期特殊成 $2\pi$，也不使用复数形式。
+  </Accordion>
+
+  <Accordion title="周期为 2l 的傅里叶级数">
+    设 $f(x)$ 以 $2l$ 为周期，并在 $[-l,l]$ 上分段光滑，则
+
+    $$
+    f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}
+    \left[
+    a_n\cos\frac{n\pi x}{l}
+    +b_n\sin\frac{n\pi x}{l}
+    \right]
+    $$
+
+    其中
+
+    $$
+    a_n=\frac1l\int_{-l}^{l}
+    f(x)\cos\frac{n\pi x}{l}\,dx,
+    \qquad n=0,1,2,\cdots
+    $$
+
+    $$
+    b_n=\frac1l\int_{-l}^{l}
+    f(x)\sin\frac{n\pi x}{l}\,dx,
+    \qquad n=1,2,\cdots
+    $$
+
+    积分区间也可以换成任意长度为 $2l$ 的区间，例如 $[0,2l]$。
+  </Accordion>
+
+  <Accordion title="周期为 T 的傅里叶级数">
+    设
+
+    $$
+    T=2l,\qquad l=\frac T2
+    $$
+
+    则傅里叶级数为：
+
+    $$
+    f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}
+    \left[
+    a_n\cos\frac{2n\pi x}{T}
+    +b_n\sin\frac{2n\pi x}{T}
+    \right]
+    $$
+
+    系数为：
+
+    $$
+    a_n=\frac{2}{T}\int_{-T/2}^{T/2}
+    f(x)\cos\frac{2n\pi x}{T}\,dx,
+    \qquad n=0,1,2,\cdots
+    $$
+
+    $$
+    b_n=\frac{2}{T}\int_{-T/2}^{T/2}
+    f(x)\sin\frac{2n\pi x}{T}\,dx,
+    \qquad n=1,2,\cdots
+    $$
+
+    积分区间也可以换成任意长度为 $T$ 的区间。
+  </Accordion>
+
+  <Accordion title="收敛定理：狄利克雷定理">
+    若 $f(x)$ 以 $2l$ 为周期，并在 $[-l,l]$ 上分段光滑，则其傅里叶级数收敛，并且：
+
+    - 在连续点 $x$ 处，收敛到 $f(x)$；
+    - 在间断点 $x$ 处，收敛到
+
+      $$
+      \frac{f(x^-)+f(x^+)}2
+      $$
+
+    - 在端点 $x=\pm l$ 处，按周期延拓后的左右极限平均值处理。
+
+    即：
+
+    $$
+    \text{傅里叶级数的和}=
+    \begin{cases}
+    f(x), & x\text{ 为连续点}\\[6pt]
+    \dfrac{f(x^-)+f(x^+)}2, & x\text{ 为间断点}
+    \end{cases}
+    $$
+  </Accordion>
+
   <Accordion title="奇函数：正弦级数">
     若 $f(x)$ 是奇函数，则
 
@@ -698,13 +686,11 @@ $$
 
     这种展开称为余弦级数。
   </Accordion>
-</AccordionGroup>
 
-### 定义在 $[0,l]$ 上的函数展开
+  <Accordion title="定义在 [0,l] 上的函数展开">
+    若函数只在 $[0,l]$ 上定义，可以根据需要作奇延拓或偶延拓。
+  </Accordion>
 
-若函数只在 $[0,l]$ 上定义，可以根据需要作奇延拓或偶延拓。
-
-<AccordionGroup>
   <Accordion title="奇延拓：展开为正弦级数">
     $$
     f(x)\sim\sum_{n=1}^{\infty}
@@ -729,27 +715,32 @@ $$
     \qquad n=0,1,2,\cdots
     $$
   </Accordion>
+
+  <Accordion title="易错点">
+    1. $a_0$ 的计算公式与 $a_n$ 统一，但级数第一项必须写成 $\frac{a_0}{2}$。
+    2. 一般周期为 $2l$ 时，系数前面是 $\frac1l$；周期为 $T$ 时，系数前面是 $\frac{2}{T}$。
+    3. 奇函数只含正弦项；偶函数只含余弦项和常数项。
+    4. 傅里叶级数在间断点不一定等于函数值，而等于左右极限的平均值。
+    5. 只给出 $[0,l]$ 上的函数时，先确定作奇延拓还是偶延拓。
+    6. 傅里叶公式中的 $\pi$ 来自三角函数基频，并不表示把周期特殊成了 $2\pi$。
+  </Accordion>
 </AccordionGroup>
-
-### 易错点
-
-1. $a_0$ 的计算公式与 $a_n$ 统一，但级数第一项必须写成 $\frac{a_0}{2}$。
-2. 一般周期为 $2l$ 时，系数前面是 $\frac1l$；周期为 $T$ 时，系数前面是 $\frac{2}{T}$。
-3. 奇函数只含正弦项；偶函数只含余弦项和常数项。
-4. 傅里叶级数在间断点不一定等于函数值，而等于左右极限的平均值。
-5. 只给出 $[0,l]$ 上的函数时，先确定作奇延拓还是偶延拓。
-6. 傅里叶公式中的 $\pi$ 来自三角函数基频，并不表示把周期特殊成了 $2\pi$。
 
 ## 本章总结
 
-1. 常数项级数先检查通项是否趋于 $0$。
-2. 正项级数根据结构选择比较、比值、根值或积分判别法。
-3. 交错级数优先考虑莱布尼茨判别法。
-4. 任意项级数要分清绝对收敛与条件收敛。
-5. 幂级数先求收敛半径，再单独判断两个端点。
-6. 幂级数求和常用先导后积、先积后导、拆项配凑或解微分方程。
-7. 傅里叶级数使用一般周期公式，不把周期特殊成 $2\pi$，也不使用复数形式。
+<AccordionGroup>
+  <Accordion title="本章总结">
+    1. 常数项级数先检查通项是否趋于 $0$。
+    2. 正项级数根据结构选择比较、比值、根值或积分判别法。
+    3. 交错级数优先考虑莱布尼茨判别法。
+    4. 任意项级数要分清绝对收敛与条件收敛。
+    5. 幂级数先求收敛半径，再单独判断两个端点。
+    6. 幂级数求和常用先导后积、先积后导、拆项配凑或解微分方程。
+    7. 傅里叶级数使用一般周期公式，不把周期特殊成 $2\pi$，也不使用复数形式。
 
-<Check>
-无穷级数的复习主线是“先分类，再判敛，最后处理端点或和函数”。幂级数端点、傅里叶间断点和绝对/条件收敛是高频易错部分。
-</Check>
+    <Check>
+    无穷级数的复习主线是“先分类，再判敛，最后处理端点或和函数”。幂级数端点、傅里叶间断点和绝对/条件收敛是高频易错部分。
+    </Check>
+  </Accordion>
+
+</AccordionGroup>

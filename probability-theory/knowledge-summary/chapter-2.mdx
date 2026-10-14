@@ -13,239 +13,263 @@ tags: ["考研", "考研数学一", "概率论"]
 
 ## 随机变量与分布函数
 
-随机变量 $X$ 是定义在样本空间 $\Omega$ 上、取值于实数的函数。对任意实数 $x$，定义分布函数：
+<AccordionGroup>
+  <Accordion title="随机变量与分布函数">
+    随机变量 $X$ 是定义在样本空间 $\Omega$ 上、取值于实数的函数。对任意实数 $x$，定义分布函数：
 
-$$
-F_X(x)=P(X\le x)
-$$
+    $$
+    F_X(x)=P(X\le x)
+    $$
 
-分布函数具有以下性质：
+    分布函数具有以下性质：
 
-1. 单调不减：若 $x_1<x_2$，则 $F(x_1)\le F(x_2)$。
-2. 右连续：$F(x+0)=F(x)$。
-3. 极限性质：
+    1. 单调不减：若 $x_1<x_2$，则 $F(x_1)\le F(x_2)$。
+    2. 右连续：$F(x+0)=F(x)$。
+    3. 极限性质：
 
-$$
-F(-\infty)=\lim_{x\to-\infty}F(x)=0,\qquad
-F(+\infty)=\lim_{x\to+\infty}F(x)=1
-$$
+    $$
+    F(-\infty)=\lim_{x\to-\infty}F(x)=0,\qquad
+    F(+\infty)=\lim_{x\to+\infty}F(x)=1
+    $$
 
-由分布函数计算概率：
+    由分布函数计算概率：
 
-$$
-P(a<X\le b)=F(b)-F(a)
-$$
+    $$
+    P(a<X\le b)=F(b)-F(a)
+    $$
 
-$$
-P(X=a)=F(a)-F(a-0)
-$$
+    $$
+    P(X=a)=F(a)-F(a-0)
+    $$
 
-$$
-P(X<a)=F(a-0),\qquad P(X\ge a)=1-F(a-0)
-$$
+    $$
+    P(X<a)=F(a-0),\qquad P(X\ge a)=1-F(a-0)
+    $$
 
-<Warning>
-分布函数在跳跃点处对应离散概率。连续型随机变量在任意单点的概率为零，因此开区间与闭区间的概率通常相同：
+    <Warning>
+    分布函数在跳跃点处对应离散概率。连续型随机变量在任意单点的概率为零，因此开区间与闭区间的概率通常相同：
 
-$$
-P(a<X<b)=P(a\le X\le b)=F(b)-F(a)
-$$
-</Warning>
+    $$
+    P(a<X<b)=P(a\le X\le b)=F(b)-F(a)
+    $$
+    </Warning>
+  </Accordion>
+</AccordionGroup>
 
 ## 离散型随机变量
 
-若 $X$ 至多取可数个值 $x_1,x_2,\ldots$，则称 $X$ 为离散型随机变量。其概率分布列为：
+<AccordionGroup>
+  <Accordion title="离散型随机变量">
+    若 $X$ 至多取可数个值 $x_1,x_2,\ldots$，则称 $X$ 为离散型随机变量。其概率分布列为：
 
-$$
-p_i=P(X=x_i),\qquad i=1,2,\ldots
-$$
+    $$
+    p_i=P(X=x_i),\qquad i=1,2,\ldots
+    $$
 
-必须满足：
+    必须满足：
 
-$$
-p_i\ge0,\qquad \sum_i p_i=1
-$$
+    $$
+    p_i\ge0,\qquad \sum_i p_i=1
+    $$
 
-分布函数为：
+    分布函数为：
 
-$$
-F(x)=P(X\le x)=\sum_{x_i\le x}p_i
-$$
+    $$
+    F(x)=P(X\le x)=\sum_{x_i\le x}p_i
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 连续型随机变量
 
-若存在非负可积函数 $f_X(x)$，使对任意实数 $x$ 都有：
+<AccordionGroup>
+  <Accordion title="连续型随机变量">
+    若存在非负可积函数 $f_X(x)$，使对任意实数 $x$ 都有：
 
-$$
-F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt
-$$
+    $$
+    F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt
+    $$
 
-则称 $X$ 为连续型随机变量，$f_X(x)$ 为其概率密度。
+    则称 $X$ 为连续型随机变量，$f_X(x)$ 为其概率密度。
 
-概率密度的性质：
+    概率密度的性质：
 
-$$
-f_X(x)\ge0,\qquad \int_{-\infty}^{+\infty}f_X(x)\,dx=1
-$$
+    $$
+    f_X(x)\ge0,\qquad \int_{-\infty}^{+\infty}f_X(x)\,dx=1
+    $$
 
-在 $F_X$ 可导的点处：
+    在 $F_X$ 可导的点处：
 
-$$
-F_X'(x)=f_X(x)
-$$
+    $$
+    F_X'(x)=f_X(x)
+    $$
 
-计算区间概率：
+    计算区间概率：
 
-$$
-P(a<X\le b)=\int_a^b f_X(x)\,dx
-$$
+    $$
+    P(a<X\le b)=\int_a^b f_X(x)\,dx
+    $$
 
-<Warning>
-$f_X(x)$ 不是概率。只有密度在小区间上的积分 $f_X(x)\,dx$ 才近似表示概率，且 $f_X(x)>1$ 是允许的。
-</Warning>
+    <Warning>
+    $f_X(x)$ 不是概率。只有密度在小区间上的积分 $f_X(x)\,dx$ 才近似表示概率，且 $f_X(x)>1$ 是允许的。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
 
 ## 常见离散分布
 
-| 分布 | 记号 | 概率分布列 | 取值与参数 |
-| --- | --- | --- | --- |
-| 0-1 分布 | $X\sim B(1,p)$ | $P(X=1)=p,\ P(X=0)=1-p$ | $0<p<1$ |
-| 二项分布 | $X\sim B(n,p)$ | $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ | $k=0,\ldots,n$ |
-| 泊松分布 | $X\sim P(\lambda)$ | $P(X=k)=\dfrac{\lambda^k e^{-\lambda}}{k!}$ | $k=0,1,2,\ldots,\ \lambda>0$ |
-| 几何分布 | $X\sim G(p)$ | $P(X=k)=(1-p)^{k-1}p$ | $k=1,2,\ldots,\ 0<p<1$ |
-| 超几何分布 | $X\sim H(N,M,n)$ | $P(X=k)=\dfrac{\binom Mk\binom{N-M}{n-k}}{\binom Nn}$ | $k$ 的范围由实际组合数决定 |
+<AccordionGroup>
+  <Accordion title="常见离散分布">
+    | 分布 | 记号 | 概率分布列 | 取值与参数 |
+    | --- | --- | --- | --- |
+    | 0-1 分布 | $X\sim B(1,p)$ | $P(X=1)=p,\ P(X=0)=1-p$ | $0<p<1$ |
+    | 二项分布 | $X\sim B(n,p)$ | $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ | $k=0,\ldots,n$ |
+    | 泊松分布 | $X\sim P(\lambda)$ | $P(X=k)=\dfrac{\lambda^k e^{-\lambda}}{k!}$ | $k=0,1,2,\ldots,\ \lambda>0$ |
+    | 几何分布 | $X\sim G(p)$ | $P(X=k)=(1-p)^{k-1}p$ | $k=1,2,\ldots,\ 0<p<1$ |
+    | 超几何分布 | $X\sim H(N,M,n)$ | $P(X=k)=\dfrac{\binom Mk\binom{N-M}{n-k}}{\binom Nn}$ | $k$ 的范围由实际组合数决定 |
 
-几何分布具有无记忆性的一种离散形式：
+    几何分布具有无记忆性的一种离散形式：
 
-$$
-P(X>m+n\mid X>m)=P(X>n)
-$$
+    $$
+    P(X>m+n\mid X>m)=P(X>n)
+    $$
 
-当 $n\to\infty$ 时，若 $np_n\to\lambda$，则二项分布可由泊松分布近似：
+    当 $n\to\infty$ 时，若 $np_n\to\lambda$，则二项分布可由泊松分布近似：
 
-$$
-\binom{n}{k}p_n^k(1-p_n)^{n-k}
-\longrightarrow \frac{\lambda^k e^{-\lambda}}{k!}
-$$
+    $$
+    \binom{n}{k}p_n^k(1-p_n)^{n-k}
+    \longrightarrow \frac{\lambda^k e^{-\lambda}}{k!}
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 常见连续分布
 
-| 分布 | 记号 | 密度函数 | 支持集 |
-| --- | --- | --- | --- |
-| 均匀分布 | $X\sim U(a,b)$ | $f(x)=\dfrac1{b-a}$ | $a<x<b$ |
-| 指数分布 | $X\sim \mathrm{Exp}(\lambda)$ | $f(x)=\lambda e^{-\lambda x}$ | $x>0,\ \lambda>0$ |
-| 正态分布 | $X\sim N(\mu,\sigma^2)$ | $f(x)=\dfrac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ | $x\in\mathbb R,\ \sigma>0$ |
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    | 分布 | 记号 | 密度函数 | 支持集 |
+    | --- | --- | --- | --- |
+    | 均匀分布 | $X\sim U(a,b)$ | $f(x)=\dfrac1{b-a}$ | $a<x<b$ |
+    | 指数分布 | $X\sim \mathrm{Exp}(\lambda)$ | $f(x)=\lambda e^{-\lambda x}$ | $x>0,\ \lambda>0$ |
+    | 正态分布 | $X\sim N(\mu,\sigma^2)$ | $f(x)=\dfrac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ | $x\in\mathbb R,\ \sigma>0$ |
+  </Accordion>
 
-### 均匀分布
+  <Accordion title="均匀分布">
+    若 $X\sim U(a,b)$，则分布函数为：
 
-若 $X\sim U(a,b)$，则分布函数为：
+    $$
+    F(x)=
+    \begin{cases}
+    0, & x<a,\\[2mm]
+    \dfrac{x-a}{b-a}, & a\le x<b,\\[2mm]
+    1, & x\ge b
+    \end{cases}
+    $$
 
-$$
-F(x)=
-\begin{cases}
-0, & x<a,\\[2mm]
-\dfrac{x-a}{b-a}, & a\le x<b,\\[2mm]
-1, & x\ge b
-\end{cases}
-$$
+    对任意区间 $[c,d]\subset(a,b)$：
 
-对任意区间 $[c,d]\subset(a,b)$：
+    $$
+    P(c\le X\le d)=\frac{d-c}{b-a}
+    $$
+  </Accordion>
 
-$$
-P(c\le X\le d)=\frac{d-c}{b-a}
-$$
+  <Accordion title="指数分布">
+    指数分布的分布函数为：
 
-### 指数分布
+    $$
+    F(x)=
+    \begin{cases}
+    1-e^{-\lambda x}, & x\ge0,\\
+    0, & x<0
+    \end{cases}
+    $$
 
-指数分布的分布函数为：
+    生存函数与无记忆性：
 
-$$
-F(x)=
-\begin{cases}
-1-e^{-\lambda x}, & x\ge0,\\
-0, & x<0
-\end{cases}
-$$
+    $$
+    P(X>x)=e^{-\lambda x},\qquad x\ge0
+    $$
 
-生存函数与无记忆性：
+    $$
+    P(X>s+t\mid X>s)=P(X>t),\qquad s,t\ge0
+    $$
+  </Accordion>
 
-$$
-P(X>x)=e^{-\lambda x},\qquad x\ge0
-$$
+  <Accordion title="正态分布与标准化">
+    若 $X\sim N(\mu,\sigma^2)$，则标准化变量为：
 
-$$
-P(X>s+t\mid X>s)=P(X>t),\qquad s,t\ge0
-$$
+    $$
+    Z=\frac{X-\mu}{\sigma}\sim N(0,1)
+    $$
 
-### 正态分布与标准化
+    正态分布概率的计算公式：
 
-若 $X\sim N(\mu,\sigma^2)$，则标准化变量为：
+    $$
+    P(a<X\le b)=\Phi\left(\frac{b-\mu}{\sigma}\right)-\Phi\left(\frac{a-\mu}{\sigma}\right)
+    $$
 
-$$
-Z=\frac{X-\mu}{\sigma}\sim N(0,1)
-$$
+    标准正态分布函数满足：
 
-正态分布概率的计算公式：
+    $$
+    \Phi(-x)=1-\Phi(x)
+    $$
 
-$$
-P(a<X\le b)=\Phi\left(\frac{b-\mu}{\sigma}\right)-\Phi\left(\frac{a-\mu}{\sigma}\right)
-$$
+    因此常用的对称关系为：
 
-标准正态分布函数满足：
+    $$
+    P(|X-\mu|<\varepsilon)
+    =2\Phi\left(\frac{\varepsilon}{\sigma}\right)-1
+    $$
 
-$$
-\Phi(-x)=1-\Phi(x)
-$$
-
-因此常用的对称关系为：
-
-$$
-P(|X-\mu|<\varepsilon)
-=2\Phi\left(\frac{\varepsilon}{\sigma}\right)-1
-$$
-
-<Tip>
-正态分布题先标准化，再查表或利用 $\Phi(-x)=1-\Phi(x)$。遇到 $P(X>a)$ 时写成 $1-\Phi((a-\mu)/\sigma)$。
-</Tip>
+    <Tip>
+    正态分布题先标准化，再查表或利用 $\Phi(-x)=1-\Phi(x)$。遇到 $P(X>a)$ 时写成 $1-\Phi((a-\mu)/\sigma)$。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
 
 ## 随机变量函数的分布
 
-设 $Y=g(X)$，求 $Y$ 的分布统一使用分布函数法：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    设 $Y=g(X)$，求 $Y$ 的分布统一使用分布函数法：
 
-$$
-F_Y(y)=P(Y\le y)=P(g(X)\le y)
-$$
+    $$
+    F_Y(y)=P(Y\le y)=P(g(X)\le y)
+    $$
 
-当 $g$ 单调且可导时，可以设 $x=h(y)$ 为反函数，则：
+    当 $g$ 单调且可导时，可以设 $x=h(y)$ 为反函数，则：
 
-$$
-f_Y(y)=f_X(h(y))\left|h'(y)\right|
-$$
+    $$
+    f_Y(y)=f_X(h(y))\left|h'(y)\right|
+    $$
 
-当 $g$ 不是一一映射时，应先求 $F_Y(y)$，再对 $y$ 求导。例如 $Y=X^2$ 时，通常分成 $X\le -\sqrt y$ 与 $X\ge\sqrt y$ 两段计算。
+    当 $g$ 不是一一映射时，应先求 $F_Y(y)$，再对 $y$ 求导。例如 $Y=X^2$ 时，通常分成 $X\le -\sqrt y$ 与 $X\ge\sqrt y$ 两段计算。
+  </Accordion>
 
-### 最大值与最小值
+  <Accordion title="最大值与最小值">
+    若 $X_1,\ldots,X_n$ 相互独立，分布函数分别为 $F_i(x)$，令：
 
-若 $X_1,\ldots,X_n$ 相互独立，分布函数分别为 $F_i(x)$，令：
+    $$
+    M=\max(X_1,\ldots,X_n),\qquad m=\min(X_1,\ldots,X_n)
+    $$
 
-$$
-M=\max(X_1,\ldots,X_n),\qquad m=\min(X_1,\ldots,X_n)
-$$
+    则：
 
-则：
+    $$
+    F_M(x)=P(M\le x)=\prod_{i=1}^{n}F_i(x)
+    $$
 
-$$
-F_M(x)=P(M\le x)=\prod_{i=1}^{n}F_i(x)
-$$
+    $$
+    F_m(x)=P(m\le x)=1-\prod_{i=1}^{n}[1-F_i(x)]
+    $$
 
-$$
-F_m(x)=P(m\le x)=1-\prod_{i=1}^{n}[1-F_i(x)]
-$$
+    若 $X_i$ 独立同分布且分布函数为 $F(x)$，则：
 
-若 $X_i$ 独立同分布且分布函数为 $F(x)$，则：
-
-$$
-F_M(x)=[F(x)]^n,\qquad F_m(x)=1-[1-F(x)]^n
-$$
+    $$
+    F_M(x)=[F(x)]^n,\qquad F_m(x)=1-[1-F(x)]^n
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 高频题型与易错点
 

@@ -13,397 +13,423 @@ tags: ["考研", "考研数学一", "概率论"]
 
 ## 点估计
 
-设总体分布含未知参数 $\theta$。用样本构造统计量：
+<AccordionGroup>
+  <Accordion title="点估计">
+    设总体分布含未知参数 $\theta$。用样本构造统计量：
 
-$$
-\hat\theta=\hat\theta(X_1,\ldots,X_n)
-$$
+    $$
+    \hat\theta=\hat\theta(X_1,\ldots,X_n)
+    $$
 
-作为 $\theta$ 的估计，称为点估计量。把样本值代入后得到的数值称为估计值。
+    作为 $\theta$ 的估计，称为点估计量。把样本值代入后得到的数值称为估计值。
+  </Accordion>
+</AccordionGroup>
 
 ## 矩估计法
 
-矩估计法用样本矩替换相应的总体矩。
+<AccordionGroup>
+  <Accordion title="矩估计法">
+    矩估计法用样本矩替换相应的总体矩。
 
-一阶矩估计：
+    一阶矩估计：
 
-$$
-\bar X=\frac1n\sum_{i=1}^{n}X_i
-$$
+    $$
+    \bar X=\frac1n\sum_{i=1}^{n}X_i
+    $$
 
-令：
+    令：
 
-$$
-E(X;\theta)=\bar X
-$$
+    $$
+    E(X;\theta)=\bar X
+    $$
 
-解出 $\hat\theta$，即为矩估计量。
+    解出 $\hat\theta$，即为矩估计量。
 
-若有 $k$ 个未知参数 $\theta_1,\ldots,\theta_k$，通常令前 $k$ 阶样本原点矩等于总体原点矩：
+    若有 $k$ 个未知参数 $\theta_1,\ldots,\theta_k$，通常令前 $k$ 阶样本原点矩等于总体原点矩：
 
-$$
-\frac1n\sum_{i=1}^{n}X_i^j=E_\theta(X^j),\qquad j=1,\ldots,k
-$$
+    $$
+    \frac1n\sum_{i=1}^{n}X_i^j=E_\theta(X^j),\qquad j=1,\ldots,k
+    $$
 
-解方程组得到矩估计。
+    解方程组得到矩估计。
 
-<Tip>
-矩估计不一定只有一个方程。若总体期望中不含待估参数，可以继续使用二阶矩等更高阶矩。
-</Tip>
+    <Tip>
+    矩估计不一定只有一个方程。若总体期望中不含待估参数，可以继续使用二阶矩等更高阶矩。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
 
 ## 最大似然估计
 
-设样本观测值为 $x_1,\ldots,x_n$。
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    设样本观测值为 $x_1,\ldots,x_n$。
 
-离散型似然函数：
+    离散型似然函数：
 
-$$
-L(\theta)=\prod_{i=1}^{n}P(X_i=x_i;\theta)
-$$
+    $$
+    L(\theta)=\prod_{i=1}^{n}P(X_i=x_i;\theta)
+    $$
 
-连续型似然函数：
+    连续型似然函数：
 
-$$
-L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)
-$$
+    $$
+    L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)
+    $$
 
-最大似然估计是使 $L(\theta)$ 最大的参数值。若似然函数为正，通常取对数后求驻点：
+    最大似然估计是使 $L(\theta)$ 最大的参数值。若似然函数为正，通常取对数后求驻点：
 
-$$
-\ln L(\theta)=\sum_{i=1}^{n}\ln P(X_i=x_i;\theta)
-$$
+    $$
+    \ln L(\theta)=\sum_{i=1}^{n}\ln P(X_i=x_i;\theta)
+    $$
 
-或：
+    或：
 
-$$
-\ln L(\theta)=\sum_{i=1}^{n}\ln f(x_i;\theta)
-$$
+    $$
+    \ln L(\theta)=\sum_{i=1}^{n}\ln f(x_i;\theta)
+    $$
 
-对参数求导并令导数为零：
+    对参数求导并令导数为零：
 
-$$
-\frac{d\ln L(\theta)}{d\theta}=0
-$$
+    $$
+    \frac{d\ln L(\theta)}{d\theta}=0
+    $$
 
-对于多参数，分别求偏导并解方程组：
+    对于多参数，分别求偏导并解方程组：
 
-$$
-\frac{\partial\ln L(\theta_1,\ldots,\theta_k)}{\partial\theta_j}=0,
-\qquad j=1,\ldots,k
-$$
+    $$
+    \frac{\partial\ln L(\theta_1,\ldots,\theta_k)}{\partial\theta_j}=0,
+    \qquad j=1,\ldots,k
+    $$
 
-<Warning>
-推导最大似然估计时不要漏掉参数取值范围。若参数出现在支持集的端点，例如 $0<x<\theta$，最大值可能在边界处取得，必须单独判断。
-</Warning>
+    <Warning>
+    推导最大似然估计时不要漏掉参数取值范围。若参数出现在支持集的端点，例如 $0<x<\theta$，最大值可能在边界处取得，必须单独判断。
+    </Warning>
+  </Accordion>
 
-### 常见分布的最大似然估计
+  <Accordion title="常见分布的最大似然估计">
+    | 总体分布 | 参数 | 最大似然估计 |
+    | --- | --- | --- |
+    | $B(1,p)$ | $p$ | $\hat p=\bar X$ |
+    | $B(m,p)$ | $p$ | $\hat p=\dfrac{\bar X}{m}$ |
+    | $P(\lambda)$ | $\lambda$ | $\hat\lambda=\bar X$ |
+    | $N(\mu,\sigma^2)$ | $\mu,\sigma^2$ | $\hat\mu=\bar X,\quad \hat\sigma^2=\dfrac1n\sum(X_i-\bar X)^2$ |
+    | $U(0,\theta)$ | $\theta$ | $\hat\theta=X_{(n)}=\max(X_1,\ldots,X_n)$ |
 
-| 总体分布 | 参数 | 最大似然估计 |
-| --- | --- | --- |
-| $B(1,p)$ | $p$ | $\hat p=\bar X$ |
-| $B(m,p)$ | $p$ | $\hat p=\dfrac{\bar X}{m}$ |
-| $P(\lambda)$ | $\lambda$ | $\hat\lambda=\bar X$ |
-| $N(\mu,\sigma^2)$ | $\mu,\sigma^2$ | $\hat\mu=\bar X,\quad \hat\sigma^2=\dfrac1n\sum(X_i-\bar X)^2$ |
-| $U(0,\theta)$ | $\theta$ | $\hat\theta=X_{(n)}=\max(X_1,\ldots,X_n)$ |
-
-**不变性**：若 $\hat\theta$ 是 $\theta$ 的最大似然估计，且 $g$ 为适当函数，则 $g(\hat\theta)$ 是 $g(\theta)$ 的最大似然估计。
+    **不变性**：若 $\hat\theta$ 是 $\theta$ 的最大似然估计，且 $g$ 为适当函数，则 $g(\hat\theta)$ 是 $g(\theta)$ 的最大似然估计。
+  </Accordion>
+</AccordionGroup>
 
 ## 估计量的评价标准
 
-### 无偏性
+<AccordionGroup>
+  <Accordion title="无偏性">
+    若：
 
-若：
+    $$
+    E_\theta(\hat\theta)=\theta\qquad(\forall\theta)
+    $$
 
-$$
-E_\theta(\hat\theta)=\theta\qquad(\forall\theta)
-$$
+    则称 $\hat\theta$ 是 $\theta$ 的无偏估计。偏差为：
 
-则称 $\hat\theta$ 是 $\theta$ 的无偏估计。偏差为：
+    $$
+    \operatorname{Bias}_\theta(\hat\theta)=E_\theta(\hat\theta)-\theta
+    $$
 
-$$
-\operatorname{Bias}_\theta(\hat\theta)=E_\theta(\hat\theta)-\theta
-$$
+    无偏估计的偏差为零。
+  </Accordion>
 
-无偏估计的偏差为零。
+  <Accordion title="有效性">
+    设 $\hat\theta_1,\hat\theta_2$ 都是 $\theta$ 的无偏估计。若：
 
-### 有效性
+    $$
+    D_\theta(\hat\theta_1)\le D_\theta(\hat\theta_2)\qquad(\forall\theta)
+    $$
 
-设 $\hat\theta_1,\hat\theta_2$ 都是 $\theta$ 的无偏估计。若：
+    且至少对某个 $\theta$ 严格不等，则称 $\hat\theta_1$ 比 $\hat\theta_2$ 更有效。
+  </Accordion>
 
-$$
-D_\theta(\hat\theta_1)\le D_\theta(\hat\theta_2)\qquad(\forall\theta)
-$$
+  <Accordion title="均方误差">
+    $$
+    \operatorname{MSE}_\theta(\hat\theta)
+    =E_\theta\left[(\hat\theta-\theta)^2\right]
+    $$
 
-且至少对某个 $\theta$ 严格不等，则称 $\hat\theta_1$ 比 $\hat\theta_2$ 更有效。
+    均方误差分解公式：
 
-### 均方误差
+    $$
+    \operatorname{MSE}_\theta(\hat\theta)
+    =D_\theta(\hat\theta)+\left[\operatorname{Bias}_\theta(\hat\theta)\right]^2
+    $$
 
-$$
-\operatorname{MSE}_\theta(\hat\theta)
-=E_\theta\left[(\hat\theta-\theta)^2\right]
-$$
+    因此无偏估计的均方误差就是其方差。
+  </Accordion>
 
-均方误差分解公式：
+  <Accordion title="一致性">
+    若：
 
-$$
-\operatorname{MSE}_\theta(\hat\theta)
-=D_\theta(\hat\theta)+\left[\operatorname{Bias}_\theta(\hat\theta)\right]^2
-$$
+    $$
+    \hat\theta_n\xrightarrow{P}\theta\qquad(n\to\infty)
+    $$
 
-因此无偏估计的均方误差就是其方差。
-
-### 一致性
-
-若：
-
-$$
-\hat\theta_n\xrightarrow{P}\theta\qquad(n\to\infty)
-$$
-
-则称 $\hat\theta_n$ 是 $\theta$ 的一致估计。
+    则称 $\hat\theta_n$ 是 $\theta$ 的一致估计。
+  </Accordion>
+</AccordionGroup>
 
 ## 区间估计
 
-置信区间通过构造枢轴量得到。设 $1-\alpha$ 为置信水平，通常写成：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    置信区间通过构造枢轴量得到。设 $1-\alpha$ 为置信水平，通常写成：
 
-$$
-P(\hat\theta_L<\theta<\hat\theta_U)=1-\alpha
-$$
+    $$
+    P(\hat\theta_L<\theta<\hat\theta_U)=1-\alpha
+    $$
 
-则 $(\hat\theta_L,\hat\theta_U)$ 是 $\theta$ 的置信水平为 $1-\alpha$ 的置信区间。
+    则 $(\hat\theta_L,\hat\theta_U)$ 是 $\theta$ 的置信水平为 $1-\alpha$ 的置信区间。
 
-标准正态、$t$、$\chi^2$ 和 $F$ 分布的上侧分位数约定为：
+    标准正态、$t$、$\chi^2$ 和 $F$ 分布的上侧分位数约定为：
 
-$$
-P(Z>z_\alpha)=\alpha,\qquad
-P(T>t_\alpha(n))=\alpha
-$$
+    $$
+    P(Z>z_\alpha)=\alpha,\qquad
+    P(T>t_\alpha(n))=\alpha
+    $$
 
-$$
-P(\chi^2>\chi^2_\alpha(n))=\alpha,\qquad
-P(F>F_\alpha(n_1,n_2))=\alpha
-$$
+    $$
+    P(\chi^2>\chi^2_\alpha(n))=\alpha,\qquad
+    P(F>F_\alpha(n_1,n_2))=\alpha
+    $$
+  </Accordion>
 
-### 单个正态总体均值的置信区间
+  <Accordion title="单个正态总体均值的置信区间">
+    设 $X_1,\ldots,X_n$ 独立同分布于 $N(\mu,\sigma^2)$。
 
-设 $X_1,\ldots,X_n$ 独立同分布于 $N(\mu,\sigma^2)$。
+    #### 方差已知
 
-#### 方差已知
+    $$
+    \bar X\pm z_{\alpha/2}\frac{\sigma}{\sqrt n}
+    $$
 
-$$
-\bar X\pm z_{\alpha/2}\frac{\sigma}{\sqrt n}
-$$
+    #### 方差未知
 
-#### 方差未知
+    $$
+    \bar X\pm t_{\alpha/2}(n-1)\frac{S}{\sqrt n}
+    $$
+  </Accordion>
 
-$$
-\bar X\pm t_{\alpha/2}(n-1)\frac{S}{\sqrt n}
-$$
+  <Accordion title="单个正态总体方差的置信区间">
+    $$
+    \left(
+    \frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\
+    \frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}
+    \right)
+    $$
 
-### 单个正态总体方差的置信区间
+    其中 $\chi^2_{1-\alpha/2}(n-1)$ 是较小分位数，$\chi^2_{\alpha/2}(n-1)$ 是较大分位数。
+  </Accordion>
 
-$$
-\left(
-\frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\
-\frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}
-\right)
-$$
+  <Accordion title="两个正态总体均值差的置信区间">
+    设两个样本相互独立，样本量分别为 $n_1,n_2$。
 
-其中 $\chi^2_{1-\alpha/2}(n-1)$ 是较小分位数，$\chi^2_{\alpha/2}(n-1)$ 是较大分位数。
+    #### 两个方差已知
 
-### 两个正态总体均值差的置信区间
+    $$
+    (\bar X-\bar Y)
+    \pm z_{\alpha/2}
+    \sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}
+    $$
 
-设两个样本相互独立，样本量分别为 $n_1,n_2$。
+    #### 两个方差未知但相等
 
-#### 两个方差已知
+    合并方差：
 
-$$
-(\bar X-\bar Y)
-\pm z_{\alpha/2}
-\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}
-$$
+    $$
+    S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}
+    $$
 
-#### 两个方差未知但相等
+    置信区间为：
 
-合并方差：
+    $$
+    (\bar X-\bar Y)
+    \pm t_{\alpha/2}(n_1+n_2-2)
+    S_w\sqrt{\frac1{n_1}+\frac1{n_2}}
+    $$
 
-$$
-S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}
-$$
+    <Warning>
+    使用 $t$ 分布的两个均值区间估计时，除正态总体外，还要满足方差相等或至少题目明确说明可用合并方差。
+    </Warning>
+  </Accordion>
 
-置信区间为：
+  <Accordion title="配对数据">
+    若两个观测成对出现，令：
 
-$$
-(\bar X-\bar Y)
-\pm t_{\alpha/2}(n_1+n_2-2)
-S_w\sqrt{\frac1{n_1}+\frac1{n_2}}
-$$
+    $$
+    D_i=X_i-Y_i
+    $$
 
-<Warning>
-使用 $t$ 分布的两个均值区间估计时，除正态总体外，还要满足方差相等或至少题目明确说明可用合并方差。
-</Warning>
-
-### 配对数据
-
-若两个观测成对出现，令：
-
-$$
-D_i=X_i-Y_i
-$$
-
-则把 $D_1,\ldots,D_n$ 看成单个正态总体，使用单样本均值区间估计。
+    则把 $D_1,\ldots,D_n$ 看成单个正态总体，使用单样本均值区间估计。
+  </Accordion>
+</AccordionGroup>
 
 ## 假设检验的基本步骤
 
-1. 根据问题提出原假设 $H_0$ 和备择假设 $H_1$。
-2. 选择显著性水平 $\alpha$。
-3. 构造在原假设下分布已知的检验统计量。
-4. 根据备择假设确定拒绝域。
-5. 用样本值判断是否拒绝 $H_0$，或比较 $p$ 值与 $\alpha$。
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    1. 根据问题提出原假设 $H_0$ 和备择假设 $H_1$。
+    2. 选择显著性水平 $\alpha$。
+    3. 构造在原假设下分布已知的检验统计量。
+    4. 根据备择假设确定拒绝域。
+    5. 用样本值判断是否拒绝 $H_0$，或比较 $p$ 值与 $\alpha$。
 
-第一类错误为“原假设成立却拒绝原假设”，概率不超过 $\alpha$。第二类错误为“原假设不成立却不拒绝原假设”。
+    第一类错误为“原假设成立却拒绝原假设”，概率不超过 $\alpha$。第二类错误为“原假设不成立却不拒绝原假设”。
+  </Accordion>
 
-### 单个正态总体均值的检验
+  <Accordion title="单个正态总体均值的检验">
+    设 $X_1,\ldots,X_n$ 独立同分布于 $N(\mu,\sigma^2)$，检验：
 
-设 $X_1,\ldots,X_n$ 独立同分布于 $N(\mu,\sigma^2)$，检验：
+    $$
+    H_0:\mu=\mu_0
+    $$
 
-$$
-H_0:\mu=\mu_0
-$$
+    #### 方差已知
 
-#### 方差已知
+    检验统计量：
 
-检验统计量：
+    $$
+    Z=\frac{\bar X-\mu_0}{\sigma/\sqrt n}\sim N(0,1)
+    $$
 
-$$
-Z=\frac{\bar X-\mu_0}{\sigma/\sqrt n}\sim N(0,1)
-$$
+    双侧拒绝域：
 
-双侧拒绝域：
+    $$
+    |Z|>z_{\alpha/2}
+    $$
 
-$$
-|Z|>z_{\alpha/2}
-$$
+    右侧检验 $H_1:\mu>\mu_0$ 时，拒绝域为：
 
-右侧检验 $H_1:\mu>\mu_0$ 时，拒绝域为：
+    $$
+    Z>z_\alpha
+    $$
 
-$$
-Z>z_\alpha
-$$
+    左侧检验 $H_1:\mu<\mu_0$ 时，拒绝域为：
 
-左侧检验 $H_1:\mu<\mu_0$ 时，拒绝域为：
+    $$
+    Z<-z_\alpha
+    $$
 
-$$
-Z<-z_\alpha
-$$
+    #### 方差未知
 
-#### 方差未知
+    检验统计量：
 
-检验统计量：
+    $$
+    T=\frac{\bar X-\mu_0}{S/\sqrt n}\sim t(n-1)
+    $$
 
-$$
-T=\frac{\bar X-\mu_0}{S/\sqrt n}\sim t(n-1)
-$$
+    双侧拒绝域：
 
-双侧拒绝域：
+    $$
+    |T|>t_{\alpha/2}(n-1)
+    $$
 
-$$
-|T|>t_{\alpha/2}(n-1)
-$$
+    右侧、左侧拒绝域分别换成：
 
-右侧、左侧拒绝域分别换成：
+    $$
+    T>t_\alpha(n-1),\qquad T<-t_\alpha(n-1)
+    $$
+  </Accordion>
 
-$$
-T>t_\alpha(n-1),\qquad T<-t_\alpha(n-1)
-$$
+  <Accordion title="单个正态总体方差的检验">
+    检验：
 
-### 单个正态总体方差的检验
+    $$
+    H_0:\sigma^2=\sigma_0^2
+    $$
 
-检验：
+    检验统计量：
 
-$$
-H_0:\sigma^2=\sigma_0^2
-$$
+    $$
+    \chi^2=\frac{(n-1)S^2}{\sigma_0^2}\sim\chi^2(n-1)
+    $$
 
-检验统计量：
+    双侧拒绝域：
 
-$$
-\chi^2=\frac{(n-1)S^2}{\sigma_0^2}\sim\chi^2(n-1)
-$$
+    $$
+    \chi^2>\chi^2_{\alpha/2}(n-1)
+    \quad\text{或}\quad
+    \chi^2<\chi^2_{1-\alpha/2}(n-1)
+    $$
+  </Accordion>
 
-双侧拒绝域：
+  <Accordion title="两个正态总体均值差的检验">
+    检验：
 
-$$
-\chi^2>\chi^2_{\alpha/2}(n-1)
-\quad\text{或}\quad
-\chi^2<\chi^2_{1-\alpha/2}(n-1)
-$$
+    $$
+    H_0:\mu_1-\mu_2=\Delta_0
+    $$
 
-### 两个正态总体均值差的检验
+    #### 两个方差已知
 
-检验：
+    $$
+    Z=\frac{(\bar X-\bar Y)-\Delta_0}
+    {\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}
+    \sim N(0,1)
+    $$
 
-$$
-H_0:\mu_1-\mu_2=\Delta_0
-$$
+    #### 两个方差未知但相等
 
-#### 两个方差已知
+    $$
+    T=\frac{(\bar X-\bar Y)-\Delta_0}
+    {S_w\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}
+    \sim t(n_1+n_2-2)
+    $$
 
-$$
-Z=\frac{(\bar X-\bar Y)-\Delta_0}
-{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}
-\sim N(0,1)
-$$
+    其中 $S_w^2$ 为合并方差。拒绝域与单个均值检验相同，只需把对应统计量替换为上述 $Z$ 或 $T$。
+  </Accordion>
 
-#### 两个方差未知但相等
+  <Accordion title="两个正态总体方差比的检验">
+    检验：
 
-$$
-T=\frac{(\bar X-\bar Y)-\Delta_0}
-{S_w\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}
-\sim t(n_1+n_2-2)
-$$
+    $$
+    H_0:\sigma_1^2=\sigma_2^2
+    $$
 
-其中 $S_w^2$ 为合并方差。拒绝域与单个均值检验相同，只需把对应统计量替换为上述 $Z$ 或 $T$。
+    检验统计量：
 
-### 两个正态总体方差比的检验
+    $$
+    F=\frac{S_1^2}{S_2^2}\sim F(n_1-1,n_2-1)
+    $$
 
-检验：
+    双侧拒绝域：
 
-$$
-H_0:\sigma_1^2=\sigma_2^2
-$$
+    $$
+    F>F_{\alpha/2}(n_1-1,n_2-1)
+    \quad\text{或}\quad
+    F<F_{1-\alpha/2}(n_1-1,n_2-1)
+    $$
 
-检验统计量：
+    其中：
 
-$$
-F=\frac{S_1^2}{S_2^2}\sim F(n_1-1,n_2-1)
-$$
-
-双侧拒绝域：
-
-$$
-F>F_{\alpha/2}(n_1-1,n_2-1)
-\quad\text{或}\quad
-F<F_{1-\alpha/2}(n_1-1,n_2-1)
-$$
-
-其中：
-
-$$
-F_{1-\alpha/2}(n_1-1,n_2-1)
-=\frac1{F_{\alpha/2}(n_2-1,n_1-1)}
-$$
+    $$
+    F_{1-\alpha/2}(n_1-1,n_2-1)
+    =\frac1{F_{\alpha/2}(n_2-1,n_1-1)}
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 常见检验与统计量总表
 
-| 检验对象 | 前提 | 统计量 | 原假设下分布 |
-| --- | --- | --- | --- |
-| 单个均值 | 正态总体，$\sigma$ 已知 | $Z=\dfrac{\bar X-\mu_0}{\sigma/\sqrt n}$ | $N(0,1)$ |
-| 单个均值 | 正态总体，$\sigma$ 未知 | $T=\dfrac{\bar X-\mu_0}{S/\sqrt n}$ | $t(n-1)$ |
-| 单个方差 | 正态总体 | $\chi^2=\dfrac{(n-1)S^2}{\sigma_0^2}$ | $\chi^2(n-1)$ |
-| 两个均值差 | 正态总体，方差已知 | $Z$ | $N(0,1)$ |
-| 两个均值差 | 正态总体，方差未知但相等 | $T$ | $t(n_1+n_2-2)$ |
-| 两个方差比 | 两个正态总体 | $F=\dfrac{S_1^2}{S_2^2}$ | $F(n_1-1,n_2-1)$ |
+<AccordionGroup>
+  <Accordion title="常见检验与统计量总表">
+    | 检验对象 | 前提 | 统计量 | 原假设下分布 |
+    | --- | --- | --- | --- |
+    | 单个均值 | 正态总体，$\sigma$ 已知 | $Z=\dfrac{\bar X-\mu_0}{\sigma/\sqrt n}$ | $N(0,1)$ |
+    | 单个均值 | 正态总体，$\sigma$ 未知 | $T=\dfrac{\bar X-\mu_0}{S/\sqrt n}$ | $t(n-1)$ |
+    | 单个方差 | 正态总体 | $\chi^2=\dfrac{(n-1)S^2}{\sigma_0^2}$ | $\chi^2(n-1)$ |
+    | 两个均值差 | 正态总体，方差已知 | $Z$ | $N(0,1)$ |
+    | 两个均值差 | 正态总体，方差未知但相等 | $T$ | $t(n_1+n_2-2)$ |
+    | 两个方差比 | 两个正态总体 | $F=\dfrac{S_1^2}{S_2^2}$ | $F(n_1-1,n_2-1)$ |
+  </Accordion>
+</AccordionGroup>
 
 ## 高频题型与易错点
 

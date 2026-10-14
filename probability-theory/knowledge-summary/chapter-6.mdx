@@ -13,307 +13,329 @@ tags: ["考研", "考研数学一", "概率论"]
 
 ## 总体与样本
 
-- **总体**：研究对象某个数量指标 $X$ 的取值全体，也可理解为 $X$ 的分布。
-- **个体**：总体中的一个研究对象。
-- **样本**：从总体中抽取的若干个体所组成的一组数据 $X_1,\ldots,X_n$。
-- **样本容量**：样本中个体的个数 $n$。
-- **简单随机样本**：$X_1,\ldots,X_n$ 相互独立，且与总体 $X$ 同分布。
+<AccordionGroup>
+  <Accordion title="总体与样本">
+    - **总体**：研究对象某个数量指标 $X$ 的取值全体，也可理解为 $X$ 的分布。
+    - **个体**：总体中的一个研究对象。
+    - **样本**：从总体中抽取的若干个体所组成的一组数据 $X_1,\ldots,X_n$。
+    - **样本容量**：样本中个体的个数 $n$。
+    - **简单随机样本**：$X_1,\ldots,X_n$ 相互独立，且与总体 $X$ 同分布。
 
-若总体 $X$ 的分布函数为 $F(x)$，则简单随机样本的联合分布函数为：
+    若总体 $X$ 的分布函数为 $F(x)$，则简单随机样本的联合分布函数为：
 
-$$
-F_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
-=\prod_{i=1}^{n}F(x_i)
-$$
+    $$
+    F_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
+    =\prod_{i=1}^{n}F(x_i)
+    $$
 
-连续型总体若密度为 $f(x)$，则样本联合密度为：
+    连续型总体若密度为 $f(x)$，则样本联合密度为：
 
-$$
-f_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
-=\prod_{i=1}^{n}f(x_i)
-$$
+    $$
+    f_{X_1,\ldots,X_n}(x_1,\ldots,x_n)
+    =\prod_{i=1}^{n}f(x_i)
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 统计量
 
-统计量是样本的函数：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    统计量是样本的函数：
 
-$$
-T=T(X_1,X_2,\ldots,X_n)
-$$
+    $$
+    T=T(X_1,X_2,\ldots,X_n)
+    $$
 
-并且不含任何未知参数。
+    并且不含任何未知参数。
 
-例如，若总体分布含未知参数 $\theta$，则 $X_1+\theta$ 不是统计量，而 $X_1+X_2$ 是统计量。
+    例如，若总体分布含未知参数 $\theta$，则 $X_1+\theta$ 不是统计量，而 $X_1+X_2$ 是统计量。
+  </Accordion>
 
-### 常用样本矩
+  <Accordion title="常用样本矩">
+    样本均值：
 
-样本均值：
+    $$
+    \bar X=\frac1n\sum_{i=1}^{n}X_i
+    $$
 
-$$
-\bar X=\frac1n\sum_{i=1}^{n}X_i
-$$
+    样本方差：
 
-样本方差：
+    $$
+    S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
+    $$
 
-$$
-S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
-$$
+    样本标准差：
 
-样本标准差：
+    $$
+    S=\sqrt{S^2}
+    $$
 
-$$
-S=\sqrt{S^2}
-$$
+    样本 $k$ 阶原点矩：
 
-样本 $k$ 阶原点矩：
+    $$
+    A_k=\frac1n\sum_{i=1}^{n}X_i^k
+    $$
 
-$$
-A_k=\frac1n\sum_{i=1}^{n}X_i^k
-$$
+    样本 $k$ 阶中心矩：
 
-样本 $k$ 阶中心矩：
+    $$
+    B_k=\frac1n\sum_{i=1}^{n}(X_i-\bar X)^k
+    $$
 
-$$
-B_k=\frac1n\sum_{i=1}^{n}(X_i-\bar X)^k
-$$
+    <Warning>
+    考研题的样本方差通常使用无偏方差的定义：
 
-<Warning>
-考研题的样本方差通常使用无偏方差的定义：
+    $$
+    S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
+    $$
 
-$$
-S^2=\frac1{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2
-$$
+    看到分母是 $n-1$ 时不要误写成 $n$。若记 $S_n^2=\frac1n\sum(X_i-\bar X)^2$，则 $E(S_n^2)=\frac{n-1}{n}\sigma^2$。
+    </Warning>
+  </Accordion>
 
-看到分母是 $n-1$ 时不要误写成 $n$。若记 $S_n^2=\frac1n\sum(X_i-\bar X)^2$，则 $E(S_n^2)=\frac{n-1}{n}\sigma^2$。
-</Warning>
+  <Accordion title="样本均值和样本方差的期望">
+    设总体 $X$ 有：
 
-### 样本均值和样本方差的期望
+    $$
+    E(X)=\mu,\qquad D(X)=\sigma^2
+    $$
 
-设总体 $X$ 有：
+    则：
 
-$$
-E(X)=\mu,\qquad D(X)=\sigma^2
-$$
+    $$
+    E(\bar X)=\mu,\qquad D(\bar X)=\frac{\sigma^2}{n}
+    $$
 
-则：
+    $$
+    E(S^2)=\sigma^2
+    $$
 
-$$
-E(\bar X)=\mu,\qquad D(\bar X)=\frac{\sigma^2}{n}
-$$
+    常用平方和恒等式：
 
-$$
-E(S^2)=\sigma^2
-$$
-
-常用平方和恒等式：
-
-$$
-\sum_{i=1}^{n}(X_i-\bar X)^2
-=\sum_{i=1}^{n}X_i^2-n\bar X^2
-$$
+    $$
+    \sum_{i=1}^{n}(X_i-\bar X)^2
+    =\sum_{i=1}^{n}X_i^2-n\bar X^2
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 三大抽样分布
 
-### 卡方分布
+<AccordionGroup>
+  <Accordion title="卡方分布">
+    若 $Z_1,\ldots,Z_n$ 相互独立且都服从 $N(0,1)$，则：
 
-若 $Z_1,\ldots,Z_n$ 相互独立且都服从 $N(0,1)$，则：
+    $$
+    \chi^2=Z_1^2+Z_2^2+\cdots+Z_n^2\sim\chi^2(n)
+    $$
 
-$$
-\chi^2=Z_1^2+Z_2^2+\cdots+Z_n^2\sim\chi^2(n)
-$$
+    若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 独立，则：
 
-若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 独立，则：
+    $$
+    U+V\sim\chi^2(n_1+n_2)
+    $$
 
-$$
-U+V\sim\chi^2(n_1+n_2)
-$$
+    卡方分布的数字特征：
 
-卡方分布的数字特征：
+    $$
+    E(\chi^2(n))=n,\qquad D(\chi^2(n))=2n
+    $$
+  </Accordion>
 
-$$
-E(\chi^2(n))=n,\qquad D(\chi^2(n))=2n
-$$
+  <Accordion title="t 分布">
+    若 $Z\sim N(0,1)$，$Y\sim\chi^2(n)$，且 $Z,Y$ 相互独立，则：
 
-### t 分布
+    $$
+    T=\frac{Z}{\sqrt{Y/n}}\sim t(n)
+    $$
 
-若 $Z\sim N(0,1)$，$Y\sim\chi^2(n)$，且 $Z,Y$ 相互独立，则：
+    t 分布关于原点对称，当 $n\to\infty$ 时近似于 $N(0,1)$。
+  </Accordion>
 
-$$
-T=\frac{Z}{\sqrt{Y/n}}\sim t(n)
-$$
+  <Accordion title="F 分布">
+    若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 相互独立，则：
 
-t 分布关于原点对称，当 $n\to\infty$ 时近似于 $N(0,1)$。
+    $$
+    F=\frac{U/n_1}{V/n_2}\sim F(n_1,n_2)
+    $$
 
-### F 分布
+    F 分布的重要倒数关系为：
 
-若 $U\sim\chi^2(n_1)$，$V\sim\chi^2(n_2)$，且 $U,V$ 相互独立，则：
+    $$
+    F\sim F(n_1,n_2)\quad\Longrightarrow\quad\frac1F\sim F(n_2,n_1)
+    $$
 
-$$
-F=\frac{U/n_1}{V/n_2}\sim F(n_1,n_2)
-$$
+    因此上侧分位数满足：
 
-F 分布的重要倒数关系为：
-
-$$
-F\sim F(n_1,n_2)\quad\Longrightarrow\quad\frac1F\sim F(n_2,n_1)
-$$
-
-因此上侧分位数满足：
-
-$$
-F_{1-\alpha}(n_1,n_2)=\frac1{F_{\alpha}(n_2,n_1)}
-$$
+    $$
+    F_{1-\alpha}(n_1,n_2)=\frac1{F_{\alpha}(n_2,n_1)}
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 正态总体下的抽样分布
 
-设：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    设：
 
-$$
-X_1,\ldots,X_n\ \text{独立同分布于}\ N(\mu,\sigma^2)
-$$
+    $$
+    X_1,\ldots,X_n\ \text{独立同分布于}\ N(\mu,\sigma^2)
+    $$
+  </Accordion>
 
-### 样本均值的分布
+  <Accordion title="样本均值的分布">
+    $$
+    \bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)
+    $$
 
-$$
-\bar X\sim N\left(\mu,\frac{\sigma^2}{n}\right)
-$$
+    标准化得到：
 
-标准化得到：
+    $$
+    \frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)
+    $$
+  </Accordion>
 
-$$
-\frac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)
-$$
+  <Accordion title="样本方差的分布">
+    $$
+    \frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
+    $$
 
-### 样本方差的分布
+    并且 $\bar X$ 与 $S^2$ 相互独立。
+  </Accordion>
 
-$$
-\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
-$$
+  <Accordion title="t 统计量">
+    当 $\sigma$ 未知时，用 $S$ 替代 $\sigma$，得到：
 
-并且 $\bar X$ 与 $S^2$ 相互独立。
+    $$
+    T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)
+    $$
+  </Accordion>
 
-### t 统计量
+  <Accordion title="正态总体平方和">
+    若 $\mu$ 已知，则：
 
-当 $\sigma$ 未知时，用 $S$ 替代 $\sigma$，得到：
+    $$
+    \sum_{i=1}^{n}\left(\frac{X_i-\mu}{\sigma}\right)^2\sim\chi^2(n)
+    $$
 
-$$
-T=\frac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)
-$$
+    若 $\mu$ 未知并把 $\mu$ 替换为 $\bar X$，则损失一个自由度：
 
-### 正态总体平方和
-
-若 $\mu$ 已知，则：
-
-$$
-\sum_{i=1}^{n}\left(\frac{X_i-\mu}{\sigma}\right)^2\sim\chi^2(n)
-$$
-
-若 $\mu$ 未知并把 $\mu$ 替换为 $\bar X$，则损失一个自由度：
-
-$$
-\sum_{i=1}^{n}\left(\frac{X_i-\bar X}{\sigma}\right)^2
-=\frac{(n-1)S^2}{\sigma^2}
-\sim\chi^2(n-1)
-$$
+    $$
+    \sum_{i=1}^{n}\left(\frac{X_i-\bar X}{\sigma}\right)^2
+    =\frac{(n-1)S^2}{\sigma^2}
+    \sim\chi^2(n-1)
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 两个正态总体的抽样分布
 
-设：
+<AccordionGroup>
+  <Accordion title="核心概念与公式">
+    设：
 
-$$
-X_1,\ldots,X_{n_1}\ \text{独立同分布于}\ N(\mu_1,\sigma_1^2)
-$$
+    $$
+    X_1,\ldots,X_{n_1}\ \text{独立同分布于}\ N(\mu_1,\sigma_1^2)
+    $$
 
-$$
-Y_1,\ldots,Y_{n_2}\ \text{独立同分布于}\ N(\mu_2,\sigma_2^2)
-$$
+    $$
+    Y_1,\ldots,Y_{n_2}\ \text{独立同分布于}\ N(\mu_2,\sigma_2^2)
+    $$
 
-两个样本相互独立。记样本均值和样本方差分别为 $\bar X,\bar Y,S_1^2,S_2^2$。
+    两个样本相互独立。记样本均值和样本方差分别为 $\bar X,\bar Y,S_1^2,S_2^2$。
+  </Accordion>
 
-### 均值差的分布
+  <Accordion title="均值差的分布">
+    $$
+    \bar X-\bar Y\sim N\left(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\right)
+    $$
 
-$$
-\bar X-\bar Y\sim N\left(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\right)
-$$
+    当 $\sigma_1^2,\sigma_2^2$ 已知时：
 
-当 $\sigma_1^2,\sigma_2^2$ 已知时：
+    $$
+    \frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
+    {\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}
+    \sim N(0,1)
+    $$
 
-$$
-\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
-{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}}
-\sim N(0,1)
-$$
+    当 $\sigma_1^2=\sigma_2^2=\sigma^2$ 未知时，使用合并方差：
 
-当 $\sigma_1^2=\sigma_2^2=\sigma^2$ 未知时，使用合并方差：
+    $$
+    S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}
+    $$
 
-$$
-S_w^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}
-$$
+    则：
 
-则：
+    $$
+    \frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
+    {S_w\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}
+    \sim t(n_1+n_2-2)
+    $$
+  </Accordion>
 
-$$
-\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}
-{S_w\sqrt{\dfrac1{n_1}+\dfrac1{n_2}}}
-\sim t(n_1+n_2-2)
-$$
+  <Accordion title="方差比的分布">
+    $$
+    \frac{S_1^2/S_2^2}{\sigma_1^2/\sigma_2^2}
+    =\frac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}
+    \sim F(n_1-1,n_2-1)
+    $$
 
-### 方差比的分布
+    若 $\sigma_1^2=\sigma_2^2$，则：
 
-$$
-\frac{S_1^2/S_2^2}{\sigma_1^2/\sigma_2^2}
-=\frac{S_1^2\sigma_2^2}{S_2^2\sigma_1^2}
-\sim F(n_1-1,n_2-1)
-$$
-
-若 $\sigma_1^2=\sigma_2^2$，则：
-
-$$
-\frac{S_1^2}{S_2^2}\sim F(n_1-1,n_2-1)
-$$
+    $$
+    \frac{S_1^2}{S_2^2}\sim F(n_1-1,n_2-1)
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 顺序统计量与经验分布函数
 
-将样本按从小到大排列：
+<AccordionGroup>
+  <Accordion title="顺序统计量与经验分布函数">
+    将样本按从小到大排列：
 
-$$
-X_{(1)}\le X_{(2)}\le\cdots\le X_{(n)}
-$$
+    $$
+    X_{(1)}\le X_{(2)}\le\cdots\le X_{(n)}
+    $$
 
-称为顺序统计量。最小值和最大值分别为：
+    称为顺序统计量。最小值和最大值分别为：
 
-$$
-X_{(1)}=\min(X_1,\ldots,X_n),\qquad X_{(n)}=\max(X_1,\ldots,X_n)
-$$
+    $$
+    X_{(1)}=\min(X_1,\ldots,X_n),\qquad X_{(n)}=\max(X_1,\ldots,X_n)
+    $$
 
-若总体分布函数为 $F(x)$，则：
+    若总体分布函数为 $F(x)$，则：
 
-$$
-F_{X_{(1)}}(x)=1-[1-F(x)]^n
-$$
+    $$
+    F_{X_{(1)}}(x)=1-[1-F(x)]^n
+    $$
 
-$$
-F_{X_{(n)}}(x)=[F(x)]^n
-$$
+    $$
+    F_{X_{(n)}}(x)=[F(x)]^n
+    $$
 
-第 $k$ 个顺序统计量的分布函数为：
+    第 $k$ 个顺序统计量的分布函数为：
 
-$$
-F_{X_{(k)}}(x)
-=\sum_{j=k}^{n}\binom{n}{j}[F(x)]^j[1-F(x)]^{n-j}
-$$
+    $$
+    F_{X_{(k)}}(x)
+    =\sum_{j=k}^{n}\binom{n}{j}[F(x)]^j[1-F(x)]^{n-j}
+    $$
 
-经验分布函数为：
+    经验分布函数为：
 
-$$
-F_n(x)=\frac1n\sum_{i=1}^{n}\mathbf 1_{\{X_i\le x\}}
-$$
+    $$
+    F_n(x)=\frac1n\sum_{i=1}^{n}\mathbf 1_{\{X_i\le x\}}
+    $$
 
-由大数定律，对固定 $x$：
+    由大数定律，对固定 $x$：
 
-$$
-F_n(x)\xrightarrow{P}F(x)
-$$
+    $$
+    F_n(x)\xrightarrow{P}F(x)
+    $$
+  </Accordion>
+</AccordionGroup>
 
 ## 高频题型与易错点
 
