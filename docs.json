@@ -108,6 +108,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "英语一写作",
+        "groups": [
+          {
+            "group": "大作文",
+            "pages": [
+              "english-writing/essay-notes"
+            ]
+          }
+        ]
       }
     ]
   }
