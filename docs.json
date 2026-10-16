@@ -110,12 +110,25 @@
         ]
       },
       {
-        "tab": "英语一写作",
+        "tab": "英一",
         "groups": [
           {
             "group": "大作文",
             "pages": [
-              "english-writing/essay-notes"
+              "english-writing/essay-chart",
+              "english-writing/essay-picture"
+            ]
+          },
+          {
+            "group": "小作文",
+            "pages": [
+              "english-writing/short-writing"
+            ]
+          },
+          {
+            "group": "翻译",
+            "pages": [
+              "english-writing/translation"
             ]
           }
         ]
