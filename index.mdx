@@ -52,12 +52,10 @@ mode: custom
       </div>
 
       <div className="kb-atlas__stage">
-        <iframe
-          src="/public/three-hero.html"
-          title="知识地图：24 章复习索引"
-          tabIndex={-1}
-          loading="lazy"
-        ></iframe>
+        <div className="kb-atlas__scene" data-kb-atlas aria-hidden="true">
+          <div className="kb-atlas__loading">正在绘制知识地图…</div>
+          <div className="kb-atlas__fallback">知识地图暂时无法渲染，请使用下方科目索引。</div>
+        </div>
       </div>
 
       <div className="kb-atlas__legend" role="navigation" aria-label="科目索引">

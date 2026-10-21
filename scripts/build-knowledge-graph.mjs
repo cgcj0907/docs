@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 
 const subjects = [
@@ -73,10 +73,9 @@ graph.stats = {
   points: pointTotal
 };
 
-await mkdir("public/three", { recursive: true });
 await writeFile(
-  "public/three/knowledge-graph.js",
-  `export const knowledgeGraph = ${JSON.stringify(graph, null, 2)};\n`,
+  "hero-atlas-data.js",
+  `/* Auto-generated from knowledge-summary MDX files. Do not edit by hand. */\nwindow.__KB_ATLAS_GRAPH__ = ${JSON.stringify(graph, null, 2)};\n`,
   "utf8"
 );
 

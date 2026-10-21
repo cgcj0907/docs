@@ -1,4 +1,5 @@
-export const knowledgeGraph = {
+/* Auto-generated from knowledge-summary MDX files. Do not edit by hand. */
+window.__KB_ATLAS_GRAPH__ = {
   "generatedFrom": "knowledge-summary MDX files",
   "subjects": [
     {
