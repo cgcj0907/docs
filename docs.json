@@ -4,9 +4,9 @@
   "name": "考研笔记",
   "description": "数据结构、计算机组成原理、高等数学、线性代数与概率论复习笔记。",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#BD5B3D",
+    "light": "#DD8061",
+    "dark": "#BD5B3D"
   },
   "icons": {
     "library": "lucide"
@@ -61,7 +61,8 @@
               "computer-architecture/knowledge-summary/chapter-3",
               "computer-architecture/knowledge-summary/chapter-4",
               "computer-architecture/knowledge-summary/chapter-5",
-              "computer-architecture/knowledge-summary/chapter-6"
+              "computer-architecture/knowledge-summary/chapter-6",
+              "computer-architecture/knowledge-summary/chapter-7"
             ]
           }
         ]

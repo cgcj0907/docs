@@ -8,17 +8,19 @@ mode: custom
   <section className="kb-hero">
     <div className="kb-hero__copy">
       <div className="kb-eyebrow">
-        <span className="kb-eyebrow__mark" aria-hidden="true"></span>
-        考研 · 复习笔记
+        <span className="kb-eyebrow__mark" aria-hidden="true">✳</span>
+        <span>考研笔记</span>
+        <span className="kb-eyebrow__year">2026</span>
       </div>
 
       <h1>
         把考研知识，
-        <span>整理成一套可复习的知识库</span>
+        <span>整理成一套</span>
+        <span>可复习的知识库。</span>
       </h1>
 
       <p className="kb-hero__lead">
-        当前覆盖数据结构、计算机组成原理、高等数学、线性代数与概率论。按章节整理知识，通过目录和搜索快速回顾。
+        覆盖数据结构、计算机组成原理、高等数学、线性代数与概率论。按章节整理知识，通过目录和搜索快速回顾。
       </p>
 
       <div className="kb-hero__actions">
@@ -27,90 +29,58 @@ mode: custom
           <span aria-hidden="true">→</span>
         </a>
         <a className="kb-button kb-button--secondary" href="#subjects">
-          查看全部科目
+          浏览全部科目
         </a>
+      </div>
+
+      <div className="kb-hero__meta" aria-label="知识库概况">
+        <span><strong>24</strong> 章笔记</span>
+        <span className="kb-hero__meta-divider" aria-hidden="true"></span>
+        <span><strong>5</strong> 个科目</span>
+        <span className="kb-hero__meta-divider" aria-hidden="true"></span>
+        <span><strong>116</strong> 个知识点</span>
       </div>
     </div>
 
-    <div className="kb-coverage" aria-label="笔记整理进度">
-      <div className="kb-coverage__header">
+    <div className="kb-atlas" role="complementary" aria-label="知识地图与复习索引">
+      <div className="kb-atlas__head">
         <div>
-          <span className="kb-coverage__kicker">MY NOTE INDEX</span>
-          <h2>我的笔记进度</h2>
+          <span className="kb-kicker">KNOWLEDGE ATLAS</span>
+          <h2>知识地图</h2>
         </div>
-        <strong>23 章</strong>
+        <span className="kb-atlas__total">24 章 · 116 个知识点</span>
       </div>
 
-      <div className="kb-coverage__list">
-        <a className="kb-progress" href="/data-structure/knowledge-summary/chapter-1">
-          <div className="kb-progress__top">
-            <div>
-              <span className="kb-progress__name">数据结构</span>
-              <span className="kb-progress__meta">4 / 4 章已整理</span>
-            </div>
-            <strong>100%</strong>
-          </div>
-          <div className="kb-progress__bar" aria-hidden="true">
-            <span style={{ width: "100%" }}></span>
-          </div>
-        </a>
-
-        <a className="kb-progress" href="/computer-architecture/knowledge-summary/chapter-1">
-          <div className="kb-progress__top">
-            <div>
-              <span className="kb-progress__name">计算机组成原理</span>
-              <span className="kb-progress__meta">6 / 6 章已整理</span>
-            </div>
-            <strong>100%</strong>
-          </div>
-          <div className="kb-progress__bar" aria-hidden="true">
-            <span style={{ width: "100%" }}></span>
-          </div>
-        </a>
-        <a className="kb-progress" href="/linear-algebra/knowledge-summary/chapter-1">
-          <div className="kb-progress__top">
-            <div>
-              <span className="kb-progress__name">线性代数</span>
-              <span className="kb-progress__meta">4 / 4 章已整理</span>
-            </div>
-            <strong>100%</strong>
-          </div>
-          <div className="kb-progress__bar" aria-hidden="true">
-            <span style={{ width: "100%" }}></span>
-          </div>
-        </a>
-
-        <a className="kb-progress" href="/higher-mathematics/knowledge-summary/chapter-1">
-          <div className="kb-progress__top">
-            <div>
-              <span className="kb-progress__name">高等数学</span>
-              <span className="kb-progress__meta">2 / 2 章已整理</span>
-            </div>
-            <strong>100%</strong>
-          </div>
-          <div className="kb-progress__bar" aria-hidden="true">
-            <span style={{ width: "100%" }}></span>
-          </div>
-        </a>
-
-        <a className="kb-progress" href="/probability-theory/knowledge-summary/chapter-1">
-          <div className="kb-progress__top">
-            <div>
-              <span className="kb-progress__name">概率论与数理统计</span>
-              <span className="kb-progress__meta">7 / 7 章已整理</span>
-            </div>
-            <strong>100%</strong>
-          </div>
-          <div className="kb-progress__bar" aria-hidden="true">
-            <span style={{ width: "100%" }}></span>
-          </div>
-        </a>
-
+      <div className="kb-atlas__stage">
+        <iframe
+          src="/public/three-hero.html"
+          title="知识地图：24 章复习索引"
+          tabIndex={-1}
+          loading="lazy"
+        ></iframe>
       </div>
 
-      <div className="kb-coverage__footer">
-        <Icon icon="circle-check" size={16} />
-        现有科目已全部纳入知识库
+      <div className="kb-atlas__legend" role="navigation" aria-label="科目索引">
+        <a className="kb-atlas__legend-item kb-atlas__legend-item--data" href="/data-structure/knowledge-summary/chapter-1">
+          <span className="kb-atlas__legend-name"><i aria-hidden="true"></i>数据结构</span>
+          <span className="kb-atlas__legend-count">4 章</span>
+        </a>
+        <a className="kb-atlas__legend-item kb-atlas__legend-item--architecture" href="/computer-architecture/knowledge-summary/chapter-1">
+          <span className="kb-atlas__legend-name"><i aria-hidden="true"></i>计算机组成原理</span>
+          <span className="kb-atlas__legend-count">7 章</span>
+        </a>
+        <a className="kb-atlas__legend-item kb-atlas__legend-item--linear" href="/linear-algebra/knowledge-summary/chapter-1">
+          <span className="kb-atlas__legend-name"><i aria-hidden="true"></i>线性代数</span>
+          <span className="kb-atlas__legend-count">4 章</span>
+        </a>
+        <a className="kb-atlas__legend-item kb-atlas__legend-item--math" href="/higher-mathematics/knowledge-summary/chapter-1">
+          <span className="kb-atlas__legend-name"><i aria-hidden="true"></i>高等数学</span>
+          <span className="kb-atlas__legend-count">2 章</span>
+        </a>
+        <a className="kb-atlas__legend-item kb-atlas__legend-item--probability" href="/probability-theory/knowledge-summary/chapter-1">
+          <span className="kb-atlas__legend-name"><i aria-hidden="true"></i>概率论与数理统计</span>
+          <span className="kb-atlas__legend-count">7 章</span>
+        </a>
       </div>
     </div>
   </section>
@@ -118,17 +88,17 @@ mode: custom
   <section className="kb-subjects" id="subjects">
     <div className="kb-section-heading">
       <div>
-        <span className="kb-section-kicker">SUBJECTS</span>
-        <h2>现有科目</h2>
+        <span className="kb-kicker">SUBJECTS</span>
+        <h2>从一个主题开始。</h2>
       </div>
-      <p>进入科目后使用 Mintlify 的章节导航和页内目录阅读。</p>
+      <p>选择科目进入章节阅读。每篇笔记都按概念、公式和考点重新整理。</p>
     </div>
 
     <div className="kb-subject-grid">
       <div className="kb-subject kb-subject--data">
         <div className="kb-subject__top">
           <span className="kb-subject__icon" aria-hidden="true">
-            <Icon icon="network" size={22} />
+            DS
           </span>
           <span className="kb-subject__ordinal">01</span>
         </div>
@@ -145,14 +115,8 @@ mode: custom
           从基本概念到线性表、栈与队列、串，建立结构、操作与复杂度之间的联系。
         </p>
 
-        <div className="kb-subject__progress">
-          <div className="kb-subject__progress-label">
-            <span>章节整理</span>
-            <strong>4 / 4</strong>
-          </div>
-          <div className="kb-subject__progress-track" aria-hidden="true">
-            <span></span>
-          </div>
+        <div className="kb-subject__status">
+          4 / 4 章已整理
         </div>
 
         <div className="kb-chapter-grid">
@@ -175,7 +139,7 @@ mode: custom
         </div>
 
         <a className="kb-subject__cta" href="/data-structure/knowledge-summary/chapter-1">
-          进入数据结构
+          打开数据结构
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -183,7 +147,7 @@ mode: custom
       <div className="kb-subject kb-subject--architecture">
         <div className="kb-subject__top">
           <span className="kb-subject__icon" aria-hidden="true">
-            <Icon icon="cpu" size={22} />
+            CO
           </span>
           <span className="kb-subject__ordinal">02</span>
         </div>
@@ -193,21 +157,15 @@ mode: custom
             <span className="kb-subject__label">COMPUTER ORGANIZATION</span>
             <h3>计算机组成原理</h3>
           </div>
-          <span className="kb-subject__count">6 章</span>
+          <span className="kb-subject__count">7 章</span>
         </div>
 
         <p className="kb-subject__description">
-          从计算机系统概述、机器级数据表示和运算方法，延伸到存储系统、指令系统与中央处理器。
+          从机器级数据表示和运算方法，延伸到存储系统、指令系统、中央处理器与总线。
         </p>
 
-        <div className="kb-subject__progress">
-          <div className="kb-subject__progress-label">
-            <span>章节整理</span>
-            <strong>6 / 6</strong>
-          </div>
-          <div className="kb-subject__progress-track" aria-hidden="true">
-            <span></span>
-          </div>
+        <div className="kb-subject__status">
+          7 / 7 章已整理
         </div>
 
         <div className="kb-chapter-grid">
@@ -235,17 +193,22 @@ mode: custom
             <span className="kb-chapter__index">06</span>
             <span className="kb-chapter__name">中央处理器</span>
           </a>
+          <a className="kb-chapter" href="/computer-architecture/knowledge-summary/chapter-7">
+            <span className="kb-chapter__index">07</span>
+            <span className="kb-chapter__name">总线</span>
+          </a>
         </div>
 
         <a className="kb-subject__cta" href="/computer-architecture/knowledge-summary/chapter-1">
-          进入计算机组成原理
+          打开计算机组成原理
           <span aria-hidden="true">→</span>
         </a>
       </div>
+
       <div className="kb-subject kb-subject--linear-algebra">
         <div className="kb-subject__top">
           <span className="kb-subject__icon" aria-hidden="true">
-            <Icon icon="sigma" size={22} />
+            LA
           </span>
           <span className="kb-subject__ordinal">03</span>
         </div>
@@ -262,14 +225,8 @@ mode: custom
           从行列式、矩阵到向量组与线性方程组，串联基变换、正交化和解的结构。
         </p>
 
-        <div className="kb-subject__progress">
-          <div className="kb-subject__progress-label">
-            <span>章节整理</span>
-            <strong>4 / 4</strong>
-          </div>
-          <div className="kb-subject__progress-track" aria-hidden="true">
-            <span></span>
-          </div>
+        <div className="kb-subject__status">
+          4 / 4 章已整理
         </div>
 
         <div className="kb-chapter-grid">
@@ -292,7 +249,7 @@ mode: custom
         </div>
 
         <a className="kb-subject__cta" href="/linear-algebra/knowledge-summary/chapter-1">
-          进入线性代数
+          打开线性代数
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -300,7 +257,7 @@ mode: custom
       <div className="kb-subject kb-subject--higher-mathematics">
         <div className="kb-subject__top">
           <span className="kb-subject__icon" aria-hidden="true">
-            <Icon icon="variable" size={22} />
+            HM
           </span>
           <span className="kb-subject__ordinal">04</span>
         </div>
@@ -317,14 +274,8 @@ mode: custom
           从微分方程到无穷级数，串联常系数方程、判别法与幂级数展开。
         </p>
 
-        <div className="kb-subject__progress">
-          <div className="kb-subject__progress-label">
-            <span>章节整理</span>
-            <strong>2 / 2</strong>
-          </div>
-          <div className="kb-subject__progress-track" aria-hidden="true">
-            <span></span>
-          </div>
+        <div className="kb-subject__status">
+          2 / 2 章已整理
         </div>
 
         <div className="kb-chapter-grid">
@@ -339,7 +290,7 @@ mode: custom
         </div>
 
         <a className="kb-subject__cta" href="/higher-mathematics/knowledge-summary/chapter-1">
-          进入高等数学
+          打开高等数学
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -347,7 +298,7 @@ mode: custom
       <div className="kb-subject kb-subject--probability">
         <div className="kb-subject__top">
           <span className="kb-subject__icon" aria-hidden="true">
-            <Icon icon="percent" size={22} />
+            PS
           </span>
           <span className="kb-subject__ordinal">05</span>
         </div>
@@ -364,14 +315,8 @@ mode: custom
           从随机事件、常见分布到抽样分布，串联区间估计与假设检验的核心公式。
         </p>
 
-        <div className="kb-subject__progress">
-          <div className="kb-subject__progress-label">
-            <span>章节整理</span>
-            <strong>7 / 7</strong>
-          </div>
-          <div className="kb-subject__progress-track" aria-hidden="true">
-            <span></span>
-          </div>
+        <div className="kb-subject__status">
+          7 / 7 章已整理
         </div>
 
         <div className="kb-chapter-grid">
@@ -406,89 +351,23 @@ mode: custom
         </div>
 
         <a className="kb-subject__cta" href="/probability-theory/knowledge-summary/chapter-1">
-          进入概率论与数理统计
+          打开概率论与数理统计
           <span aria-hidden="true">→</span>
         </a>
       </div>
-
     </div>
   </section>
 
   <section className="kb-workspace">
-    <div className="kb-section-heading">
-      <div>
-        <span className="kb-section-kicker">WORKSPACE</span>
-        <h2>我的复习空间</h2>
-      </div>
-      <p>从常用入口开始，快速回到你需要的内容。</p>
+    <div>
+      <span className="kb-kicker">QUICK SEARCH</span>
+      <h2>想直接找概念或公式？</h2>
+      <p>按快捷键打开全局搜索，在全部章节中快速定位。</p>
     </div>
-
-    <div className="kb-tool-grid">
-      <a className="kb-tool" href="/data-structure/knowledge-summary/chapter-1">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="book-open" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">数据结构笔记</div>
-          <div className="kb-tool__description">从绪论开始按章复习</div>
-        </div>
-        <span className="kb-tool__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a className="kb-tool" href="/computer-architecture/knowledge-summary/chapter-1">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="cpu" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">组成原理笔记</div>
-          <div className="kb-tool__description">从系统概述开始学习</div>
-        </div>
-        <span className="kb-tool__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a className="kb-tool" href="/linear-algebra/knowledge-summary/chapter-1">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="sigma" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">线性代数笔记</div>
-          <div className="kb-tool__description">从行列式开始按章复习</div>
-        </div>
-        <span className="kb-tool__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a className="kb-tool" href="/higher-mathematics/knowledge-summary/chapter-1">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="variable" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">高等数学笔记</div>
-          <div className="kb-tool__description">按章复习微分方程与无穷级数</div>
-        </div>
-        <span className="kb-tool__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a className="kb-tool" href="/probability-theory/knowledge-summary/chapter-1">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="percent" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">概率论与数理统计笔记</div>
-          <div className="kb-tool__description">按章掌握概率模型与统计推断</div>
-        </div>
-        <span className="kb-tool__arrow" aria-hidden="true">→</span>
-      </a>
-
-      <div className="kb-tool kb-tool--static">
-        <span className="kb-tool__icon" aria-hidden="true">
-          <Icon icon="search" size={20} />
-        </span>
-        <div className="kb-tool__content">
-          <div className="kb-tool__title">全局搜索</div>
-          <div className="kb-tool__description">按 <kbd>⌘ K</kbd> 搜索概念和公式</div>
-        </div>
-      </div>
+    <div className="kb-workspace__keys" aria-label="快捷键 Command K">
+      <kbd>⌘</kbd>
+      <span>+</span>
+      <kbd>K</kbd>
     </div>
   </section>
-
 </div>
