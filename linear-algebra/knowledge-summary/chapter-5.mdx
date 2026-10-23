@@ -1,0 +1,339 @@
+---
+title: "第 5 章 特征值与特征向量"
+sidebarTitle: "特征值与特征向量"
+description: "整理特征值与特征向量、相似对角化与实对称矩阵的正交对角化。"
+tags: ["考研", "线性代数"]
+---
+
+本章从特征值与特征向量的定义出发，先掌握由已知特征值推导相关矩阵特征值的公式，再理解不同特征值对应特征向量的线性无关性，最后落到相似对角化与实对称矩阵的正交对角化。
+
+<Info>
+复习主线：会算（特征值、特征向量）→ 会推（$kA$、$A^m$、$f(A)$、$A^{-1}$、$A^*$ 的特征值）→ 会判（能否相似对角化）→ 会用（实对称矩阵正交对角化）。
+</Info>
+
+## 特征值与特征向量的定义
+
+<AccordionGroup>
+  <Accordion title="定义与求法">
+    设 $A$ 为 $n$ 阶矩阵，若存在数 $\lambda$ 和非零向量 $\alpha$，使得
+
+    $$
+    A\alpha=\lambda\alpha,\qquad \alpha\ne0
+    $$
+
+    则称 $\lambda$ 是 $A$ 的特征值，$\alpha$ 是 $A$ 对应于 $\lambda$ 的特征向量。
+
+    **求特征值**：解特征方程
+
+    $$
+    |\lambda E-A|=0
+    $$
+
+    **求特征向量**：对每个特征值 $\lambda$，解齐次方程组
+
+    $$
+    (A-\lambda E)\alpha=0,\qquad \alpha\ne0
+    $$
+
+    其基础解系就是对应于 $\lambda$ 的一组线性无关特征向量。
+
+    <Warning>
+    特征向量必须是非零向量，因此 $(A-\lambda E)\alpha=0$ 的基础解系不能包含零向量。同一个特征值对应的特征向量有无穷多个，它们构成一个解空间（去掉零向量）。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="常用矩阵的特征值">
+    设 $A\alpha=\lambda\alpha$，其中 $\alpha\ne0$，则下表成立：
+
+    | 矩阵 | 特征值 | 对应特征向量 |
+    | --- | --- | --- |
+    | $kA$ | $k\lambda$ | $\alpha$ |
+    | $A^m$ | $\lambda^m$ | $\alpha$ |
+    | $f(A)$ | $f(\lambda)$ | $\alpha$ |
+    | $A^{-1}$ | $\dfrac{1}{\lambda}$ | $\alpha$ |
+    | $A^*$ | $\dfrac{\lvert A\rvert}{\lambda}$ | $\alpha$ |
+    | $A+kE$ | $\lambda+k$ | $\alpha$ |
+    | $A^T$ | 与 $A$ 相同 | 不一定相同 |
+    | $P^{-1}AP$ | 与 $A$ 相同 | $P^{-1}\alpha$ |
+
+    其中 $m$ 为正整数，$f$ 为多项式。
+
+    <Warning>
+    $A^{-1}$ 与 $A^*$ 的公式都要求 $A$ 可逆，即 $\lambda\ne0$ 且 $|A|\ne0$。$A^T$ 与 $A$ 的特征值相同，但特征向量不一定相同。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="特征值的和与积">
+    设 $n$ 阶矩阵 $A$ 的 $n$ 个特征值为 $\lambda_1,\lambda_2,\dots,\lambda_n$（按重数计算），则
+
+    $$
+    \sum_{i=1}^{n}\lambda_i=\operatorname{tr}(A)
+    $$
+
+    $$
+    \prod_{i=1}^{n}\lambda_i=|A|
+    $$
+
+    其中 $\operatorname{tr}(A)$ 是矩阵的迹，即主对角线元素之和。
+
+    <Tip>
+    这两个结论常用来检验特征值算得是否正确，也可以在已知部分特征值时反求另一个特征值或待定参数。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 不同特征值对应的特征向量线性无关
+
+<AccordionGroup>
+  <Accordion title="定理">
+    设 $\lambda_1,\lambda_2,\dots,\lambda_m$ 是矩阵 $A$ 的 $m$ 个互不相同的特征值，$\alpha_1,\alpha_2,\dots,\alpha_m$ 分别是对应的特征向量，则
+
+    $$
+    \alpha_1,\alpha_2,\dots,\alpha_m
+    $$
+
+    线性无关。
+
+    <Check>
+    这是“不同特征值对应的特征向量线性无关”的标准结论，也是判断矩阵能否相似对角化的重要工具。
+    </Check>
+  </Accordion>
+
+  <Accordion title="证明（数学归纳法）">
+    对特征值的个数 $m$ 作归纳。
+
+    **$m=1$ 时**：$\alpha_1\ne0$，单个非零向量线性无关，结论成立。
+
+    **归纳假设**：$m-1$ 个互不相同特征值对应的特征向量线性无关。下面证明 $m$ 个的情形。
+
+    设
+
+    $$
+    k_1\alpha_1+k_2\alpha_2+\cdots+k_m\alpha_m=0
+    $$
+
+    两边左乘 $A-\lambda_m E$，并利用 $A\alpha_i=\lambda_i\alpha_i$，得
+
+    $$
+    \sum_{i=1}^{m-1}k_i(\lambda_i-\lambda_m)\alpha_i=0
+    $$
+
+    由归纳假设，$\alpha_1,\dots,\alpha_{m-1}$ 线性无关，因此
+
+    $$
+    k_i(\lambda_i-\lambda_m)=0,\qquad i=1,\dots,m-1
+    $$
+
+    又 $\lambda_i\ne\lambda_m$，所以
+
+    $$
+    k_1=k_2=\cdots=k_{m-1}=0
+    $$
+
+    代回原式得 $k_m\alpha_m=0$；由 $\alpha_m\ne0$ 得 $k_m=0$。故
+
+    $$
+    k_1=k_2=\cdots=k_m=0
+    $$
+
+    即 $\alpha_1,\alpha_2,\dots,\alpha_m$ 线性无关。
+
+    <Tip>
+    证明的关键动作是“左乘 $A-\lambda_m E$”：它把 $\alpha_m$ 消掉，只留下前 $m-1$ 项，从而可以套用归纳假设。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="推论">
+    若 $n$ 阶矩阵 $A$ 有 $n$ 个互不相同的特征值，则 $A$ 一定可以相似对角化。
+
+    <Warning>
+    反过来不成立：有重特征值也可能相似对角化，只要每个特征值对应的线性无关特征向量个数足够。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 相似矩阵与相似对角化
+
+<AccordionGroup>
+  <Accordion title="相似矩阵的定义与不变量">
+    若存在可逆矩阵 $P$，使得
+
+    $$
+    B=P^{-1}AP
+    $$
+
+    则称 $A$ 与 $B$ 相似，记作 $A\sim B$。
+
+    相似矩阵具有相同的特征值、行列式、迹和秩。
+
+    <Info>
+    相似矩阵的特征多项式相同，因此特征值（含重数）相同；但特征向量一般不保持相同，而是按 $P^{-1}\alpha$ 对应。
+    </Info>
+  </Accordion>
+
+  <Accordion title="相似对角化的定义">
+    若存在可逆矩阵 $P$，使得
+
+    $$
+    P^{-1}AP=\Lambda
+    $$
+
+    其中 $\Lambda$ 为对角矩阵，则称 $A$ 可相似对角化。
+
+    此时 $\Lambda$ 的对角元素就是 $A$ 的特征值，$P$ 的列向量就是对应的线性无关特征向量。
+
+    <Check>
+    相似对角化的本质：找到一组由特征向量组成的基，使 $A$ 在这组基下成为对角矩阵。
+    </Check>
+  </Accordion>
+
+  <Accordion title="可相似对角化的判定">
+    - $A$ 有 $n$ 个互不相同的特征值，则 $A$ 一定可相似对角化（充分条件）。
+    - $A$ 可相似对角化，当且仅当 $A$ 有 $n$ 个线性无关的特征向量（充要条件）。
+    - 等价地，对每个特征值，其几何重数等于代数重数。
+
+    其中几何重数为 $n-r(A-\lambda_i E)$，即对应线性无关特征向量的个数；代数重数是 $\lambda_i$ 在特征方程中的重数。
+
+    <Warning>
+    “有 $n$ 个特征值”不等于“有 $n$ 个互不相同的特征值”。重特征值对应的线性无关特征向量可能不够 $n$ 个，此时不能相似对角化。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="一般步骤">
+    1. 解 $|\lambda E-A|=0$，求出全部特征值。
+    2. 对每个特征值 $\lambda_i$，解 $(A-\lambda_i E)x=0$，求基础解系。
+    3. 若共有 $n$ 个线性无关的特征向量，令 $P=(\alpha_1,\alpha_2,\dots,\alpha_n)$，则
+
+    $$
+    P^{-1}AP=\operatorname{diag}(\lambda_1,\lambda_2,\dots,\lambda_n)
+    $$
+
+    <Tip>
+    写 $P$ 时，列向量的顺序必须与 $\Lambda$ 中特征值的顺序一一对应。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 实对称矩阵
+
+<AccordionGroup>
+  <Accordion title="三条特殊性质">
+    若 $A$ 为实对称矩阵，即
+
+    $$
+    A^T=A
+    $$
+
+    则：
+
+    1. $A$ 的全部特征值都是实数。
+    2. 不同特征值对应的特征向量必定正交。
+    3. $A$ 一定可以正交对角化。
+
+    正交对角化公式为
+
+    $$
+    Q^TAQ=\Lambda,\qquad Q^TQ=E
+    $$
+
+    其中 $Q$ 为正交矩阵，满足 $Q^{-1}=Q^T$。
+
+    <Info>
+    一般矩阵只能保证不同特征值对应的特征向量线性无关；实对称矩阵进一步保证它们正交，这是二次型能用正交变换化为标准形的根本原因。
+    </Info>
+  </Accordion>
+
+  <Accordion title="证明：不同特征值对应的特征向量正交">
+    设 $A^T=A$，$\alpha,\beta$ 分别对应不同特征值 $\lambda,\mu$，即
+
+    $$
+    A\alpha=\lambda\alpha,\qquad A\beta=\mu\beta,\qquad \lambda\ne\mu
+    $$
+
+    因为 $A^T=A$，所以
+
+    $$
+    (A\alpha)^T\beta=\alpha^TA^T\beta=\alpha^TA\beta
+    $$
+
+    一方面，
+
+    $$
+    (A\alpha)^T\beta=(\lambda\alpha)^T\beta=\lambda\alpha^T\beta
+    $$
+
+    另一方面，
+
+    $$
+    \alpha^TA\beta=\alpha^T(\mu\beta)=\mu\alpha^T\beta
+    $$
+
+    因此
+
+    $$
+    \lambda\alpha^T\beta=\mu\alpha^T\beta
+    $$
+
+    即
+
+    $$
+    (\lambda-\mu)\alpha^T\beta=0
+    $$
+
+    由 $\lambda\ne\mu$，得
+
+    $$
+    \alpha^T\beta=0
+    $$
+
+    即 $\alpha$ 与 $\beta$ 正交。
+
+    <Tip>
+    证明只用了“实对称”这一条件把 $\alpha^TA\beta$ 的两种算法接起来，是“同一式子两种算法”的典型用法。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="正交对角化的步骤">
+    1. 解 $|\lambda E-A|=0$，求出全部特征值。
+    2. 对每个特征值求基础解系。
+    3. 对同一特征值对应的特征向量作施密特正交化；不同特征值对应的特征向量已经正交。
+    4. 将所有特征向量单位化，得到标准正交特征向量组。
+    5. 以它们为列构成正交矩阵 $Q$，则
+
+    $$
+    Q^{-1}AQ=Q^TAQ=\Lambda
+    $$
+
+    <Warning>
+    只有实对称矩阵才保证一定能正交对角化。一般矩阵即使可相似对角化，也不一定可以正交对角化。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 考前速记
+
+<AccordionGroup>
+  <Accordion title="公式与结论">
+    | 知识点 | 必背内容 |
+    | --- | --- |
+    | 特征值 | $\lvert\lambda E-A\rvert=0$ |
+    | 特征向量 | $(A-\lambda E)\alpha=0,\ \alpha\ne0$ |
+    | 特征值之和 | $\sum\lambda_i=\operatorname{tr}(A)$ |
+    | 特征值之积 | $\prod\lambda_i=\lvert A\rvert$ |
+    | 不同特征值对应的特征向量 | 线性无关 |
+    | 实对称矩阵不同特征值对应的特征向量 | 正交 |
+    | 相似变换 | $P^{-1}AP$ |
+    | 正交变换 | $Q^TAQ,\ Q^TQ=E$ |
+  </Accordion>
+
+  <Accordion title="判定与易错">
+    - $A$ 有 $n$ 个互不相同的特征值 $\Rightarrow$ $A$ 可相似对角化。
+    - $A$ 可相似对角化 $\iff$ $A$ 有 $n$ 个线性无关的特征向量。
+    - 一般矩阵可相似对角化，不代表它一定可以正交对角化。
+    - 实对称矩阵一定可以正交对角化，且不同特征值对应的特征向量已经正交。
+
+    <Check>
+    最重要的逻辑关系：不同特征值对应的特征向量必定线性无关；若矩阵还是实对称矩阵，那么不同特征值对应的特征向量进一步相互正交。正是实对称矩阵的这一性质，保证了二次型可以通过正交变换化为标准形。
+    </Check>
+  </Accordion>
+</AccordionGroup>

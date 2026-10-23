@@ -142,38 +142,210 @@ tags: ["考研", "考研数学一", "概率论"]
 ## 协方差
 
 <AccordionGroup>
-  <Accordion title="协方差">
-    协方差定义为：
+  <Accordion title="定义与计算公式">
+    设 $X,Y$ 的期望存在且二阶矩有限，协方差定义为：
 
     $$
     \operatorname{Cov}(X,Y)=E\left([X-E(X)][Y-E(Y)]\right)
     $$
 
-    常用计算式：
+    最常用的计算式：
 
     $$
     \operatorname{Cov}(X,Y)=E(XY)-E(X)E(Y)
     $$
 
-    协方差的性质：
+    <Tip>
+    计算时优先使用第二式，只需分别求出 $E(XY)$、$E(X)$、$E(Y)$，不必先求 $(X-E(X))(Y-E(Y))$ 的分布。
+    </Tip>
+  </Accordion>
 
-    $$
-    \operatorname{Cov}(X,X)=D(X)
-    $$
+  <Accordion title="基本性质">
+    对任意常数 $a,b,c,d$：
 
     $$
     \operatorname{Cov}(X,Y)=\operatorname{Cov}(Y,X)
     $$
 
     $$
+    \operatorname{Cov}(X,X)=D(X)
+    $$
+
+    $$
+    \operatorname{Cov}(X,c)=0,\qquad
+    \operatorname{Cov}(aX,Y)=a\operatorname{Cov}(X,Y)
+    $$
+
+    $$
+    \operatorname{Cov}(X+c,Y)=\operatorname{Cov}(X,Y)
+    $$
+
+    两边同时作线性变换时：
+
+    $$
     \operatorname{Cov}(aX+b,cY+d)=ac\operatorname{Cov}(X,Y)
     $$
+
+    <Tip>
+    $\operatorname{Cov}(X,X)=D(X)$ 说明方差就是随机变量与自身的协方差。加常数不改变协方差，乘常数按倍数提出。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="线性运算">
+    协方差对两个位置分别具有线性性：
 
     $$
     \operatorname{Cov}(X+Y,Z)=\operatorname{Cov}(X,Z)+\operatorname{Cov}(Y,Z)
     $$
 
-    若 $X,Y$ 独立，则 $\operatorname{Cov}(X,Y)=0$；反过来通常不成立。
+    $$
+    \operatorname{Cov}(X-Y,Z)=\operatorname{Cov}(X,Z)-\operatorname{Cov}(Y,Z)
+    $$
+
+    推广到多个随机变量：
+
+    $$
+    \operatorname{Cov}\left(\sum_{i=1}^{n}X_i,Y\right)
+    =\sum_{i=1}^{n}\operatorname{Cov}(X_i,Y)
+    $$
+
+    两边都是和式时：
+
+    $$
+    \operatorname{Cov}\left(\sum_{i=1}^{n}X_i,\sum_{j=1}^{m}Y_j\right)
+    =\sum_{i=1}^{n}\sum_{j=1}^{m}\operatorname{Cov}(X_i,Y_j)
+    $$
+
+    更一般地，两个线性组合的协方差为：
+
+    $$
+    \operatorname{Cov}\left(\sum_{i=1}^{n}a_iX_i,\sum_{j=1}^{m}b_jY_j\right)
+    =\sum_{i=1}^{n}\sum_{j=1}^{m}a_ib_j\operatorname{Cov}(X_i,Y_j)
+    $$
+
+    特别地：
+
+    $$
+    \operatorname{Cov}(X-Y,X)=D(X)-\operatorname{Cov}(X,Y)
+    $$
+
+    <Tip>
+    遇到线性组合的协方差，先把两个位置分别拆成和式，再逐项配对展开。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="与方差的互化">
+    和、差的方差：
+
+    $$
+    D(X+Y)=D(X)+D(Y)+2\operatorname{Cov}(X,Y)
+    $$
+
+    $$
+    D(X-Y)=D(X)+D(Y)-2\operatorname{Cov}(X,Y)
+    $$
+
+    反过来由方差求协方差：
+
+    $$
+    \operatorname{Cov}(X,Y)=\frac{D(X+Y)-D(X)-D(Y)}{2}
+    $$
+
+    $$
+    \operatorname{Cov}(X,Y)=\frac{D(X)-D(X-Y)+D(Y)}{2}
+    $$
+
+    <Warning>
+    $D(X\pm Y)$ 中的交叉项符号与协方差前面的符号一致，不要写成 $D(X-Y)=D(X)+D(Y)+2\operatorname{Cov}(X,Y)$。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="其他常用公式">
+    随机变量与自身函数的协方差：
+
+    $$
+    \operatorname{Cov}(X,aX+b)=aD(X)
+    $$
+
+    $$
+    \operatorname{Cov}(X,g(X))=E[Xg(X)]-E(X)E[g(X)]
+    $$
+
+    例如：
+
+    $$
+    \operatorname{Cov}(X,X^2)=E(X^3)-E(X)E(X^2)
+    $$
+
+    由柯西–施瓦茨不等式，协方差满足：
+
+    $$
+    |\operatorname{Cov}(X,Y)|\le\sqrt{D(X)D(Y)}
+    $$
+
+    这也是相关系数满足 $|\rho_{XY}|\le1$ 的依据。
+
+    <Warning>
+    $\operatorname{Cov}(X,g(X))$ 一般不为 $0$。$X$ 与自身的函数通常不独立，不能套用“独立则协方差为零”。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="全协方差公式（拓展）">
+    若相关条件期望存在，则：
+
+    $$
+    \operatorname{Cov}(X,Y)
+    =E\left[\operatorname{Cov}(X,Y\mid Z)\right]
+    +\operatorname{Cov}\left(E[X\mid Z],E[Y\mid Z]\right)
+    $$
+
+    其中：
+
+    $$
+    \operatorname{Cov}(X,Y\mid Z)
+    =E\left[(X-E(X\mid Z))(Y-E(Y\mid Z))\mid Z\right]
+    $$
+
+    对应的全方差公式为：
+
+    $$
+    D(X)=E[D(X\mid Z)]+D(E[X\mid Z])
+    $$
+
+    <Tip>
+    全协方差公式把协方差拆成“条件内部的平均”与“条件期望之间的协方差”两部分，处理分层或复合随机变量时常用。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="协方差矩阵（拓展）">
+    设随机向量 $X=(X_1,X_2,\ldots,X_n)^T$，其协方差矩阵定义为：
+
+    $$
+    \Sigma=\operatorname{Cov}(X)
+    =\left(\operatorname{Cov}(X_i,X_j)\right)_{n\times n}
+    $$
+
+    展开为：
+
+    $$
+    \Sigma=
+    \begin{pmatrix}
+    D(X_1) & \operatorname{Cov}(X_1,X_2) & \cdots & \operatorname{Cov}(X_1,X_n)\\
+    \operatorname{Cov}(X_2,X_1) & D(X_2) & \cdots & \operatorname{Cov}(X_2,X_n)\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \operatorname{Cov}(X_n,X_1) & \operatorname{Cov}(X_n,X_2) & \cdots & D(X_n)
+    \end{pmatrix}
+    $$
+
+    常用性质：
+
+    - $\Sigma$ 是对称矩阵，即 $\Sigma^T=\Sigma$。
+    - $\Sigma$ 是半正定矩阵。
+    - 若 $Y=AX+b$，则 $\operatorname{Cov}(Y)=A\Sigma A^T$。
+
+    <Tip>
+    协方差矩阵属于拓展内容，掌握定义、对称性和线性变换结论即可。
+    </Tip>
   </Accordion>
 </AccordionGroup>
 
@@ -187,6 +359,8 @@ tags: ["考研", "考研数学一", "概率论"]
     \rho_{XY}=
     \frac{\operatorname{Cov}(X,Y)}{\sqrt{D(X)D(Y)}}
     $$
+
+    协方差的大小受变量量纲和尺度影响，相关系数是标准化后的无量纲指标，更适合比较相关程度。
 
     相关系数的性质：
 
@@ -325,6 +499,8 @@ tags: ["考研", "考研数学一", "概率论"]
     D(X)=E[D(X\mid Y)]+D[E(X\mid Y)]
     $$
 
+    其协方差版本称为全协方差公式，见“协方差”一节。
+
     <Warning>
     $E(X\mid Y=y)$ 表示在 $Y=y$ 的条件下 $X$ 的平均值；$E(X\mid Y)$ 则是关于 $Y$ 的随机变量。书写时要区分。
     </Warning>
@@ -354,6 +530,19 @@ tags: ["考研", "考研数学一", "概率论"]
     $$
 
     不要默认 $D(X+Y)=D(X)+D(Y)$。
+  </Accordion>
+
+  <Accordion title="协方差计算的优先顺序">
+    按以下顺序尝试：
+
+    1. 优先用 $\operatorname{Cov}(X,Y)=E(XY)-E(X)E(Y)$。
+    2. 出现线性组合时，先按线性运算拆开，再逐项求协方差。
+    3. 已知方差时，用 $D(X\pm Y)$ 与协方差的互化公式反求。
+    4. 判断相关性时，先看协方差是否为零，再决定是否使用独立性。
+
+    <Tip>
+    比较相关程度时不要直接比较协方差，改用无量纲的相关系数 $\rho_{XY}$。
+    </Tip>
   </Accordion>
 
   <Accordion title="独立与不相关不能混用">
