@@ -289,64 +289,6 @@ tags: ["考研", "考研数学一", "概率论"]
     $\operatorname{Cov}(X,g(X))$ 一般不为 $0$。$X$ 与自身的函数通常不独立，不能套用“独立则协方差为零”。
     </Warning>
   </Accordion>
-
-  <Accordion title="全协方差公式（拓展）">
-    若相关条件期望存在，则：
-
-    $$
-    \operatorname{Cov}(X,Y)
-    =E\left[\operatorname{Cov}(X,Y\mid Z)\right]
-    +\operatorname{Cov}\left(E[X\mid Z],E[Y\mid Z]\right)
-    $$
-
-    其中：
-
-    $$
-    \operatorname{Cov}(X,Y\mid Z)
-    =E\left[(X-E(X\mid Z))(Y-E(Y\mid Z))\mid Z\right]
-    $$
-
-    对应的全方差公式为：
-
-    $$
-    D(X)=E[D(X\mid Z)]+D(E[X\mid Z])
-    $$
-
-    <Tip>
-    全协方差公式把协方差拆成“条件内部的平均”与“条件期望之间的协方差”两部分，处理分层或复合随机变量时常用。
-    </Tip>
-  </Accordion>
-
-  <Accordion title="协方差矩阵（拓展）">
-    设随机向量 $X=(X_1,X_2,\ldots,X_n)^T$，其协方差矩阵定义为：
-
-    $$
-    \Sigma=\operatorname{Cov}(X)
-    =\left(\operatorname{Cov}(X_i,X_j)\right)_{n\times n}
-    $$
-
-    展开为：
-
-    $$
-    \Sigma=
-    \begin{pmatrix}
-    D(X_1) & \operatorname{Cov}(X_1,X_2) & \cdots & \operatorname{Cov}(X_1,X_n)\\
-    \operatorname{Cov}(X_2,X_1) & D(X_2) & \cdots & \operatorname{Cov}(X_2,X_n)\\
-    \vdots & \vdots & \ddots & \vdots\\
-    \operatorname{Cov}(X_n,X_1) & \operatorname{Cov}(X_n,X_2) & \cdots & D(X_n)
-    \end{pmatrix}
-    $$
-
-    常用性质：
-
-    - $\Sigma$ 是对称矩阵，即 $\Sigma^T=\Sigma$。
-    - $\Sigma$ 是半正定矩阵。
-    - 若 $Y=AX+b$，则 $\operatorname{Cov}(Y)=A\Sigma A^T$。
-
-    <Tip>
-    协方差矩阵属于拓展内容，掌握定义、对称性和线性变换结论即可。
-    </Tip>
-  </Accordion>
 </AccordionGroup>
 
 ## 相关系数
@@ -498,8 +440,6 @@ tags: ["考研", "考研数学一", "概率论"]
     $$
     D(X)=E[D(X\mid Y)]+D[E(X\mid Y)]
     $$
-
-    其协方差版本称为全协方差公式，见“协方差”一节。
 
     <Warning>
     $E(X\mid Y=y)$ 表示在 $Y=y$ 的条件下 $X$ 的平均值；$E(X\mid Y)$ 则是关于 $Y$ 的随机变量。书写时要区分。
