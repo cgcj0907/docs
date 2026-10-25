@@ -116,86 +116,76 @@
         "tab": "英语",
         "groups": [
           {
-            "group": "大作文",
-            "groups": [
-              {
-                "group": "概述",
-                "pages": [
-                  "english/01-preface",
-                  "english/02-overview"
-                ]
-              },
-              {
-                "group": "图表作文·第一段",
-                "pages": [
-                  "english/03-chart-overview",
-                  "english/04-chart-details",
-                  "english/05-chart-phenomenon"
-                ]
-              },
-              {
-                "group": "通用第二段",
-                "pages": [
-                  "english/06-para2-transition",
-                  "english/07-para2-methods",
-                  "english/08-para2-more"
-                ]
-              },
-              {
-                "group": "通用第三段",
-                "pages": [
-                  "english/09-para3"
-                ]
-              },
-              {
-                "group": "图画作文",
-                "pages": [
-                  "english/10-picture"
-                ]
-              },
-              {
-                "group": "文字作文",
-                "pages": [
-                  "english/11-text"
-                ]
-              },
-              {
-                "group": "后续安排",
-                "pages": [
-                  "english/12-follow-up"
-                ]
-              }
+            "group": "大作文 · 概述",
+            "pages": [
+              "english/01-preface",
+              "english/02-overview"
             ]
           },
           {
-            "group": "小作文",
-            "groups": [
-              {
-                "group": "前言",
-                "pages": [
-                  "english/s01-preface"
-                ]
-              },
-              {
-                "group": "书信",
-                "pages": [
-                  "english/s02-letter-opening",
-                  "english/s03-letter-body",
-                  "english/s04-letter-practice"
-                ]
-              },
-              {
-                "group": "通知·告示",
-                "pages": [
-                  "english/s05-notice"
-                ]
-              },
-              {
-                "group": "纪要",
-                "pages": [
-                  "english/s06-minutes"
-                ]
-              }
+            "group": "大作文 · 图表作文（第一段）",
+            "pages": [
+              "english/03-chart-overview",
+              "english/04-chart-details",
+              "english/05-chart-phenomenon"
+            ]
+          },
+          {
+            "group": "大作文 · 通用第二段",
+            "pages": [
+              "english/06-para2-transition",
+              "english/07-para2-methods",
+              "english/08-para2-more"
+            ]
+          },
+          {
+            "group": "大作文 · 通用第三段",
+            "pages": [
+              "english/09-para3"
+            ]
+          },
+          {
+            "group": "大作文 · 图画作文",
+            "pages": [
+              "english/10-picture"
+            ]
+          },
+          {
+            "group": "大作文 · 文字作文",
+            "pages": [
+              "english/11-text"
+            ]
+          },
+          {
+            "group": "大作文 · 后续安排",
+            "pages": [
+              "english/12-follow-up"
+            ]
+          },
+          {
+            "group": "小作文 · 前言",
+            "pages": [
+              "english/s01-preface"
+            ]
+          },
+          {
+            "group": "小作文 · 书信",
+            "pages": [
+              "english/s02-letter-opening",
+              "english/s03-letter-body",
+              "english/s04-letter-practice"
+            ]
+          },
+          {
+            "group": "小作文 · 通知·告示",
+            "pages": [
+              "english/s05-notice"
+            ]
+          },
+          {
+            "group": "小作文 · 纪要",
+            "pages": [
+              "english/s06-minutes"
             ]
           }
         ]
