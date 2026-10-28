@@ -1,453 +1,842 @@
 ---
-title: "第 3 章 多元函数积分学"
-sidebarTitle: "多元函数积分学"
-description: "整理三重积分、第一型与第二型曲线曲面积分，以及格林、高斯、斯托克斯公式的条件、方向与计算。"
+title: "第 3 章 多元函数积分学的预备知识"
+sidebarTitle: "多元积分的预备知识"
+description: "整理向量代数、空间平面与直线、空间曲面与曲线、切线与法平面、方向导数与梯度、散度与旋度。"
 tags: ["考研", "高等数学"]
 ---
 
-本章对应张宇《高等数学基础30讲》第 18 讲，是数学一的内容。全章按“三重积分 → 第一型曲线、曲面积分 → 第二型曲线、曲面积分 → 三大公式”展开。复习时先判断积分类型：第一型对弧长或面积积分，不带方向；第二型对坐标积分，必须定向；再根据区域形状选择坐标系、投影方式或公式。
+本章对应张宇《高等数学基础30讲》第 17 讲，是数学一的内容，为第 18 讲多元函数积分学做几何与场论上的准备。全章按“向量代数 → 平面与直线 → 曲面与曲线 → 曲线的切线与法平面 → 曲面的切平面与法线 → 方向导数与梯度 → 散度与旋度”展开。
+
+复习时先建立“方向”意识：空间几何中的距离、夹角、切线、法线都由方向向量决定；场论中的方向导数、通量、环量则由梯度、散度、旋度刻画。本章公式是格林、高斯、斯托克斯公式的直接工具，不能只背结论。
 
 <Info>
-**复习主线**：识别积分类型 → 检查区域对称性 → 选择坐标系或投影 → 判断封闭性与方向 → 套用格林、高斯或斯托克斯公式。
+**复习主线**：写出方向向量或法向量 → 用点积判断垂直、叉积判断平行 → 套距离与夹角公式 → 用梯度求切平面与方向导数 → 用散度、旋度描述向量场。
 
 **常见考法**：
 
-- 小题多考微元、对称性与坐标系选择；
-- 大题多考格林公式、高斯公式、斯托克斯公式，常与补线、补面、挖洞、路径无关结合。
+- 小题多考向量运算、平面与直线的位置关系、点到直线与点到平面的距离；
+- 大题多考曲线、曲面的切线与切平面，方向导数的最大值，以及散度、旋度的计算；
+- 本章结论会直接出现在多元积分学大题的第一步，例如补面时求法向量、定向时判断侧。
 </Info>
 
-## 三重积分
+## 向量代数
 
 <AccordionGroup>
-  <Accordion title="概念与性质">
-    设 $f(x,y,z)$ 在空间有界闭区域 $\Omega$ 上连续。把 $\Omega$ 任意分成 $n$ 个小区域 $\Delta V_i$，任取 $(\xi_i,\eta_i,\zeta_i)\in\Delta V_i$，记各小区域直径的最大值为 $\lambda$。若极限
+  <Accordion title="坐标运算与方向余弦">
+    设
 
     $$
-    \iiint_\Omega f(x,y,z)\,dV
-    =\lim_{\lambda\to0}\sum_{i=1}^{n}f(\xi_i,\eta_i,\zeta_i)\Delta V_i
-    $$
-
-    存在，则称其为 $f$ 在 $\Omega$ 上的三重积分。
-
-    当 $f\equiv1$ 时，
-
-    $$
-    V=\iiint_\Omega dV
-    $$
-
-    即三重积分表示区域 $\Omega$ 的体积。
-
-    常用性质：
-
-    - **线性**：$\iiint_\Omega(\alpha f+\beta g)\,dV=\alpha\iiint_\Omega f\,dV+\beta\iiint_\Omega g\,dV$。
-    - **区域可加**：若 $\Omega$ 被分成内部不重叠的两块 $\Omega_1,\Omega_2$，则积分等于两块之和。
-    - **保号与比较**：若 $f\le g$，则 $\iiint_\Omega f\,dV\le\iiint_\Omega g\,dV$；特别地 $\left|\iiint_\Omega f\,dV\right|\le\iiint_\Omega|f|\,dV$。
-    - **估值**：若 $m\le f\le M$，则 $mV\le\iiint_\Omega f\,dV\le MV$。
-    - **中值定理**：若 $f$ 连续，则存在 $(\xi,\eta,\zeta)\in\Omega$，使 $\iiint_\Omega f\,dV=f(\xi,\eta,\zeta)V$。
-  </Accordion>
-
-  <Accordion title="普通对称性">
-    以坐标平面为对称面。若 $\Omega$ 关于 $yOz$ 平面对称，即
-
-    $$
-    (x,y,z)\in\Omega\iff(-x,y,z)\in\Omega
+    \mathbf a=(a_1,a_2,a_3),\qquad \mathbf b=(b_1,b_2,b_3)
     $$
 
     则
 
     $$
-    \iiint_\Omega f(x,y,z)\,dV=
-    \begin{cases}
-    0, & f(-x,y,z)=-f(x,y,z)\\[4pt]
-    2\iiint_{\Omega_+}f(x,y,z)\,dV, & f(-x,y,z)=f(x,y,z)
-    \end{cases}
+    \mathbf a\pm\mathbf b=(a_1\pm b_1,\ a_2\pm b_2,\ a_3\pm b_3),\qquad
+    k\mathbf a=(ka_1,ka_2,ka_3)
     $$
 
-    其中 $\Omega_+=\Omega\cap\{x\ge0\}$。
-
-    关于 $zOx$ 平面（$y$ 变号）、$xOy$ 平面（$z$ 变号）对称时，结论完全类似：看被积函数关于相应变量的奇偶性。
-
-    <Warning>
-    先验证区域对称，再判断被积函数的奇偶性，两者缺一不可。区域不对称时，即使 $f$ 是奇函数，积分也未必为 $0$。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="轮换对称性">
-    若将 $x,y,z$ 轮换为 $y,z,x$ 后区域不变，则
+    模与单位向量：
 
     $$
-    \iiint_\Omega f(x,y,z)\,dV
-    =\iiint_\Omega f(y,z,x)\,dV
-    =\iiint_\Omega f(z,x,y)\,dV
+    |\mathbf a|=\sqrt{a_1^2+a_2^2+a_3^2},\qquad
+    \mathbf a^\circ=\frac{\mathbf a}{|\mathbf a|}
     $$
 
-    特别地，
+    设 $\mathbf a$ 与三条坐标轴正向的夹角分别为 $\alpha,\beta,\gamma$，称为方向角，则方向余弦为
 
     $$
-    \iiint_\Omega x\,dV=\iiint_\Omega y\,dV=\iiint_\Omega z\,dV
+    \cos\alpha=\frac{a_1}{|\mathbf a|},\qquad
+    \cos\beta=\frac{a_2}{|\mathbf a|},\qquad
+    \cos\gamma=\frac{a_3}{|\mathbf a|}
     $$
 
-    若 $\Omega$ 关于平面 $x=y$ 对称（即交换 $x,y$ 后区域不变），则
+    且
 
     $$
-    \iiint_\Omega f(x,y,z)\,dV=\iiint_\Omega f(y,x,z)\,dV
+    \cos^2\alpha+\cos^2\beta+\cos^2\gamma=1
+    $$
+
+    因此
+
+    $$
+    \mathbf a^\circ=(\cos\alpha,\cos\beta,\cos\gamma)
     $$
 
     <Tip>
-    球体、正方体等关于三个坐标面都对称的区域，常用轮换对称性把 $x^2$ 型积分化为 $\frac13(x^2+y^2+z^2)$ 的积分：
-
-    $$
-    \iiint_\Omega x^2\,dV
-    =\frac13\iiint_\Omega(x^2+y^2+z^2)\,dV
-    $$
-
-    类似地，若 $\Omega$ 关于三个坐标面均对称，则 $\iiint_\Omega(x+y+z)\,dV=0$。
+    方向余弦就是单位向量的三个分量。题目给出方向角或方向余弦时，方向向量可直接取 $(\cos\alpha,\cos\beta,\cos\gamma)$，不必再单位化。
     </Tip>
   </Accordion>
 
-  <Accordion title="直角坐标：先一后二（穿线法）">
-    若 $\Omega$ 可表示为
-
+  <Accordion title="数量积">
     $$
-    \Omega=\{(x,y,z)\mid (x,y)\in D_{xy},\ z_1(x,y)\le z\le z_2(x,y)\}
-    $$
-
-    则
-
-    $$
-    \iiint_\Omega f\,dV
-    =\iint_{D_{xy}}\left[\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\,dz\right]dx\,dy
+    \mathbf a\cdot\mathbf b
+    =|\mathbf a||\mathbf b|\cos\theta
+    =a_1b_1+a_2b_2+a_3b_3
     $$
 
-    几何上，先沿 $z$ 方向穿线，确定内层积分限，再在投影区域 $D_{xy}$ 上作二重积分。
-
-    适用：区域上下边界分别由两张曲面给出，例如曲顶柱体。
-
-    <Tip>
-    内层积分的上下限只能含外层变量；若 $z$ 的积分限中含 $z$，说明投影或穿线方向选错了。
-    </Tip>
-  </Accordion>
-
-  <Accordion title="直角坐标：先二后一（截面法）">
-    若 $\Omega$ 夹在平面 $z=a$ 与 $z=b$ 之间，用平面 $z=\text{常数}$ 截得的截面为 $D_z$，则
+    其中 $\theta$ 为两向量夹角，$\theta\in[0,\pi]$。由此得到夹角公式
 
     $$
-    \iiint_\Omega f\,dV=\int_a^b dz\iint_{D_z}f(x,y,z)\,dx\,dy
+    \cos\theta=\frac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|}
     $$
 
-    当 $f$ 只与 $z$ 有关时，
+    以及
 
     $$
-    \iiint_\Omega f(z)\,dV=\int_a^b f(z)S(z)\,dz
+    |\mathbf a|^2=\mathbf a\cdot\mathbf a
     $$
 
-    其中 $S(z)$ 为截面 $D_z$ 的面积。
-
-    适用：截面形状规则、面积易求的区域，如球体、锥体、旋转体；尤其当被积函数只含 $z$ 时最方便。
-  </Accordion>
-
-  <Accordion title="柱面坐标">
-    作变换
+    运算律：交换律、分配律、与数乘结合。但**不满足消去律**：
 
     $$
-    x=r\cos\theta,\qquad y=r\sin\theta,\qquad z=z
+    \mathbf a\cdot\mathbf b=\mathbf a\cdot\mathbf c
+    \ \not\Rightarrow\ \mathbf b=\mathbf c
     $$
 
-    其中 $r\ge0$，$0\le\theta<2\pi$。体积微元为
+    因为只能推出 $\mathbf a\cdot(\mathbf b-\mathbf c)=0$，即 $\mathbf a\perp(\mathbf b-\mathbf c)$。
+
+    投影：$\mathbf b$ 在 $\mathbf a$ 方向上的投影为
 
     $$
-    dV=r\,dr\,d\theta\,dz
+    \operatorname{Prj}_{\mathbf a}\mathbf b
+    =\frac{\mathbf a\cdot\mathbf b}{|\mathbf a|}
+    =|\mathbf b|\cos\theta
     $$
 
-    于是
-
-    $$
-    \iiint_\Omega f\,dV
-    =\iiint_{\Omega'}f(r\cos\theta,r\sin\theta,z)\,r\,dr\,d\theta\,dz
-    $$
-
-    定限步骤：先把 $\Omega$ 投影到 $xOy$ 平面得到 $D$，用极坐标写出 $r,\theta$ 的范围；再对每个 $(r,\theta)$ 确定 $z$ 的上下限。
-
-    适用：积分区域含 $x^2+y^2$，或由圆柱、圆锥、旋转抛物面围成。
-
-    常见对应：
-
-    - 圆柱 $x^2+y^2\le R^2$：$0\le r\le R$；
-    - 圆锥 $z=\sqrt{x^2+y^2}$：$z=r$；
-    - 球面 $x^2+y^2+z^2=R^2$：$z=\pm\sqrt{R^2-r^2}$。
-  </Accordion>
-
-  <Accordion title="球面坐标">
-    作变换
-
-    $$
-    x=\rho\sin\varphi\cos\theta,\qquad
-    y=\rho\sin\varphi\sin\theta,\qquad
-    z=\rho\cos\varphi
-    $$
-
-    其中 $\rho\ge0$，$0\le\varphi\le\pi$，$0\le\theta<2\pi$。这里 $\varphi$ 是向径与 $z$ 轴正向的夹角，$\theta$ 是绕 $z$ 轴的方位角。体积微元为
-
-    $$
-    dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta
-    $$
-
-    于是
-
-    $$
-    \iiint_\Omega f\,dV
-    =\iiint_{\Omega'}f(\rho\sin\varphi\cos\theta,\rho\sin\varphi\sin\theta,\rho\cos\varphi)
-    \,\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta
-    $$
-
-    定限时通常先由投影确定 $\theta$，再由区域边界与 $z$ 轴的夹角确定 $\varphi$，最后沿射线方向确定 $\rho$。
-
-    常见区域：
-
-    - 球体 $x^2+y^2+z^2\le R^2$：$0\le\rho\le R$，$0\le\varphi\le\pi$，$0\le\theta<2\pi$；
-    - 上半球：$0\le\varphi\le\frac{\pi}{2}$；
-    - 圆锥 $z=\sqrt{x^2+y^2}$ 内部：$0\le\varphi\le\frac{\pi}{4}$；
-    - 球面与锥面围成的“冰淇淋”区域：先由交线定 $\varphi$，再定 $\rho$ 的上限。
+    这是一个带符号的数，夹角为钝角时投影为负。
 
     <Warning>
-    $\varphi$ 从 $z$ 轴量起，范围是 $[0,\pi]$；$\theta$ 才是绕 $z$ 轴一周的角。$dV$ 中的 $\rho^2\sin\varphi$ 不能漏，否则结果量纲和数值都会错。
+    投影是数量，投影向量是向量：$\mathbf b$ 在 $\mathbf a$ 方向上的投影向量为 $\dfrac{\mathbf a\cdot\mathbf b}{\mathbf a\cdot\mathbf a}\mathbf a$。两者不要混写。
     </Warning>
   </Accordion>
 
-  <Accordion title="一般换元法">
-    作一一对应、雅可比行列式不为零的变换
-
+  <Accordion title="向量积">
     $$
-    x=x(u,v,w),\qquad y=y(u,v,w),\qquad z=z(u,v,w)
-    $$
-
-    则
-
-    $$
-    \iiint_\Omega f(x,y,z)\,dV
-    =\iiint_{\Omega'}f\bigl(x(u,v,w),y(u,v,w),z(u,v,w)\bigr)|J|\,du\,dv\,dw
+    \mathbf a\times\mathbf b=
+    \begin{vmatrix}
+    \mathbf i & \mathbf j & \mathbf k\\
+    a_1 & a_2 & a_3\\
+    b_1 & b_2 & b_3
+    \end{vmatrix}
+    =(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)
     $$
 
-    其中
+    模：
 
     $$
-    J=\frac{\partial(x,y,z)}{\partial(u,v,w)}
-    =\begin{vmatrix}
-    x_u & x_v & x_w\\
-    y_u & y_v & y_w\\
-    z_u & z_v & z_w
+    |\mathbf a\times\mathbf b|
+    =|\mathbf a||\mathbf b|\sin\theta
+    $$
+
+    几何意义：$|\mathbf a\times\mathbf b|$ 等于以 $\mathbf a,\mathbf b$ 为邻边的平行四边形的面积，三角形面积为 $\dfrac12|\mathbf a\times\mathbf b|$。
+
+    方向：同时垂直于 $\mathbf a,\mathbf b$，且 $\mathbf a,\mathbf b,\mathbf a\times\mathbf b$ 构成右手系。
+
+    运算性质：
+
+    - 反交换律：$\mathbf a\times\mathbf b=-\mathbf b\times\mathbf a$；
+    - 分配律：$\mathbf a\times(\mathbf b+\mathbf c)=\mathbf a\times\mathbf b+\mathbf a\times\mathbf c$；
+    - $\mathbf a\times\mathbf a=\mathbf 0$；
+    - **不满足结合律**，一般 $(\mathbf a\times\mathbf b)\times\mathbf c\ne\mathbf a\times(\mathbf b\times\mathbf c)$。
+
+    <Tip>
+    求“同时垂直于两个已知向量”的向量，标准做法就是作叉积。求平面法向量、直线方向向量、曲面法向量，最终都归结为这一步。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="混合积">
+    $$
+    [\mathbf a,\mathbf b,\mathbf c]
+    =(\mathbf a\times\mathbf b)\cdot\mathbf c
+    =
+    \begin{vmatrix}
+    a_1 & a_2 & a_3\\
+    b_1 & b_2 & b_3\\
+    c_1 & c_2 & c_3
     \end{vmatrix}
     $$
 
-    柱面坐标与球面坐标都是它的特例，对应的雅可比行列式分别为 $r$ 与 $\rho^2\sin\varphi$。
-
-    <Warning>
-    换元后必须同时做两件事：被积函数换成新变量，区域换成新变量下的区域，并乘上 $|J|$。只换被积函数、不换区域，是最常见的错误。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="易错点">
-    1. 先一后二时，内层积分限不能含内层变量。
-    2. 先二后一适合截面面积易求的情形；截面复杂时改用先一后二。
-    3. 柱面坐标的体积微元多一个 $r$，球面坐标多一个 $\rho^2\sin\varphi$。
-    4. 对称性要先看区域，再看被积函数。
-    5. 轮换对称性只允许交换变量，不能改变区域本身。
-  </Accordion>
-</AccordionGroup>
-
-## 第一型曲线积分
-
-<AccordionGroup>
-  <Accordion title="概念与性质">
-    设 $L$ 为分段光滑曲线，$f(x,y,z)$ 在 $L$ 上有界。把 $L$ 分成 $n$ 小段，第 $i$ 段弧长为 $\Delta s_i$，任取 $(\xi_i,\eta_i,\zeta_i)$，若极限
-
-    $$
-    \int_L f(x,y,z)\,ds
-    =\lim_{\lambda\to0}\sum_{i=1}^{n}f(\xi_i,\eta_i,\zeta_i)\Delta s_i
-    $$
-
-    存在，则称其为 $f$ 沿 $L$ 的第一型曲线积分（对弧长的曲线积分）。
+    几何意义：绝对值等于以 $\mathbf a,\mathbf b,\mathbf c$ 为棱的平行六面体的体积；以它们为棱的四面体体积为 $\dfrac16\bigl|[\mathbf a,\mathbf b,\mathbf c]\bigr|$。
 
     性质：
 
-    - 与曲线方向无关：$\int_{L^-}f\,ds=\int_L f\,ds$；
-    - 线性、路径可加；
-    - 当 $f\equiv1$ 时，$\int_L ds$ 等于曲线弧长；
-    - 结果为标量，没有方向。
+    - 轮换不变：$[\mathbf a,\mathbf b,\mathbf c]=[\mathbf b,\mathbf c,\mathbf a]=[\mathbf c,\mathbf a,\mathbf b]$；
+    - 任意交换两个向量，混合积变号；
+    - 含零向量或有两个向量平行时，混合积为 $0$。
 
-    <Tip>
-    “与方向无关”只对第一型成立。第二型曲线积分反向要变号，两者不能混用。
-    </Tip>
-  </Accordion>
-
-  <Accordion title="参数方程法">
-    设曲线由
+    三向量共面的判据：
 
     $$
-    x=x(t),\qquad y=y(t),\qquad z=z(t),\qquad \alpha\le t\le\beta
+    [\mathbf a,\mathbf b,\mathbf c]=0
     $$
 
-    给出，且 $x(t),y(t),z(t)$ 有连续导数，则弧长微元为
-
-    $$
-    ds=\sqrt{x'^2(t)+y'^2(t)+z'^2(t)}\,dt
-    $$
-
-    于是
-
-    $$
-    \int_L f\,ds
-    =\int_\alpha^\beta f\bigl(x(t),y(t),z(t)\bigr)
-    \sqrt{x'^2+y'^2+z'^2}\,dt
-    $$
-
-    其中 $\alpha<\beta$。平面曲线令 $z=0$ 即可。
+    即混合积为零时，$\mathbf a,\mathbf b,\mathbf c$ 共面。
 
     <Warning>
-    化为定积分时下限必须小于上限，即从参数小的一端积到大的一端，不必管曲线“起点”“终点”。这与第二型曲线积分的方向规定相反。
+    混合积是数，不是向量。“$[\mathbf a,\mathbf b,\mathbf c]=0$”表示三向量共面，不要与 $\mathbf a\times\mathbf b=\mathbf 0$（表示两向量平行）混淆。
     </Warning>
   </Accordion>
 
-  <Accordion title="显函数与极坐标形式">
-    **显函数 $y=y(x)$，$a\le x\le b$**
+  <Accordion title="位置关系与夹角">
+    垂直与平行：
 
     $$
-    ds=\sqrt{1+[y'(x)]^2}\,dx
-    $$
-
-    $$
-    \int_L f(x,y)\,ds
-    =\int_a^b f\bigl(x,y(x)\bigr)\sqrt{1+[y'(x)]^2}\,dx
-    $$
-
-    **显函数 $x=x(y)$，$c\le y\le d$**
-
-    $$
-    ds=\sqrt{1+[x'(y)]^2}\,dy
-    $$
-
-    **极坐标 $r=r(\theta)$，$\alpha\le\theta\le\beta$**
-
-    $$
-    ds=\sqrt{r^2+\left(\frac{dr}{d\theta}\right)^2}\,d\theta
+    \mathbf a\perp\mathbf b\iff\mathbf a\cdot\mathbf b=0
     $$
 
     $$
-    \int_L f\,ds
-    =\int_\alpha^\beta f\bigl(r\cos\theta,r\sin\theta\bigr)
-    \sqrt{r^2+r'^2}\,d\theta
+    \mathbf a\parallel\mathbf b\iff\mathbf a\times\mathbf b=\mathbf 0
+    \iff\frac{a_1}{b_1}=\frac{a_2}{b_2}=\frac{a_3}{b_3}
     $$
 
-    同样要求 $\alpha<\beta$。
+    分式写法要求分母不为 $0$；某个分母为 $0$ 时，按“存在 $k$ 使 $\mathbf a=k\mathbf b$”理解，即对应分子也必须为 $0$。
+
+    两向量夹角
+
+    $$
+    \cos\theta=\frac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|},
+    \qquad \theta\in[0,\pi]
+    $$
+
+    若只关心两条直线或两个平面的夹角，则取锐角或直角：
+
+    $$
+    \cos\theta=\frac{|\mathbf a\cdot\mathbf b|}{|\mathbf a||\mathbf b|},
+    \qquad \theta\in\left[0,\frac{\pi}{2}\right]
+    $$
+
+    <Tip>
+    向量夹角可以是钝角，线线角、面面角只取锐角。判断垂直用点积是否为 $0$，与绝对值无关；求角度时是否加绝对值，要看对象是“向量”还是“直线、平面”。
+    </Tip>
   </Accordion>
 
-  <Accordion title="对称性">
-    第一型曲线积分与方向无关，可以直接使用奇偶对称性。
+  <Accordion title="易错点">
+    1. 向量积坐标公式的第二个分量是 $a_3b_1-a_1b_3$，符号最容易写反，建议每次用行列式展开。
+    2. 混合积交换两个向量要变号，只有轮换才不变号。
+    3. 用分式表示平行时，必须单独检查分母为 $0$ 的分量。
+    4. 投影是数量，投影向量是向量。
+    5. 由 $\mathbf a\cdot\mathbf b=0$ 判断垂直时，要确认 $\mathbf a,\mathbf b$ 都不是零向量。
+    6. 两向量平行 $\iff$ 对应分量成比例，不要写成点积为 $0$。
+  </Accordion>
+</AccordionGroup>
 
-    若 $L$ 关于 $y$ 轴对称，即 $(x,y)\in L\iff(-x,y)\in L$，则
+## 平面与直线
+
+<AccordionGroup>
+  <Accordion title="平面方程">
+    设平面过点 $P_0(x_0,y_0,z_0)$，法向量为 $\mathbf n=(A,B,C)$。
+
+    **点法式**
 
     $$
-    \int_L f(x,y)\,ds=
+    A(x-x_0)+B(y-y_0)+C(z-z_0)=0
+    $$
+
+    **一般式**
+
+    $$
+    Ax+By+Cz+D=0
+    $$
+
+    其中 $\mathbf n=(A,B,C)$ 就是法向量，$A,B,C$ 不全为 $0$。
+
+    **截距式**（三个截距都不为 $0$）
+
+    $$
+    \frac xa+\frac yb+\frac zc=1
+    $$
+
+    **三点式**：过不共线三点 $M_1,M_2,M_3$ 的平面为
+
+    $$
+    (\overrightarrow{M_1M_2}\times\overrightarrow{M_1M_3})\cdot\overrightarrow{M_1M}=0
+    $$
+
+    特殊位置：
+
+    - $D=0$：平面过原点；
+    - $A=0$：平面平行于 $x$ 轴（$B,C$ 不全为 $0$）；
+    - $A=B=0$：平面平行于 $xOy$ 平面，即 $Cz+D=0$。
+
+    <Tip>
+    求平面方程的关键是找法向量。常用三条路：两个已知向量作叉积；与已知平面平行则取同一法向量；与已知直线垂直则取该直线的方向向量。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="平面束">
+    设两平面
+
+    $$
+    \Pi_1:\ A_1x+B_1y+C_1z+D_1=0
+    $$
+
+    $$
+    \Pi_2:\ A_2x+B_2y+C_2z+D_2=0
+    $$
+
+    相交于直线 $L$。则过 $L$ 的平面可设为
+
+    $$
+    A_1x+B_1y+C_1z+D_1
+    +\lambda(A_2x+B_2y+C_2z+D_2)=0
+    $$
+
+    这一形式表示除 $\Pi_2$ 以外所有过 $L$ 的平面。若要包含 $\Pi_2$，用对称形式
+
+    $$
+    \lambda(A_1x+B_1y+C_1z+D_1)
+    +\mu(A_2x+B_2y+C_2z+D_2)=0
+    $$
+
+    其中 $\lambda,\mu$ 不同时为 $0$。
+
+    <Warning>
+    用平面束求平面时，先确认两平面确实相交（法向量不平行）。若两平面平行，束方程表示的是与它们平行的一族平面，不再是“过交线”的平面。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="空间直线方程">
+    设直线过点 $P_0(x_0,y_0,z_0)$，方向向量为 $\mathbf s=(m,n,p)$。
+
+    **对称式**（点向式）
+
+    $$
+    \frac{x-x_0}{m}=\frac{y-y_0}{n}=\frac{z-z_0}{p}
+    $$
+
+    **参数式**
+
+    $$
     \begin{cases}
-    0, & f(-x,y)=-f(x,y)\\[4pt]
-    2\int_{L_+}f(x,y)\,ds, & f(-x,y)=f(x,y)
+    x=x_0+mt\\
+    y=y_0+nt\\
+    z=z_0+pt
     \end{cases}
     $$
 
-    其中 $L_+$ 为 $L$ 在 $x\ge0$ 的部分。
-
-    若 $L$ 关于 $x$ 轴对称，则看 $f$ 关于 $y$ 的奇偶性；空间曲线关于坐标平面对称时同理。
-
-    若 $L$ 关于直线 $y=x$ 对称，则
+    **两点式**：过 $P_1(x_1,y_1,z_1)$、$P_2(x_2,y_2,z_2)$
 
     $$
-    \int_L f(x,y)\,ds=\int_L f(y,x)\,ds
+    \frac{x-x_1}{x_2-x_1}
+    =\frac{y-y_1}{y_2-y_1}
+    =\frac{z-z_1}{z_2-z_1}
+    $$
+
+    **一般式**（两平面交线）
+
+    $$
+    \begin{cases}
+    A_1x+B_1y+C_1z+D_1=0\\
+    A_2x+B_2y+C_2z+D_2=0
+    \end{cases}
+    $$
+
+    此时方向向量为
+
+    $$
+    \mathbf s=\mathbf n_1\times\mathbf n_2
+    $$
+
+    把一般式化为对称式：先取一个满足两方程的点，再取 $\mathbf s=\mathbf n_1\times\mathbf n_2$。
+
+    <Warning>
+    对称式中某个分母为 $0$ 时，约定对应分子恒为 $0$。例如 $\dfrac{x-1}{0}=\dfrac{y}{2}=\dfrac{z}{3}$ 表示位于平面 $x=1$ 内、方向向量为 $(0,2,3)$ 的直线。更稳妥的写法是改用参数式。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="直线与平面的位置关系">
+    设直线方向向量为 $\mathbf s$，平面法向量为 $\mathbf n$。
+
+    垂直：
+
+    $$
+    L\perp\Pi\iff\mathbf s\parallel\mathbf n\iff\mathbf s\times\mathbf n=\mathbf 0
+    $$
+
+    平行或在平面内：
+
+    $$
+    \mathbf s\cdot\mathbf n=0
+    $$
+
+    此时需再把直线上一点代入平面方程：
+
+    - 点满足平面方程：直线在平面内；
+    - 点不满足平面方程：直线与平面平行。
+
+    斜交时，联立参数式与平面方程解出 $t$，即得交点：
+
+    $$
+    A(x_0+mt)+B(y_0+nt)+C(z_0+pt)+D=0
+    $$
+
+    <Tip>
+    “直线与平面平行”和“直线在平面内”在方向向量上无法区分，必须代点验证。这是选择题的常见陷阱。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="两平面的位置关系">
+    设两平面法向量为 $\mathbf n_1,\mathbf n_2$。
+
+    两平面平行或重合：
+
+    $$
+    \Pi_1\parallel\Pi_2
+    \iff\mathbf n_1\times\mathbf n_2=\mathbf 0
+    $$
+
+    进一步区分：若 $\mathbf n_2=k\mathbf n_1$，则当 $D_2=kD_1$ 时两平面重合，否则平行。
+
+    $$
+    \Pi_1\perp\Pi_2\iff\mathbf n_1\cdot\mathbf n_2=0
+    $$
+
+    两平面相交时，交线的方向向量为
+
+    $$
+    \mathbf s=\mathbf n_1\times\mathbf n_2
     $$
 
     <Warning>
-    使用对称性的前提是曲线本身对称，且对称两半的弧长相等。只验证被积函数的奇偶性而不验证曲线对称，是常见失分点。
+    判断两平面平行，先要把法向量系数化成同一比例再比较常数项。直接比较 $D_1,D_2$ 而不统一系数，会得出错误结论。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="两条空间直线的位置关系">
+    设
+
+    $$
+    L_1:\ \mathbf r=\mathbf p_1+t\mathbf s_1,\qquad
+    L_2:\ \mathbf r=\mathbf p_2+s\mathbf s_2
+    $$
+
+    平行或重合：
+
+    $$
+    \mathbf s_1\times\mathbf s_2=\mathbf 0
+    $$
+
+    此时再用 $\mathbf p_2-\mathbf p_1$ 与 $\mathbf s_1$ 是否平行区分平行、重合。
+
+    共面：
+
+    $$
+    [\mathbf p_2-\mathbf p_1,\ \mathbf s_1,\ \mathbf s_2]=0
+    $$
+
+    当 $\mathbf s_1\times\mathbf s_2\ne\mathbf 0$ 时：
+
+    - 混合积为 $0$：两直线共面，必相交；
+    - 混合积不为 $0$：两直线异面。
+
+    <Tip>
+    判断两条直线的关系，先看方向向量是否平行，再看混合积是否为零，两步就能定完“平行、重合、相交、异面”四种情况。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="距离公式">
+    **点到平面**
+
+    $$
+    d=\frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}
+    $$
+
+    **点到直线**（$P_1$ 为直线上一点，$\mathbf s$ 为方向向量）
+
+    $$
+    d=\frac{|\overrightarrow{P_1P_0}\times\mathbf s|}{|\mathbf s|}
+    $$
+
+    推导：$|\overrightarrow{P_1P_0}\times\mathbf s|$ 是以两向量为邻边的平行四边形面积，等于 $|\mathbf s|$ 乘以点线距离。
+
+    **两条异面直线**
+
+    $$
+    d=\frac{\bigl|\overrightarrow{P_1P_2}\cdot(\mathbf s_1\times\mathbf s_2)\bigr|}
+    {|\mathbf s_1\times\mathbf s_2|}
+    $$
+
+    分子是以 $\overrightarrow{P_1P_2},\mathbf s_1,\mathbf s_2$ 为棱的平行六面体体积，分母是底面平行四边形的面积，相除即公垂线长。
+
+    **两条平行平面**
+
+    $$
+    Ax+By+Cz+D_1=0,\qquad Ax+By+Cz+D_2=0
+    $$
+
+    $$
+    d=\frac{|D_1-D_2|}{\sqrt{A^2+B^2+C^2}}
+    $$
+
+    **两条平行直线**：在其中一条上取一点，转化为点到直线的距离。
+
+    <Warning>
+    两平行平面的距离公式要求两个方程的法向量系数已经统一。若写成 $A_1x+B_1y+C_1z+D_1=0$ 与 $k(A_1x+B_1y+C_1z)+D_2=0$，必须先化为同一组 $A,B,C$ 再套公式。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="夹角公式">
+    **两条直线**
+
+    $$
+    \cos\theta=\frac{|\mathbf s_1\cdot\mathbf s_2|}{|\mathbf s_1||\mathbf s_2|},
+    \qquad \theta\in\left[0,\frac{\pi}{2}\right]
+    $$
+
+    **两个平面**
+
+    $$
+    \cos\theta=\frac{|\mathbf n_1\cdot\mathbf n_2|}{|\mathbf n_1||\mathbf n_2|},
+    \qquad \theta\in\left[0,\frac{\pi}{2}\right]
+    $$
+
+    **直线与平面**
+
+    $$
+    \sin\theta=\frac{|\mathbf s\cdot\mathbf n|}{|\mathbf s||\mathbf n|},
+    \qquad \theta\in\left[0,\frac{\pi}{2}\right]
+    $$
+
+    这里 $\theta$ 是直线与它在平面上投影线的夹角，所以用 $\sin$ 而不是 $\cos$：$\mathbf s$ 与 $\mathbf n$ 的夹角是 $90^\circ-\theta$。
+
+    <Warning>
+    线面角用 $\sin$，线线角、面面角用 $\cos$，是最高频的公式混淆点。记法：直线与平面“越陡”，$\mathbf s$ 越接近 $\mathbf n$，此时 $\sin\theta$ 越接近 $1$。
     </Warning>
   </Accordion>
 
   <Accordion title="易错点">
-    1. 第一型曲线积分不区分方向，化定积分时下限恒小于上限。
-    2. 弧长微元要代入参数方程后求导，不能直接对原方程求导。
-    3. 空间曲线若为两张曲面的交线，先参数化再计算，常用 $x=\cos t$、$y=\sin t$。
-    4. 曲线关于坐标轴对称时，奇函数项直接为 $0$，可大幅简化计算。
+    1. 平面方程的法向量是 $(A,B,C)$，直线方程的分母是方向向量，两者不要互串。
+    2. 直线在平面内与平行于平面都满足 $\mathbf s\cdot\mathbf n=0$，必须代点区分。
+    3. 两平面平行要统一法向量系数后再比较常数项。
+    4. 异面直线距离的分子要加绝对值，否则可能算出负数。
+    5. 线面角用 $\sin$，不要套成 $\cos$。
+    6. 用平面束时，束方程默认漏掉 $\Pi_2$，需要时改用 $\lambda\Pi_1+\mu\Pi_2=0$。
+    7. 对称式分母为 $0$ 时不能直接约分，应理解为对应分子为 $0$。
   </Accordion>
 </AccordionGroup>
 
-## 第一型曲面积分
+## 空间曲面与曲线
 
 <AccordionGroup>
-  <Accordion title="概念与性质">
-    设 $\Sigma$ 为光滑曲面，$f(x,y,z)$ 在 $\Sigma$ 上有界。把 $\Sigma$ 分成 $n$ 小块，第 $i$ 块面积为 $\Delta S_i$，任取 $(\xi_i,\eta_i,\zeta_i)$，若极限
+  <Accordion title="曲面方程与柱面">
+    曲面的一般方程为
 
     $$
-    \iint_\Sigma f(x,y,z)\,dS
-    =\lim_{\lambda\to0}\sum_{i=1}^{n}f(\xi_i,\eta_i,\zeta_i)\Delta S_i
+    F(x,y,z)=0
     $$
 
-    存在，则称其为 $f$ 在 $\Sigma$ 上的第一型曲面积分（对面积的曲面积分）。
+    也可写成显式 $z=f(x,y)$，或参数式
 
-    性质：
+    $$
+    \mathbf r(u,v)=\bigl(x(u,v),y(u,v),z(u,v)\bigr)
+    $$
 
-    - 与曲面所取的侧无关；
-    - 线性、曲面可加；
-    - 当 $f\equiv1$ 时，$\iint_\Sigma dS$ 等于曲面面积。
+    **柱面**：动直线沿定曲线平行移动形成的曲面。母线平行于 $z$ 轴时，方程中不含 $z$：
+
+    $$
+    F(x,y)=0
+    $$
+
+    例如 $x^2+y^2=R^2$ 是圆柱面，$y^2=2px$ 是抛物柱面。判断柱面：方程缺少哪个变量，母线就平行于哪条坐标轴。
 
     <Tip>
-    第一型曲面积分与侧无关，所以计算时不必区分上侧、下侧；第二型曲面积分则必须先定侧。
+    空间曲线在坐标面上的投影，本质就是找一个以该坐标面为“底”的柱面，所以投影问题与柱面方程是同一件事。
+  </Tip>
+  </Accordion>
+
+  <Accordion title="旋转曲面">
+    曲线 $C$ 绕定直线旋转一周形成的曲面。设 $C$ 位于 $xOy$ 平面内。
+
+    **$y=f(x)$ 绕 $x$ 轴**
+
+    $$
+    y^2+z^2=[f(x)]^2
+    $$
+
+    **$x=g(y)$ 绕 $y$ 轴**
+
+    $$
+    x^2+z^2=[g(y)]^2
+    $$
+
+    一般原则：绕哪个轴旋转，哪个坐标不变，另一个坐标替换为“其余两个坐标平方和的平方根”，再平方去根号。若曲线位于 $yOz$ 平面内，方程为 $f(y,z)=0$，绕 $z$ 轴旋转后得到
+
+    $$
+    f\bigl(\pm\sqrt{x^2+y^2},\ z\bigr)=0
+    $$
+
+    <Warning>
+    旋转曲面的方程是“平方和”形式，开方会引入 $\pm$，所以最终写成平方，不要保留根号而丢掉另一支。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="常见二次曲面">
+    | 曲面 | 标准方程 | 特征 |
+    | --- | --- | --- |
+    | 球面 | $x^2+y^2+z^2=R^2$ | 到原点距离为 $R$ |
+    | 椭球面 | $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$ | 三个方向半轴为 $a,b,c$ |
+    | 椭圆抛物面 | $z=\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}$ | 开口朝 $z$ 轴正向，截面为椭圆 |
+    | 双曲抛物面（马鞍面） | $z=\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}$ | 一个方向凹、一个方向凸 |
+    | 单叶双曲面 | $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}-\dfrac{z^2}{c^2}=1$ | 连成一片，中间有“腰” |
+    | 双叶双曲面 | $\dfrac{z^2}{c^2}-\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$ | 分成上下两片 |
+    | 圆锥面 | $z^2=a^2(x^2+y^2)$ | 过原点的直纹面，半顶角固定 |
+
+    识别方法：二次项系数“两正一负”时，若等号右端为 $1$ 且负项在 $z^2$ 上，多为单叶双曲面；若写成 $z$ 等于两个平方项之差，则为双曲抛物面。二次项系数“一正两负”时，多为双叶双曲面。
+
+    <Tip>
+    数一考题常把二次曲面与旋转曲面结合，例如“$yOz$ 平面内的抛物线绕 $z$ 轴旋转”，先写出旋转面方程，再与平面求交线。
     </Tip>
   </Accordion>
 
-  <Accordion title="投影公式">
-    若曲面由 $z=z(x,y)$ 给出，在 $xOy$ 平面上的投影为 $D_{xy}$，且 $z(x,y)$ 有连续偏导数，则
+  <Accordion title="空间曲线及其投影">
+    空间曲线常用两种表示。
+
+    **一般式**（两曲面交线）
 
     $$
-    dS=\sqrt{1+z_x^2+z_y^2}\,dx\,dy
+    \begin{cases}
+    F(x,y,z)=0\\
+    G(x,y,z)=0
+    \end{cases}
     $$
 
-    $$
-    \iint_\Sigma f(x,y,z)\,dS
-    =\iint_{D_{xy}}f\bigl(x,y,z(x,y)\bigr)
-    \sqrt{1+z_x^2+z_y^2}\,dx\,dy
-    $$
-
-    若曲面表示为 $x=x(y,z)$ 或 $y=y(x,z)$，则
+    **参数式**
 
     $$
-    dS=\sqrt{1+x_y^2+x_z^2}\,dy\,dz
+    \begin{cases}
+    x=x(t)\\
+    y=y(t)\\
+    z=z(t)
+    \end{cases}
     $$
 
+    投影到 $xOy$ 平面：从两方程中消去 $z$，得投影柱面
+
     $$
-    dS=\sqrt{1+y_x^2+y_z^2}\,dx\,dz
+    H(x,y)=0
     $$
 
-    选择投影方向的原则：向投影不重叠、且偏导数较简单的坐标平面投影。
+    再与 $z=0$ 联立，得投影曲线
+
+    $$
+    \begin{cases}
+    H(x,y)=0\\
+    z=0
+    \end{cases}
+    $$
+
+    投影到 $yOz$、$zOx$ 平面时，分别消去 $x$、$y$。
+
+    <Warning>
+    消元是不可逆运算，投影柱面可能包含原曲线以外的点。因此投影曲线只能取柱面与坐标面交线上满足原方程的那一段，必要时要补上范围限制，例如 $x\ge0$、$0\le z\le1$。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="易错点">
+    1. 柱面方程缺少一个变量，不要误判为“平面”。
+    2. 旋转曲面要写平方和，开方后不能只取正支。
+    3. 投影只写消元结果，忘记与 $z=0$ 联立或忘记范围限制。
+    4. 二次曲面标准方程中 $a,b,c$ 是半轴长，不是轴长。
+    5. 参数式曲线的参数范围要写全，它决定曲线是整条还是其中一段。
+  </Accordion>
+</AccordionGroup>
+
+## 曲线的切线与法平面
+
+<AccordionGroup>
+  <Accordion title="参数式曲线的切向量">
+    设曲线
+
+    $$
+    \mathbf r(t)=\bigl(x(t),y(t),z(t)\bigr)
+    $$
+
+    在 $t=t_0$ 处可导，且
+
+    $$
+    \mathbf T=\mathbf r'(t_0)
+    =\bigl(x'(t_0),y'(t_0),z'(t_0)\bigr)\ne\mathbf 0
+    $$
+
+    则 $\mathbf T$ 是曲线在对应点处的切向量。
+
+    切线方程
+
+    $$
+    \frac{x-x_0}{x'(t_0)}
+    =\frac{y-y_0}{y'(t_0)}
+    =\frac{z-z_0}{z'(t_0)}
+    $$
+
+    法平面（过切点且垂直于切线的平面）
+
+    $$
+    x'(t_0)(x-x_0)+y'(t_0)(y-y_0)+z'(t_0)(z-z_0)=0
+    $$
+
+    <Warning>
+    切向量必须非零。若 $\mathbf r'(t_0)=\mathbf 0$，曲线在该点可能出现尖点或自交点，上述公式失效，需要单独判断。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="两曲面交线的切向量">
+    设曲线由
+
+    $$
+    \begin{cases}
+    F(x,y,z)=0\\
+    G(x,y,z)=0
+    \end{cases}
+    $$
+
+    给出，且 $\nabla F,\nabla G$ 在点 $P_0$ 处连续、$\nabla F(P_0)\times\nabla G(P_0)\ne\mathbf 0$，则曲线在 $P_0$ 处的切向量为
+
+    $$
+    \mathbf T=\nabla F(P_0)\times\nabla G(P_0)
+    =
+    \begin{vmatrix}
+    \mathbf i & \mathbf j & \mathbf k\\
+    F_x & F_y & F_z\\
+    G_x & G_y & G_z
+    \end{vmatrix}
+    $$
+
+    因为 $\nabla F$ 是曲面 $F=0$ 的法向量，$\nabla G$ 是曲面 $G=0$ 的法向量，交线的方向同时垂直于两个法向量，故取叉积。
 
     <Tip>
-    在曲面上可以把方程代入被积函数化简。例如在 $x^2+y^2+z^2=R^2$ 上，可把 $z^2$ 换成 $R^2-x^2-y^2$，再去根号或降次。
+    这是“两曲面交线”题型最省事的做法，不必先参数化。只要两个法向量不平行，叉积就给出切向量。
     </Tip>
   </Accordion>
 
-  <Accordion title="参数方程形式">
-    若曲面由
+  <Accordion title="平面曲线的切线">
+    若曲线位于 $xOy$ 平面内，写成 $y=f(x)$，则点 $(x_0,y_0)$ 处的切向量可取
 
     $$
-    \mathbf r(u,v)=\bigl(x(u,v),y(u,v),z(u,v)\bigr),\qquad (u,v)\in D
+    \mathbf T=(1,\ f'(x_0),\ 0)
     $$
 
-    给出，则
+    切线方程
 
     $$
-    dS=|\mathbf r_u\times\mathbf r_v|\,du\,dv
+    y-y_0=f'(x_0)(x-x_0)
     $$
 
-    其中
+    法线方程
 
     $$
-    \mathbf r_u\times\mathbf r_v=
+    y-y_0=-\frac{1}{f'(x_0)}(x-x_0)
+    $$
+
+    当 $f'(x_0)=0$ 时，切线水平，法线竖直，需单独写出 $x=x_0$。
+
+    <Tip>
+    平面曲线是空间曲线的特例，也可以看成两张曲面 $y-f(x)=0$ 与 $z=0$ 的交线，用 $\nabla F\times\nabla G$ 会得到同一个方向 $(1,f'(x_0),0)$。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="易错点">
+    1. 把切向量与法向量弄反：切线沿 $\mathbf T$，法平面垂直于 $\mathbf T$。
+    2. 交线题忘记先验证 $\nabla F\times\nabla G\ne\mathbf 0$。
+    3. 切线写成点法式（应为点向式），或法平面写成点向式（应为点法式）。
+    4. 参数式求导后忘记代入具体的 $t_0$。
+    5. 曲线在某点切向量为零时仍套公式，导致分母全为 $0$。
+  </Accordion>
+</AccordionGroup>
+
+## 曲面的切平面与法线
+
+<AccordionGroup>
+  <Accordion title="隐式曲面">
+    设曲面
+
+    $$
+    F(x,y,z)=0
+    $$
+
+    点 $P_0(x_0,y_0,z_0)$ 在曲面上，且
+
+    $$
+    \nabla F(P_0)=\bigl(F_x(P_0),F_y(P_0),F_z(P_0)\bigr)\ne\mathbf 0
+    $$
+
+    则曲面在 $P_0$ 处的法向量为
+
+    $$
+    \mathbf n=\nabla F(P_0)
+    $$
+
+    切平面
+
+    $$
+    F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0
+    $$
+
+    法线
+
+    $$
+    \frac{x-x_0}{F_x(P_0)}
+    =\frac{y-y_0}{F_y(P_0)}
+    =\frac{z-z_0}{F_z(P_0)}
+    $$
+
+    <Tip>
+    $\nabla F\ne\mathbf 0$ 保证曲面在该点光滑。若梯度为零，曲面可能出现尖点或自交，不能再用梯度作法向量。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="显式曲面">
+    设曲面
+
+    $$
+    z=f(x,y)
+    $$
+
+    令 $F(x,y,z)=f(x,y)-z$，则
+
+    $$
+    \nabla F=(f_x,\ f_y,\ -1)
+    $$
+
+    切平面
+
+    $$
+    z-z_0=f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)
+    $$
+
+    法线
+
+    $$
+    \frac{x-x_0}{f_x(P_0)}
+    =\frac{y-y_0}{f_y(P_0)}
+    =\frac{z-z_0}{-1}
+    $$
+
+    法线的方向余弦为
+
+    $$
+    \pm\frac{(f_x,\ f_y,\ -1)}{\sqrt{1+f_x^2+f_y^2}}
+    $$
+
+    正负号由法线指向哪一侧决定。
+
+    <Warning>
+    显式曲面 $z=f(x,y)$ 的法向量是 $(f_x,f_y,-1)$，不是 $(f_x,f_y,1)$。符号错了，切平面方程仍对，但法线方向和后续定向会错。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="参数式曲面">
+    设曲面
+
+    $$
+    \mathbf r(u,v)=\bigl(x(u,v),y(u,v),z(u,v)\bigr)
+    $$
+
+    则法向量为
+
+    $$
+    \mathbf n=\mathbf r_u\times\mathbf r_v
+    =
     \begin{vmatrix}
     \mathbf i & \mathbf j & \mathbf k\\
     x_u & y_u & z_u\\
@@ -455,631 +844,442 @@ tags: ["考研", "高等数学"]
     \end{vmatrix}
     $$
 
-    常用参数化：
+    要求 $\mathbf r_u\times\mathbf r_v\ne\mathbf 0$，即参数网格在该点不退化。
 
-    - 球面 $x^2+y^2+z^2=R^2$：取 $\mathbf r(\varphi,\theta)=(R\sin\varphi\cos\theta,R\sin\varphi\sin\theta,R\cos\varphi)$，得 $dS=R^2\sin\varphi\,d\varphi\,d\theta$；
-    - 柱面 $x^2+y^2=R^2$：取 $\mathbf r(\theta,z)=(R\cos\theta,R\sin\theta,z)$，得 $dS=R\,d\theta\,dz$。
+    切平面
+
+    $$
+    \mathbf n\cdot(\mathbf r-\mathbf r_0)=0
+    $$
+
+    法线
+
+    $$
+    \mathbf r=\mathbf r_0+t\mathbf n
+    $$
+
+    <Tip>
+    球面、柱面的参数化在多元积分学中反复使用，这里求出的 $\mathbf n$ 与曲面积分中的“定向法向量”是同一个方向，可直接衔接。
+    </Tip>
   </Accordion>
 
-  <Accordion title="对称性">
-    第一型曲面积分与侧无关，可直接使用奇偶对称性。
-
-    若 $\Sigma$ 关于 $yOz$ 平面对称，则被积函数关于 $x$ 为奇函数，而 $dS$ 在对称点处相等，因此
+  <Accordion title="几何意义与易错点">
+    全微分
 
     $$
-    \iint_\Sigma x\,dS=0
+    dz=f_x\,dx+f_y\,dy
     $$
 
-    一般地，$\Sigma$ 关于 $yOz$ 对称时，被积函数关于 $x$ 为奇函数则积分为 $0$；为偶函数则等于在 $\Sigma_+=\Sigma\cap\{x\ge0\}$ 上积分的 $2$ 倍。
+    的几何意义：$dz$ 是切平面上 $z$ 的增量。因此“可微”等价于“曲面在局部可用切平面近似”，这也是切平面存在的本质。
 
-    若 $\Sigma$ 关于平面 $x=y$ 对称，则
+    易错点：
 
-    $$
-    \iint_\Sigma f(x,y,z)\,dS=\iint_\Sigma f(y,x,z)\,dS
-    $$
-
-    特别地，若 $\Sigma$ 为球面 $x^2+y^2+z^2=R^2$，则由轮换对称性
-
-    $$
-    \iint_\Sigma x^2\,dS=\iint_\Sigma y^2\,dS=\iint_\Sigma z^2\,dS
-    $$
-
-    且
-
-    $$
-    \iint_\Sigma x^2\,dS
-    =\frac13\iint_\Sigma(x^2+y^2+z^2)\,dS
-    $$
-
-    <Warning>
-    曲面关于坐标面对称时，只有被积函数在该变量上为奇函数，积分才为 $0$；若为偶函数，结果是“两倍半边”，不是 $0$。
-    </Warning>
+    1. 曲面法向量与曲线切向量混淆：曲面求法向量用梯度，曲线求切向量用导数或叉积。
+    2. 显式曲面法向量漏掉 $-1$，或写成 $(f_x,f_y,1)$。
+    3. 忘记验证 $\nabla F\ne\mathbf 0$，在奇点处套公式。
+    4. 切平面方程写成点向式，法线方程写成点法式。
+    5. 参数曲面忘记 $\mathbf r_u\times\mathbf r_v$ 的次序会改变法向方向，进而影响侧。
   </Accordion>
 </AccordionGroup>
 
-## 第二型曲线积分
+## 方向导数与梯度
 
 <AccordionGroup>
-  <Accordion title="概念与方向">
-    平面第二型曲线积分
+  <Accordion title="方向导数的定义">
+    设函数 $f$ 在点 $P_0(x_0,y_0)$ 的某邻域内有定义，$\mathbf e=(\cos\alpha,\cos\beta)$ 是单位向量，则 $f$ 沿方向 $\mathbf e$ 的方向导数为
 
     $$
-    \int_L P(x,y)\,dx+Q(x,y)\,dy
+    \frac{\partial f}{\partial l}\bigg|_{P_0}
+    =\lim_{t\to0^+}
+    \frac{f(x_0+t\cos\alpha,\ y_0+t\cos\beta)-f(x_0,y_0)}{t}
     $$
 
-    空间第二型曲线积分
+    三元函数沿 $\mathbf e=(\cos\alpha,\cos\beta,\cos\gamma)$ 的方向导数类似：
 
     $$
-    \int_L P\,dx+Q\,dy+R\,dz
+    \frac{\partial f}{\partial l}\bigg|_{P_0}
+    =\lim_{t\to0^+}
+    \frac{f(x_0+t\cos\alpha,\ y_0+t\cos\beta,\ z_0+t\cos\gamma)-f(x_0,y_0,z_0)}{t}
     $$
 
-    其中 $L$ 是有向曲线。物理意义是变力 $\mathbf F=(P,Q,R)$ 沿有向曲线所做的功。
-
-    若 $\mathbf t=(\cos\alpha,\cos\beta,\cos\gamma)$ 为 $L$ 的单位切向量，则
-
-    $$
-    \int_L P\,dx+Q\,dy+R\,dz
-    =\int_L(P\cos\alpha+Q\cos\beta+R\cos\gamma)\,ds
-    $$
-
-    这说明第二型曲线积分是“带方向的第一型积分”。
-
-    性质：
-
-    - 与方向有关：$\int_{L^-}P\,dx+Q\,dy=-\int_L P\,dx+Q\,dy$；
-    - 线性；
-    - 曲线分段时，各段按自己的方向积分后相加。
+    两点注意：$\mathbf e$ 必须是单位向量；$t\to0^+$ 是单侧极限，方向导数有方向性，反向要变号。
 
     <Warning>
-    第二型曲线积分与方向有关，不能直接照搬第一型的奇偶对称性结论。若要利用对称性，先写成 $\int_L(P\cos\alpha+Q\cos\beta+R\cos\gamma)\,ds$，注意切向量在对称点处会反向。
-    </Warning>
-
-    <Warning>
-    第二型曲线积分必须明确起点与终点。只写“沿曲线 $L$”而不说明方向，积分没有确定值。
+    方向导数不是“沿任意曲线的导数”，而是沿射线的变化率。方向反了，结果取相反数。
     </Warning>
   </Accordion>
 
-  <Accordion title="参数方程直接计算">
-    设
+  <Accordion title="方向导数的计算">
+    若 $f$ 在点 $P_0$ 可微，则沿任意单位向量 $\mathbf e$ 的方向导数存在，且
 
     $$
-    x=x(t),\qquad y=y(t),\qquad z=z(t),\qquad t:a\to b
+    \frac{\partial f}{\partial l}
+    =f_x\cos\alpha+f_y\cos\beta
     $$
 
-    其中 $t=a$ 对应起点，$t=b$ 对应终点（$a$ 不一定小于 $b$），则
+    三元情形
 
     $$
-    \int_L P\,dx+Q\,dy+R\,dz
-    =\int_a^b\left[P\,x'(t)+Q\,y'(t)+R\,z'(t)\right]dt
+    \frac{\partial f}{\partial l}
+    =f_x\cos\alpha+f_y\cos\beta+f_z\cos\gamma
     $$
 
-    其中 $P,Q,R$ 均用 $x(t),y(t),z(t)$ 代入。
+    也可写成梯度与单位向量的内积
+
+    $$
+    \frac{\partial f}{\partial l}=\nabla f\cdot\mathbf e
+    $$
+
+    若题目给出的是方向向量 $\mathbf a\ne\mathbf 0$ 而不是单位向量，必须先单位化：
+
+    $$
+    \mathbf e=\frac{\mathbf a}{|\mathbf a|}
+    $$
+
+    <Warning>
+    最常见的失分点是忘记单位化。直接把 $\mathbf a$ 代入 $\nabla f\cdot\mathbf a$，得到的是方向导数的 $|\mathbf a|$ 倍，不是方向导数。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="方向导数与可微的关系">
+    三者关系可以串成一条链：
+
+    - 偏导数连续 $\implies$ 可微；
+    - 可微 $\implies$ 连续；
+    - 可微 $\implies$ 偏导数存在；
+    - 可微 $\implies$ 任意方向导数存在，且
+
+    $$
+    \frac{\partial f}{\partial l}=\nabla f\cdot\mathbf e
+    $$
+
+    反过来都不成立：
+
+    - 偏导数存在不一定连续，也不一定可微；
+    - 方向导数存在不一定可微；
+    - 甚至所有方向的方向导数都存在，也不一定可微。
+
+    例如 $f(x,y)=\sqrt{x^2+y^2}$ 在原点，沿任意单位方向 $\mathbf e$ 都有
+
+    $$
+    \frac{\partial f}{\partial l}\bigg|_{(0,0)}
+    =\lim_{t\to0^+}\frac{t-0}{t}=1
+    $$
+
+    但 $f$ 在原点不可微，因为两个偏导数都不存在（左右导数分别为 $\pm1$）。
 
     <Tip>
-    下限对应起点、上限对应终点，不要求 $a<b$。这一点与第一型曲线积分“下限小于上限”的规则不同。
+    考试中若题目只给“$f$ 在点 $P_0$ 可微”，才可以直接用 $\nabla f\cdot\mathbf e$；若只说“偏导数存在”，必须回到定义判断。
     </Tip>
   </Accordion>
 
-  <Accordion title="格林公式">
-    设 $L$ 是平面区域 $D$ 的分段光滑正向边界，$P,Q$ 在 $D$ 上具有连续一阶偏导数，则
+  <Accordion title="梯度">
+    二元函数
 
     $$
-    \oint_L P\,dx+Q\,dy
-    =\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy
+    \nabla f=(f_x,\ f_y)
     $$
 
-    正向规定：沿 $L$ 前进时，区域 $D$ 始终在左侧。等价地，单连通区域的外边界取逆时针；复连通区域取“外逆内顺”。
-
-    <Warning>
-    使用格林公式前必须同时检查三件事：
-
-    1. $L$ 是否封闭；
-    2. $L$ 是否取正向；
-    3. $P,Q$ 在 $D$ 上是否处处具有连续一阶偏导数，即区域内有无奇点。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="不封闭：补线">
-    若 $L$ 不封闭，可补一段或几段辅助曲线 $L_1$，使 $L+L_1$ 成为封闭曲线，且整体取正向，则
+    三元函数
 
     $$
-    \int_L P\,dx+Q\,dy
-    =\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy
-    -\int_{L_1}P\,dx+Q\,dy
+    \nabla f=(f_x,\ f_y,\ f_z)
     $$
 
-    辅助线通常取平行于坐标轴的线段，因为此时 $dx=0$ 或 $dy=0$，补线积分容易计算。
+    梯度是一个向量，方向为函数增长最快的方向，模为最大方向导数的值。
+
+    运算公式（在可微、可导的条件下）：
+
+    $$
+    \nabla(u\pm v)=\nabla u\pm\nabla v
+    $$
+
+    $$
+    \nabla(uv)=u\nabla v+v\nabla u
+    $$
+
+    $$
+    \nabla\left(\frac uv\right)
+    =\frac{v\nabla u-u\nabla v}{v^2}
+    $$
+
+    $$
+    \nabla\varphi(u)=\varphi'(u)\nabla u
+    $$
 
     <Tip>
-    先算整个闭曲线的积分，再减去补线部分。补线的方向要按“闭曲线正向”来确定，符号写反是高频错误。
+    $\nabla$ 是向量微分算子 $\left(\dfrac{\partial}{\partial x},\dfrac{\partial}{\partial y},\dfrac{\partial}{\partial z}\right)$，上述法则与一元求导法则完全平行，可以直接套用。
     </Tip>
   </Accordion>
 
-  <Accordion title="有奇点：挖洞">
-    若 $P,Q$ 在 $D$ 内某点处不满足连续偏导条件，不能直接对整个 $D$ 用格林公式。作一条位于 $D$ 内、包围奇点的小闭曲线 $l$，把 $l$ 的内部挖去，记剩余区域为 $D'$。
-
-    在 $D'$ 上，正向边界由 $L$（逆时针）和 $l$（顺时针）组成，于是
+  <Accordion title="梯度的性质">
+    设 $f$ 可微且 $\nabla f(P_0)\ne\mathbf 0$，$\mathbf e$ 为单位向量，$\theta$ 为 $\nabla f(P_0)$ 与 $\mathbf e$ 的夹角，则
 
     $$
-    \oint_L P\,dx+Q\,dy+\oint_{l^-}P\,dx+Q\,dy
-    =\iint_{D'}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy
+    \frac{\partial f}{\partial l}
+    =\nabla f\cdot\mathbf e
+    =|\nabla f|\cos\theta
     $$
 
-    若右端为 $0$，则
+    由此得到三条结论：
 
-    $$
-    \oint_L P\,dx+Q\,dy=\oint_{l^+}P\,dx+Q\,dy
-    $$
+    | 方向 | 方向导数 |
+    | --- | --- |
+    | 沿梯度方向 | 最大值 $\lvert\nabla f\rvert$ |
+    | 沿负梯度方向 | 最小值 $-\lvert\nabla f\rvert$ |
+    | 与梯度垂直 | $0$ |
 
-    即大曲线（逆时针）上的积分等于小曲线（逆时针）上的积分。小曲线通常取圆，参数化后直接计算。
+    其他性质：
+
+    - 梯度方向是函数值增长最快的方向，负梯度方向是下降最快的方向；
+    - 梯度垂直于等值线 $f(x,y)=C$（或等值面 $f(x,y,z)=C$），并指向函数值增大的方向；
+    - 梯度场是无旋场，即 $\nabla\times(\nabla f)=\mathbf 0$。
 
     <Warning>
-    挖洞时小曲线的方向最容易出错。记住：相对挖去后的区域，内边界取顺时针；但换算成大曲线积分时，结果等于小曲线逆时针方向的积分。
+    “最大方向导数等于 $|\nabla f|$”要求 $\nabla f\ne\mathbf 0$。若 $\nabla f=\mathbf 0$，则各方向导数全为 $0$，最大值也是 $0$，此时不存在唯一的“最速增长方向”。
     </Warning>
   </Accordion>
 
-  <Accordion title="曲线积分与路径无关">
-    设 $G$ 是平面单连通开区域，$P,Q$ 在 $G$ 内具有连续一阶偏导数。以下四条等价：
-
-    1. 对 $G$ 内任意两点 $A,B$，$\int_A^B P\,dx+Q\,dy$ 与路径无关；
-    2. 对 $G$ 内任意分段光滑闭曲线 $C$，$\oint_C P\,dx+Q\,dy=0$；
-    3. 在 $G$ 内恒有
-
-    $$
-    \frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}
-    $$
-
-    4. 存在势函数 $u(x,y)$，使
-
-    $$
-    du=P\,dx+Q\,dy
-    $$
-
-    此时
-
-    $$
-    \int_A^B P\,dx+Q\,dy=u(B)-u(A)
-    $$
-
-    <Warning>
-    “单连通”不能省。经典的
-
-    $$
-    P=\frac{-y}{x^2+y^2},\qquad Q=\frac{x}{x^2+y^2}
-    $$
-
-    在挖去原点的区域内满足 $P_y=Q_x$，但绕原点一周的积分为 $2\pi$，并不为 $0$，所以在该区域上积分与路径无关不成立。
-    </Warning>
+  <Accordion title="易错点">
+    1. 方向向量未单位化，直接把 $(a,b)$ 代入内积。
+    2. 求“沿某方向的方向导数”时，把方向取反却忘记变号。
+    3. 把梯度当作数，写成 $\nabla f=|\nabla f|$。
+    4. 求最大方向导数时忘记开方，或忘记先算梯度。
+    5. 用 $\nabla f\cdot\mathbf e$ 前不检查可微性，题目只给偏导数存在时不能直接用。
+    6. 混淆“方向导数最大”与“函数值最大”：前者是变化率，后者是函数值。
   </Accordion>
+</AccordionGroup>
 
-  <Accordion title="全微分求积（求势函数）">
-    已知 $du=P\,dx+Q\,dy$ 且 $P_y=Q_x$，求 $u(x,y)$。
+## 散度与旋度
 
-    **方法一：偏积分**
-
-    由 $u_x=P$ 得
-
-    $$
-    u(x,y)=\int P(x,y)\,dx+\varphi(y)
-    $$
-
-    再对 $y$ 求偏导，令 $u_y=Q$，解出 $\varphi'(y)$，积分得 $\varphi(y)$。
-
-    **方法二：折线积分**
-
-    取定点 $(x_0,y_0)$，沿“先水平后竖直”的折线积分：
+<AccordionGroup>
+  <Accordion title="散度">
+    设向量场
 
     $$
-    u(x,y)=\int_{x_0}^{x}P(x,y_0)\,dx+\int_{y_0}^{y}Q(x,y)\,dy+C
+    \mathbf F(x,y,z)=\bigl(P(x,y,z),\ Q(x,y,z),\ R(x,y,z)\bigr)
     $$
 
-    也可先竖直后水平，结果只差常数。
+    且 $P,Q,R$ 有连续一阶偏导数，则散度为
+
+    $$
+    \operatorname{div}\mathbf F
+    =\nabla\cdot\mathbf F
+    =P_x+Q_y+R_z
+    $$
+
+    散度是数量，不是向量。
+
+    物理意义：散度刻画场在一点处的“源”的强弱。$\operatorname{div}\mathbf F>0$ 表示该点有源（通量向外发散），$\operatorname{div}\mathbf F<0$ 表示有汇，$\operatorname{div}\mathbf F=0$ 表示无源场。
 
     <Tip>
-    求出 $u$ 后回代验证 $du=P\,dx+Q\,dy$。空间情形同理：先设 $u=\int P\,dx+\varphi(y,z)$，再由 $u_y=Q$、$u_z=R$ 确定 $\varphi$。
+    散度与高斯公式直接对应：
+
+    $$
+    \oiint_\Sigma\mathbf F\cdot\mathbf n\,dS
+    =\iiint_\Omega\operatorname{div}\mathbf F\,dV
+    $$
+
+    即“穿出闭曲面的通量等于内部散度的三重积分”。
     </Tip>
   </Accordion>
 
-  <Accordion title="斯托克斯公式">
-    设 $\Sigma$ 为分段光滑的有向曲面，其边界 $\Gamma=\partial\Sigma$ 为分段光滑闭曲线，$\Gamma$ 的方向与 $\Sigma$ 的法向量 $\mathbf n$ 符合右手定则，$P,Q,R$ 在包含 $\Sigma$ 的区域内有连续一阶偏导数，则
+  <Accordion title="旋度">
+    旋度为
 
     $$
-    \oint_\Gamma P\,dx+Q\,dy+R\,dz
-    =\iint_\Sigma
+    \operatorname{rot}\mathbf F
+    =\nabla\times\mathbf F
+    =
     \begin{vmatrix}
-    dy\,dz & dz\,dx & dx\,dy\\[2pt]
-    \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[8pt]
+    \mathbf i & \mathbf j & \mathbf k\\
+    \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\
     P & Q & R
     \end{vmatrix}
     $$
 
-    按第一行展开，得
+    展开得
 
     $$
-    \oint_\Gamma P\,dx+Q\,dy+R\,dz
-    =\iint_\Sigma\left[
-    \left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)dy\,dz
-    +\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)dz\,dx
-    +\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy
-    \right]
-    $$
-
-    向量形式为
-
-    $$
-    \oint_\Gamma\mathbf F\cdot d\mathbf r
-    =\iint_\Sigma(\nabla\times\mathbf F)\cdot\mathbf n\,dS
-    $$
-
-    其中旋度为
-
-    $$
-    \nabla\times\mathbf F
-    =\left(
-    \frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z},\
-    \frac{\partial P}{\partial z}-\frac{\partial R}{\partial x},\
-    \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}
-    \right)
-    $$
-
-    **方向判定（右手定则）**：右手四指沿 $\Gamma$ 的方向弯曲，拇指所指的一侧为 $\Sigma$ 的正侧。
-
-    **曲面选取**：$\Gamma$ 确定后，$\Sigma$ 可以任选，只要以 $\Gamma$ 为边界。常取以 $\Gamma$ 为边界的平面区域（当 $\Gamma$ 共面时），或取球面、柱面等较简单曲面的一部分，使 $\nabla\times\mathbf F\cdot\mathbf n$ 容易计算。若能取平面块，则 $\mathbf n$ 为常向量，计算最简。
-
-    <Warning>
-    斯托克斯公式要求 $\Gamma$ 是封闭曲线，且 $\Sigma$ 的边界恰好是 $\Gamma$。若曲线不封闭，不能直接用斯托克斯公式；若曲面封闭（无边界），则不存在边界曲线 $\Gamma$，此时由 $\nabla\cdot(\nabla\times\mathbf F)=0$ 和高斯公式可知 $\oiint_\Sigma(\nabla\times\mathbf F)\cdot\mathbf n\,dS=0$。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="空间曲线积分与路径无关">
-    在空间单连通区域 $G$ 内，若 $P,Q,R$ 具有连续一阶偏导数，则下列条件等价：
-
-    - $\int_L P\,dx+Q\,dy+R\,dz$ 与路径无关；
-    - 沿 $G$ 内任意闭曲线的积分为 $0$；
-    - 在 $G$ 内恒有
-
-    $$
-    \frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x},\qquad
-    \frac{\partial P}{\partial z}=\frac{\partial R}{\partial x},\qquad
-    \frac{\partial Q}{\partial z}=\frac{\partial R}{\partial y}
-    $$
-
-    - 存在 $u(x,y,z)$，使 $du=P\,dx+Q\,dy+R\,dz$。
-
-    此时
-
-    $$
-    \int_A^B P\,dx+Q\,dy+R\,dz=u(B)-u(A)
-    $$
-  </Accordion>
-</AccordionGroup>
-
-## 第二型曲面积分
-
-<AccordionGroup>
-  <Accordion title="概念与侧">
-    第二型曲面积分（对坐标的曲面积分）为
-
-    $$
-    \iint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy
-    $$
-
-    若 $\mathbf n=(\cos\alpha,\cos\beta,\cos\gamma)$ 为曲面指定一侧的单位法向量，则
-
-    $$
-    \iint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy
-    =\iint_\Sigma(P\cos\alpha+Q\cos\beta+R\cos\gamma)\,dS
-    $$
-
-    也可写成
-
-    $$
-    \iint_\Sigma\mathbf F\cdot\mathbf n\,dS
-    $$
-
-    其中 $\mathbf F=(P,Q,R)$。物理意义为向量场通过有向曲面的通量。
-
-    性质：
-
-    - 与所取的侧有关，换侧变号；
-    - 线性、曲面可加（保持同一侧）；
-    - 闭曲面默认取外侧为正。
-
-    <Warning>
-    第二型曲面积分必须指定侧。只说“在曲面 $\Sigma$ 上积分”而不说明上侧、下侧、外侧或内侧，积分没有确定值。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="合一投影法">
-    设 $\Sigma:z=z(x,y)$，投影为 $D_{xy}$，取上侧（法向量的 $z$ 分量为正），则
-
-    $$
-    (dy\,dz,\ dz\,dx,\ dx\,dy)=(-z_x,\,-z_y,\,1)\,dx\,dy
-    $$
-
-    于是
-
-    $$
-    \iint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy
-    =\iint_{D_{xy}}\left(-Pz_x-Qz_y+R\right)dx\,dy
-    $$
-
-    其中 $P,Q,R$ 均代入 $z=z(x,y)$。若取下侧，整体加负号。
-
-    <Tip>
-    合一投影把三项合成一个二重积分，适合曲面能整体写成 $z=z(x,y)$ 的情形。若曲面分片或投影重叠，改用分面投影或高斯公式。
-    </Tip>
-  </Accordion>
-
-  <Accordion title="分面投影法">
-    把三项分别投影到相应坐标平面：
-
-    $$
-    \iint_\Sigma R\,dx\,dy
-    =\pm\iint_{D_{xy}}R\bigl(x,y,z(x,y)\bigr)dx\,dy
-    $$
-
-    $$
-    \iint_\Sigma P\,dy\,dz
-    =\pm\iint_{D_{yz}}P\bigl(x(y,z),y,z\bigr)dy\,dz
-    $$
-
-    $$
-    \iint_\Sigma Q\,dz\,dx
-    =\pm\iint_{D_{zx}}Q\bigl(x,y(x,z),z\bigr)dz\,dx
-    $$
-
-    符号规则：法向量的对应分量为正取“$+$”，为负取“$-$”。具体地，
-
-    - $\iint_\Sigma R\,dx\,dy$：上侧（$n_z>0$）取 $+$，下侧取 $-$；
-    - $\iint_\Sigma P\,dy\,dz$：前侧（$n_x>0$）取 $+$，后侧取 $-$；
-    - $\iint_\Sigma Q\,dz\,dx$：右侧（$n_y>0$）取 $+$，左侧取 $-$。
-
-    <Warning>
-    每一项的符号只看该方向法向分量的正负，不同项可能取不同符号。闭曲面若分上下两片直接算，极易漏项或错号，优先考虑高斯公式。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="高斯公式">
-    设 $\Omega$ 是由分片光滑闭曲面 $\Sigma$ 围成的空间区域，$\Sigma$ 取外侧，$P,Q,R$ 在 $\Omega$ 上具有连续一阶偏导数，则
-
-    $$
-    \oiint_\Sigma P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy
-    =\iiint_\Omega\left(
-    \frac{\partial P}{\partial x}
-    +\frac{\partial Q}{\partial y}
-    +\frac{\partial R}{\partial z}
-    \right)dV
-    $$
-
-    右端被积函数为散度：
-
-    $$
-    \operatorname{div}\mathbf F=\nabla\cdot\mathbf F
-    =\frac{\partial P}{\partial x}
-    +\frac{\partial Q}{\partial y}
-    +\frac{\partial R}{\partial z}
-    $$
-
-    因此高斯公式可简写为
-
-    $$
-    \oiint_\Sigma\mathbf F\cdot\mathbf n\,dS
-    =\iiint_\Omega\nabla\cdot\mathbf F\,dV
-    $$
-
-    使用前检查：曲面是否封闭、是否取外侧、$P,Q,R$ 在 $\Omega$ 内是否处处具有连续偏导数。
-
-    <Warning>
-    若 $\Sigma$ 取内侧，结果整体取负号；若曲面不封闭，先补面；若区域内有奇点，先挖洞。三者是高斯公式最常见的三种变形。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="不封闭：补面">
-    若 $\Sigma$ 不封闭，补一块或几块辅助曲面 $\Sigma_1$，使 $\Sigma+\Sigma_1$ 成为封闭曲面并取外侧，则
-
-    $$
-    \iint_\Sigma\mathbf F\cdot\mathbf n\,dS
-    =\iiint_\Omega\nabla\cdot\mathbf F\,dV
-    -\iint_{\Sigma_1}\mathbf F\cdot\mathbf n\,dS
-    $$
-
-    辅助面常取坐标平面上的平面块（如 $z=0$），因为在这类面上某些坐标微元为 $0$，通量容易计算。
-
-    <Warning>
-    补面后要保证整个闭曲面取外侧，且补面的法向与之一致。减去补面通量时符号写反，是本题型最常见的错误。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="有奇点：挖洞">
-    若 $\mathbf F$ 在 $\Omega$ 内某点无定义或偏导数不连续（如分母含 $x^2+y^2+z^2$），作包围奇点的小闭曲面 $\Sigma_\varepsilon$（常取小球面），在 $\Omega$ 挖去其内部后的区域 $\Omega'$ 上使用高斯公式。
-
-    设 $\Sigma$ 取外侧，$\mathbf n'$ 为 $\Omega'$ 在 $\Sigma_\varepsilon$ 上的外法向（指向球心），则
-
-    $$
-    \oiint_\Sigma\mathbf F\cdot\mathbf n\,dS
-    +\oiint_{\Sigma_\varepsilon}\mathbf F\cdot\mathbf n'\,dS
-    =\iiint_{\Omega'}\nabla\cdot\mathbf F\,dV
-    $$
-
-    若 $\nabla\cdot\mathbf F=0$，则
-
-    $$
-    \oiint_\Sigma\mathbf F\cdot\mathbf n\,dS
-    =\oiint_{\Sigma_\varepsilon}\mathbf F\cdot(-\mathbf n')\,dS
-    $$
-
-    即大曲面外侧的通量等于小球面取外侧（背离球心）时的通量。
-
-    <Warning>
-    在 $\Omega'$ 的边界上，小球面的法向指向球心，与“小球面外侧”相反。移项后符号取正，但方向含义已经改变，务必画图确认。
-    </Warning>
-  </Accordion>
-
-  <Accordion title="用高斯公式求体积">
-    取 $\mathbf F=(x,y,z)$，则 $\nabla\cdot\mathbf F=3$，于是
-
-    $$
-    V=\iiint_\Omega dV
-    =\frac13\oiint_\Sigma\left(x\,dy\,dz+y\,dz\,dx+z\,dx\,dy\right)
-    $$
-
-    其中 $\Sigma$ 为 $\Omega$ 的边界曲面，取外侧。
-
-    更一般地，只要选取 $\mathbf F$ 使 $\nabla\cdot\mathbf F=1$，就有 $V=\oiint_\Sigma\mathbf F\cdot\mathbf n\,dS$。例如取 $\mathbf F=(x,0,0)$，得
-
-    $$
-    V=\oiint_\Sigma x\,dy\,dz
-    $$
-  </Accordion>
-
-  <Accordion title="易错点">
-    1. 第二型曲面积分与侧有关，换侧变号；第一型与侧无关。
-    2. 合一投影公式中是 $-Pz_x-Qz_y+R$，符号不能记错。
-    3. 闭曲面用高斯公式必须取外侧；内侧结果整体取负。
-    4. 曲面不封闭时先补面，再减去补面通量。
-    5. 区域内有奇点时不能直接对整个区域用高斯公式。
-    6. 第二型积分的对称性不能照搬第一型结论：对称点处的法向或切向会反向，稳妥做法是先化为第一型再判断，或直接分侧计算。
-  </Accordion>
-</AccordionGroup>
-
-## 三大公式对比
-
-| 公式 | 联系对象 | 方向 | 核心转换 |
-| --- | --- | --- | --- |
-| 格林公式 | 平面闭曲线 $L=\partial D$ | $L$ 为 $D$ 的正向边界，区域在左侧 | $\oint_L P\,dx+Q\,dy=\iint_D(Q_x-P_y)\,dx\,dy$ |
-| 高斯公式 | 空间闭曲面 $\Sigma=\partial\Omega$ | $\Sigma$ 取外侧 | $\oiint_\Sigma\mathbf F\cdot\mathbf n\,dS=\iiint_\Omega\nabla\cdot\mathbf F\,dV$ |
-| 斯托克斯公式 | 空间闭曲线 $\Gamma=\partial\Sigma$ | $\Gamma$ 与 $\mathbf n$ 符合右手定则 | $\oint_\Gamma\mathbf F\cdot d\mathbf r=\iint_\Sigma(\nabla\times\mathbf F)\cdot\mathbf n\,dS$ |
-
-三者都要求被积函数在所讨论区域上具有连续一阶偏导数，且积分区域与边界的方向匹配。
-
-**公式之间的关系**
-
-- 格林公式是斯托克斯公式的特例：取 $\Sigma$ 为 $xOy$ 平面内的区域，$\mathbf n=\mathbf k$，则 $\nabla\times\mathbf F\cdot\mathbf k=Q_x-P_y$。
-- 高斯公式把闭曲面上的通量化为三重积分，对应散度；斯托克斯公式把空间闭曲线上的环量化为曲面积分，对应旋度。
-- 统一理解：**边界上的积分等于内部“微分”的积分**。格林、高斯、斯托克斯分别是平面、空间区域、曲面上的三种具体形式。
-
-<Info>
-方向口诀：**格林看左，高斯看外，斯托克斯看右手**。
-
-- 格林：沿边界走，区域在左手边；
-- 高斯：闭曲面法向朝外；
-- 斯托克斯：右手四指沿曲线，拇指指向曲面法向。
-</Info>
-
-## 常用结论与解题技巧
-
-<AccordionGroup>
-  <Accordion title="用曲线积分求平面面积">
-    设 $L$ 为平面区域 $D$ 的正向边界，则
-
-    $$
-    S_D=\frac12\oint_L(x\,dy-y\,dx)
-    $$
-
-    也可写成
-
-    $$
-    S_D=\oint_L x\,dy=-\oint_L y\,dx
-    $$
-
-    推导：取 $P=-y$，$Q=x$，则 $Q_x-P_y=1-(-1)=2$，由格林公式即得。
-
-    <Tip>
-    当边界由参数方程给出、面积不易用二重积分直接算时，用曲线积分求面积往往更方便。
-    </Tip>
-  </Accordion>
-
-  <Accordion title="对称性使用要点">
-    1. **先区域，后函数**：先确认积分区域（曲线、曲面、空间区域）在相应变换下不变，再判断被积函数的奇偶性。
-    2. **第一型直接用**：第一型曲线、曲面积分与方向、侧无关，奇函数项直接为 $0$，偶函数项取两倍。
-    3. **第二型要谨慎**：第二型积分中的 $dx,dy,dz$ 或 $dy\,dz,dz\,dx,dx\,dy$ 带有方向信息，对称点处的切向或法向会反向，不能直接套用第一型的结论。
-    4. **轮换对称**：区域关于 $x=y$ 对称时，可交换被积函数中的 $x,y$；球面、正方体等还可利用 $\iint x^2\,dS=\iint y^2\,dS=\iint z^2\,dS$。
-    5. **补形后仍要检查**：补线、补面后，新边界的方向要与原方向配套，否则符号出错。
-  </Accordion>
-
-  <Accordion title="散度与旋度">
-    设 $\mathbf F=(P,Q,R)$，则
-
-    $$
-    \operatorname{div}\mathbf F=\nabla\cdot\mathbf F
-    =P_x+Q_y+R_z
-    $$
-
-    $$
-    \operatorname{rot}\mathbf F=\nabla\times\mathbf F
+    \operatorname{rot}\mathbf F
     =\left(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y\right)
     $$
 
-    常用恒等式（在二阶偏导数连续的条件下）：
+    旋度是向量。
+
+    物理意义：旋度刻画场在一点处的“旋转”强弱与转轴方向。$\operatorname{rot}\mathbf F=\mathbf 0$ 的场称为无旋场。
+
+    <Warning>
+    旋度三个分量的顺序是 $(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y)$，与行列式展开一致。第二分量是 $P_z-R_x$，不是 $R_x-P_z$，符号写反是常见错误。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="常用恒等式">
+    在二阶偏导数连续的条件下：
+
+    $$
+    \nabla\times(\nabla f)=\mathbf 0
+    $$
+
+    即梯度场无旋；
 
     $$
     \nabla\cdot(\nabla\times\mathbf F)=0
     $$
 
+    即旋度场无散。
+
+    拉普拉斯算子
+
     $$
-    \nabla\times(\nabla u)=\mathbf 0
+    \Delta f=\nabla\cdot(\nabla f)=f_{xx}+f_{yy}+f_{zz}
     $$
 
-    记忆：**高斯公式对应散度，斯托克斯公式对应旋度**。
+    满足 $\Delta f=0$ 的函数称为调和函数。
+
+    乘积法则（了解即可）：
+
+    $$
+    \nabla\cdot(f\mathbf F)=f\,\nabla\cdot\mathbf F+\mathbf F\cdot\nabla f
+    $$
+
+    $$
+    \nabla\times(f\mathbf F)=f\,\nabla\times\mathbf F+\nabla f\times\mathbf F
+    $$
+
+    <Tip>
+    两个恒等式可以这样记：**梯度的旋度为零，旋度的散度为零**。“先梯度后旋度”“先旋度后散度”都得到零。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="保守场与势函数">
+    设 $\mathbf F=(P,Q,R)$ 在单连通区域内有一阶连续偏导数，则以下四条等价：
+
+    1. $\operatorname{rot}\mathbf F=\mathbf 0$；
+    2. 曲线积分 $\int_L P\,dx+Q\,dy+R\,dz$ 与路径无关；
+    3. 沿任意闭曲线积分为 $0$；
+    4. 存在势函数 $u$，使 $\nabla u=\mathbf F$。
+
+    此时
+
+    $$
+    u(x,y,z)=\int_{(x_0,y_0,z_0)}^{(x,y,z)}P\,dx+Q\,dy+R\,dz
+    $$
+
+    且
+
+    $$
+    \int_A^B P\,dx+Q\,dy+R\,dz=u(B)-u(A)
+    $$
+
+    求势函数的常用方法：凑全微分，或分组积分后再对另一变量求偏导定出待定函数。
+
+    <Warning>
+    “$\operatorname{rot}\mathbf F=\mathbf 0$”只在单连通区域上等价于路径无关。若区域有洞（例如去掉 $z$ 轴的空间），需要额外检查绕洞的积分。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="与三大公式的联系">
+    | 公式 | 场论表达 | 联系的量 |
+    | --- | --- | --- |
+    | 格林公式 | $\oint_L P\,dx+Q\,dy=\iint_D(Q_x-P_y)\,dx\,dy$ | 平面旋度 |
+    | 高斯公式 | $\oiint_\Sigma\mathbf F\cdot\mathbf n\,dS=\iiint_\Omega\nabla\cdot\mathbf F\,dV$ | 散度 |
+    | 斯托克斯公式 | $\oint_\Gamma\mathbf F\cdot d\mathbf r=\iint_\Sigma(\nabla\times\mathbf F)\cdot\mathbf n\,dS$ | 旋度 |
+
+    统一理解：**边界上的积分等于内部微分的积分**。格林公式是斯托克斯公式在平面上的特例，高斯公式则把通量与散度联系起来。
+
+    <Tip>
+    做多元积分大题时，先算 $\operatorname{div}\mathbf F$ 或 $\operatorname{rot}\mathbf F$，往往能把复杂的曲面积分、曲线积分化成简单的三重积分或二重积分。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="易错点">
+    1. 散度是数，旋度是向量，两者不能混写。
+    2. 旋度第二分量符号写反。
+    3. 把 $\nabla\times(\nabla f)=\mathbf 0$ 与 $\nabla\cdot(\nabla\times\mathbf F)=0$ 记串。
+    4. 在非单连通区域直接用“旋度为零”推出路径无关。
+    5. 求势函数时漏掉积分常数或待定函数。
+    6. 高斯公式要求闭曲面取外侧，斯托克斯公式要求方向与法向符合右手定则，方向错了整体变号。
   </Accordion>
 </AccordionGroup>
 
-### 方法选择
+## 方法选择
 
 | 题目特征 | 优先方法 |
 | --- | --- |
-| 球体、球壳、球冠 | 球面坐标 |
-| 圆柱、圆锥、旋转体 | 柱面坐标 |
-| 截面面积易求，或被积函数只含 $z$ | 先二后一（截面法） |
-| 上下边界为两张曲面 | 先一后二（穿线法） |
-| 第一型曲线积分 | 参数化，套弧长微元 |
-| 第一型曲面积分 | 投影到坐标面，套面积微元 |
-| 平面闭曲线第二型积分 | 格林公式 |
-| 平面非闭曲线 | 补线后用格林公式，或判断路径无关改走简单路径 |
-| 空间闭曲线第二型积分 | 斯托克斯公式 |
-| 闭曲面第二型积分 | 高斯公式 |
-| 非闭曲面 | 补面后用高斯公式 |
-| 区域内有奇点 | 挖洞 |
-| 被积函数含 $x^2+y^2+z^2$ 且区域为球 | 球面坐标或高斯公式 |
+| 判断垂直、平行、共面 | 数量积、向量积、混合积 |
+| 求平面方程 | 点法式；法向量由两向量叉积得到 |
+| 求直线方程 | 点向式；方向向量取 $\mathbf n_1\times\mathbf n_2$ |
+| 过已知直线的平面 | 平面束，代条件定 $\lambda$ |
+| 点到平面、点到直线 | 套距离公式 |
+| 异面直线距离 | 混合积除以 $\lvert\mathbf s_1\times\mathbf s_2\rvert$ |
+| 线线角、面面角 | $\cos\theta$ 加绝对值 |
+| 线面角 | $\sin\theta$，不要用 $\cos$ |
+| 旋转曲面方程 | 绕谁转谁不变，另一变量换成平方和开方 |
+| 空间曲线投影 | 消元得柱面，再与坐标面联立 |
+| 曲线切线 | 参数式求导，或 $\nabla F\times\nabla G$ |
+| 曲面切平面 | 梯度 $\nabla F$ 作法向量 |
+| 方向导数 | 方向单位化后与梯度作内积 |
+| 最大方向导数 | $\lvert\nabla f\rvert$，方向沿 $\nabla f$ |
+| 散度、旋度 | 直接套公式，注意分量顺序 |
+| 路径无关、势函数 | 验证 $\operatorname{rot}\mathbf F=\mathbf 0$，再凑全微分 |
 
-### 高频易错点
+## 高频易错点
 
-1. **方向**：第一型无方向；第二型有方向；闭曲面取外侧；空间曲线与曲面法向符合右手定则。
-2. **奇点**：偏导数不连续处不能直接用公式，先挖洞。
-3. **补形符号**：补线、补面后要减去辅助部分，符号写反是高频错误。
-4. **球坐标范围**：$\varphi\in[0,\pi]$，$\theta\in[0,2\pi)$，别把两者混淆。
-5. **雅可比**：换元必须乘 $|J|$，并同步更换积分区域。
-6. **对称性前提**：区域不对称时，不能只凭被积函数的奇偶性写 $0$。
-7. **封闭性判断**：曲线、曲面是否封闭，要用方程验证，不能凭图像印象。
-8. **公式适用条件**：格林、高斯、斯托克斯都要求偏导数连续，且方向匹配。
+1. **方向向量未单位化**：方向导数、方向余弦都要求单位向量。
+2. **线面角用错函数**：线面角用 $\sin$，线线角、面面角用 $\cos$。
+3. **平行与在面内不分**：$\mathbf s\cdot\mathbf n=0$ 只说明方向平行，必须代点区分。
+4. **法向量符号**：显式曲面 $z=f(x,y)$ 的法向量是 $(f_x,f_y,-1)$。
+5. **混合积换序**：交换两个向量要变号，只有轮换不变号。
+6. **距离公式漏绝对值**：异面直线距离、点到平面距离的分子都要加绝对值。
+7. **平行平面未统一系数**：先化成同一组 $A,B,C$，再比较 $D$。
+8. **投影忘记范围**：消元后的柱面可能多出原曲线以外的点。
+9. **切向量为零仍套公式**：先验证 $\mathbf r'(t_0)\ne\mathbf 0$ 或 $\nabla F\times\nabla G\ne\mathbf 0$。
+10. **可微性前提**：只有可微时才能用 $\nabla f\cdot\mathbf e$ 算方向导数。
 
 ## 本章总结
 
 <AccordionGroup>
   <Accordion title="掌握清单">
-    按“会算、会选、会验”三层检查：
+    按“会算、会判、会连”三层检查：
 
-    1. **三重积分**：能在直角坐标两种次序、柱面坐标、球面坐标之间选择，正确写出积分限与体积微元。
-    2. **第一型曲线积分**：熟记参数、显函数、极坐标三种弧长微元，知道化定积分时下限小于上限。
-    3. **第一型曲面积分**：会投影、会套面积微元，能用对称性化简。
-    4. **格林公式**：会判断封闭性、方向与奇点，掌握补线与挖洞，理解路径无关的四个等价条件。
-    5. **高斯公式**：会补面、判断内外侧、处理奇点，会用 $\frac13\oiint(x\,dy\,dz+y\,dz\,dx+z\,dx\,dy)$ 求体积。
-    6. **斯托克斯公式**：会选曲面、判定右手方向，能把空间闭曲线积分化为曲面积分。
+    1. **向量代数**：会算数量积、向量积、混合积，能说出三者的几何意义，会用它们判断垂直、平行、共面。
+    2. **平面与直线**：会写点法式、一般式、对称式、参数式，会用叉积求法向量与方向向量。
+    3. **位置关系**：能判断线线、线面、面面的平行、垂直、相交、异面，并说明理由。
+    4. **距离与夹角**：熟记点面、点线、异面直线、平行平面的距离公式，以及三类夹角公式。
+    5. **曲面与曲线**：会写柱面、旋转曲面方程，会把空间曲线投影到坐标面。
+    6. **切线与法平面**：参数式用导数，交线用 $\nabla F\times\nabla G$。
+    7. **切平面与法线**：隐式用梯度，显式注意 $-1$，参数式用 $\mathbf r_u\times\mathbf r_v$。
+    8. **方向导数与梯度**：会单位化、会算最大值、知道可微与方向导数存在的关系。
+    9. **散度与旋度**：会算、会判无源无旋、会用恒等式，理解与高斯、斯托克斯公式的对应。
 
     <Check>
-    多元积分学的核心不是公式数量，而是“先定性、再定形、后定号”：先判断第一型还是第二型，再根据区域形状选坐标系或投影，最后确认方向与符号。
+    本章的核心不是公式数量，而是“方向”二字：空间几何中一切对象由方向向量与法向量确定，场论中一切结论由梯度、散度、旋度刻画。做题时先问“我要的是方向还是位置”，再选点积、叉积或梯度。
     </Check>
   </Accordion>
 
-  <Accordion title="易错点汇总">
-    - 第一型曲线积分化定积分时，下限必须小于上限；第二型则按下限对应起点、上限对应终点。
-    - 三重积分换元后忘记乘 $|J|$，或柱面、球面坐标漏掉 $r$、$\rho^2\sin\varphi$。
-    - 球面坐标中把 $\varphi$ 的范围写成 $[0,2\pi]$。
-    - 格林公式用于非封闭曲线时，补线后忘记减去补线积分。
-    - 区域内有奇点仍直接使用格林公式或高斯公式。
-    - 高斯公式中闭曲面取内侧，结果忘记变号。
-    - 斯托克斯公式中曲线方向与曲面法向不满足右手定则。
-    - 把第二型积分的对称性当作第一型直接使用。
+  <Accordion title="公式速查">
+    | 知识点 | 公式或结论 |
+    | --- | --- |
+    | 向量垂直 | $\mathbf a\cdot\mathbf b=0$ |
+    | 向量平行 | $\mathbf a\times\mathbf b=\mathbf 0$ |
+    | 三向量共面 | $[\mathbf a,\mathbf b,\mathbf c]=0$ |
+    | 方向余弦 | $\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$ |
+    | 点到平面距离 | $\dfrac{\lvert Ax_0+By_0+Cz_0+D\rvert}{\sqrt{A^2+B^2+C^2}}$ |
+    | 点到直线距离 | $\dfrac{\lvert\overrightarrow{P_1P_0}\times\mathbf s\rvert}{\lvert\mathbf s\rvert}$ |
+    | 异面直线距离 | $\dfrac{\lvert(\mathbf p_2-\mathbf p_1)\cdot(\mathbf s_1\times\mathbf s_2)\rvert}{\lvert\mathbf s_1\times\mathbf s_2\rvert}$ |
+    | 两平面夹角 | $\cos\theta=\dfrac{\lvert\mathbf n_1\cdot\mathbf n_2\rvert}{\lvert\mathbf n_1\rvert\lvert\mathbf n_2\rvert}$ |
+    | 直线与平面夹角 | $\sin\theta=\dfrac{\lvert\mathbf s\cdot\mathbf n\rvert}{\lvert\mathbf s\rvert\lvert\mathbf n\rvert}$ |
+    | 曲线切向量 | $\mathbf r'(t_0)$ 或 $\nabla F\times\nabla G$ |
+    | 曲面法向量 | $\nabla F$ 或 $\mathbf r_u\times\mathbf r_v$ |
+    | 方向导数 | $\nabla f\cdot\mathbf e$ |
+    | 最大方向导数 | $\lvert\nabla f\rvert$ |
+    | 散度 | $P_x+Q_y+R_z$ |
+    | 旋度 | $(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y)$ |
+    | 恒等式 | $\nabla\times(\nabla f)=\mathbf 0$，$\nabla\cdot(\nabla\times\mathbf F)=0$ |
+
+    <Tip>
+    复习优先级：向量运算、平面与直线的方程及夹角距离、曲线与曲面的切线与法平面、方向导数与梯度。异面直线距离、旋度与散度的恒等式属于进阶补充，可在掌握主线后再强化。
+    </Tip>
   </Accordion>
 </AccordionGroup>

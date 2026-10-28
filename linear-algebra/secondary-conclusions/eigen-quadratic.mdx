@@ -1,0 +1,324 @@
+---
+title: "特征值与二次型"
+sidebarTitle: "特征值与二次型"
+description: "集中整理常用矩阵的特征值、特征值的和与积、单位化与否对相似与合同对角化的影响，以及正定矩阵与乘积矩阵的补充结论。"
+tags: ["考研", "线性代数", "二级结论"]
+---
+
+本页汇总第 5、6 章中适合独立成条的公式与判定。第 5 章保留“定义—线性无关—对角化—实对称”的主线，第 6 章保留“二次型—标准形—惯性定理—正定”的主线；这里的结论用于做题时快速调用。
+
+<Info>
+三条主线：特征值怎么变 → 二次型矩阵怎么变（相似还是合同）→ 正定性怎么判。每条都先看条件，再套公式。
+</Info>
+
+## 一、常用矩阵的特征值
+
+<AccordionGroup>
+  <Accordion title="公式表">
+    设 $A\alpha=\lambda\alpha$，其中 $\alpha\ne0$，则下表成立：
+
+    | 矩阵 | 特征值 | 对应特征向量 |
+    | --- | --- | --- |
+    | $kA$ | $k\lambda$ | $\alpha$ |
+    | $A^m$ | $\lambda^m$ | $\alpha$ |
+    | $f(A)$ | $f(\lambda)$ | $\alpha$ |
+    | $A^{-1}$ | $\dfrac{1}{\lambda}$ | $\alpha$ |
+    | $A^*$ | $\dfrac{\lvert A\rvert}{\lambda}$ | $\alpha$ |
+    | $A+kE$ | $\lambda+k$ | $\alpha$ |
+    | $A^T$ | 与 $A$ 相同 | 不一定相同 |
+    | $P^{-1}AP$ | 与 $A$ 相同 | $P^{-1}\alpha$ |
+
+    其中 $m$ 为正整数，$f$ 为多项式。
+
+    <Check>
+    前六行是“同一个特征向量 $\alpha$ 不变，特征值按同样规则变”；后两行只保证特征值相同，特征向量要另算。
+    </Check>
+  </Accordion>
+
+  <Accordion title="条件与易错点">
+    - $A^{-1}$ 与 $A^*$ 的公式都要求 $A$ 可逆，即 $\lambda\ne0$ 且 $\lvert A\rvert\ne0$。
+    - $A^T$ 与 $A$ 的特征值相同，但特征向量不一定相同。
+    - $P^{-1}AP$ 的特征值与 $A$ 相同，但对应的特征向量要左乘 $P^{-1}$。
+    - $f(A)$ 的特征值是 $f(\lambda)$，但 $f(A)$ 的特征向量仍是 $\alpha$；不要把它和“$B=p(A)$”混淆。
+
+    <Warning>
+    若 $\lambda=0$，则 $A^{-1}$ 与 $A^*$ 的特征值公式失效。此时 $A$ 不可逆，$A^*$ 的特征值不能再用 $\lvert A\rvert/\lambda$ 计算。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 二、特征值的和与积
+
+<AccordionGroup>
+  <Accordion title="迹与行列式">
+    设 $n$ 阶矩阵 $A$ 的 $n$ 个特征值为 $\lambda_1,\lambda_2,\dots,\lambda_n$（按重数计算），则
+
+    $$
+    \boxed{\sum_{i=1}^{n}\lambda_i=\operatorname{tr}(A)}
+    $$
+
+    $$
+    \boxed{\prod_{i=1}^{n}\lambda_i=\lvert A\rvert}
+    $$
+
+    其中 $\operatorname{tr}(A)$ 是矩阵的迹，即主对角线元素之和。
+
+    <Tip>
+    这两个结论常用来检验特征值算得是否正确，也可以在已知部分特征值时反求另一个特征值或待定参数。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="常见用法">
+    - **验算**：算出特征值后，先加一遍看是否等于迹，再乘一遍看是否等于行列式。
+    - **反求参数**：已知一个特征值或特征值之和/积，可以反解矩阵中的待定常数。
+    - **判断可逆**：$\lvert A\rvert=\prod\lambda_i\ne0\iff$ 所有特征值都不为零。
+
+    <Warning>
+    特征值必须按重数计算。只写“互不相同的特征值”求和、求积，会漏掉重根。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 三、单位化与否：相似对角化与合同对角化
+
+<AccordionGroup>
+  <Accordion title="单位化：得到正交矩阵">
+    设 $\xi_1,\ldots,\xi_n$ 是实对称矩阵 $A$ 的两两正交特征向量，对应特征值为 $\lambda_1,\ldots,\lambda_n$。令
+
+    $$
+    q_i=\frac{\xi_i}{\lVert\xi_i\rVert},\qquad Q=(q_1,\ldots,q_n)
+    $$
+
+    则 $Q$ 为正交矩阵：
+
+    $$
+    Q^TQ=E,\qquad Q^{-1}=Q^T
+    $$
+
+    且
+
+    $$
+    Q^TAQ=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    作正交变换 $x=Qy$，二次型化为
+
+    $$
+    f=\lambda_1y_1^2+\cdots+\lambda_ny_n^2
+    $$
+
+    <Tip>
+    同一特征值对应多个特征向量时，要先在该特征子空间内作施密特正交化，再单位化，才能得到标准正交特征向量组。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="不单位化：只保证两两正交">
+    仍取两两正交的特征向量 $\xi_1,\ldots,\xi_n$，但不再单位化，令
+
+    $$
+    C=(\xi_1,\ldots,\xi_n),\qquad d_i=\lVert\xi_i\rVert^2
+    $$
+
+    由两两正交，得
+
+    $$
+    C^TC=\operatorname{diag}(d_1,\ldots,d_n)
+    $$
+
+    又因为 $A\xi_i=\lambda_i\xi_i$，即
+
+    $$
+    AC=C\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    所以
+
+    $$
+    C^{-1}AC=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    但二次型变换用的是 $C^TAC$：
+
+    $$
+    C^TAC=C^TC\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    =\operatorname{diag}(\lambda_1d_1,\ldots,\lambda_nd_n)
+    $$
+
+    作变换 $x=Cy$，二次型化为
+
+    $$
+    f=\lambda_1d_1y_1^2+\cdots+\lambda_nd_ny_n^2
+    $$
+
+    <Warning>
+    这个公式要求特征向量两两正交。若特征向量只是线性无关而不正交，则 $C^TC$ 不是对角矩阵，$C^TAC$ 一般也不是对角矩阵。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="相似对角化与合同对角化的区别">
+    对由线性无关特征向量组成的矩阵 $C$，无论是否单位化，都有
+
+    $$
+    C^{-1}AC=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    这是**相似对角化**，对角元是特征值。
+
+    但二次型 $x^TAx$ 在 $x=Cy$ 下变为
+
+    $$
+    x^TAx=y^T(C^TAC)y
+    $$
+
+    用的是**合同变换** $C^TAC$，不是相似变换 $C^{-1}AC$。
+
+    **正交情形**：若 $C=Q$ 为正交矩阵，则 $Q^T=Q^{-1}$，两种变换重合：
+
+    $$
+    Q^TAQ=Q^{-1}AQ=\operatorname{diag}(\lambda_i)
+    $$
+
+    **一般正交特征向量情形**：若 $C$ 的列两两正交但不单位化，则 $C^TAC$ 的对角元是 $\lambda_i\lVert\xi_i\rVert^2$，一般不等于 $\lambda_i$。
+
+    <Check>
+    相似看 $C^{-1}AC$，合同看 $C^TAC$；只有 $Q$ 正交时两者相同。题目要“正交变换”或“标准形系数为特征值”，必须单位化。
+    </Check>
+  </Accordion>
+
+  <Accordion title="两种方式对比">
+    | 比较 | 单位化 | 不单位化（两两正交） |
+    | --- | --- | --- |
+    | 特征向量 | 两两正交且单位长度 | 两两正交，长度不一定为 $1$ |
+    | 变换矩阵 | $Q$ 正交，$Q^TQ=E$ | $C$ 可逆，$C^TC=\operatorname{diag}(d_i)$ |
+    | 二次型矩阵 | $Q^TAQ=\operatorname{diag}(\lambda_i)$ | $C^TAC=\operatorname{diag}(\lambda_id_i)$ |
+    | 标准形系数 | $\lambda_i$ | $\lambda_id_i$ |
+    | 相似对角化 | $Q^{-1}AQ=\operatorname{diag}(\lambda_i)$ | $C^{-1}AC=\operatorname{diag}(\lambda_i)$ |
+
+    <Warning>
+    不单位化时，标准形系数不再是特征值。若题目要求“用正交变换化标准形”，必须单位化；若只要求“用可逆变换化标准形”，可以不单位化，但系数会随特征向量的长度改变。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 四、正定矩阵的常用性质
+
+<AccordionGroup>
+  <Accordion title="性质清单">
+    设 $A$ 为实对称正定矩阵，则：
+
+    - 所有特征值均大于零。
+    - 行列式 $\lvert A\rvert>0$，因此 $A$ 可逆。
+    - 主对角线元素均大于零。
+    - $A^{-1}$ 仍为正定矩阵。
+    - 对任意可逆矩阵 $C$，$C^TAC$ 仍正定。
+    - $A$ 的任意主子矩阵仍为正定矩阵。
+
+    <Check>
+    正定矩阵的合同变换、求逆、取主子矩阵都保持正定性，这些性质常用于证明题和选择题。
+    </Check>
+  </Accordion>
+
+</AccordionGroup>
+
+## 五、乘积矩阵的正定性与惯性指数
+
+<AccordionGroup>
+  <Accordion title="半正定、正定与惯性指数">
+    设 $A$ 为 $m\times n$ 实矩阵，$r(A)=r$（秩结论见[矩阵运算与秩](/linear-algebra/secondary-conclusions/matrix-rank)）。
+
+    对任意实向量 $x$，
+
+    $$
+    x^TA^TAx=\lVert Ax\rVert^2\ge0
+    $$
+
+    所以 $A^TA$（$n$ 阶）与 $AA^T$（$m$ 阶）都是实对称半正定矩阵。
+
+    **正定的条件**
+
+    $$
+    \boxed{A^TA\text{ 正定}\iff r(A)=n\quad(A\text{ 列满秩})}
+    $$
+
+    $$
+    \boxed{AA^T\text{ 正定}\iff r(A)=m\quad(A\text{ 行满秩})}
+    $$
+
+    因为 $x^TA^TAx=0\iff Ax=0$，所以 $A^TA$ 正定等价于 $Ax=0$ 只有零解，即 $r(A)=n$；同理 $AA^T$ 正定等价于 $r(A)=m$。
+
+    **惯性指数**
+
+    $$
+    p(A^TA)=r,\qquad q(A^TA)=0,\qquad n_0(A^TA)=n-r
+    $$
+
+    $$
+    p(AA^T)=r,\qquad q(AA^T)=0,\qquad n_0(AA^T)=m-r
+    $$
+
+    <Check>
+    行满秩 $\Rightarrow AA^T$ 正定；列满秩 $\Rightarrow A^TA$ 正定。两个方向不要记反。
+    </Check>
+  </Accordion>
+
+  <Accordion title="易错点">
+    - 注意矩阵的阶数：$A^TA$ 是 $n$ 阶，$AA^T$ 是 $m$ 阶。
+    - 行满秩时，若 $m<n$，则 $A^TA$ 不是正定矩阵，它还有 $n-m$ 个零特征值。
+    - 列满秩时，若 $n<m$，则 $AA^T$ 也不是正定矩阵。
+    - $A^TA$ 与 $AA^T$ 的秩都等于 $r(A)$，但正定与否取决于阶数是否与秩相等。
+
+    <Warning>
+    “$A^TA$ 半正定”是永远成立的；“$A^TA$ 正定”需要列满秩。不要把半正定直接升级成正定。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 六、考前速记
+
+<AccordionGroup>
+  <Accordion title="核心结论">
+    | 知识点 | 必背内容 |
+    | --- | --- |
+    | 二次型 | $f(x)=x^TAx$，$A^T=A$ |
+    | 合同变换 | $C^TAC$ |
+    | 正交变换 | $Q^TAQ,\ Q^TQ=E$ |
+    | 特征值 | $\lvert\lambda E-A\rvert=0$ |
+    | 特征向量 | $(A-\lambda E)\alpha=0,\ \alpha\ne0$ |
+    | 特征值之和 | $\sum\lambda_i=\operatorname{tr}(A)$ |
+    | 特征值之积 | $\prod\lambda_i=\lvert A\rvert$ |
+    | 不同特征值对应的特征向量 | 线性无关 |
+    | 实对称矩阵不同特征值对应的特征向量 | 正交 |
+    | 相似对角化 | $P^{-1}AP=\operatorname{diag}(\lambda_i)$ |
+    | 合同对角化 | $C^TAC=\operatorname{diag}(\lambda_id_i)$，$d_i=\lVert\xi_i\rVert^2$ |
+    | 正交对角化 | $Q^TAQ=\operatorname{diag}(\lambda_i)$，$Q^TQ=E$ |
+    | 标准形 | 只含平方项，系数不一定为 $\pm1,0$ |
+    | 规范形 | 系数只有 $1,-1,0$ |
+    | 正惯性指数 | 正特征值的个数 |
+    | 负惯性指数 | 负特征值的个数 |
+    | 正定判别 | 特征值全正，或全部顺序主子式为正 |
+    | $A^TA$、$AA^T$ | 均半正定；$p=r(A)$，$q=0$ |
+    | $A^TA$ 正定 | $A$ 列满秩 |
+    | $AA^T$ 正定 | $A$ 行满秩 |
+
+    <Check>
+    最重要的逻辑关系：不同特征值对应的特征向量必定线性无关；若矩阵还是实对称矩阵，那么不同特征值对应的特征向量进一步相互正交。正是实对称矩阵的这一性质，保证了二次型可以通过正交变换化为标准形。
+    </Check>
+  </Accordion>
+
+  <Accordion title="判定与易错">
+    - $A$ 有 $n$ 个互不相同的特征值 $\Rightarrow$ $A$ 可相似对角化。
+    - $A$ 可相似对角化 $\iff$ $A$ 有 $n$ 个线性无关的特征向量。
+    - 一般矩阵可相似对角化，不代表它一定可以正交对角化。
+    - 实矩阵可正交相似对角化为实对角矩阵 $\iff$ 它是实对称矩阵。
+    - 惯性定理：无论用配方法还是正交变换法，正、负惯性指数都不变。
+    - 判断两个二次型是否合同，只需比较正、负惯性指数；判断正定，只需看正惯性指数是否等于 $n$。
+
+    <Warning>
+    相似看 $C^{-1}AC$，合同看 $C^TAC$。只有 $Q$ 正交时二者相同；未单位化时 $C^TAC$ 的对角元是 $\lambda_i\lVert\xi_i\rVert^2$，不是特征值。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+本页的“母体”在[第 5 章](/linear-algebra/knowledge-summary/chapter-5)与[第 6 章](/linear-algebra/knowledge-summary/chapter-6)：特征值定义、相似对角化判定、实对称矩阵正交对角化、标准形与惯性定理、正定判别。做题时先回正文确认条件，再套用本页结论。
+</Info>

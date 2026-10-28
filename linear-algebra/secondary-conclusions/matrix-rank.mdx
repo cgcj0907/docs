@@ -1,0 +1,261 @@
+---
+title: "矩阵运算与秩"
+sidebarTitle: "矩阵运算与秩"
+description: "集中整理伴随矩阵的运算法则与秩、A^TA 与 AA^T 的秩、乘以可逆矩阵后秩与行列式的变化，并附证明与易错点。"
+tags: ["考研", "线性代数", "二级结论"]
+---
+
+本页把第 2 章中分散的“矩阵运算—秩”结论集中到一起。它们都是可以独立记忆、独立证明的二级结论，放在正文里会打断“等价—相似—合同”与矩阵运算的主线。
+
+<Info>
+阅读顺序：伴随矩阵的公式与秩 → $A^TA$ 与 $AA^T$ 的秩 → 乘可逆矩阵后秩与行列式的变化。所有结论默认矩阵为实矩阵，且乘法有意义。
+</Info>
+
+## 一、伴随矩阵的运算法则
+
+<AccordionGroup>
+  <Accordion title="公式汇总">
+    设 $A,B$ 为 $n$ 阶方阵（$n\ge2$），$A^*$ 为伴随矩阵。
+
+    $$
+    \boxed{A^*=\lvert A\rvert A^{-1}}\qquad(A\text{ 可逆})
+    $$
+
+    $$
+    \boxed{\lvert A^*\rvert=\lvert A\rvert^{n-1}}
+    $$
+
+    $$
+    \boxed{(A^*)^{-1}=(A^{-1})^*=\frac{1}{\lvert A\rvert}A}\qquad(A\text{ 可逆})
+    $$
+
+    $$
+    \boxed{(A^*)^T=(A^T)^*}
+    $$
+
+    $$
+    \boxed{(AB)^*=B^*A^*}
+    $$
+
+    补充两条低频但常考的公式：
+
+    $$
+    (kA)^*=k^{n-1}A^*,\qquad (A^*)^*=\lvert A\rvert^{n-2}A
+    $$
+
+    其中第二式要求 $n\ge2$；$n=2$ 时约定 $\lvert A\rvert^0=1$。
+
+    <Check>
+    记忆主线：$AA^*=\lvert A\rvert E$ 是源头；可逆时 $A^*=\lvert A\rvert A^{-1}$，于是其余公式都可以由 $A^{-1}$ 的运算法则迁移过来。
+    </Check>
+  </Accordion>
+
+  <Accordion title="条件与易错点">
+    - $A^*$ 对任意 $n$ 阶方阵都有定义，不要求 $A$ 可逆；但 $(A^*)^{-1}=(A^{-1})^*=\dfrac{1}{\lvert A\rvert}A$ 要求 $A$ 可逆。
+    - $\lvert A^*\rvert=\lvert A\rvert^{n-1}$ 对奇异矩阵也成立：此时两边都为 $0$。
+    - $(AB)^*=B^*A^*$ 的顺序不能反，和 $(AB)^{-1}=B^{-1}A^{-1}$ 的顺序一致。
+    - 一般地，$(A+B)^*\ne A^*+B^*$，伴随矩阵对加法没有分配律。
+
+    <Warning>
+    最容易错的是把 $(AB)^*$ 写成 $A^*B^*$。伴随矩阵来自“代数余子式 + 转置”，乘积的伴随矩阵顺序要颠倒。
+    </Warning>
+
+    <Tip>
+    $\lvert A^*\rvert=\lvert A\rvert^{n-1}$ 的推导：由 $AA^*=\lvert A\rvert E$ 两边取行列式，得 $\lvert A\rvert\,\lvert A^*\rvert=\lvert A\rvert^n$。当 $A$ 可逆时两边约去 $\lvert A\rvert$；当 $A$ 奇异时 $\lvert A^*\rvert=0$，结论仍成立。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 二、伴随矩阵的秩
+
+<AccordionGroup>
+  <Accordion title="结论">
+    设 $A$ 为 $n$ 阶方阵，则
+
+    $$
+    \boxed{
+    r(A^*)=
+    \begin{cases}
+    n, & r(A)=n\\
+    1, & r(A)=n-1\\
+    0, & r(A)<n-1
+    \end{cases}}
+    $$
+
+    <Warning>
+    三个区间的边界分别是 $r(A)=n$、$r(A)=n-1$ 和 $r(A)<n-1$，不要和 $r(A)\le n-2$ 混淆。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="证明：r(A)=n-1 时 r(A*)=1">
+    **第一步：证明 $r(A^*)\ge1$。**
+
+    因为 $r(A)=n-1$，所以 $A$ 中存在一个 $n-1$ 阶非零子式，即至少有一个代数余子式 $A_{ij}\ne0$。而 $A^*$ 的元素正是这些代数余子式，所以 $A^*\ne O$，故
+
+    $$
+    r(A^*)\ge1
+    $$
+
+    **第二步：证明 $r(A^*)\le1$。**
+
+    因为 $r(A)=n-1<n$，所以 $A$ 不可逆，$\lvert A\rvert=0$。由基本恒等式
+
+    $$
+    AA^*=\lvert A\rvert E=O
+    $$
+
+    利用秩的不等式：若 $AB=O$，其中 $A$ 为 $m\times n$、$B$ 为 $n\times s$，则 $r(A)+r(B)\le n$。这里
+
+    $$
+    (n-1)+r(A^*)\le n
+    $$
+
+    因此 $r(A^*)\le1$。
+
+    **第三步：合并。**
+
+    由 $r(A^*)\ge1$ 且 $r(A^*)\le1$，得 $r(A^*)=1$。
+
+    <Check>
+    证明可以压缩为“非零子式保证下界，$AA^*=O$ 提供上界”。另外两种情形：$r(A)=n$ 时 $A$ 可逆，$A^*$ 也可逆；$r(A)<n-1$ 时所有 $n-1$ 阶子式全为 $0$，$A^*=O$。
+    </Check>
+  </Accordion>
+
+  <Accordion title="直观理解">
+    - $r(A)=n$：$A$ 可逆，$A^*$ 也可逆，所以 $r(A^*)=n$。
+    - $r(A)=n-1$：$A$ 不可逆，但至少有一个 $n-1$ 阶子式非零，所以 $A^*\ne O$，秩至少为 $1$；又因为 $AA^*=O$，秩被限制住，所以秩恰好为 $1$。
+    - $r(A)<n-1$：所有 $n-1$ 阶子式全为 $0$，所以 $A^*=O$，秩为 $0$。
+
+    <Tip>
+    这条结论常与“[第 2 章](/linear-algebra/knowledge-summary/chapter-2) 矩阵的秩”中的不等式 $AB=O\Rightarrow r(A)+r(B)\le n$ 联合使用，证明题里出现 $AA^*=O$ 就要想到它。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 三、两个乘积矩阵的秩
+
+<AccordionGroup>
+  <Accordion title="结论与证明">
+    设 $A$ 为 $m\times n$ 实矩阵，则不论是否满秩，都有
+
+    $$
+    \boxed{r(A^TA)=r(AA^T)=r(A^T)=r(A)}
+    $$
+
+    其中 $A^TA$ 为 $n$ 阶实对称矩阵，$AA^T$ 为 $m$ 阶实对称矩阵。
+
+    **证明 $r(A^TA)=r(A)$**：
+
+    若 $A^TAx=0$，两边左乘 $x^T$，得
+
+    $$
+    x^TA^TAx=\lVert Ax\rVert^2=0
+    $$
+
+    因此 $Ax=0$。反之，若 $Ax=0$，显然 $A^TAx=0$。记 $N(A)=\{x\mid Ax=0\}$ 为 $A$ 的零空间，则
+
+    $$
+    N(A^TA)=N(A)
+    $$
+
+    由秩—零度定理，
+
+    $$
+    r(A^TA)=n-\dim N(A^TA)=n-\dim N(A)=r(A)
+    $$
+
+    同理，对 $A^T$ 使用上述结论，得 $r(AA^T)=r(A^T)=r(A)$。
+
+    <Check>
+    证明的关键是 $x^TA^TAx=\lVert Ax\rVert^2$：它把 $A^TA$ 的零空间与 $A$ 的零空间完全等同起来。
+    </Check>
+  </Accordion>
+
+  <Accordion title="易错点">
+    - 该结论只对实矩阵成立。复矩阵应把转置换成共轭转置：$r(A^HA)=r(AA^H)=r(A)$。
+    - 秩相等不代表 $A^TA$ 与 $AA^T$ 相等，它们甚至可能不同阶。
+    - $A^TA$ 是 $n$ 阶、$AA^T$ 是 $m$ 阶；不要因为“秩都等于 $r(A)$”就忽略阶数。
+
+    <Warning>
+    “$A^TA$ 与 $AA^T$ 的秩都等于 $r(A)$”与“它们正定”是两件事。正定还要求满秩，且阶数要与秩匹配，详见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 四、乘以可逆矩阵：秩与行列式
+
+<AccordionGroup>
+  <Accordion title="秩不变，行列式会变">
+    设 $P,Q$ 可逆且乘法有意义，则
+
+    $$
+    \boxed{r(PA)=r(A),\qquad r(AQ)=r(A),\qquad r(PAQ)=r(A)}
+    $$
+
+    原因是左乘可逆矩阵相当于一系列可逆的行变换，右乘相当于可逆的列变换，而可逆行、列变换都不改变秩。
+
+    对同阶方阵，行列式满足乘法公式：
+
+    $$
+    \boxed{\lvert AB\rvert=\lvert A\rvert\lvert B\rvert}
+    $$
+
+    若 $A,P,Q$ 为同阶方阵且 $P,Q$ 可逆，则
+
+    $$
+    \lvert PA\rvert=\lvert P\rvert\lvert A\rvert,\qquad
+    \lvert AQ\rvert=\lvert A\rvert\lvert Q\rvert
+    $$
+
+    所以乘可逆矩阵后：
+
+    - 秩不变；
+    - 行列式的值一般会变；
+    - 行列式是否为零不变。
+
+    即
+
+    $$
+    \lvert PA\rvert=0\iff\lvert A\rvert=0
+    $$
+
+    <Check>
+    一句话：可逆矩阵乘上去，秩“照抄”，行列式“乘一个非零倍数”。所以判断秩和判断可逆性时可以放心乘可逆矩阵，但求行列式的具体值时要补上 $\lvert P\rvert$、$\lvert Q\rvert$。
+    </Check>
+  </Accordion>
+
+  <Accordion title="相似变换的特殊情形">
+    若 $B=P^{-1}AP$，则
+
+    $$
+    \lvert B\rvert=\lvert P^{-1}\rvert\lvert A\rvert\lvert P\rvert=\lvert A\rvert
+    $$
+
+    $$
+    r(B)=r(A)
+    $$
+
+    所以相似变换既保持秩，也保持行列式；这与“相似矩阵有相同的特征值、迹、行列式、秩”一致。
+
+    <Warning>
+    $r(PA)=r(A)$ 只要求 $P$ 可逆；$P$ 不可逆时秩可能变小。$\lvert PA\rvert=\lvert P\rvert\lvert A\rvert$ 中的 $\lvert P\rvert$ 一般不为 $1$，所以行列式的数值不能直接照搬。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 五、速记表
+
+| 结论 | 公式 | 条件 |
+| --- | --- | --- |
+| 伴随矩阵基本恒等式 | $AA^*=A^*A=\lvert A\rvert E$ | 任意 $n$ 阶方阵 |
+| 伴随矩阵行列式 | $\lvert A^*\rvert=\lvert A\rvert^{n-1}$ | 任意 $n$ 阶方阵 |
+| 伴随矩阵可逆 | $(A^*)^{-1}=(A^{-1})^*=\dfrac{1}{\lvert A\rvert}A$ | $A$ 可逆 |
+| 乘积的伴随 | $(AB)^*=B^*A^*$ | $A,B$ 同阶 |
+| 伴随矩阵的秩 | $n$ / $1$ / $0$ | 对应 $r(A)=n$ / $n-1$ / 小于 $n-1$ |
+| $A^TA$ 的秩 | $r(A^TA)=r(A)$ | $A$ 为实矩阵 |
+| 乘可逆矩阵 | $r(PAQ)=r(A)$ | $P,Q$ 可逆 |
+| 乘可逆矩阵的行列式 | $\lvert PA\rvert=\lvert P\rvert\lvert A\rvert$ | 同阶方阵 |
+
+<Info>
+本页结论的“母体”在第 2 章：伴随矩阵的定义与 $AA^*=\lvert A\rvert E$、矩阵的秩与秩不等式、分块矩阵。做题时先回到母体确认条件，再套用本页公式。
+</Info>

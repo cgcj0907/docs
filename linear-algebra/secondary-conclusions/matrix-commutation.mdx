@@ -1,0 +1,753 @@
+---
+title: "矩阵可交换 AB=BA"
+sidebarTitle: "矩阵可交换"
+description: "整理 AB=BA 的常用二级结论：特征子空间不变性、互异特征值下的同时对角化与多项式表示、同时对角化的充要条件、实对称与正定、与对角矩阵可交换的结构、与所有矩阵可交换，并补充使用条件、证明与易错点。"
+tags: ["考研", "线性代数", "二级结论"]
+---
+
+设 $A,B$ 均为 $n$ 阶实方阵。若
+
+$$
+AB=BA
+$$
+
+则称 $A,B$ 可交换。最基础的结论是：$B$ 把 $A$ 的特征子空间映到自身。所有更强的结论——公共特征向量基、同时对角化、$B=p(A)$、乘积正定——都必须再补充条件。
+
+<Tip>
+主线：$AB=BA\Rightarrow B$ 保持 $A$ 的特征子空间不变；要再推出公共特征向量基、同时对角化或 $B=p(A)$，必须检查 $A$ 是否可对角化、特征值是否互异、矩阵是否实对称。
+</Tip>
+
+<Info>
+以下默认在实数域上讨论。凡说“$A$ 有 $n$ 个互异特征值”，均指 $A$ 有 $n$ 个互异的**实**特征值；若在复数域上讨论，会单独注明。讨论“同时对角化”时，$A,B$ 必须在同一个数域上可对角化。
+</Info>
+
+## 一、特征子空间的不变性
+
+<AccordionGroup>
+  <Accordion title="结论与证明">
+    设 $\lambda$ 是 $A$ 的特征值，对应的特征子空间为
+
+    $$
+    E_\lambda(A)=\{\alpha\mid A\alpha=\lambda\alpha\}=\ker(A-\lambda E)
+    $$
+
+    若 $AB=BA$，则
+
+    $$
+    \boxed{B\bigl(E_\lambda(A)\bigr)\subseteq E_\lambda(A)}
+    $$
+
+    **证明**：任取 $\alpha\in E_\lambda(A)$，即 $A\alpha=\lambda\alpha$。由 $AB=BA$ 得
+
+    $$
+    \begin{aligned}
+    A(B\alpha) &= B(A\alpha)\\
+    &= B(\lambda\alpha)\\
+    &= \lambda(B\alpha)
+    \end{aligned}
+    $$
+
+    因此
+
+    $$
+    \boxed{A(B\alpha)=\lambda(B\alpha)}
+    $$
+
+    即 $B\alpha\in E_\lambda(A)$，故 $B(E_\lambda(A))\subseteq E_\lambda(A)$。
+
+    <Check>
+    证明只用到 $AB=BA$ 和 $A\alpha=\lambda\alpha$，与 $B$ 是否可逆、是否可对角化无关。$B$ 奇异时结论照样成立。
+    </Check>
+  </Accordion>
+
+  <Accordion title="注意 Bα=0 的情形">
+    上面的推导只说明 $B\alpha$ 仍满足“被 $A$ 作用等于 $\lambda$ 倍”，并没有说 $B\alpha$ 非零。
+
+    - 若 $B\alpha\ne0$，则 $B\alpha$ 是 $A$ 对应于 $\lambda$ 的特征向量；
+    - 若 $B\alpha=0$，则它不是特征向量（特征向量必须非零），但零向量属于任何子空间，所以仍有 $B\alpha\in E_\lambda(A)$。
+
+    <Warning>
+    不要因为“$B\alpha=0$ 时不是特征向量”就认为结论不成立。结论说的是“子空间不变”，不是“特征向量映成特征向量”。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="一维特征子空间：公共特征向量">
+    若
+
+    $$
+    \dim E_\lambda(A)=1
+    $$
+
+    取 $\alpha\ne0$ 为 $E_\lambda(A)$ 的基，则由 $B\alpha\in E_\lambda(A)$ 知存在数 $\mu$，使
+
+    $$
+    B\alpha=\mu\alpha
+    $$
+
+    于是
+
+    $$
+    \boxed{\alpha\text{ 同时是 }A,B\text{ 的特征向量}}
+    $$
+
+    进一步，若 $A$ 有 $n$ 个互异特征值 $\lambda_1,\dots,\lambda_n$，则每个 $E_{\lambda_i}(A)$ 都是一维。分别取基 $\alpha_i$，则 $\alpha_1,\dots,\alpha_n$ 都是 $A,B$ 的公共特征向量；又它们属于 $A$ 的不同特征值，必线性无关，从而是 $\mathbb R^n$ 的一组基。
+
+    <Check>
+    这就是“$A$ 有 $n$ 个互异特征值时，$A,B$ 一定存在一组公共特征向量基”的完整理由，也是下一节同时对角化的基础。
+    </Check>
+  </Accordion>
+
+  <Accordion title="强化：广义特征子空间也不变">
+    把特征子空间换成根子空间（广义特征子空间）
+
+    $$
+    V_\lambda(A)=\ker\bigl((A-\lambda E)^{n}\bigr)
+    $$
+
+    由 $(A-\lambda E)^kB=B(A-\lambda E)^k$ 可知，$AB=BA$ 时同样有
+
+    $$
+    B\bigl(V_\lambda(A)\bigr)\subseteq V_\lambda(A)
+    $$
+
+    因此在复数域上，与 $A$ 可交换的 $B$ 在 $A$ 的 Jordan 基下是**分块对角**的，每个块对应 $A$ 的一个特征值。
+
+    <Tip>
+    这是超纲的加强版，考研只需掌握特征子空间那一版；它的作用是解释“可交换矩阵为什么一定是分块对角的”。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="常见易错点">
+    - **特征值必须在所讨论的数域内。** 实矩阵可能有复特征值，此时 $E_\lambda(A)$ 是复子空间，不能在 $\mathbb R^n$ 里讨论。
+    - **“$B$ 保持 $A$ 的特征子空间”不等于“$B$ 的特征向量就是 $A$ 的特征向量”。** 只有 $\dim E_\lambda(A)=1$ 时才自动公共；高维特征子空间里，$B$ 完全可能把 $A$ 的特征向量映成同子空间内另一个方向。
+    - **反过来，对可对角化的 $A$，该条件是充要的。** 若 $A$ 可对角化且 $B$ 保持 $A$ 的每个特征子空间，则在每个特征向量 $\alpha$ 上有 $AB\alpha=\lambda B\alpha=BA\alpha$，于是 $AB=BA$。
+    - **不要漏掉“$B$ 保持的是每个特征子空间”。** 只说“$B$ 保持某个特征子空间”推不出可交换。
+
+    <Warning>
+    最常见的错误：由 $A\alpha=\lambda\alpha$ 直接写 $B\alpha=\mu\alpha$。这一步只在 $\dim E_\lambda(A)=1$ 时成立。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 二、A 有 n 个互异特征值时的强化结论
+
+<AccordionGroup>
+  <Accordion title="同时相似对角化">
+    若 $A$ 有 $n$ 个互异的实特征值 $\lambda_1,\dots,\lambda_n$，且 $AB=BA$，则 $A,B$ 可以同时相似对角化：存在可逆矩阵 $P$，使
+
+    $$
+    \boxed{
+    \begin{cases}
+    P^{-1}AP=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\\
+    P^{-1}BP=\operatorname{diag}(\mu_1,\dots,\mu_n)
+    \end{cases}}
+    $$
+
+    **证明**：取 $A$ 对应于 $\lambda_i$ 的特征向量 $\alpha_i$。不同特征值对应的特征向量线性无关，故 $P=(\alpha_1,\dots,\alpha_n)$ 可逆，且
+
+    $$
+    P^{-1}AP=\operatorname{diag}(\lambda_1,\dots,\lambda_n)
+    $$
+
+    由第一节，$\dim E_{\lambda_i}(A)=1$，所以 $B\alpha_i$ 必为 $\alpha_i$ 的倍数，记 $B\alpha_i=\mu_i\alpha_i$。于是
+
+    $$
+    P^{-1}BP=\operatorname{diag}(\mu_1,\dots,\mu_n)
+    $$
+
+    <Check>
+    这里 $P$ 的列向量就是 $A,B$ 的公共特征向量。注意条件加在 $A$ 身上，不是加在 $B$ 身上；$\mu_i$ 可以重复，$B$ 仍然可对角化。
+    </Check>
+
+    <Warning>
+    “$A$ 有 $n$ 个互异特征值”是充分条件，不是必要条件。$A=E$ 只有一个特征值，但任意 $B$ 都与 $A$ 可交换，只要 $B$ 可对角化就能同时对角化。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="B 可以表示为 A 的多项式">
+    在上一段的条件下，存在次数不超过 $n-1$ 的多项式 $p(t)$，使
+
+    $$
+    \boxed{B=p(A)=c_0E+c_1A+\cdots+c_{n-1}A^{n-1}}
+    $$
+
+    且当 $\lambda_i,\mu_i$ 都是实数时，$p$ 可取实系数多项式。
+
+    **证明**：由同时对角化，$A=P\Lambda P^{-1}$，$B=PM P^{-1}$，其中 $\Lambda=\operatorname{diag}(\lambda_i)$，$M=\operatorname{diag}(\mu_i)$。因为 $\lambda_1,\dots,\lambda_n$ 互异，可用拉格朗日插值构造 $p$，使
+
+    $$
+    p(\lambda_i)=\mu_i,\qquad i=1,\dots,n,\qquad \deg p\le n-1
+    $$
+
+    于是
+
+    $$
+    p(A)=P\,p(\Lambda)\,P^{-1}=P\operatorname{diag}\bigl(p(\lambda_i)\bigr)P^{-1}=PMP^{-1}=B
+    $$
+
+    **反过来**：对任意多项式 $p$，有
+
+    $$
+    \boxed{A\,p(A)=p(A)\,A}
+    $$
+
+    因为 $A$ 与 $A$ 的任意幂可交换，而多项式是幂的线性组合。
+
+    <Check>
+    满足 $p(\lambda_i)=\mu_i$ 且次数不超过 $n-1$ 的多项式是唯一的（拉格朗日插值），所以 $p$ 由 $A,B$ 唯一确定。
+    </Check>
+  </Accordion>
+
+  <Accordion title="易错点：重特征值时多项式表示一般不成立">
+    条件是“$A$ 有 $n$ 个互异特征值”，不能省。
+
+    反例：取 $A=E$，则任意 $B$ 都满足 $AB=BA$。但
+
+    $$
+    p(E)=p(1)E
+    $$
+
+    只能是数量矩阵。取
+
+    $$
+    B=\begin{pmatrix}1&1\\0&1\end{pmatrix}
+    $$
+
+    它不与任何 $p(A)$ 相等，然而 $AB=BA$。
+
+    <Warning>
+    “$B$ 是 $A$ 的多项式”只能由“$A$ 的互异特征值个数足够多”推出。特征值有重根时，可交换矩阵的集合会变大，不再是多项式全体。
+    </Warning>
+
+    <Tip>
+    更一般的结论：若 $A$ 的最小多项式等于特征多项式（即每个特征值只对应一个 Jordan 块），则与 $A$ 可交换的矩阵仍都是 $A$ 的多项式。这是超纲结论，考研记住“互异特征值”这个充分条件即可。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 三、同时对角化的条件
+
+<AccordionGroup>
+  <Accordion title="定理：可交换且均可对角化">
+    设 $A,B$ 在同一个数域上**都可相似对角化**，且 $AB=BA$，则存在同一个可逆矩阵 $P$，使
+
+    $$
+    \boxed{
+    \begin{cases}
+    P^{-1}AP=\Lambda\\
+    P^{-1}BP=M
+    \end{cases}}
+    $$
+
+    其中 $\Lambda,M$ 均为对角矩阵。
+
+    **证明**：因 $A$ 可对角化，
+
+    $$
+    V=E_{\lambda_1}(A)\oplus\cdots\oplus E_{\lambda_s}(A)
+    $$
+
+    由第一节，每个 $E_{\lambda_i}(A)$ 在 $B$ 下不变。又 $B$ 可对角化，而可对角化矩阵在不变子空间上的限制仍可对角化（$B$ 的特征子空间与不变子空间的交给出该子空间的直和分解）。于是在每个 $E_{\lambda_i}(A)$ 内可取一组基，使 $B$ 的限制对角化；这组基同时是 $A$ 的特征向量。把所有子空间的基合并，即得 $V$ 的一组基，$A,B$ 在该基下同时为对角矩阵。
+  </Accordion>
+
+  <Accordion title="这是充要条件">
+    反过来，若存在可逆 $P$ 使 $P^{-1}AP$、$P^{-1}BP$ 同时为对角矩阵，则 $A,B$ 都可对角化，且
+
+    $$
+    AB=P\Lambda P^{-1}PM P^{-1}=P\Lambda M P^{-1}=PM\Lambda P^{-1}=BA
+    $$
+
+    所以
+
+    $$
+    \boxed{AB=BA\text{ 且 }A,B\text{ 均可对角化}\iff A,B\text{ 可同时相似对角化}}
+    $$
+
+    <Check>
+    记忆方法：可交换负责“$B$ 不把 $A$ 的特征子空间搅乱”，可对角化负责“每个特征子空间内部还能再拆成 $B$ 的特征子空间”。两条缺一不可。
+    </Check>
+  </Accordion>
+
+  <Accordion title="公共特征向量下的特征值">
+    设 $\alpha_i\ne0$ 同时是 $A,B$ 的特征向量：
+
+    $$
+    A\alpha_i=\lambda_i\alpha_i,\qquad B\alpha_i=\mu_i\alpha_i
+    $$
+
+    则
+
+    $$
+    (A+B)\alpha_i=(\lambda_i+\mu_i)\alpha_i
+    $$
+
+    $$
+    AB\alpha_i=A(\mu_i\alpha_i)=\lambda_i\mu_i\alpha_i
+    $$
+
+    若 $\alpha_1,\dots,\alpha_n$ 构成公共特征向量基，则
+
+    $$
+    \boxed{
+    \begin{aligned}
+    A+B\text{ 的特征值}&:\lambda_i+\mu_i\\
+    AB\text{ 的特征值}&:\lambda_i\mu_i
+    \end{aligned}}
+    $$
+
+    <Warning>
+    必须按公共特征向量**一一对应**，不能把 $A$ 的任一特征值与 $B$ 的任一特征值任意相加或相乘。没有公共特征向量基时，$A+B$、$AB$ 的特征值一般也不是 $\lambda_i+\mu_i$、$\lambda_i\mu_i$。
+    </Warning>
+
+    <Check>
+    对任意同阶方阵（不要求可交换），$AB$ 与 $BA$ 的特征值（含重数）相同；但这不代表 $AB$ 的特征值是“$A$ 的特征值乘 $B$ 的特征值”，除非有公共特征向量基。
+    </Check>
+  </Accordion>
+
+  <Accordion title="常见易错点">
+    - **只由 $AB=BA$ 就写同时对角化**。反例见第七节。
+    - **$A$ 可对角化且 $AB=BA$，仍推不出 $B$ 可对角化**。取 $A=E$，任意 $B$ 都可交换。
+    - **数域要统一**。在 $\mathbb R$ 上可对角化，要求特征值全为实数且几何重数等于代数重数；不能拿复特征值在实数域里对角化。
+    - **同时对角化的 $P$ 不唯一**，但公共特征向量的个数必须够 $n$ 个。
+
+    <Warning>
+    判断题里出现“$AB=BA$，则 $A,B$ 可同时对角化”，只要没有“$A,B$ 均可对角化”或“实对称”等条件，一律判错。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 四、实对称矩阵可交换的强化结论
+
+<AccordionGroup>
+  <Accordion title="可交换与乘积对称等价">
+    设 $A,B$ 均为实对称矩阵，即 $A^T=A$，$B^T=B$，则
+
+    $$
+    \boxed{AB=BA\iff AB\text{ 为实对称矩阵}}
+    $$
+
+    **证明**：
+
+    $$
+    (AB)^T=B^TA^T=BA
+    $$
+
+    因此
+
+    $$
+    (AB)^T=AB\iff BA=AB
+    $$
+
+    <Check>
+    这条结论把“可交换”这个乘法条件转化成了“乘积对称”这个转置条件，在选择题里非常好用：看到两个实对称矩阵相乘，先转置看等不等于自身。
+    </Check>
+
+    <Warning>
+    必须 $A,B$ 都实对称。一般矩阵即使 $AB$ 对称，也推不出 $AB=BA$。反例：
+
+    $$
+    A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+    B=\begin{pmatrix}0&0\\1&0\end{pmatrix}
+    $$
+
+    此时 $AB=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ 对称，但 $BA=\begin{pmatrix}0&0\\0&1\end{pmatrix}\ne AB$。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="同时正交对角化">
+    若 $A,B$ 都是实对称矩阵且 $AB=BA$，则存在同一个正交矩阵 $Q$，使
+
+    $$
+    \boxed{
+    \begin{cases}
+    Q^TAQ=\Lambda\\
+    Q^TBQ=M
+    \end{cases}}
+    $$
+
+    其中 $Q^TQ=E$，$\Lambda,M$ 均为实对角矩阵。
+
+    **证明**（对阶数 $n$ 归纳）：
+
+    1. $A$ 实对称，取单位特征向量 $\alpha_1$，$A\alpha_1=\lambda_1\alpha_1$。
+    2. 由第一节，$B$ 保持 $E_{\lambda_1}(A)$；$B$ 在 $E_{\lambda_1}(A)$ 上的限制仍是自伴算子，故有实特征向量 $\alpha_1'$。把 $\alpha_1'$ 单位化仍记为 $\alpha_1$，则 $\alpha_1$ 同时是 $A,B$ 的单位特征向量，设 $B\alpha_1=\mu_1\alpha_1$。
+    3. 令 $W=\alpha_1^{\perp}$。由 $A,B$ 实对称，对任意 $\beta\in W$ 有
+
+       $$
+       \langle A\beta,\alpha_1\rangle=\langle\beta,A\alpha_1\rangle=\lambda_1\langle\beta,\alpha_1\rangle=0
+       $$
+
+       故 $A\beta\in W$；同理 $B\beta\in W$。即 $W$ 在 $A,B$ 下都不变。
+    4. $W$ 上 $A,B$ 仍实对称、仍可交换，维数为 $n-1$，由归纳假设存在 $W$ 的标准正交基使二者对角化。
+    5. 与 $\alpha_1$ 合并，得到 $\mathbb R^n$ 的标准正交基，取为 $Q$ 的列，即得结论。
+
+    <Check>
+    正交对角化比相似对角化更强：$Q$ 的列向量是 $A,B$ 的公共**单位正交**特征向量。实对称矩阵的特征向量自动正交，这一步不需要额外验证。
+    </Check>
+  </Accordion>
+
+  <Accordion title="正定性的结论">
+    若 $A,B$ 均为实对称正定矩阵，且 $AB=BA$，则
+
+    $$
+    \boxed{AB\text{ 也为实对称正定矩阵}}
+    $$
+
+    **理由**：由同时正交对角化，$Q^TAQ=\operatorname{diag}(\lambda_i)$，$Q^TBQ=\operatorname{diag}(\mu_i)$，且
+
+    $$
+    \lambda_i>0,\qquad \mu_i>0
+    $$
+
+    于是
+
+    $$
+    Q^T(AB)Q=\operatorname{diag}(\lambda_i\mu_i),\qquad \lambda_i\mu_i>0
+    $$
+
+    所以 $AB$ 的特征值全为正；又 $AB$ 实对称，故 $AB$ 正定。
+
+    <Warning>
+    两个实对称正定矩阵的乘积**不一定对称**，因此没有 $AB=BA$ 时不能直接说 $AB$ 正定。实际上对实对称的 $A,B$，$AB$ 对称与 $AB=BA$ 是等价的（本节第一条），所以“$AB$ 正定”这个说法本身就隐含了可交换。
+    </Warning>
+
+    <Tip>
+    半正定版本同样成立：$A,B$ 实对称半正定且可交换，则 $AB$ 实对称半正定，特征值为 $\lambda_i\mu_i\ge0$。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="常见易错点">
+    - **$AB$ 正定推不出 $A,B$ 正定。** 反例：$A=\operatorname{diag}(1,-1)$，$B=\operatorname{diag}(1,-1)$，则 $AB=E$ 正定，但 $A,B$ 都不正定。
+    - **“$AB$ 对称”在一般矩阵里推不出 $AB=BA$**，只有 $A,B$ 都实对称时才等价。
+    - **实对称矩阵可交换，一定可以同时正交对角化**；但“可同时相似对角化”只需要二者可对角化，不要求正交。
+    - **正定要求特征值全为正**，半正定只要求非负；不要把两者混用。
+
+    <Warning>
+    看到“实对称正定”四个字，先想“特征值全正 + 可正交对角化”；看到“乘积正定”，必须先确认可交换，否则命题不成立。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 五、与对角矩阵可交换的结构
+
+<AccordionGroup>
+  <Accordion title="基本公式">
+    设
+
+    $$
+    B=\operatorname{diag}(b_1,b_2,\dots,b_n),\qquad A=(a_{ij})
+    $$
+
+    则
+
+    $$
+    AB=(a_{ij}b_j),\qquad BA=(b_ia_{ij})
+    $$
+
+    比较第 $(i,j)$ 个元素得
+
+    $$
+    \boxed{AB=BA\iff (b_i-b_j)a_{ij}=0,\quad \forall i,j}
+    $$
+
+    这条公式非常重要，几乎所有“与对角矩阵可交换”的题都从它出发。
+
+    <Check>
+    记忆：$AB$ 是“列乘 $b_j$”，$BA$ 是“行乘 $b_i$”，所以限制落在 $(b_i-b_j)a_{ij}$ 上。
+    </Check>
+  </Accordion>
+
+  <Accordion title="对角元素互不相同">
+    若
+
+    $$
+    b_i\ne b_j,\qquad i\ne j
+    $$
+
+    则由 $(b_i-b_j)a_{ij}=0$ 得 $a_{ij}=0$（$i\ne j$），所以
+
+    $$
+    \boxed{A\text{ 必须为对角矩阵}}
+    $$
+
+    <Warning>
+    这条的逆否命题也常用：若存在 $i\ne j$ 使 $a_{ij}\ne0$，则 $B$ 的对角元不可能两两互异。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="存在相同对角元素：分块对角结构">
+    若 $b_i=b_j$，则对应的 $a_{ij}$ 不受该等式限制，可以不为零。
+
+    更一般地，把 $B$ 的相同对角元归为一组，则与 $B$ 可交换的 $A$ 恰好是**按这些组划分的分块对角矩阵**：不同组之间的元素必须为零，同一组内部的子块可以任意。
+
+    例如
+
+    $$
+    B=\begin{pmatrix}1&0&0\\0&1&0\\0&0&2\end{pmatrix}
+    $$
+
+    则所有与 $B$ 可交换的矩阵都具有形式
+
+    $$
+    \boxed{
+    A=\begin{pmatrix}a&b&0\\c&d&0\\0&0&e\end{pmatrix}}
+    $$
+
+    左上角的二阶方阵可以任意取值。
+
+    <Check>
+    记忆：不同特征值对应的位置必须为零，相同特征值对应的块内可以非零。分块的数量等于 $B$ 的不同对角元的个数。
+    </Check>
+
+    <Warning>
+    例中左上 $2\times2$ 块任意，但第一、二行第三列与第三行第一、二列必须为零。不要误写成“整个 $A$ 任意”。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="常见易错点">
+    - **$B=kE$ 时条件恒成立**，任意 $A$ 都与 $B$ 可交换，这与第六节的结论一致。
+    - **对角元有重根时，$A$ 仍是分块对角矩阵，只是块可以更大**；“$A$ 必为对角矩阵”只在 $b_i$ 两两互异时成立。
+    - **$A$ 与对角矩阵 $B$ 可交换，不代表 $A$ 也可对角化。** 例如 $B=\operatorname{diag}(1,1)$，取 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$，可交换但 $A$ 不可对角化。
+
+    <Warning>
+    题目问“与 $B$ 可交换的矩阵的一般形式”时，先看 $B$ 的对角元是否有重根，再决定是“对角矩阵”还是“分块对角矩阵”。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 六、与所有同阶矩阵可交换
+
+<AccordionGroup>
+  <Accordion title="结论：只能是数量矩阵">
+    若对任意 $n$ 阶实矩阵 $B$，都有 $AB=BA$，则
+
+    $$
+    \boxed{A=kE,\qquad k\in\mathbb R}
+    $$
+
+    反过来，任何数量矩阵 $kE$ 都与所有同阶矩阵可交换。因此
+
+    $$
+    \boxed{AB=BA,\ \forall B\in\mathbb R^{n\times n}\iff A=kE}
+    $$
+
+    <Check>
+    这个结论说明：矩阵的“中心”就是数量矩阵全体。它是“与所有矩阵可交换”和“与某一个矩阵可交换”的分水岭。
+    </Check>
+  </Accordion>
+
+  <Accordion title="证明">
+    取 $B=E_{ij}$（$i\ne j$），即第 $(i,j)$ 个元素为 $1$、其余为 $0$ 的矩阵。计算
+
+    $$
+    (AE_{ij})_{kl}=a_{ki}\delta_{lj},\qquad (E_{ij}A)_{kl}=\delta_{ki}a_{jl}
+    $$
+
+    由 $AE_{ij}=E_{ij}A$，对 $k\ne i$ 且 $l=j$ 得
+
+    $$
+    a_{ki}=0
+    $$
+
+    即 $A$ 的所有非对角元为零，$A$ 是对角矩阵。再取 $k=i$、$l=j$，得
+
+    $$
+    a_{ii}=a_{jj}
+    $$
+
+    所以 $A$ 的对角元全部相等，即 $A=kE$。
+
+    <Tip>
+    也可以取 $B=E_{ij}$ 遍历所有 $i,j$，直接比较元素；思路一样，都是“用最简单的矩阵逼出 $A$ 的结构”。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="加强：与所有可逆矩阵可交换也够">
+    若 $A$ 与所有 $n$ 阶可逆矩阵可交换，则仍有 $A=kE$。
+
+    证明：取 $B=E+tE_{ij}$，$t\ne0$。因 $\det B=1$，$B$ 可逆，由 $AB=BA$ 得
+
+    $$
+    A(E+tE_{ij})=(E+tE_{ij})A
+    $$
+
+    展开并消去 $AE=EA$，得 $tAE_{ij}=tE_{ij}A$，即 $AE_{ij}=E_{ij}A$。再按上面的证明得 $A=kE$。
+
+    <Check>
+    这个加强结论说明：不需要“所有矩阵”，只要“所有可逆矩阵”就足以逼出 $A=kE$。
+    </Check>
+  </Accordion>
+
+  <Accordion title="常见易错点">
+    - **与某一个矩阵可交换，推不出 $A=kE$。** 取 $A=B$，任何 $A$ 都与自己可交换。
+    - **与所有对角矩阵可交换，也推不出 $A=kE$。** 事实上对角矩阵与对角矩阵总可交换，$A$ 只需是对角矩阵。
+    - **与所有对称矩阵可交换，仍可推出 $A=kE$**：取 $E_{ii}$ 与 $E_{ij}+E_{ji}$ 即可逼出 $A$ 为数量矩阵。这类题的通用思路是看这一类矩阵能否张成整个矩阵空间。
+
+    <Warning>
+    区分两个命题：“与某个 $B$ 可交换”是弱条件；“与所有 $B$ 可交换”才是 $A=kE$。考研选择题常在这里设陷阱。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 七、易错点：可交换不代表一定可以同时对角化
+
+<AccordionGroup>
+  <Accordion title="反例">
+    取
+
+    $$
+    A=E_2,\qquad B=\begin{pmatrix}1&1\\0&1\end{pmatrix}
+    $$
+
+    显然
+
+    $$
+    AB=BA
+    $$
+
+    但 $B$ 的特征值只有 $\lambda=1$，且
+
+    $$
+    r(B-E)=1
+    $$
+
+    只有一个线性无关的特征向量，所以 $B$ 不能相似对角化。因此 $A,B$ 不可能同时对角化。
+
+    $$
+    \boxed{AB=BA\not\Rightarrow A,B\text{ 能同时对角化}}
+    $$
+
+    <Warning>
+    这个反例里 $A=E$ 是可对角化的，$B$ 不可对角化。所以即使“$A$ 可对角化 + $AB=BA$”，也不能推出同时对角化；必须二者都可对角化。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="需要补什么条件">
+    要得到同时对角化，至少要补下列条件之一：
+
+    - $A,B$ 都可相似对角化（第三节）；
+    - $A,B$ 都是实对称矩阵（第四节，还可同时正交对角化）；
+    - $A$ 有 $n$ 个互异特征值（第二节，此时 $B$ 自动可对角化）。
+
+    <Check>
+    反过来，同时对角化一定能推出 $AB=BA$。所以“可交换”是必要条件，不是充分条件。
+    </Check>
+
+    <Tip>
+    在复数域上，可交换矩阵一定可以同时上三角化（见下一节），但上三角化不等于对角化。这就是“可交换”能保证的最强结论。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 八、拓展：复数域上可同时上三角化
+
+<AccordionGroup>
+  <Accordion title="定理与证明思路">
+    设 $A,B$ 为 $n$ 阶复矩阵，且 $AB=BA$，则存在可逆矩阵 $P$，使 $P^{-1}AP$ 与 $P^{-1}BP$ 同时为上三角矩阵。特别地，$A,B$ 必有公共特征向量。
+
+    **证明思路**（对 $n$ 归纳）：
+
+    1. 在复数域上，$A$ 有特征向量 $\alpha$，$A\alpha=\lambda\alpha$。
+    2. 由第一节，$B$ 保持 $E_\lambda(A)$；$B$ 在 $E_\lambda(A)$ 上的限制有复特征向量，于是 $A,B$ 有公共特征向量。
+    3. 以该公共特征向量为第一个基向量，$A,B$ 在此基下呈分块上三角形状，且右下角的 $(n-1)$ 阶块仍可交换。
+    4. 对右下角归纳，即得同时上三角化。
+
+    <Check>
+    这条定理说明：可交换矩阵在复数域上一定有公共特征向量，但不一定有 $n$ 个线性无关的公共特征向量。
+    </Check>
+
+    <Warning>
+    实数域上不成立。旋转矩阵
+
+    $$
+    R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+    $$
+
+    与自身可交换，但没有实特征向量。所以实数域上要先保证特征值都是实数。
+    </Warning>
+
+    <Tip>
+    这是超纲内容，用来理解“可交换”的边界即可。考研答题时，不要用“同时上三角化”去代替“同时对角化”。
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 九、易错点速查
+
+<AccordionGroup>
+  <Accordion title="十条高频错误">
+    1. 由 $A\alpha=\lambda\alpha$ 直接写 $B\alpha=\mu\alpha$——只在 $\dim E_\lambda(A)=1$ 时成立。
+    2. 由 $AB=BA$ 直接写同时对角化——缺“二者均可对角化”或“实对称”等条件。
+    3. 由 $AB=BA$ 直接写 $B=p(A)$——缺“$A$ 有 $n$ 个互异特征值”。
+    4. 把 $A+B$、$AB$ 的特征值写成任意 $\lambda_i+\mu_j$、$\lambda_i\mu_j$ 的组合——必须按公共特征向量一一对应。
+    5. 认为 $AB$ 正定可以推出 $A,B$ 正定——反例 $A=B=\operatorname{diag}(1,-1)$。
+    6. 认为两个实对称正定矩阵的乘积一定对称——只有可交换时才对称。
+    7. 把“与对角矩阵可交换”一律写成“$A$ 为对角矩阵”——对角元有重根时是分块对角。
+    8. 把“与某个矩阵可交换”当成“与所有矩阵可交换”——后者才有 $A=kE$。
+    9. 在实数域上讨论复特征值对应的特征子空间——数域要先统一。
+    10. 用“同时上三角化”代替“同时对角化”——上三角化不改变不可对角化的事实。
+
+    <Warning>
+    判断“能否同时对角化”的标准流程：先看 $AB=BA$ 是否成立，再看 $A,B$ 是否都可对角化（或是否都实对称）。两步都满足才能下结论。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## 十、考研必背结论汇总
+
+| 条件 | 结论 |
+| --- | --- |
+| $AB=BA$ | $B$ 保持 $A$ 的每个特征子空间不变 |
+| $AB=BA$，$\dim E_\lambda(A)=1$ | 该子空间中的非零向量同时是 $A,B$ 的特征向量 |
+| $AB=BA$，$A$ 有 $n$ 个互异实特征值 | $A,B$ 同时相似对角化 |
+| $AB=BA$，$A$ 有 $n$ 个互异实特征值 | $B=p(A)$，$\deg p\le n-1$；反之 $p(A)$ 必与 $A$ 可交换 |
+| $AB=BA$，$A,B$ 均可对角化（同一数域） | 可同时相似对角化（充要） |
+| $A,B$ 均实对称 | $AB=BA\iff AB$ 对称 |
+| $A,B$ 均实对称且可交换 | 可同时正交对角化 |
+| $A,B$ 均实对称正定且可交换 | $AB$ 实对称正定 |
+| $B=\operatorname{diag}(b_i)$ | $(b_i-b_j)a_{ij}=0$ |
+| $B=\operatorname{diag}(b_i)$，$b_i$ 两两互异 | $A$ 必为对角矩阵 |
+| $A$ 与所有同阶矩阵可交换 | $A=kE$ |
+| $AB=BA$ | 推不出同时对角化（反例 $A=E$，$B$ 为 Jordan 块） |
+
+## 十一、最终记忆公式
+
+① 特征子空间不变性
+
+$$
+\boxed{AB=BA\Rightarrow A(B\alpha)=\lambda(B\alpha)\quad(A\alpha=\lambda\alpha)}
+$$
+
+② 同时对角化
+
+$$
+\boxed{P^{-1}AP=\Lambda,\qquad P^{-1}BP=M}
+$$
+
+需要可交换且二者可对角化（或都实对称）等条件。
+
+③ 实对称矩阵
+
+$$
+\boxed{A^T=A,\ B^T=B\Rightarrow\bigl[AB=BA\iff(AB)^T=AB\bigr]}
+$$
+
+④ 与对角矩阵可交换
+
+$$
+\boxed{(b_i-b_j)a_{ij}=0}
+$$
+
+⑤ 与所有矩阵可交换
+
+$$
+\boxed{AB=BA,\ \forall B\Rightarrow A=kE}
+$$
+
+<Check>
+最核心的一句话：矩阵可交换意味着特征子空间被保留；要进一步推出公共特征向量、同时对角化或多项式关系，必须检查附加条件。
+</Check>
+
+<Info>
+本页结论特别适合考研选择题、填空题与证明题。做题时先问三个问题：$A,B$ 是否可对角化？$A$ 的特征值是否互异？$A,B$ 是否实对称？三个问题答完，用哪条结论就确定了。
+</Info>

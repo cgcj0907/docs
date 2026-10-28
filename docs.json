@@ -80,6 +80,15 @@
               "linear-algebra/knowledge-summary/chapter-5",
               "linear-algebra/knowledge-summary/chapter-6"
             ]
+          },
+          {
+            "group": "二级结论",
+            "pages": [
+              "linear-algebra/secondary-conclusions/matrix-rank",
+              "linear-algebra/secondary-conclusions/linear-systems-geometry",
+              "linear-algebra/secondary-conclusions/eigen-quadratic",
+              "linear-algebra/secondary-conclusions/matrix-commutation"
+            ]
           }
         ]
       },
@@ -91,7 +100,8 @@
             "pages": [
               "higher-mathematics/knowledge-summary/chapter-1",
               "higher-mathematics/knowledge-summary/chapter-2",
-              "higher-mathematics/knowledge-summary/chapter-3"
+              "higher-mathematics/knowledge-summary/chapter-3",
+              "higher-mathematics/knowledge-summary/chapter-4"
             ]
           }
         ]
