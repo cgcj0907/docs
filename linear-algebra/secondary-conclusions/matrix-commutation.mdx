@@ -34,7 +34,7 @@ $$
     若 $AB=BA$，则
 
     $$
-    \boxed{B\bigl(E_\lambda(A)\bigr)\subseteq E_\lambda(A)}
+    B\bigl(E_\lambda(A)\bigr)\subseteq E_\lambda(A)
     $$
 
     **证明**：任取 $\alpha\in E_\lambda(A)$，即 $A\alpha=\lambda\alpha$。由 $AB=BA$ 得
@@ -50,7 +50,7 @@ $$
     因此
 
     $$
-    \boxed{A(B\alpha)=\lambda(B\alpha)}
+    A(B\alpha)=\lambda(B\alpha)
     $$
 
     即 $B\alpha\in E_\lambda(A)$，故 $B(E_\lambda(A))\subseteq E_\lambda(A)$。
@@ -60,7 +60,7 @@ $$
     </Check>
   </Accordion>
 
-  <Accordion title="注意 Bα=0 的情形">
+  <Accordion title="注意零向量的情形">
     上面的推导只说明 $B\alpha$ 仍满足“被 $A$ 作用等于 $\lambda$ 倍”，并没有说 $B\alpha$ 非零。
 
     - 若 $B\alpha\ne0$，则 $B\alpha$ 是 $A$ 对应于 $\lambda$ 的特征向量；
@@ -87,7 +87,7 @@ $$
     于是
 
     $$
-    \boxed{\alpha\text{ 同时是 }A,B\text{ 的特征向量}}
+    \alpha\text{ 同时是 }A,B\text{ 的特征向量}
     $$
 
     进一步，若 $A$ 有 $n$ 个互异特征值 $\lambda_1,\dots,\lambda_n$，则每个 $E_{\lambda_i}(A)$ 都是一维。分别取基 $\alpha_i$，则 $\alpha_1,\dots,\alpha_n$ 都是 $A,B$ 的公共特征向量；又它们属于 $A$ 的不同特征值，必线性无关，从而是 $\mathbb R^n$ 的一组基。
@@ -136,23 +136,22 @@ $$
     若 $A$ 有 $n$ 个互异的实特征值 $\lambda_1,\dots,\lambda_n$，且 $AB=BA$，则 $A,B$ 可以同时相似对角化：存在可逆矩阵 $P$，使
 
     $$
-    \boxed{
     \begin{cases}
-    P^{-1}AP=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\\
-    P^{-1}BP=\operatorname{diag}(\mu_1,\dots,\mu_n)
-    \end{cases}}
+    P^{-1}AP=\mathrm{diag}(\lambda_1,\dots,\lambda_n)\\
+    P^{-1}BP=\mathrm{diag}(\mu_1,\dots,\mu_n)
+    \end{cases}
     $$
 
     **证明**：取 $A$ 对应于 $\lambda_i$ 的特征向量 $\alpha_i$。不同特征值对应的特征向量线性无关，故 $P=(\alpha_1,\dots,\alpha_n)$ 可逆，且
 
     $$
-    P^{-1}AP=\operatorname{diag}(\lambda_1,\dots,\lambda_n)
+    P^{-1}AP=\mathrm{diag}(\lambda_1,\dots,\lambda_n)
     $$
 
     由第一节，$\dim E_{\lambda_i}(A)=1$，所以 $B\alpha_i$ 必为 $\alpha_i$ 的倍数，记 $B\alpha_i=\mu_i\alpha_i$。于是
 
     $$
-    P^{-1}BP=\operatorname{diag}(\mu_1,\dots,\mu_n)
+    P^{-1}BP=\mathrm{diag}(\mu_1,\dots,\mu_n)
     $$
 
     <Check>
@@ -168,12 +167,12 @@ $$
     在上一段的条件下，存在次数不超过 $n-1$ 的多项式 $p(t)$，使
 
     $$
-    \boxed{B=p(A)=c_0E+c_1A+\cdots+c_{n-1}A^{n-1}}
+    B=p(A)=c_0E+c_1A+\cdots+c_{n-1}A^{n-1}
     $$
 
     且当 $\lambda_i,\mu_i$ 都是实数时，$p$ 可取实系数多项式。
 
-    **证明**：由同时对角化，$A=P\Lambda P^{-1}$，$B=PM P^{-1}$，其中 $\Lambda=\operatorname{diag}(\lambda_i)$，$M=\operatorname{diag}(\mu_i)$。因为 $\lambda_1,\dots,\lambda_n$ 互异，可用拉格朗日插值构造 $p$，使
+    **证明**：由同时对角化，$A=P\Lambda P^{-1}$，$B=PM P^{-1}$，其中 $\Lambda=\mathrm{diag}(\lambda_i)$，$M=\mathrm{diag}(\mu_i)$。因为 $\lambda_1,\dots,\lambda_n$ 互异，可用拉格朗日插值构造 $p$，使
 
     $$
     p(\lambda_i)=\mu_i,\qquad i=1,\dots,n,\qquad \deg p\le n-1
@@ -182,13 +181,13 @@ $$
     于是
 
     $$
-    p(A)=P\,p(\Lambda)\,P^{-1}=P\operatorname{diag}\bigl(p(\lambda_i)\bigr)P^{-1}=PMP^{-1}=B
+    p(A)=P\,p(\Lambda)\,P^{-1}=P\mathrm{diag}\bigl(p(\lambda_i)\bigr)P^{-1}=PMP^{-1}=B
     $$
 
     **反过来**：对任意多项式 $p$，有
 
     $$
-    \boxed{A\,p(A)=p(A)\,A}
+    A\,p(A)=p(A)\,A
     $$
 
     因为 $A$ 与 $A$ 的任意幂可交换，而多项式是幂的线性组合。
@@ -232,11 +231,10 @@ $$
     设 $A,B$ 在同一个数域上**都可相似对角化**，且 $AB=BA$，则存在同一个可逆矩阵 $P$，使
 
     $$
-    \boxed{
     \begin{cases}
     P^{-1}AP=\Lambda\\
     P^{-1}BP=M
-    \end{cases}}
+    \end{cases}
     $$
 
     其中 $\Lambda,M$ 均为对角矩阵。
@@ -260,7 +258,7 @@ $$
     所以
 
     $$
-    \boxed{AB=BA\text{ 且 }A,B\text{ 均可对角化}\iff A,B\text{ 可同时相似对角化}}
+    AB=BA\text{ 且 }A,B\text{ 均可对角化}\Leftrightarrow A,B\text{ 可同时相似对角化}
     $$
 
     <Check>
@@ -288,11 +286,10 @@ $$
     若 $\alpha_1,\dots,\alpha_n$ 构成公共特征向量基，则
 
     $$
-    \boxed{
     \begin{aligned}
     A+B\text{ 的特征值}&:\lambda_i+\mu_i\\
     AB\text{ 的特征值}&:\lambda_i\mu_i
-    \end{aligned}}
+    \end{aligned}
     $$
 
     <Warning>
@@ -323,7 +320,7 @@ $$
     设 $A,B$ 均为实对称矩阵，即 $A^T=A$，$B^T=B$，则
 
     $$
-    \boxed{AB=BA\iff AB\text{ 为实对称矩阵}}
+    AB=BA\Leftrightarrow AB\text{ 为实对称矩阵}
     $$
 
     **证明**：
@@ -335,7 +332,7 @@ $$
     因此
 
     $$
-    (AB)^T=AB\iff BA=AB
+    (AB)^T=AB\Leftrightarrow BA=AB
     $$
 
     <Check>
@@ -358,11 +355,10 @@ $$
     若 $A,B$ 都是实对称矩阵且 $AB=BA$，则存在同一个正交矩阵 $Q$，使
 
     $$
-    \boxed{
     \begin{cases}
     Q^TAQ=\Lambda\\
     Q^TBQ=M
-    \end{cases}}
+    \end{cases}
     $$
 
     其中 $Q^TQ=E$，$\Lambda,M$ 均为实对角矩阵。
@@ -390,10 +386,10 @@ $$
     若 $A,B$ 均为实对称正定矩阵，且 $AB=BA$，则
 
     $$
-    \boxed{AB\text{ 也为实对称正定矩阵}}
+    AB\text{ 也为实对称正定矩阵}
     $$
 
-    **理由**：由同时正交对角化，$Q^TAQ=\operatorname{diag}(\lambda_i)$，$Q^TBQ=\operatorname{diag}(\mu_i)$，且
+    **理由**：由同时正交对角化，$Q^TAQ=\mathrm{diag}(\lambda_i)$，$Q^TBQ=\mathrm{diag}(\mu_i)$，且
 
     $$
     \lambda_i>0,\qquad \mu_i>0
@@ -402,7 +398,7 @@ $$
     于是
 
     $$
-    Q^T(AB)Q=\operatorname{diag}(\lambda_i\mu_i),\qquad \lambda_i\mu_i>0
+    Q^T(AB)Q=\mathrm{diag}(\lambda_i\mu_i),\qquad \lambda_i\mu_i>0
     $$
 
     所以 $AB$ 的特征值全为正；又 $AB$ 实对称，故 $AB$ 正定。
@@ -417,7 +413,7 @@ $$
   </Accordion>
 
   <Accordion title="常见易错点">
-    - **$AB$ 正定推不出 $A,B$ 正定。** 反例：$A=\operatorname{diag}(1,-1)$，$B=\operatorname{diag}(1,-1)$，则 $AB=E$ 正定，但 $A,B$ 都不正定。
+    - **$AB$ 正定推不出 $A,B$ 正定。** 反例：$A=\mathrm{diag}(1,-1)$，$B=\mathrm{diag}(1,-1)$，则 $AB=E$ 正定，但 $A,B$ 都不正定。
     - **“$AB$ 对称”在一般矩阵里推不出 $AB=BA$**，只有 $A,B$ 都实对称时才等价。
     - **实对称矩阵可交换，一定可以同时正交对角化**；但“可同时相似对角化”只需要二者可对角化，不要求正交。
     - **正定要求特征值全为正**，半正定只要求非负；不要把两者混用。
@@ -435,7 +431,7 @@ $$
     设
 
     $$
-    B=\operatorname{diag}(b_1,b_2,\dots,b_n),\qquad A=(a_{ij})
+    B=\mathrm{diag}(b_1,b_2,\dots,b_n),\qquad A=(a_{ij})
     $$
 
     则
@@ -447,7 +443,7 @@ $$
     比较第 $(i,j)$ 个元素得
 
     $$
-    \boxed{AB=BA\iff (b_i-b_j)a_{ij}=0,\quad \forall i,j}
+    AB=BA\Leftrightarrow (b_i-b_j)a_{ij}=0,\quad \forall i,j
     $$
 
     这条公式非常重要，几乎所有“与对角矩阵可交换”的题都从它出发。
@@ -467,7 +463,7 @@ $$
     则由 $(b_i-b_j)a_{ij}=0$ 得 $a_{ij}=0$（$i\ne j$），所以
 
     $$
-    \boxed{A\text{ 必须为对角矩阵}}
+    A\text{ 必须为对角矩阵}
     $$
 
     <Warning>
@@ -489,8 +485,7 @@ $$
     则所有与 $B$ 可交换的矩阵都具有形式
 
     $$
-    \boxed{
-    A=\begin{pmatrix}a&b&0\\c&d&0\\0&0&e\end{pmatrix}}
+    A=\begin{pmatrix}a&b&0\\c&d&0\\0&0&e\end{pmatrix}
     $$
 
     左上角的二阶方阵可以任意取值。
@@ -507,7 +502,7 @@ $$
   <Accordion title="常见易错点">
     - **$B=kE$ 时条件恒成立**，任意 $A$ 都与 $B$ 可交换，这与第六节的结论一致。
     - **对角元有重根时，$A$ 仍是分块对角矩阵，只是块可以更大**；“$A$ 必为对角矩阵”只在 $b_i$ 两两互异时成立。
-    - **$A$ 与对角矩阵 $B$ 可交换，不代表 $A$ 也可对角化。** 例如 $B=\operatorname{diag}(1,1)$，取 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$，可交换但 $A$ 不可对角化。
+    - **$A$ 与对角矩阵 $B$ 可交换，不代表 $A$ 也可对角化。** 例如 $B=\mathrm{diag}(1,1)$，取 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$，可交换但 $A$ 不可对角化。
 
     <Warning>
     题目问“与 $B$ 可交换的矩阵的一般形式”时，先看 $B$ 的对角元是否有重根，再决定是“对角矩阵”还是“分块对角矩阵”。
@@ -522,13 +517,13 @@ $$
     若对任意 $n$ 阶实矩阵 $B$，都有 $AB=BA$，则
 
     $$
-    \boxed{A=kE,\qquad k\in\mathbb R}
+    A=kE,\qquad k\in\mathbb R
     $$
 
     反过来，任何数量矩阵 $kE$ 都与所有同阶矩阵可交换。因此
 
     $$
-    \boxed{AB=BA,\ \forall B\in\mathbb R^{n\times n}\iff A=kE}
+    AB=BA,\ \forall B\in\mathbb R^{n\times n}\Leftrightarrow A=kE
     $$
 
     <Check>
@@ -614,7 +609,7 @@ $$
     只有一个线性无关的特征向量，所以 $B$ 不能相似对角化。因此 $A,B$ 不可能同时对角化。
 
     $$
-    \boxed{AB=BA\not\Rightarrow A,B\text{ 能同时对角化}}
+    AB=BA\not\Rightarrow A,B\text{ 能同时对角化}
     $$
 
     <Warning>
@@ -680,7 +675,7 @@ $$
     2. 由 $AB=BA$ 直接写同时对角化——缺“二者均可对角化”或“实对称”等条件。
     3. 由 $AB=BA$ 直接写 $B=p(A)$——缺“$A$ 有 $n$ 个互异特征值”。
     4. 把 $A+B$、$AB$ 的特征值写成任意 $\lambda_i+\mu_j$、$\lambda_i\mu_j$ 的组合——必须按公共特征向量一一对应。
-    5. 认为 $AB$ 正定可以推出 $A,B$ 正定——反例 $A=B=\operatorname{diag}(1,-1)$。
+    5. 认为 $AB$ 正定可以推出 $A,B$ 正定——反例 $A=B=\mathrm{diag}(1,-1)$。
     6. 认为两个实对称正定矩阵的乘积一定对称——只有可交换时才对称。
     7. 把“与对角矩阵可交换”一律写成“$A$ 为对角矩阵”——对角元有重根时是分块对角。
     8. 把“与某个矩阵可交换”当成“与所有矩阵可交换”——后者才有 $A=kE$。
@@ -702,11 +697,11 @@ $$
 | $AB=BA$，$A$ 有 $n$ 个互异实特征值 | $A,B$ 同时相似对角化 |
 | $AB=BA$，$A$ 有 $n$ 个互异实特征值 | $B=p(A)$，$\deg p\le n-1$；反之 $p(A)$ 必与 $A$ 可交换 |
 | $AB=BA$，$A,B$ 均可对角化（同一数域） | 可同时相似对角化（充要） |
-| $A,B$ 均实对称 | $AB=BA\iff AB$ 对称 |
+| $A,B$ 均实对称 | $AB=BA\Leftrightarrow AB$ 对称 |
 | $A,B$ 均实对称且可交换 | 可同时正交对角化 |
 | $A,B$ 均实对称正定且可交换 | $AB$ 实对称正定 |
-| $B=\operatorname{diag}(b_i)$ | $(b_i-b_j)a_{ij}=0$ |
-| $B=\operatorname{diag}(b_i)$，$b_i$ 两两互异 | $A$ 必为对角矩阵 |
+| $B=\mathrm{diag}(b_i)$ | $(b_i-b_j)a_{ij}=0$ |
+| $B=\mathrm{diag}(b_i)$，$b_i$ 两两互异 | $A$ 必为对角矩阵 |
 | $A$ 与所有同阶矩阵可交换 | $A=kE$ |
 | $AB=BA$ | 推不出同时对角化（反例 $A=E$，$B$ 为 Jordan 块） |
 
@@ -715,13 +710,13 @@ $$
 ① 特征子空间不变性
 
 $$
-\boxed{AB=BA\Rightarrow A(B\alpha)=\lambda(B\alpha)\quad(A\alpha=\lambda\alpha)}
+AB=BA\Rightarrow A(B\alpha)=\lambda(B\alpha)\quad(A\alpha=\lambda\alpha)
 $$
 
 ② 同时对角化
 
 $$
-\boxed{P^{-1}AP=\Lambda,\qquad P^{-1}BP=M}
+P^{-1}AP=\Lambda,\qquad P^{-1}BP=M
 $$
 
 需要可交换且二者可对角化（或都实对称）等条件。
@@ -729,19 +724,19 @@ $$
 ③ 实对称矩阵
 
 $$
-\boxed{A^T=A,\ B^T=B\Rightarrow\bigl[AB=BA\iff(AB)^T=AB\bigr]}
+A^T=A,\ B^T=B\Rightarrow\bigl[AB=BA\Leftrightarrow(AB)^T=AB\bigr]
 $$
 
 ④ 与对角矩阵可交换
 
 $$
-\boxed{(b_i-b_j)a_{ij}=0}
+(b_i-b_j)a_{ij}=0
 $$
 
 ⑤ 与所有矩阵可交换
 
 $$
-\boxed{AB=BA,\ \forall B\Rightarrow A=kE}
+AB=BA,\ \forall B\Rightarrow A=kE
 $$
 
 <Check>
