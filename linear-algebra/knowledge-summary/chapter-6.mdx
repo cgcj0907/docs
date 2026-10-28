@@ -1,14 +1,14 @@
 ---
 title: "第 6 章 二次型"
 sidebarTitle: "二次型"
-description: "整理二次型的矩阵表示、标准形与规范形、惯性定理与正定矩阵。"
+description: "整理二次型的矩阵表示、正交变换与合同对角化、特征向量单位化、标准形与规范形、惯性定理与正定矩阵。"
 tags: ["考研", "线性代数"]
 ---
 
 本章先建立二次型与实对称矩阵的对应关系，再比较配方法与正交变换法两条化标准形的路线，最后用惯性定理把标准形、规范形与正定性串起来。
 
 <Info>
-复习主线：写出二次型的矩阵 $A$ → 选择配方法或正交变换法化标准形 → 用惯性指数看本质 → 用特征值或顺序主子式判断正定性。
+复习主线：写出二次型的矩阵 $A$ → 选择配方法或正交变换法化标准形 → 区分 $C^{-1}AC$ 与 $C^TAC$ → 用惯性指数看本质 → 用特征值或顺序主子式判断正定性。
 </Info>
 
 ## 二次型的定义与矩阵表示
@@ -178,6 +178,127 @@ tags: ["考研", "线性代数"]
   </Accordion>
 </AccordionGroup>
 
+## 特征向量单位化与合同对角化
+
+<AccordionGroup>
+  <Accordion title="单位化：得到正交矩阵">
+    设 $\xi_1,\ldots,\xi_n$ 是实对称矩阵 $A$ 的两两正交特征向量，对应特征值为 $\lambda_1,\ldots,\lambda_n$。令
+
+    $$
+    q_i=\frac{\xi_i}{\|\xi_i\|},\qquad Q=(q_1,\ldots,q_n)
+    $$
+
+    则 $Q$ 为正交矩阵：
+
+    $$
+    Q^TQ=E,\qquad Q^{-1}=Q^T
+    $$
+
+    且
+
+    $$
+    Q^TAQ=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    作正交变换 $x=Qy$，二次型化为
+
+    $$
+    f=\lambda_1y_1^2+\cdots+\lambda_ny_n^2
+    $$
+
+    <Tip>
+    同一特征值对应多个特征向量时，要先在该特征子空间内作施密特正交化，再单位化，才能得到标准正交特征向量组。
+    </Tip>
+  </Accordion>
+
+  <Accordion title="不单位化：只保证两两正交">
+    仍取两两正交的特征向量 $\xi_1,\ldots,\xi_n$，但不再单位化，令
+
+    $$
+    C=(\xi_1,\ldots,\xi_n),\qquad d_i=\|\xi_i\|^2
+    $$
+
+    由两两正交，得
+
+    $$
+    C^TC=\operatorname{diag}(d_1,\ldots,d_n)
+    $$
+
+    又因为 $A\xi_i=\lambda_i\xi_i$，即
+
+    $$
+    AC=C\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    所以
+
+    $$
+    C^{-1}AC=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    但二次型变换用的是 $C^TAC$：
+
+    $$
+    C^TAC=C^TC\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    =\operatorname{diag}(\lambda_1d_1,\ldots,\lambda_nd_n)
+    $$
+
+    作变换 $x=Cy$，二次型化为
+
+    $$
+    f=\lambda_1d_1y_1^2+\cdots+\lambda_nd_ny_n^2
+    $$
+
+    <Warning>
+    这个公式要求特征向量两两正交。若特征向量只是线性无关而不正交，则 $C^TC$ 不是对角矩阵，$C^TAC$ 一般也不是对角矩阵。
+    </Warning>
+  </Accordion>
+
+  <Accordion title="C^{-1}AC 与 C^TAC 的区别">
+    对由线性无关特征向量组成的矩阵 $C$，无论是否单位化，都有
+
+    $$
+    C^{-1}AC=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)
+    $$
+
+    这是**相似对角化**，对角元是特征值。
+
+    但二次型 $x^TAx$ 在 $x=Cy$ 下变为
+
+    $$
+    x^TAx=y^T(C^TAC)y
+    $$
+
+    用的是**合同变换** $C^TAC$，不是相似变换 $C^{-1}AC$。
+
+    **正交情形**：若 $C=Q$ 为正交矩阵，则 $Q^T=Q^{-1}$，两种变换重合：
+
+    $$
+    Q^TAQ=Q^{-1}AQ=\operatorname{diag}(\lambda_i)
+    $$
+
+    **一般正交特征向量情形**：若 $C$ 的列两两正交但不单位化，则 $C^TAC$ 的对角元是 $\lambda_i\|\xi_i\|^2$，一般不等于 $\lambda_i$。
+
+    <Check>
+    相似看 $C^{-1}AC$，合同看 $C^TAC$；只有 $Q$ 正交时两者相同。题目要“正交变换”或“标准形系数为特征值”，必须单位化。
+    </Check>
+  </Accordion>
+
+  <Accordion title="两种方式对比">
+    | 比较 | 单位化 | 不单位化（两两正交） |
+    | --- | --- | --- |
+    | 特征向量 | 两两正交且单位长度 | 两两正交，长度不一定为 $1$ |
+    | 变换矩阵 | $Q$ 正交，$Q^TQ=E$ | $C$ 可逆，$C^TC=\operatorname{diag}(d_i)$ |
+    | 二次型矩阵 | $Q^TAQ=\operatorname{diag}(\lambda_i)$ | $C^TAC=\operatorname{diag}(\lambda_id_i)$ |
+    | 标准形系数 | $\lambda_i$ | $\lambda_id_i$ |
+    | 相似对角化 | $Q^{-1}AQ=\operatorname{diag}(\lambda_i)$ | $C^{-1}AC=\operatorname{diag}(\lambda_i)$ |
+
+    <Warning>
+    不单位化时，标准形系数不再是特征值。若题目要求“用正交变换化标准形”，必须单位化；若只要求“用可逆变换化标准形”，可以不单位化，但系数会随特征向量的长度改变。
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
 ## 相似、合同与正交变换
 
 <AccordionGroup>
@@ -343,6 +464,8 @@ tags: ["考研", "线性代数"]
     | 二次型 | $f(x)=x^TAx$ |
     | 合同变换 | $C^TAC$ |
     | 正交变换 | $Q^TAQ,\ Q^TQ=E$ |
+    | 相似对角化 | $C^{-1}AC=\operatorname{diag}(\lambda_i)$ |
+    | 不单位化正交特征向量 | $C^TAC=\operatorname{diag}(\lambda_id_i)$ |
     | 标准形 | 只含变量平方项，系数不一定为 $\pm1,0$ |
     | 规范形 | 系数只有 $1,-1,0$ |
     | 正惯性指数 | 正特征值的个数 |
@@ -358,5 +481,9 @@ tags: ["考研", "线性代数"]
     <Info>
     惯性定理说明：无论用配方法还是正交变换法，正、负惯性指数都不变。因此判断两个二次型是否合同，只需比较正、负惯性指数；判断正定，只需看正惯性指数是否等于 $n$。
     </Info>
+
+    <Check>
+    相似看 $C^{-1}AC$，合同看 $C^TAC$。只有 $Q$ 正交时二者相同；未单位化时 $C^TAC$ 的对角元是 $\lambda_i\|\xi_i\|^2$，不是特征值。
+    </Check>
   </Accordion>
 </AccordionGroup>
