@@ -19,7 +19,7 @@ tags: ["考研", "线性代数"]
     | --- | --- | --- | --- | --- |
     | **等价** | 存在可逆矩阵 $P,Q$，使得 $PAQ=B$ | $r(A)=r(B)$ | 秩 | 等价只要求秩相同 |
     | **相似** | 存在可逆矩阵 $P$，使得 $P^{-1}AP=B$ | 特征值相同、行列式相同、迹相同、秩相同等 | 特征值、迹、行列式、秩 | 相似一定等价，但等价不一定相似 |
-    | **合同** | 存在可逆矩阵 $P$，使得 $P^TAP=B$ | 正负惯性指数相同 | 正负惯性指数、秩 | 合同一定等价，但等价不一定合同 |
+    | **合同** | 存在可逆矩阵 $P$，使得 $P^{\mathrm{T}}AP=B$ | 正负惯性指数相同 | 正负惯性指数、秩 | 合同一定等价，但等价不一定合同 |
 
     <Warning>
     相似与合同的常见必要条件可以用于排除选项，但通常不能直接作为充分条件。实对称矩阵是许多结论成立的常见前提。
@@ -45,7 +45,7 @@ tags: ["考研", "线性代数"]
 
     **等价标准形**
 
-    任何矩阵 $A$ 都等价于：
+    任何矩阵 $A$ 都等价于
 
     $$
     \begin{pmatrix}
@@ -88,7 +88,7 @@ tags: ["考研", "线性代数"]
 
     **可对角化条件**
 
-    $A$ 可对角化 $\Leftrightarrow$ $A$ 有 $n$ 个线性无关的特征向量。
+    $A$ 可对角化，当且仅当 $A$ 有 $n$ 个线性无关的特征向量。
 
     常用充分条件：
 
@@ -108,34 +108,24 @@ tags: ["考研", "线性代数"]
     若存在可逆矩阵 $P$，使得
 
     $$
-    P^TAP=B
+    P^{\mathrm{T}}AP=B
     $$
 
     则称 $A$ 与 $B$ 合同。
 
     **对称性**
 
-    若 $A$ 为对称矩阵，且 $B=P^TAP$，则
+    若 $A$ 为对称矩阵，且 $B=P^{\mathrm{T}}AP$，则
 
     $$
-    B^T=(P^TAP)^T=P^TA^TP=P^TAP=B
+    B^{\mathrm{T}}=(P^{\mathrm{T}}AP)^{\mathrm{T}}=P^{\mathrm{T}}A^{\mathrm{T}}P=P^{\mathrm{T}}AP=B
     $$
 
     所以合同变换保持对称性：对称矩阵合同后仍是对称矩阵。
 
     **判定**
 
-    实对称矩阵合同的充要条件是正、负惯性指数分别相同。
-
-    $$
-    \text{正惯性指数相同，负惯性指数相同}
-    $$
-
-    等价地：
-
-    $$
-    \text{正特征值个数相同，负特征值个数相同}
-    $$
+    实对称矩阵合同的充要条件是正、负惯性指数分别相同。等价地，正特征值个数相同，负特征值个数也相同。
 
     **考研注意**
 
@@ -145,36 +135,15 @@ tags: ["考研", "线性代数"]
     - 实对称矩阵一定可正交对角化，因此一定合同于对角矩阵。
 
     <Tip>
-    合同变换保持对称性；一般的相似变换不一定保持对称性，而正交相似（$Q^{-1}=Q^T$）一定保持。
+    合同变换保持对称性；一般的相似变换不一定保持对称性，而正交相似（$Q^{-1}=Q^{\mathrm{T}}$）一定保持。
     </Tip>
   </Accordion>
 
   <Accordion title="三者关系">
-    $$
-    \text{相似}\Rightarrow\text{等价}
-    $$
+    相似与合同都能推出等价，即“相似 $\Rightarrow$ 等价”，且“合同 $\Rightarrow$ 等价”。但反过来一般不成立，相似与合同之间也没有包含关系：
 
-    $$
-    \text{合同}\Rightarrow\text{等价}
-    $$
-
-    但反过来一般不成立：
-
-    $$
-    \text{等价}\nRightarrow\text{相似}
-    $$
-
-    $$
-    \text{等价}\nRightarrow\text{合同}
-    $$
-
-    $$
-    \text{相似}\nRightarrow\text{合同}
-    $$
-
-    $$
-    \text{合同}\nRightarrow\text{相似}
-    $$
+    - 等价推不出相似，也推不出合同；
+    - 相似推不出合同，合同也推不出相似。
 
     **特殊情形**
 
@@ -214,7 +183,11 @@ tags: ["考研", "线性代数"]
     **仅作初等列变换**：存在可逆矩阵 $Q$，使得
 
     $$
-    AQ=(C_{m\times r},O),\qquad r(C)=r
+    AQ=
+    \begin{pmatrix}
+    C_{m\times r} & O
+    \end{pmatrix},
+    \qquad r(C)=r
     $$
 
     即把零列集中到右侧，左侧保留 $r$ 个线性无关的列向量。
@@ -255,7 +228,10 @@ tags: ["考研", "线性代数"]
     若 $A$ 行满秩（$r=m$），则仅用列变换即可化为
 
     $$
-    AQ=(E_m,O)
+    AQ=
+    \begin{pmatrix}
+    E_m & O
+    \end{pmatrix}
     $$
 
     <Warning>
@@ -271,7 +247,7 @@ tags: ["考研", "线性代数"]
     **定义**
 
     $$
-    A^*=(A_{ji})_{n\times n}
+    A^{*}=(A_{ji})_{n\times n}
     $$
 
     其中 $A_{ji}$ 是元素 $a_{ji}$ 的代数余子式。
@@ -279,47 +255,47 @@ tags: ["考研", "线性代数"]
     **基本恒等式**
 
     $$
-    AA^*=A^*A=|A|E
+    AA^{*}=A^{*}A=|A|E
     $$
 
-    由此可得：当 $A$ 可逆时，$A^{-1}=\frac{1}{|A|}A^*$；当 $A$ 不可逆时，$AA^*=O$，这是讨论 $r(A^*)$ 的出发点。
+    由此可得：当 $A$ 可逆时，$A^{-1}=\frac{1}{|A|}A^{*}$；当 $A$ 不可逆时，$AA^{*}=O$，这是讨论 $r(A^{*})$ 的出发点。
 
     <Tip>
-    伴随矩阵的运算法则、$\vert A^*\vert$、$r(A^*)$ 的完整结论与证明，见[矩阵运算与秩](/linear-algebra/secondary-conclusions/matrix-rank)。
+    伴随矩阵的运算法则、$|A^{*}|$、$r(A^{*})$ 的完整结论与证明，见[矩阵运算与秩](/linear-algebra/secondary-conclusions/matrix-rank)。
     </Tip>
   </Accordion>
 
   <Accordion title="矩阵的转置">
     **常数与矩阵**
 
-    常数 $c$ 可视为 $1\times1$ 矩阵，因此：
+    常数 $c$ 可视为 $1\times1$ 矩阵，因此
 
     $$
-    c^T=c
+    c^{\mathrm{T}}=c
     $$
 
-    一般矩阵 $A$ 的转置 $A^T$ 是把行与列互换，通常 $A^T\ne A$。
+    一般矩阵 $A$ 的转置 $A^{\mathrm{T}}$ 是把行与列互换，通常 $A^{\mathrm{T}}\ne A$。
 
     **运算法则**
 
     $$
-    (A^T)^T=A
+    (A^{\mathrm{T}})^{\mathrm{T}}=A
     $$
 
     $$
-    (A+B)^T=A^T+B^T
+    (A+B)^{\mathrm{T}}=A^{\mathrm{T}}+B^{\mathrm{T}}
     $$
 
     $$
-    (kA)^T=kA^T
+    (kA)^{\mathrm{T}}=kA^{\mathrm{T}}
     $$
 
     $$
-    (AB)^T=B^TA^T
+    (AB)^{\mathrm{T}}=B^{\mathrm{T}}A^{\mathrm{T}}
     $$
 
     <Warning>
-    乘积的转置要颠倒顺序：$(AB)^T=B^TA^T$，不是 $A^TB^T$。
+    乘积的转置要颠倒顺序：$(AB)^{\mathrm{T}}=B^{\mathrm{T}}A^{\mathrm{T}}$，不是 $A^{\mathrm{T}}B^{\mathrm{T}}$。
     </Warning>
 
     **对称矩阵**
@@ -327,19 +303,19 @@ tags: ["考研", "线性代数"]
     若方阵满足
 
     $$
-    A^T=A
+    A^{\mathrm{T}}=A
     $$
 
     则称 $A$ 为对称矩阵，其元素满足 $a_{ij}=a_{ji}$。
 
-    对任意同阶方阵 $A$，$A+A^T$ 一定是对称矩阵，因为：
+    对任意同阶方阵 $A$，$A+A^{\mathrm{T}}$ 一定是对称矩阵，因为
 
     $$
-    (A+A^T)^T=A^T+A=A+A^T
+    (A+A^{\mathrm{T}})^{\mathrm{T}}=A^{\mathrm{T}}+A=A+A^{\mathrm{T}}
     $$
 
     <Check>
-    $c^T=c$ 只是因为 $1\times1$ 矩阵转置后不变；对一般矩阵不能由此推出 $A^T=A$。
+    $c^{\mathrm{T}}=c$ 只是因为 $1\times1$ 矩阵转置后不变；对一般矩阵不能由此推出 $A^{\mathrm{T}}=A$。
     </Check>
   </Accordion>
 
@@ -349,7 +325,7 @@ tags: ["考研", "线性代数"]
     若
 
     $$
-    A^T=-A
+    A^{\mathrm{T}}=-A
     $$
 
     则称 $A$ 为反对称矩阵。
@@ -363,18 +339,28 @@ tags: ["考研", "线性代数"]
     - 奇数阶反对称矩阵一定不可逆。
     - 偶数阶反对称矩阵可能可逆。
 
-    例如 $A=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ 是二阶反对称矩阵，且 $|A|=1$，可逆。
+    例如
+
+    $$
+    A=
+    \begin{pmatrix}
+    0 & 1\\
+    -1 & 0
+    \end{pmatrix}
+    $$
+
+    是二阶反对称矩阵，且 $|A|=1$，可逆。
 
     **奇数阶不可逆的证明**
 
     $$
-    |A|=|A^T|=|-A|=(-1)^n|A|
+    |A|=|A^{\mathrm{T}}|=|-A|=(-1)^{n}|A|
     $$
 
-    当 $n$ 为奇数时，$(-1)^n=-1$，所以
+    当 $n$ 为奇数时，$(-1)^{n}=-1$，所以
 
     $$
-    |A|=-|A|\quad\Rightarrow\quad |A|=0
+    |A|=-|A|\quad\Longrightarrow\quad |A|=0
     $$
 
     因此 $A$ 不可逆；等价地，$A$ 可逆 $\Rightarrow n$ 为偶数。
@@ -384,7 +370,7 @@ tags: ["考研", "线性代数"]
     </Warning>
 
     <Tip>
-    $|-A|=(-1)^n|A|$ 是因为 $A$ 的每一行都乘了 $-1$，共 $n$ 行，每行提出一个 $-1$。
+    $|-A|=(-1)^{n}|A|$ 是因为 $A$ 的每一行都乘了 $-1$，共 $n$ 行，每行提出一个 $-1$。
     </Tip>
   </Accordion>
 
@@ -394,7 +380,7 @@ tags: ["考研", "线性代数"]
     设 $A$ 为 $n$ 阶方阵，则
 
     $$
-    \operatorname{tr}(A)=\sum_{i=1}^{n}a_{ii}
+    \mathrm{tr}(A)=\sum_{i=1}^{n}a_{ii}
     $$
 
     即主对角线元素之和。
@@ -404,32 +390,32 @@ tags: ["考研", "线性代数"]
     设 $A$ 为 $m\times n$ 矩阵，$B$ 为 $n\times m$ 矩阵，则
 
     $$
-    \operatorname{tr}(AB)=\operatorname{tr}(BA)
+    \mathrm{tr}(AB)=\mathrm{tr}(BA)
     $$
 
     对乘积有意义且结果为方阵的情形，有循环不变性：
 
     $$
-    \operatorname{tr}(ABC)=\operatorname{tr}(BCA)=\operatorname{tr}(CAB)
+    \mathrm{tr}(ABC)=\mathrm{tr}(BCA)=\mathrm{tr}(CAB)
     $$
 
-    另外：
+    另外
 
     $$
-    \operatorname{tr}(A^T)=\operatorname{tr}(A),\qquad
-    \operatorname{tr}(P^{-1}AP)=\operatorname{tr}(A)
+    \mathrm{tr}(A^{\mathrm{T}})=\mathrm{tr}(A),\qquad
+    \mathrm{tr}(P^{-1}AP)=\mathrm{tr}(A)
     $$
 
     **与特征值的关系**
 
     $$
-    \operatorname{tr}(A)=\sum_{i=1}^{n}\lambda_i
+    \mathrm{tr}(A)=\sum_{i=1}^{n}\lambda_i
     $$
 
     其中特征值按代数重数计算，详见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
 
     <Warning>
-    循环不变性只允许把乘积整体循环移动，不能随意交换任意两个矩阵的位置。一般地，$\operatorname{tr}(ABC)\ne\operatorname{tr}(ACB)$。
+    循环不变性只允许把乘积整体循环移动，不能随意交换任意两个矩阵的位置。一般地，$\mathrm{tr}(ABC)\ne\mathrm{tr}(ACB)$。
     </Warning>
   </Accordion>
 
@@ -444,11 +430,11 @@ tags: ["考研", "线性代数"]
 
     **重要性质**
 
-    - $0\le r(A)\le \min(m,n)$
-    - $r(A^T)=r(A)$
+    - $0\le r(A)\le\min(m,n)$
+    - $r(A^{\mathrm{T}})=r(A)$
     - $r(kA)=r(A)$，其中 $k\ne 0$
     - $r(A+B)\le r(A)+r(B)$
-    - $r(AB)\le \min\{r(A),r(B)\}$
+    - $r(AB)\le\min\{r(A),r(B)\}$
     - 若 $AB=O$，则 $r(A)+r(B)\le n$，其中 $A$ 为 $m\times n$，$B$ 为 $n\times s$
     - $r(A)=n\Leftrightarrow A$ 可逆，其中 $A$ 为 $n$ 阶方阵
     - 若 $A$ 可逆，则 $r(AB)=r(B)$，$r(BA)=r(B)$
@@ -458,7 +444,7 @@ tags: ["考研", "线性代数"]
     </Tip>
 
     <Tip>
-    $A^TA$ 与 $AA^T$ 的秩、乘以可逆矩阵后秩与行列式的变化，见[矩阵运算与秩](/linear-algebra/secondary-conclusions/matrix-rank)。
+    $A^{\mathrm{T}}A$ 与 $AA^{\mathrm{T}}$ 的秩、乘以可逆矩阵后秩与行列式的变化，见[矩阵运算与秩](/linear-algebra/secondary-conclusions/matrix-rank)。
     </Tip>
   </Accordion>
 
@@ -489,11 +475,11 @@ tags: ["考研", "线性代数"]
     \begin{pmatrix}
     A & B\\
     C & D
-    \end{pmatrix}^T
+    \end{pmatrix}^{\mathrm{T}}
     =
     \begin{pmatrix}
-    A^T & C^T\\
-    B^T & D^T
+    A^{\mathrm{T}} & C^{\mathrm{T}}\\
+    B^{\mathrm{T}} & D^{\mathrm{T}}
     \end{pmatrix}
     $$
 

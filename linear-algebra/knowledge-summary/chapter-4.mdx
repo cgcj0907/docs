@@ -39,21 +39,19 @@ tags: ["考研", "线性代数"]
     n-r(A)
     $$
 
-    个向量。
-
-    设基础解系为
+    个向量。设基础解系为
 
     $$
-    \xi_1,\xi_2,\dots,\xi_{n-r(A)}
+    \xi_1,\xi_2,\cdots,\xi_{n-r(A)}
     $$
 
-    则齐次方程组的通解为：
+    则齐次方程组的通解为
 
     $$
     x=k_1\xi_1+k_2\xi_2+\cdots+k_{n-r(A)}\xi_{n-r(A)}
     $$
 
-    其中 $k_1,k_2,\dots,k_{n-r(A)}$ 为任意常数。
+    其中 $k_1,k_2,\cdots,k_{n-r(A)}$ 为任意常数。
 
     <Check>
     齐次方程组的通解一定是由基础解系线性组合得到，且不包含非零常数项。
@@ -71,36 +69,36 @@ tags: ["考研", "线性代数"]
     Ax=b
     $$
 
-    有解当且仅当：
+    有解当且仅当
 
     $$
-    r(A)=r(A|b)
+    r(A)=r(A\mid b)
     $$
 
     在此基础上：
 
-    - 若 $r(A)=r(A|b)=n$，则方程组有唯一解；
-    - 若 $r(A)=r(A|b)=r<n$，则方程组有无穷多解。
+    - 若 $r(A)=r(A\mid b)=n$，则方程组有唯一解；
+    - 若 $r(A)=r(A\mid b)=r<n$，则方程组有无穷多解。
 
     <Warning>
-    若 $r(A)\ne r(A|b)$，则方程组无解。非齐次方程组必须先判断增广矩阵的秩，不能只比较系数矩阵的秩。
+    若 $r(A)\ne r(A\mid b)$，则方程组无解。非齐次方程组必须先判断增广矩阵的秩，不能只比较系数矩阵的秩。
     </Warning>
   </Accordion>
 
   <Accordion title="通解结构">
-    若非齐次方程组有解，设 $\eta$ 是它的一个特解，则通解为：
+    若非齐次方程组有解，设 $\eta$ 是它的一个特解，$x_0$ 是对应齐次方程组的任意解，则通解为
 
     $$
-    x=\eta+\text{齐次通解}
+    x=\eta+x_0
     $$
 
-    也就是说：
+    也就是说
 
     $$
     x=\eta+k_1\xi_1+k_2\xi_2+\cdots+k_{n-r}\xi_{n-r}
     $$
 
-    其中 $\xi_1,\dots,\xi_{n-r}$ 是对应齐次方程组 $Ax=0$ 的基础解系。
+    其中 $r=r(A)$，$\xi_1,\cdots,\xi_{n-r}$ 是对应齐次方程组 $Ax=0$ 的基础解系。
 
     <Tip>
     非齐次方程组的通解可以理解为“一个特解加齐次方程组的全部解”。
@@ -164,24 +162,13 @@ tags: ["考研", "线性代数"]
 
 <AccordionGroup>
   <Accordion title="齐次方程组同解">
-    对于两个齐次线性方程组
+    对于两个齐次线性方程组 $Ax=0$ 与 $Bx=0$，它们同解的充要条件是行向量组等价，等价地
 
     $$
-    Ax=0
-    \quad\text{与}\quad
-    Bx=0
-    $$
-
-    它们同解的充要条件是：
-
-    $$
-    \text{行向量组等价}
-    $$
-
-    等价地：
-
-    $$
-    r(A)=r(B)=r\begin{pmatrix}A\\B\end{pmatrix}
+    r(A)=r(B)=r\begin{pmatrix}
+    A\\
+    B
+    \end{pmatrix}
     $$
 
     <Check>
@@ -190,24 +177,16 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="非齐次方程组同解">
-    对于两个非齐次线性方程组
+    对于两个非齐次线性方程组 $Ax=b$ 与 $Cx=d$，它们同解的充要条件是增广矩阵的行向量组等价，等价地
 
     $$
-    Ax=b
-    \quad\text{与}\quad
-    Cx=d
-    $$
-
-    它们同解的充要条件是：
-
-    $$
-    \text{增广矩阵的行向量组等价}
-    $$
-
-    等价地：
-
-    $$
-    r(A|b)=r(C|d)=r\begin{pmatrix}A|b\\C|d\end{pmatrix}
+    r(A\mid b)=r(C\mid d)
+    =r\left(
+    \begin{array}{c|c}
+    A & b\\ \hline
+    C & d
+    \end{array}
+    \right)
     $$
 
     <Warning>

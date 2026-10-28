@@ -17,30 +17,30 @@ tags: ["考研", "线性代数"]
 
 <AccordionGroup>
   <Accordion title="线性相关与线性无关">
-    对向量组 $\alpha_1,\alpha_2,\dots,\alpha_s$：
+    对向量组 $\alpha_1,\alpha_2,\cdots,\alpha_s$：
 
-    - **线性相关**：存在不全为零的数 $k_1,k_2,\dots,k_s$，使得
+    - **线性相关**：存在不全为零的数 $k_1,k_2,\cdots,k_s$，使得
 
     $$
-    \sum_{i=1}^s k_i\alpha_i=0
+    \sum_{i=1}^{s}k_i\alpha_i=0
     $$
 
     等价于
 
     $$
-    r(\alpha_1,\alpha_2,\dots,\alpha_s)<s
+    r(\alpha_1,\alpha_2,\cdots,\alpha_s)<s
     $$
 
     - **线性无关**：只有当 $k_1=k_2=\cdots=k_s=0$ 时，才有
 
     $$
-    \sum_{i=1}^s k_i\alpha_i=0
+    \sum_{i=1}^{s}k_i\alpha_i=0
     $$
 
     等价于
 
     $$
-    r(\alpha_1,\alpha_2,\dots,\alpha_s)=s
+    r(\alpha_1,\alpha_2,\cdots,\alpha_s)=s
     $$
 
     <Tip>
@@ -84,13 +84,13 @@ tags: ["考研", "线性代数"]
     设旧基为
 
     $$
-    \alpha_1,\alpha_2,\dots,\alpha_n
+    \alpha_1,\alpha_2,\cdots,\alpha_n
     $$
 
     新基为
 
     $$
-    \beta_1,\beta_2,\dots,\beta_n
+    \beta_1,\beta_2,\cdots,\beta_n
     $$
 
     每个新基向量都可由旧基线性表示：
@@ -99,64 +99,64 @@ tags: ["考研", "线性代数"]
     \begin{cases}
     \beta_1=p_{11}\alpha_1+p_{21}\alpha_2+\cdots+p_{n1}\alpha_n\\
     \beta_2=p_{12}\alpha_1+p_{22}\alpha_2+\cdots+p_{n2}\alpha_n\\
-    \cdots\\
+    \quad\cdots\\
     \beta_n=p_{1n}\alpha_1+p_{2n}\alpha_2+\cdots+p_{nn}\alpha_n
     \end{cases}
     $$
 
-    写成矩阵形式：
+    写成矩阵形式
 
     $$
-    (\beta_1,\beta_2,\dots,\beta_n)
+    (\beta_1,\beta_2,\cdots,\beta_n)
     =
-    (\alpha_1,\alpha_2,\dots,\alpha_n)P
+    (\alpha_1,\alpha_2,\cdots,\alpha_n)P
     $$
 
-    其中：
+    其中
 
     $$
     P=
     \begin{pmatrix}
-    p_{11}&p_{12}&\cdots&p_{1n}\\
-    p_{21}&p_{22}&\cdots&p_{2n}\\
-    \vdots&\vdots&&\vdots\\
-    p_{n1}&p_{n2}&\cdots&p_{nn}
+    p_{11} & p_{12} & \cdots & p_{1n}\\
+    p_{21} & p_{22} & \cdots & p_{2n}\\
+    \vdots & \vdots & & \vdots\\
+    p_{n1} & p_{n2} & \cdots & p_{nn}
     \end{pmatrix}
     $$
 
     称 $P$ 为**从旧基到新基的过渡矩阵**。
 
     <Check>
-    $P$ 的第 $j$ 列，就是新基向量 $\beta_j$ 在旧基 $(\alpha_1,\dots,\alpha_n)$ 下的坐标。因为两组基都线性无关，所以过渡矩阵 $P$ 一定可逆。
+    $P$ 的第 $j$ 列，就是新基向量 $\beta_j$ 在旧基 $(\alpha_1,\cdots,\alpha_n)$ 下的坐标。因为两组基都线性无关，所以过渡矩阵 $P$ 一定可逆。
     </Check>
   </Accordion>
 
   <Accordion title="坐标变换">
-    设向量 $\xi$ 在旧基下的坐标为 $X$，在新基下的坐标为 $Y$，即：
+    设向量 $\xi$ 在旧基下的坐标为 $X$，在新基下的坐标为 $Y$，即
 
     $$
     \xi=(\alpha)X=(\beta)Y
     $$
 
-    又因为：
+    又因为
 
     $$
     (\beta)=(\alpha)P
     $$
 
-    所以：
+    所以
 
     $$
     (\alpha)X=(\alpha)PY
     $$
 
-    由于 $(\alpha)$ 是基向量组，可以比较坐标，得到：
+    由于 $(\alpha)$ 是基向量组，可以比较坐标，得到
 
     $$
     X=PY
     $$
 
-    或等价地：
+    或等价地
 
     $$
     Y=P^{-1}X
@@ -174,13 +174,13 @@ tags: ["考研", "线性代数"]
     若旧基在标准基下的矩阵为
 
     $$
-    A=(\alpha_1,\alpha_2,\dots,\alpha_n)
+    A=(\alpha_1,\alpha_2,\cdots,\alpha_n)
     $$
 
     新基在标准基下的矩阵为
 
     $$
-    B=(\beta_1,\beta_2,\dots,\beta_n)
+    B=(\beta_1,\beta_2,\cdots,\beta_n)
     $$
 
     由
@@ -189,13 +189,13 @@ tags: ["考研", "线性代数"]
     (\beta)=(\alpha)P
     $$
 
-    可得：
+    可得
 
     $$
     B=AP
     $$
 
-    因此：
+    因此
 
     $$
     P=A^{-1}B
@@ -204,7 +204,7 @@ tags: ["考研", "线性代数"]
     可用初等行变换求：
 
     $$
-    (A\mid B)\longrightarrow (E\mid P)
+    (A\mid B)\longrightarrow(E\mid P)
     $$
 
     即增广矩阵右半部分就是过渡矩阵 $P$。
@@ -215,7 +215,7 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="连续过渡">
-    若从基 $A$ 到基 $B$ 的过渡矩阵为 $P$，从基 $B$ 到基 $C$ 的过渡矩阵为 $Q$，则从基 $A$ 到基 $C$ 的过渡矩阵为：
+    若从基 $A$ 到基 $B$ 的过渡矩阵为 $P$，从基 $B$ 到基 $C$ 的过渡矩阵为 $Q$，则从基 $A$ 到基 $C$ 的过渡矩阵为
 
     $$
     PQ
@@ -234,18 +234,18 @@ tags: ["考研", "线性代数"]
     从一组线性无关的向量
 
     $$
-    \alpha_1,\alpha_2,\dots,\alpha_n
+    \alpha_1,\alpha_2,\cdots,\alpha_n
     $$
 
-    出发，构造正交向量组 $\beta_1,\beta_2,\dots,\beta_n$。
+    出发，构造正交向量组 $\beta_1,\beta_2,\cdots,\beta_n$。
 
-    先取：
+    先取
 
     $$
     \beta_1=\alpha_1
     $$
 
-    再构造：
+    再构造
 
     $$
     \beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1
@@ -256,14 +256,14 @@ tags: ["考研", "线性代数"]
     -\frac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}\beta_2
     $$
 
-    一般地：
+    一般地
 
     $$
     \beta_k=\alpha_k-\sum_{i=1}^{k-1}
     \frac{(\alpha_k,\beta_i)}{(\beta_i,\beta_i)}\beta_i
     $$
 
-    这样得到的 $\beta_1,\beta_2,\dots,\beta_n$ 两两正交。
+    这样得到的 $\beta_1,\beta_2,\cdots,\beta_n$ 两两正交。
 
     <Warning>
     施密特正交化要求原向量组线性无关。若出现某个 $\beta_i=0$，说明分母 $(\beta_i,\beta_i)$ 不能用于继续计算，原向量组也不满足正交化前提。
@@ -274,15 +274,15 @@ tags: ["考研", "线性代数"]
     对每个正交向量进行单位化：
 
     $$
-    e_i=\frac{\beta_i}{\Vert\beta_i\Vert},
+    e_i=\frac{\beta_i}{\lVert\beta_i\rVert},
     \qquad
-    \Vert\beta_i\Vert=\sqrt{(\beta_i,\beta_i)}
+    \lVert\beta_i\rVert=\sqrt{(\beta_i,\beta_i)}
     $$
 
     则
 
     $$
-    e_1,e_2,\dots,e_n
+    e_1,e_2,\cdots,e_n
     $$
 
     就是标准正交基。
@@ -293,26 +293,26 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="性质">
-    - 若 $Q=(e_1,e_2,\dots,e_n)$ 的列向量构成标准正交基，则：
+    - 若 $Q=(e_1,e_2,\cdots,e_n)$ 的列向量构成标准正交基，则
 
     $$
-    Q^TQ=E
+    Q^{\mathrm{T}}Q=E
     $$
 
     即 $Q$ 是正交矩阵。
 
-    - 在标准正交基下，向量 $\xi$ 的坐标为：
+    - 在标准正交基下，向量 $\xi$ 的坐标为
 
     $$
-    \xi=\sum_{i=1}^n(\xi,e_i)e_i
+    \xi=\sum_{i=1}^{n}(\xi,e_i)e_i
     $$
 
     也就是说，第 $i$ 个坐标就是 $(\xi,e_i)$。
 
-    - 若新基是标准正交基，则从旧基到新基的过渡矩阵是正交矩阵，满足：
+    - 若新基是标准正交基，则从旧基到新基的过渡矩阵是正交矩阵，满足
 
     $$
-    P^{-1}=P^T
+    P^{-1}=P^{\mathrm{T}}
     $$
 
     <Tip>

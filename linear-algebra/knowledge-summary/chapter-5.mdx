@@ -42,7 +42,7 @@ tags: ["考研", "线性代数"]
     </Warning>
 
     <Tip>
-    常用矩阵（$kA$、$A^m$、$f(A)$、$A^{-1}$、$A^*$、$A^T$、$P^{-1}AP$）的特征值，以及特征值的和与积，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
+    常用矩阵（$kA$、$A^{m}$、$f(A)$、$A^{-1}$、$A^{*}$、$A^{\mathrm{T}}$、$P^{-1}AP$）的特征值，以及特征值的和与积，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
     </Tip>
   </Accordion>
 
@@ -52,10 +52,10 @@ tags: ["考研", "线性代数"]
 
 <AccordionGroup>
   <Accordion title="定理">
-    设 $\lambda_1,\lambda_2,\dots,\lambda_m$ 是矩阵 $A$ 的 $m$ 个互不相同的特征值，$\alpha_1,\alpha_2,\dots,\alpha_m$ 分别是对应的特征向量，则
+    设 $\lambda_1,\lambda_2,\cdots,\lambda_m$ 是矩阵 $A$ 的 $m$ 个互不相同的特征值，$\alpha_1,\alpha_2,\cdots,\alpha_m$ 分别是对应的特征向量，则
 
     $$
-    \alpha_1,\alpha_2,\dots,\alpha_m
+    \alpha_1,\alpha_2,\cdots,\alpha_m
     $$
 
     线性无关。
@@ -84,10 +84,10 @@ tags: ["考研", "线性代数"]
     \sum_{i=1}^{m-1}k_i(\lambda_i-\lambda_m)\alpha_i=0
     $$
 
-    由归纳假设，$\alpha_1,\dots,\alpha_{m-1}$ 线性无关，因此
+    由归纳假设，$\alpha_1,\cdots,\alpha_{m-1}$ 线性无关，因此
 
     $$
-    k_i(\lambda_i-\lambda_m)=0,\qquad i=1,\dots,m-1
+    k_i(\lambda_i-\lambda_m)=0,\qquad i=1,\cdots,m-1
     $$
 
     又 $\lambda_i\ne\lambda_m$，所以
@@ -102,7 +102,7 @@ tags: ["考研", "线性代数"]
     k_1=k_2=\cdots=k_m=0
     $$
 
-    即 $\alpha_1,\alpha_2,\dots,\alpha_m$ 线性无关。
+    即 $\alpha_1,\alpha_2,\cdots,\alpha_m$ 线性无关。
 
     <Tip>
     证明的关键动作是“左乘 $A-\lambda_m E$”：它把 $\alpha_m$ 消掉，只留下前 $m-1$ 项，从而可以套用归纳假设。
@@ -168,10 +168,10 @@ tags: ["考研", "线性代数"]
   <Accordion title="一般步骤">
     1. 解 $|\lambda E-A|=0$，求出全部特征值。
     2. 对每个特征值 $\lambda_i$，解 $(A-\lambda_i E)x=0$，求基础解系。
-    3. 若共有 $n$ 个线性无关的特征向量，令 $P=(\alpha_1,\alpha_2,\dots,\alpha_n)$，则
+    3. 若共有 $n$ 个线性无关的特征向量，令 $P=(\alpha_1,\alpha_2,\cdots,\alpha_n)$，则
 
     $$
-    P^{-1}AP=\mathrm{diag}(\lambda_1,\lambda_2,\dots,\lambda_n)
+    P^{-1}AP=\mathrm{diag}(\lambda_1,\lambda_2,\cdots,\lambda_n)
     $$
 
     <Tip>
@@ -187,7 +187,7 @@ tags: ["考研", "线性代数"]
     若 $A$ 为实对称矩阵，即
 
     $$
-    A^T=A
+    A^{\mathrm{T}}=A
     $$
 
     则：
@@ -200,10 +200,10 @@ tags: ["考研", "线性代数"]
     正交对角化公式为
 
     $$
-    Q^TAQ=Q^{-1}AQ=\Lambda,\qquad Q^TQ=E
+    Q^{\mathrm{T}}AQ=Q^{-1}AQ=\Lambda,\qquad Q^{\mathrm{T}}Q=E
     $$
 
-    其中 $Q$ 为正交矩阵，满足 $Q^{-1}=Q^T$。
+    其中 $Q$ 为正交矩阵，满足 $Q^{-1}=Q^{\mathrm{T}}$。
 
     <Info>
     实对称矩阵把“不同特征值对应的特征向量线性无关”加强为“正交”，这是二次型能用正交变换化为标准形的根本原因。
@@ -211,52 +211,52 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="证明：不同特征值对应的特征向量正交">
-    设 $A^T=A$，$\alpha,\beta$ 分别对应不同特征值 $\lambda,\mu$，即
+    设 $A^{\mathrm{T}}=A$，$\alpha,\beta$ 分别对应不同特征值 $\lambda,\mu$，即
 
     $$
     A\alpha=\lambda\alpha,\qquad A\beta=\mu\beta,\qquad \lambda\ne\mu
     $$
 
-    因为 $A^T=A$，所以
+    因为 $A^{\mathrm{T}}=A$，所以
 
     $$
-    (A\alpha)^T\beta=\alpha^TA^T\beta=\alpha^TA\beta
+    (A\alpha)^{\mathrm{T}}\beta=\alpha^{\mathrm{T}}A^{\mathrm{T}}\beta=\alpha^{\mathrm{T}}A\beta
     $$
 
-    一方面，
+    一方面
 
     $$
-    (A\alpha)^T\beta=(\lambda\alpha)^T\beta=\lambda\alpha^T\beta
+    (A\alpha)^{\mathrm{T}}\beta=(\lambda\alpha)^{\mathrm{T}}\beta=\lambda\alpha^{\mathrm{T}}\beta
     $$
 
-    另一方面，
+    另一方面
 
     $$
-    \alpha^TA\beta=\alpha^T(\mu\beta)=\mu\alpha^T\beta
+    \alpha^{\mathrm{T}}A\beta=\alpha^{\mathrm{T}}(\mu\beta)=\mu\alpha^{\mathrm{T}}\beta
     $$
 
     因此
 
     $$
-    \lambda\alpha^T\beta=\mu\alpha^T\beta
+    \lambda\alpha^{\mathrm{T}}\beta=\mu\alpha^{\mathrm{T}}\beta
     $$
 
     即
 
     $$
-    (\lambda-\mu)\alpha^T\beta=0
+    (\lambda-\mu)\alpha^{\mathrm{T}}\beta=0
     $$
 
     由 $\lambda\ne\mu$，得
 
     $$
-    \alpha^T\beta=0
+    \alpha^{\mathrm{T}}\beta=0
     $$
 
     即 $\alpha$ 与 $\beta$ 正交。
 
     <Tip>
-    证明只用了“实对称”这一条件把 $\alpha^TA\beta$ 的两种算法接起来，是“同一式子两种算法”的典型用法。
+    证明只用了“实对称”这一条件把 $\alpha^{\mathrm{T}}A\beta$ 的两种算法接起来，是“同一式子两种算法”的典型用法。
     </Tip>
   </Accordion>
 
@@ -269,7 +269,7 @@ tags: ["考研", "线性代数"]
     | 是否一定可正交相似对角化 | 否 | 是 |
 
     <Check>
-    实矩阵 $A$ 可正交相似对角化为实对角矩阵 $\Leftrightarrow$ $A$ 为实对称矩阵。这是因为若 $Q^TAQ=\Lambda$ 且 $Q$ 正交，则 $A=Q\Lambda Q^T$，从而 $A^T=A$。
+    实矩阵 $A$ 可正交相似对角化为实对角矩阵，当且仅当 $A$ 为实对称矩阵。这是因为若 $Q^{\mathrm{T}}AQ=\Lambda$ 且 $Q$ 正交，则 $A=Q\Lambda Q^{\mathrm{T}}$，从而 $A^{\mathrm{T}}=A$。
     </Check>
   </Accordion>
 
@@ -281,7 +281,7 @@ tags: ["考研", "线性代数"]
     5. 以它们为列构成正交矩阵 $Q$，则
 
     $$
-    Q^{-1}AQ=Q^TAQ=\Lambda
+    Q^{-1}AQ=Q^{\mathrm{T}}AQ=\Lambda
     $$
 
     <Warning>

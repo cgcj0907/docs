@@ -8,7 +8,7 @@ tags: ["考研", "线性代数"]
 本章先建立二次型与实对称矩阵的对应关系，再比较配方法与正交变换法两条化标准形的路线，最后用惯性定理把标准形、规范形与正定性串起来。
 
 <Info>
-复习主线：写出二次型的矩阵 $A$ → 选择配方法或正交变换法化标准形 → 区分 $C^{-1}AC$ 与 $C^TAC$ → 用惯性指数看本质 → 用特征值或顺序主子式判断正定性。
+复习主线：写出二次型的矩阵 $A$ → 选择配方法或正交变换法化标准形 → 区分 $C^{-1}AC$ 与 $C^{\mathrm{T}}AC$ → 用惯性指数看本质 → 用特征值或顺序主子式判断正定性。
 </Info>
 
 ## 二次型的定义与矩阵表示
@@ -18,13 +18,13 @@ tags: ["考研", "线性代数"]
     含有 $n$ 个变量的二次齐次多项式称为二次型，其矩阵形式为
 
     $$
-    f(x)=x^TAx
+    f(x)=x^{\mathrm{T}}Ax
     $$
 
     其中 $A$ 可取为实对称矩阵，称为二次型的矩阵。
 
     <Check>
-    二次型与实对称矩阵一一对应，因此讨论二次型时，总可以假设其矩阵满足 $A^T=A$。
+    二次型与实对称矩阵一一对应，因此讨论二次型时，总可以假设其矩阵满足 $A^{\mathrm{T}}=A$。
     </Check>
   </Accordion>
 
@@ -42,7 +42,7 @@ tags: ["考研", "线性代数"]
     再如
 
     $$
-    f=x_1^2+2x_2^2+3x_3^2+4x_1x_2+6x_1x_3
+    f=x_1^{2}+2x_2^{2}+3x_3^{2}+4x_1x_2+6x_1x_3
     $$
 
     对应矩阵为
@@ -62,22 +62,16 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="可逆线性变换">
-    作可逆线性变换
+    作可逆线性变换 $x=Cy$（其中 $C$ 可逆），则
 
     $$
-    x=Cy,\qquad C\text{ 可逆}
+    f=x^{\mathrm{T}}Ax=(Cy)^{\mathrm{T}}A(Cy)=y^{\mathrm{T}}(C^{\mathrm{T}}AC)y
     $$
 
-    则
-
-    $$
-    f=x^TAx=(Cy)^TA(Cy)=y^T(C^TAC)y
-    $$
-
-    变换后的矩阵为 $C^TAC$，它与 $A$ 合同。
+    变换后的矩阵为 $C^{\mathrm{T}}AC$，它与 $A$ 合同。
 
     <Info>
-    二次型化标准形，本质上就是寻找可逆矩阵 $C$，使 $C^TAC$ 成为对角矩阵。
+    二次型化标准形，本质上就是寻找可逆矩阵 $C$，使 $C^{\mathrm{T}}AC$ 成为对角矩阵。
     </Info>
   </Accordion>
 </AccordionGroup>
@@ -92,7 +86,7 @@ tags: ["考研", "线性代数"]
     | 变换矩阵 | $C$ 一定可逆 | $Q$ 一定正交且可逆 |
     | 是否保证正交 | 不保证 | 保证 |
     | 核心方法 | 配平方，消去交叉项 | 利用实对称矩阵的正交对角化 |
-    | 变换后的矩阵 | $C^TAC$ | $Q^TAQ=\Lambda$ |
+    | 变换后的矩阵 | $C^{\mathrm{T}}AC$ | $Q^{\mathrm{T}}AQ=\Lambda$ |
 
     <Tip>
     考试中若题目要求“用正交变换化标准形”，必须求出正交矩阵 $Q$；若只要求“化标准形”，用配方法更省时。
@@ -107,13 +101,13 @@ tags: ["考研", "线性代数"]
     **例**：
 
     $$
-    f=x_1^2+4x_1x_2+3x_2^2
+    f=x_1^{2}+4x_1x_2+3x_2^{2}
     $$
 
     配方得
 
     $$
-    f=(x_1+2x_2)^2-x_2^2
+    f=(x_1+2x_2)^{2}-x_2^{2}
     $$
 
     令
@@ -125,7 +119,7 @@ tags: ["考研", "线性代数"]
     则
 
     $$
-    f=y_1^2-y_2^2
+    f=y_1^{2}-y_2^{2}
     $$
 
     反解出 $x_1=y_1-2y_2$，$x_2=y_2$，故
@@ -142,7 +136,7 @@ tags: ["考研", "线性代数"]
     其中 $C$ 的行列式为 $1$，所以 $C$ 可逆；但
 
     $$
-    C^TC=
+    C^{\mathrm{T}}C=
     \begin{pmatrix}
     1 & -2\\
     -2 & 5
@@ -153,7 +147,27 @@ tags: ["考研", "线性代数"]
     所以 $C$ 不是正交矩阵。
 
     <Warning>
-    注意变换方向。若把上面的令写成 $y=Cx$，其中 $C=\begin{pmatrix}1&2\\0&1\end{pmatrix}$，那么化为 $x=Cy$ 时，变换矩阵应取 $C^{-1}=\begin{pmatrix}1&-2\\0&1\end{pmatrix}$。二次型标准形用的是后者。
+    注意变换方向。若把上面的令写成 $y=Cx$，其中
+
+    $$
+    C=
+    \begin{pmatrix}
+    1 & 2\\
+    0 & 1
+    \end{pmatrix}
+    $$
+
+    那么化为 $x=Cy$ 时，变换矩阵应取
+
+    $$
+    C^{-1}=
+    \begin{pmatrix}
+    1 & -2\\
+    0 & 1
+    \end{pmatrix}
+    $$
+
+    二次型标准形用的是后者。
     </Warning>
   </Accordion>
 
@@ -161,23 +175,23 @@ tags: ["考研", "线性代数"]
     当二次型的矩阵 $A$ 为实对称矩阵时，可利用正交矩阵 $Q$ 对角化：
 
     $$
-    Q^TAQ=\Lambda,\qquad Q^TQ=E
+    Q^{\mathrm{T}}AQ=\Lambda,\qquad Q^{\mathrm{T}}Q=E
     $$
 
     令 $x=Qy$，则
 
     $$
-    f(x)=y^T\Lambda y=\sum_{i=1}^{n}\lambda_i y_i^2
+    f(x)=y^{\mathrm{T}}\Lambda y=\sum_{i=1}^{n}\lambda_i y_i^{2}
     $$
 
     其中 $Q$ 由标准正交特征向量组成，$\Lambda$ 的对角元素为对应特征值。
 
     <Warning>
-    正交变换法的变换矩阵 $Q$ 一定可逆，因为 $Q^{-1}=Q^T$。但求 $Q$ 时必须先把特征向量单位化，否则得到的只是一般的可逆变换。
+    正交变换法的变换矩阵 $Q$ 一定可逆，因为 $Q^{-1}=Q^{\mathrm{T}}$。但求 $Q$ 时必须先把特征向量单位化，否则得到的只是一般的可逆变换。
     </Warning>
 
     <Tip>
-    单位化与不单位化的区别、$C^{-1}AC$ 与 $C^TAC$ 的对比，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
+    单位化与不单位化的区别、$C^{-1}AC$ 与 $C^{\mathrm{T}}AC$ 的对比，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
     </Tip>
   </Accordion>
 </AccordionGroup>
@@ -189,13 +203,13 @@ tags: ["考研", "线性代数"]
     | 类型 | 变换公式 | 主要用途 |
     | --- | --- | --- |
     | 相似变换 | $P^{-1}AP$ | 特征值、相似对角化 |
-    | 合同变换 | $C^TAC$ | 二次型标准形、规范形、惯性指数 |
-    | 正交变换 | $Q^TAQ$ | 实对称矩阵的正交对角化 |
+    | 合同变换 | $C^{\mathrm{T}}AC$ | 二次型标准形、规范形、惯性指数 |
+    | 正交变换 | $Q^{\mathrm{T}}AQ$ | 实对称矩阵的正交对角化 |
 
     记忆口诀：
 
     <Tip>
-    相似看 $P^{-1}AP$，合同看 $C^TAC$，正交看 $Q^TAQ$，且 $Q^TQ=E$。
+    相似看 $P^{-1}AP$，合同看 $C^{\mathrm{T}}AC$，正交看 $Q^{\mathrm{T}}AQ$，且 $Q^{\mathrm{T}}Q=E$。
     </Tip>
 
     <Check>
@@ -204,10 +218,10 @@ tags: ["考研", "线性代数"]
   </Accordion>
 
   <Accordion title="正交变换的特殊性">
-    对正交矩阵 $Q$，有 $Q^{-1}=Q^T$，所以
+    对正交矩阵 $Q$，有 $Q^{-1}=Q^{\mathrm{T}}$，所以
 
     $$
-    Q^TAQ=Q^{-1}AQ
+    Q^{\mathrm{T}}AQ=Q^{-1}AQ
     $$
 
     这说明正交变换既是合同变换，也是相似变换。
@@ -225,7 +239,7 @@ tags: ["考研", "线性代数"]
     通过可逆线性变换，将二次型化为只含变量平方项的形式：
 
     $$
-    f=d_1y_1^2+d_2y_2^2+\cdots+d_ny_n^2
+    f=d_1y_1^{2}+d_2y_2^{2}+\cdots+d_ny_n^{2}
     $$
 
     其中 $d_i$ 不一定为 $1,-1,0$。
@@ -239,7 +253,7 @@ tags: ["考研", "线性代数"]
     通过可逆线性变换，将二次型化为系数仅为 $1,-1,0$ 的形式：
 
     $$
-    f=y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2
+    f=y_1^{2}+\cdots+y_p^{2}-y_{p+1}^{2}-\cdots-y_{p+q}^{2}
     $$
 
     其余 $n-p-q$ 项系数为零。
@@ -273,7 +287,7 @@ tags: ["考研", "线性代数"]
     若 $A$ 为实对称矩阵，且对任意非零向量 $x$，均有
 
     $$
-    x^TAx>0
+    x^{\mathrm{T}}Ax>0
     $$
 
     则称 $A$ 为正定矩阵，对应的二次型称为正定二次型。
@@ -289,7 +303,7 @@ tags: ["考研", "线性代数"]
     **方法一：特征值判别**
 
     $$
-    \lambda_i>0,\qquad i=1,2,\dots,n
+    \lambda_i>0,\qquad i=1,2,\cdots,n
     $$
 
     即全部特征值均大于零。
@@ -297,7 +311,7 @@ tags: ["考研", "线性代数"]
     **方法二：顺序主子式判别**
 
     $$
-    \Delta_1>0,\quad \Delta_2>0,\quad\dots,\quad \Delta_n>0
+    \Delta_1>0,\quad \Delta_2>0,\quad\cdots,\quad \Delta_n>0
     $$
 
     其中 $\Delta_k$ 是左上角 $k$ 阶主子矩阵的行列式。
@@ -305,21 +319,21 @@ tags: ["考研", "线性代数"]
     **方法三：二次型判别**
 
     $$
-    x^TAx>0,\qquad \forall x\ne0
+    x^{\mathrm{T}}Ax>0,\qquad \forall x\ne0
     $$
 
     <Tip>
-    还有一条常用等价说法：$A$ 正定 $\Leftrightarrow$ $A$ 与单位矩阵 $E$ 合同 $\Leftrightarrow$ 存在可逆矩阵 $C$，使 $A=C^TC$。
+    还有一条常用等价说法：$A$ 正定 $\Leftrightarrow$ $A$ 与单位矩阵 $E$ 合同 $\Leftrightarrow$ 存在可逆矩阵 $C$，使 $A=C^{\mathrm{T}}C$。
     </Tip>
 
     <Tip>
-    正定矩阵的性质清单，以及 $A^TA$、$AA^T$ 的正定条件与惯性指数，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
+    正定矩阵的性质清单，以及 $A^{\mathrm{T}}A$、$AA^{\mathrm{T}}$ 的正定条件与惯性指数，见[特征值与二次型](/linear-algebra/secondary-conclusions/eigen-quadratic)。
     </Tip>
   </Accordion>
 
   <Accordion title="易错点">
     - 主对角线元素均大于零，不一定正定。
-    - 仅有 $\vert A\vert>0$，不能判定矩阵正定。
+    - 仅有 $|A|>0$，不能判定矩阵正定。
     - 顺序主子式法要求**全部**顺序主子式均大于零，缺一不可。
     - 以上正定判别均针对实对称矩阵。
 
