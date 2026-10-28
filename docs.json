@@ -174,19 +174,20 @@
             "pages": [
               "english/s02-letter-opening",
               "english/s03-letter-body",
-              "english/s04-letter-practice"
+              "english/s04-letter-practice",
+              "english/s05-letter-closing"
             ]
           },
           {
             "group": "小作文 · 通知·告示",
             "pages": [
-              "english/s05-notice"
+              "english/s06-notice"
             ]
           },
           {
             "group": "小作文 · 纪要",
             "pages": [
-              "english/s06-minutes"
+              "english/s07-minutes"
             ]
           }
         ]
