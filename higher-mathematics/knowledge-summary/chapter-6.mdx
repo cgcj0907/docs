@@ -584,7 +584,7 @@ tags: ["考研", "高等数学", "数学一"]
     f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+o\bigl((x-x_0)^n\bigr)
     $$
 
-    **证明方法：柯西中值定理或洛必达法则**
+    **证明方法：反复洛必达法则 + 导数定义**
 
     设
 
@@ -598,7 +598,45 @@ tags: ["考研", "高等数学", "数学一"]
     \lim_{x\to x_0}\frac{R_n(x)}{(x-x_0)^n}=0
     $$
 
-    利用各阶导数在 $x_0$ 处的取值相抵消，并逐次使用柯西中值定理，可将问题化为最高阶导数在 $x_0$ 处的定义，最终得到极限为零。
+    关键在于 $R_n$ 的各阶导数在 $x_0$ 处都为零。逐项求导，对 $0\leq k\leq n$ 有
+
+    $$
+    R_n^{(k)}(x)=f^{(k)}(x)-\sum_{j=k}^{n}\frac{f^{(j)}(x_0)}{(j-k)!}(x-x_0)^{j-k}
+    $$
+
+    令 $x=x_0$，右端只剩 $j=k$ 一项，等于 $f^{(k)}(x_0)$，故
+
+    $$
+    R_n^{(k)}(x_0)=0,\qquad k=0,1,\dots,n
+    $$
+
+    于是可以连续使用 $n-1$ 次洛必达法则：
+
+    $$
+    \lim_{x\to x_0}\frac{R_n(x)}{(x-x_0)^n}
+    =\lim_{x\to x_0}\frac{R_n^{(n-1)}(x)}{n!\,(x-x_0)}
+    $$
+
+    而
+
+    $$
+    R_n^{(n-1)}(x)=f^{(n-1)}(x)-f^{(n-1)}(x_0)-f^{(n)}(x_0)(x-x_0)
+    $$
+
+    所以
+
+    $$
+    \frac{R_n^{(n-1)}(x)}{n!\,(x-x_0)}
+    =\frac1{n!}\left[
+    \frac{f^{(n-1)}(x)-f^{(n-1)}(x_0)}{x-x_0}-f^{(n)}(x_0)
+    \right]\to0
+    $$
+
+    方括号内是 $f^{(n-1)}$ 在 $x_0$ 处的差商减去 $f^{(n)}(x_0)$，由导数的定义它趋于零。故
+
+    $$
+    R_n(x)=o\bigl((x-x_0)^n\bigr)
+    $$
 
     **考研应用**
 
@@ -1436,13 +1474,46 @@ tags: ["考研", "高等数学", "数学一"]
     \end{aligned}
     $$
 
-    分别应用一元拉格朗日中值定理，再利用偏导数连续性，得到
+    固定 $y=y_0+\Delta y$，对第一项用一元拉格朗日中值定理：存在 $\theta_1\in(0,1)$，使
 
     $$
-    \Delta f=f_x\Delta x+f_y\Delta y+o(\rho)
+    f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0+\Delta y)
+    =f_x(x_0+\theta_1\Delta x,\ y_0+\Delta y)\Delta x
     $$
 
-    即函数可微。
+    固定 $x=x_0$，同理存在 $\theta_2\in(0,1)$，使
+
+    $$
+    f(x_0,y_0+\Delta y)-f(x_0,y_0)
+    =f_y(x_0,\ y_0+\theta_2\Delta y)\Delta y
+    $$
+
+    记
+
+    $$
+    \varepsilon_1=f_x(x_0+\theta_1\Delta x,y_0+\Delta y)-f_x(x_0,y_0)
+    $$
+
+    $$
+    \varepsilon_2=f_y(x_0,y_0+\theta_2\Delta y)-f_y(x_0,y_0)
+    $$
+
+    由 $f_x,f_y$ 在 $(x_0,y_0)$ 处连续，当 $(\Delta x,\Delta y)\to(0,0)$ 时 $\varepsilon_1\to0$，$\varepsilon_2\to0$。代入增量公式：
+
+    $$
+    \Delta f=f_x\Delta x+f_y\Delta y+\varepsilon_1\Delta x+\varepsilon_2\Delta y
+    $$
+
+    最后估计余项。因为 $\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}\geq\lvert\Delta x\rvert$，且 $\rho\geq\lvert\Delta y\rvert$，
+
+    $$
+    \left\lvert\frac{\varepsilon_1\Delta x+\varepsilon_2\Delta y}{\rho}\right\rvert
+    \leq\lvert\varepsilon_1\rvert\frac{\lvert\Delta x\rvert}{\rho}
+    +\lvert\varepsilon_2\rvert\frac{\lvert\Delta y\rvert}{\rho}
+    \leq\lvert\varepsilon_1\rvert+\lvert\varepsilon_2\rvert\to0
+    $$
+
+    所以余项是 $o(\rho)$，即函数可微。
   </Accordion>
 
   <Accordion title="3. 混合偏导数相等定理 ★★★">
@@ -1507,17 +1578,35 @@ tags: ["考研", "高等数学", "数学一"]
     y'=-\frac{F_x}{F_y}
     $$
 
-    **证明方法**
+    **证明方法：局部单调性 + 零点定理 + 复合函数求导**
 
-    存在性可由 $F_y\neq0$ 保证的局部严格单调性与介值定理证明。
+    **存在性与唯一性。** 因为 $F_y(x_0,y_0)\neq0$，不妨设 $F_y(x_0,y_0)>0$。由 $F_y$ 连续，存在 $x_0$、$y_0$ 的邻域，使其中每一点都有 $F_y>0$。
 
-    导数公式由复合函数求导：
+    固定 $x=x_0$，$F(x_0,y)$ 关于 $y$ 严格递增，且 $F(x_0,y_0)=0$，所以取足够小的 $\varepsilon>0$ 有
+
+    $$
+    F(x_0,y_0-\varepsilon)<0<F(x_0,y_0+\varepsilon)
+    $$
+
+    由 $F$ 的连续性，当 $x$ 充分接近 $x_0$ 时仍有
+
+    $$
+    F(x,y_0-\varepsilon)<0,\qquad F(x,y_0+\varepsilon)>0
+    $$
+
+    对固定的 $x$，$F(x,y)$ 关于 $y$ 严格递增且连续，由零点定理，在 $(y_0-\varepsilon,y_0+\varepsilon)$ 内存在唯一的 $y=y(x)$，使 $F(x,y(x))=0$。唯一性来自严格单调，这就证明了隐函数的存在与唯一。
+
+    **可微性。** 对 $F(x,y(x))=0$ 两边用链式法则，
 
     $$
     F_x+F_y\,y'=0
     $$
 
-    得到。
+    因为 $F_y\neq0$，解得
+
+    $$
+    y'=-\frac{F_x}{F_y}
+    $$
 
     **考研应用**
 
@@ -1570,7 +1659,20 @@ tags: ["考研", "高等数学", "数学一"]
     \Delta f=\frac12(Ah^2+2Bhk+Ck^2)+o(h^2+k^2)
     $$
 
-    利用二次型的正定性、负定性或不定性判断极值。
+    记 $Q(h,k)=Ah^2+2Bhk+Ck^2$，把它看成 $h$ 的二次式，判别式为
+
+    $$
+    \Delta_Q=(2Bk)^2-4A\cdot Ck^2=-4(AC-B^2)k^2=-4Dk^2
+    $$
+
+    于是可以按二次型的类型讨论：
+
+    - $D>0$ 且 $A>0$：$Q$ 正定，当 $(h,k)\neq(0,0)$ 时 $Q>0$。余项 $o(h^2+k^2)$ 比 $Q$ 高阶，故 $\Delta f>0$，为严格局部极小值。
+    - $D>0$ 且 $A<0$：$Q$ 负定，同理 $\Delta f<0$，为严格局部极大值。
+    - $D<0$：$Q$ 不定，沿某些方向 $Q>0$、沿另一些方向 $Q<0$，$\Delta f$ 随之变号，为鞍点。
+    - $D=0$：$Q$ 退化，$\Delta f$ 的符号由更高阶项决定，无法判断。
+
+    当 $D>0$ 时 $A$ 与 $C$ 同号，所以把判别条件中的 $A>0$、$A<0$ 换成 $C>0$、$C<0$ 结论不变。
   </Accordion>
 
   <Accordion title="7. 拉格朗日乘数法 ★★★">
@@ -1608,23 +1710,27 @@ tags: ["考研", "高等数学", "数学一"]
 
     **证明方法：费马定理 + 约束曲线切向量**
 
-    将约束曲线局部参数化为 $\boldsymbol r(t)$。极值点处，
+    把约束曲线 $g(x,y)=0$ 在极值点 $P_0$ 附近参数化为 $\boldsymbol r(t)=(x(t),y(t))$，且 $\boldsymbol r(0)=P_0$。
+
+    由 $g(\boldsymbol r(t))=0$ 对 $t$ 求导，
 
     $$
-    \nabla f\cdot\boldsymbol r'(t)=0
+    \nabla g(P_0)\cdot\boldsymbol r'(0)=0
     $$
 
-    由约束条件，
+    另一方面，$t\mapsto f(\boldsymbol r(t))$ 在 $t=0$ 取局部极值，由费马定理，
 
     $$
-    \nabla g\cdot\boldsymbol r'(t)=0
+    \nabla f(P_0)\cdot\boldsymbol r'(0)=0
     $$
 
-    因此两梯度都垂直于约束曲线切向量。在正则点处，两个梯度平行，故
+    也就是说，$\nabla f(P_0)$ 与 $\nabla g(P_0)$ 都垂直于同一条非零切向量 $\boldsymbol r'(0)$。平面上与同一非零向量垂直的向量彼此平行，故存在 $\lambda$，使
 
     $$
-    \nabla f=\lambda\nabla g
+    \nabla f(P_0)=\lambda\nabla g(P_0)
     $$
+
+    条件 $\nabla g\neq0$ 保证约束曲线在 $P_0$ 处确有非零切向量，上述论证才成立；它同时保证可以局部把约束写成函数图像，直接用隐函数求导也能得到同一组方程。
   </Accordion>
 </AccordionGroup>
 
