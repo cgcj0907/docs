@@ -32,24 +32,12 @@ tags: ["考研408", "数据结构"]
 
     <Tabs>
       <Tab title="无向图">
-        ```mermaid
-        graph LR
-          A --- B
-          A --- C
-          B --- C
-          C --- D
-        ```
+        ![无向图示例：4 个顶点和 4 条无向边](/images/data-structure/undirected-graph.png)
 
         边没有方向，$(v_i,v_j)$ 与 $(v_j,v_i)$ 是同一条边。
       </Tab>
       <Tab title="有向图">
-        ```mermaid
-        graph LR
-          A --> B
-          A --> C
-          B --> C
-          C --> D
-        ```
+        ![有向图示例：带有方向的弧](/images/data-structure/directed-graph.png)
 
         弧有方向，$\langle v_i,v_j\rangle$ 与 $\langle v_j,v_i\rangle$ 是两条不同的弧。
       </Tab>
@@ -86,6 +74,10 @@ tags: ["考研408", "数据结构"]
     | --- | --- | --- |
     | 无向完全图 | $\dfrac{n(n-1)}{2}$ | 每对顶点之间只有一条边 |
     | 有向完全图 | $n(n-1)$ | 每对顶点之间有两条方向相反的弧 |
+
+    <Frame caption="无向完全图 K5：任意两个顶点之间都有一条边（图源：Wikimedia Commons，公有领域）">
+      ![无向完全图 K5](/images/data-structure/complete-graph-k5.png)
+    </Frame>
 
     <Tip>
     **记忆**：无向完全图是“每对顶点一条边”，有向完全图是“每对顶点两条弧”，所以有向完全图的边数是无向完全图的 2 倍。
@@ -254,6 +246,10 @@ tags: ["考研408", "数据结构"]
     - 矩阵一般不对称
     - 第 $i$ 行非零元素个数等于 $v_i$ 的出度
     - 第 $i$ 列非零元素个数等于 $v_i$ 的入度
+
+    <Frame caption="邻接矩阵：上方为无向图，下方为有向图；顶点向量与矩阵一一对应（图源：Wikimedia Commons，CC BY-SA 4.0，作者 Jakkritcpenu）">
+      ![邻接矩阵示例：无向图与有向图](/images/data-structure/adjacency-matrix.png)
+    </Frame>
 
     | 项目 | 复杂度 |
     | --- | --- |
@@ -550,17 +546,11 @@ tags: ["考研408", "数据结构"]
     - 所有边权值互不相同时，最小生成树一定唯一
     - 存在相同权值时，最小生成树仍可能唯一
 
-    ```mermaid
-    graph LR
-      A["A"] ---|1| B["B"]
-      A ---|3| C["C"]
-      B ---|2| C
-      B ---|4| D["D"]
-      C ---|5| D
-      linkStyle 0,2,3 stroke:#BD5B3D,stroke-width:3px
-    ```
+    <Frame caption="最小生成树：粗边为 MST 的边，细边为其他边（图源：Wikimedia Commons，公有领域）">
+      ![最小生成树示例：粗边构成 MST](/images/data-structure/minimum-spanning-tree.png)
+    </Frame>
 
-    粗边表示一种最小生成树：AB、BC、BD，权值和为 $1+2+4=7$。
+    粗边表示最小生成树中的边，细边表示未选中的边。
 
     <Tip>
     MST 的两种经典算法都基于贪心：Prim 从“顶点集合”扩展，Kruskal 从“边集合”选择。
