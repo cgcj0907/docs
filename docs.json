@@ -47,6 +47,7 @@
               "data-structure/knowledge-summary/chapter-3",
               "data-structure/knowledge-summary/chapter-4",
               "data-structure/knowledge-summary/chapter-5",
+              "data-structure/knowledge-summary/chapter-6",
               "data-structure/knowledge-summary/chapter-8"
             ]
           }
@@ -64,7 +65,8 @@
               "computer-architecture/knowledge-summary/chapter-4",
               "computer-architecture/knowledge-summary/chapter-5",
               "computer-architecture/knowledge-summary/chapter-6",
-              "computer-architecture/knowledge-summary/chapter-7"
+              "computer-architecture/knowledge-summary/chapter-7",
+              "computer-architecture/knowledge-summary/chapter-8"
             ]
           }
         ]
